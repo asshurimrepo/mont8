@@ -1,0 +1,73 @@
+@font-face {
+    font-family: modern_sans;
+    src: url(MODERNE%20SANS.ttf);
+}
+
+/*Single Product*/
+.summary .product-title h1{
+    font-family: modern_sans, 'Open Sans';
+    text-transform: uppercase;
+    line-height: 1.4em;
+}
+
+.summary .short-description{
+    margin-bottom: 20px;
+    color: #555555;
+}
+
+.short-description ul{
+    margin: 0;
+    padding-left: 18px;
+    list-style: none;
+}
+
+.short-description ul li:before {
+    font-family: 'FontAwesome';
+    content: '\f105';
+    margin:0 5px 0 -15px;
+    color: #999;
+    font-weight: 300;
+}
+
+.single_add_to_cart_button{
+    font-family: 'Open Sans';
+    font-weight: 700 !important;
+    font-size: 30px !important;
+    color: #000;
+    text-transform: uppercase !important;
+    padding: 5px 10px !important;
+}
+
+.single_add_to_cart_button .fa-shopping-cart{
+    border: none !important;
+    padding: 0 !important;
+    font-size: 30px;
+}
+
+.swatchinput .print-name{
+    font-family: modern_sans, 'Open Sans';
+}
+
+.text-center{
+    text-align: center;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+    margin-top: -8px;
+}
+
+.summary .product-title small{
+    display: block;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.tm-extra-product-options .tm-extra-product-options-field{
+    margin: 0 !important;
+}
+
+.tm-epo-totals{
+    padding: 0 !important;
+}
