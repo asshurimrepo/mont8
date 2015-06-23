@@ -1,0 +1,164 @@
+.dokan-new-product-area h4{
+    font-size: 110%;
+    font-weight: 600;
+}
+
+.dropzone.dz-clickable {
+	  display: block;
+	  color: #8a95a5;
+	  cursor: pointer;
+}
+
+.hide_in_product{
+  display: none !important;
+}
+
+.uploader .fa{
+	font-size: 2em;
+}
+
+#new-product-form{
+	padding: 3rem 0;
+	padding-bottom: 5rem;
+}
+
+.uploader {
+	  font-family: 'Open Sans';
+	  border: 6px dashed #c7cdd1;
+	  padding: 60px 22px ;
+	  padding: 5.75rem 1.375rem !important;
+	  font-size: 1.6em;
+	  text-align: center !important;
+}
+
+form{
+	position: relative;
+}
+
+.errors{
+	margin: 20px 0 0 0 ;
+}
+
+.dokan-alert{
+	margin-bottom: 5px !important;
+	font-weight: 600;
+}
+
+.dokan-w4{
+	text-align: center;
+}
+
+.dokan-form-container{
+	/*display: none;*/
+}
+
+.dokan-form-container:first-child{
+	display: block;
+}
+
+#selection{
+	padding: 2rem 0;
+	padding-bottom: 0;
+}
+
+#selection>a{
+	display: inline-block;
+	margin-right: 10px;
+	width: 100px;
+	position: relative;
+	cursor: pointer;
+}
+
+#selection>a.active:before {
+  z-index: 1;
+  content: "";
+  border: 3px solid #FF008B;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+}
+
+#selection>a>img{
+	width: 100%;
+}
+
+.is-updating:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 2000px;
+  z-index: 9;
+  background-color: rgba(255,255,255, .5);
+}
+
+.right{
+	text-align: right;
+}
+
+.product-pricing{
+	display: none;
+	font-size: 14px;
+}
+
+.product-pricing input{
+	-moz-box-sizing: border-box;
+    height: 100%;
+    padding: 10px;
+    width: 100%;
+}
+
+.change-product-pricing-btn{
+	padding: 17px 0;
+	font-weight: 600;
+	font-size: 14px;
+	display: inline-block;
+}
+
+.product-edit-container .dokan-feat-image-upload{
+	border: none !important;
+	width: 100% !important;
+	height: auto !important;
+	
+}
+
+.product-edit-container .dokan-feat-image-upload img{
+	width: 100%;
+	height: auto;
+}
+
+.product-edit-container .dokan-feat-image-upload a.close{
+  background: #000000;
+  color: #FF0000;
+  width: auto !important; 
+  height: auto !important;
+  top: 0; 
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0;
+  opacity: 0.7;
+  padding: 0 !important;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-shadow: none;
+  top: 0;
+  display: none;
+}
+.product-edit-container .dokan-feat-image-upload a>i{
+	position: absolute;
+    margin: auto;
+    top: 10rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.dokan_tabs{
+	display: none;
+}

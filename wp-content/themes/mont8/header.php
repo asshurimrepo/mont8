@@ -32,7 +32,7 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="container">
-			<div class="row">
+			<div class="row nav-row">
 
 				<div class="col-xs-12 col-sm-12 col-lg-12 hidden-lg hidden-sm hidden-md mobile_view">
 					<?php dokan_header_user_menu(); ?>
@@ -50,7 +50,7 @@
 				</div>
 
 
-				<div class="col-xs-12 col-sm-7 col-lg-7" style="padding:0;">
+				<div class="col-xs-12 col-sm-7 col-lg-7 nav-menu" style="padding:0;">
 					<?php echo wp_nav_menu( array( "theme_location" => "primary" ) ); ?>
 					<!--<nav role="navigation" class="site-navigation main-navigation clearfix">
                                 <h1 class="assistive-text"><i class="icon-reorder"></i> <?php //_e( 'Menu', 'dokan' ); ?></h1>
