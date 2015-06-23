@@ -16,27 +16,25 @@
     <div class="footer-widget-area">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 social_media">
-                    <?php dynamic_sidebar( 'footer-1' ); ?>
-                </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 social_media">
-                    <?php dynamic_sidebar( 'footer-2' ); ?>
-                </div>
+                <div class="col-md-3"><?php dynamic_sidebar('footer-1'); ?></div>
+                <div class="col-md-3"><?php dynamic_sidebar('footer-2'); ?></div>
+                <div class="col-md-3"><?php dynamic_sidebar('footer-3'); ?></div>
+                <div class="col-md-3">
 
-                <div class="col-xs-12 col-sm-12 col-lg-12 footer_menu">
-                    <!--<div class="col-md-6 footer-gateway">-->
-                            <?php
-                                wp_nav_menu( array(
-                                    'theme_location'  => 'footer',
-                                    'depth'           => 1,
-                                    'container_class' => 'footer-menu-container clearfix',
-                                    'menu_class'      => 'menu list-inline',
-                                ) );
-                            ?>
-                        <!--</div>-->
-                </div>
 
+	                <aside id="nav_menu-2" class="widget widget_nav_menu"><h3 class="widget-title">Newsletter</h3><div class="menu-footer-column-1-container">
+			                <p class="newsletter_title"><b>10%</b> discount when you subscribe for the newsletter</p>
+							<div class="newsletter">
+								<div class="input-group">
+									<input type="text" class="form-control newsletter_txt" placeholder="Email Address">
+				                      <span class="input-group-btn">
+				                        <button class="btn btn-default btn-go" type="button">Go!</button>
+				                      </span>
+								</div>
+							</div>
+		                </div></aside>
+                </div>
                 
             </div> <!-- .footer-widget-area -->
         </div>
@@ -47,20 +45,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer-copy">
-                        <div class="col-md-12 social_media site-info">
-                            <?php
-                            $footer_text = get_theme_mod( 'footer_text' );
+                       <?php
+	                       $footer_text = get_theme_mod( 'footer_text' );
 
-                            if ( empty( $footer_text ) ) {
-                                printf( __( '&copy; %d, %s. All rights are reserved.', 'dokan' ), date( 'Y' ), get_bloginfo( 'name' ) );
-                               
-                            } else {
-                                echo $footer_text;
-                            }
-                            ?>
-                        </div><!-- .site-info -->
+	                       if ( empty( $footer_text ) ) {
+		                       printf( __( '&copy; %d, %s. All rights are reserved.', 'dokan' ), date( 'Y' ), get_bloginfo( 'name' ) );
 
-                        
+	                       } else {
+		                       echo $footer_text;
+	                       }
+                       ?>
                     </div>
                 </div>
             </div><!-- .row -->
