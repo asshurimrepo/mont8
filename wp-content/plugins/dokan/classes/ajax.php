@@ -66,6 +66,10 @@ class Dokan_Ajax {
         // Shipping ajax hanlding
         add_action( 'wp_ajax_dps_select_state_by_country', array( $this, 'load_state_by_country' ) );
         add_action( 'wp_ajax_nopriv_dps_select_state_by_country', array( $this, 'load_state_by_country' ) );
+
+        // Announcement ajax handling
+        add_action( 'wp_ajax_dokan_announcement_remove_row', array( $this, 'remove_announcement') );
+        add_action( 'wp_ajax_nopriv_dokan_announcement_remove_row', array( $this, 'remove_announcement') );
     }
 
     /**
@@ -508,7 +512,7 @@ class Dokan_Ajax {
      */
     function contact_seller() {
         $posted = $_POST;
-        
+
         check_ajax_referer( 'dokan_contact_seller' );
         // print_r($posted);
 
@@ -522,7 +526,7 @@ class Dokan_Ajax {
         $contact_name = trim( strip_tags( $posted['name'] ) );
 
         Dokan_Email::init()->contact_seller( $seller->user_email, $contact_name, $posted['email'], $posted['message'] );
-        
+
         $success = sprintf( '<div class="alert alert-success">%s</div>', __( 'Email sent successfully!', 'dokan' ) );
         wp_send_json_success( $success );
         exit;
@@ -761,40 +765,41 @@ class Dokan_Ajax {
     }
 
     /**
-     *  Load State via ajax for shipping
+     * Load State via ajax for shipping
+     *
      * @return html Set of states
      */
     function load_state_by_country() {
 
-        $country_id = $_POST['country_id'];
+        $country_id  = $_POST['country_id'];
         $country_obj = new WC_Countries();
-        $states = $country_obj->states;
+        $states      = $country_obj->states;
 
         ob_start();
-        if( !empty( $states[$country_id] ) ) {
+        if ( !empty( $states[$country_id] ) ) {
             ?>
              <tr>
                 <td>
                     <label for=""><?php _e( 'State', 'dokan' ); ?></label>
                     <select name="dps_state_to[<?php echo $country_id ?>][]" class="dokan-form-control dps_state_selection" id="dps_state_selection">
-                        <?php state_dropdown( $states[$country_id], '', true ); ?>
+                        <?php dokan_state_dropdown( $states[$country_id], '', true ); ?>
                     </select>
                 </td>
                 <td>
                     <label for=""><?php _e( 'Cost', 'dokan' ); ?></label>
                     <div class="input-group">
                         <span class="input-group-addon"><?php echo get_woocommerce_currency_symbol(); ?></span>
-                        <input type="text" placeholder="9.99" class="form-control" name="dps_state_to_price[<?php echo $country_id; ?>][]">
+                        <input type="text" placeholder="0.00" class="form-control" name="dps_state_to_price[<?php echo $country_id; ?>][]">
                     </div>
                 </td>
                 <td width="15%">
                     <label for=""></label>
                     <div>
-                        <a class="dps-add" href="#"><i class="fa fa-plus-circle fa-2x"></i></a>
-                        <a class="dps-remove" href="#"><i class="fa fa-minus-circle fa-2x"></i></a>
+                        <a class="dps-add" href="#"><i class="fa fa-plus"></i></a>
+                        <a class="dps-remove" href="#"><i class="fa fa-minus"></i></a>
                     </div>
                 </td>
-            </tr>   
+            </tr>
             <?php
             // }
         } else {
@@ -808,21 +813,56 @@ class Dokan_Ajax {
                     <label for=""><?php _e( 'Cost', 'dokan' ); ?></label>
                     <div class="input-group">
                         <span class="input-group-addon"><?php echo get_woocommerce_currency_symbol(); ?></span>
-                        <input type="text" placeholder="9.99" class="form-control" name="dps_state_to_price[<?php echo $country_id; ?>][]">
+                        <input type="text" placeholder="0.00" class="form-control" name="dps_state_to_price[<?php echo $country_id; ?>][]">
                     </div>
                 </td>
                 <td width="15%">
                     <label for=""></label>
                     <div>
-                        <a class="dps-add" href="#"><i class="fa fa-plus-circle fa-2x"></i></a>
-                        <a class="dps-remove" href="#"><i class="fa fa-minus-circle fa-2x"></i></a>
+                        <a class="dps-add" href="#"><i class="fa fa-plus"></i></a>
+                        <a class="dps-remove" href="#"><i class="fa fa-minus"></i></a>
                     </div>
                 </td>
             </tr>
             <?php
         }
-        $data = ob_get_clean();  
+
+        $data = ob_get_clean();
 
         wp_send_json_success( $data );
+    }
+
+    function remove_announcement() {
+        global $wpdb;
+
+        check_ajax_referer( 'dokan_reviews' );
+
+        $table_name = $wpdb->prefix. 'dokan_announcement';
+        $row_id     = $_POST['row_id'];
+
+        $result = $wpdb->update(
+            $table_name,
+            array(
+                'status' => 'trash',
+            ),
+            array( 'id' => $row_id, 'user_id' => get_current_user_id() )
+        );
+
+        ob_start();
+        ?>
+        <div class="dokan-no-announcement">
+            <div class="annoument-no-wrapper">
+                <i class="fa fa-bell dokan-announcement-icon"></i>
+                <p><?php _e( 'No Announcement found', 'dokan' ) ?></p>
+            </div>
+        </div>
+        <?php
+        $content = ob_get_clean();
+
+        if ( $result ) {
+            wp_send_json_success( $content );
+        } else {
+            wp_send_json_error();
+        }
     }
 }

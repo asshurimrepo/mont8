@@ -38,7 +38,7 @@ $_downloadable   = get_post_meta( $post->ID, '_downloadable', true );
         <?php } ?>
     </div>
 
-    <div class="product-type dokan-toggle-sidebar">
+    <div class="product-type dokan-toggle-sidebar hide">
         <label for="product_type"><?php _e( 'Product Type:', 'dokan' ); ?></label>
 
         <?php
@@ -81,7 +81,7 @@ $_downloadable   = get_post_meta( $post->ID, '_downloadable', true );
 
 <?php do_action( 'dokan_product_edit_before_sidebar' ); ?>
 
-<aside class="downloadable downloadable_files">
+<aside class="downloadable downloadable_files hide">
     <div class="dokan-side-head">
         <label class="checkbox-inline">
             <input type="checkbox" id="_downloadable" name="_downloadable" value="yes"<?php checked( $_downloadable, 'yes' ); ?>>
@@ -126,13 +126,13 @@ $_downloadable   = get_post_meta( $post->ID, '_downloadable', true );
             <li class="dokan-form-group">
                 <div class="dokan-input-group">
                     <span class="dokan-input-group-addon"><?php _e( 'Limit', 'dokan' ); ?></span>
-                    <?php dokan_post_input_box( $post->ID, '_download_limit', array( 'placeholder' => __( 'Download Limit. e.g: 4', 'dokan' ) ) ); ?>
+                    <?php dokan_post_input_box( $post->ID, '_download_limit', array( 'placeholder' => __( 'Number of times', 'dokan' ), 'min' => 1, 'step' => 1 ), 'number' ); ?>
                 </div>
             </li>
             <li class="dokan-form-group">
                 <div class="dokan-input-group">
                     <span class="dokan-input-group-addon">Expiry</span>
-                    <?php dokan_post_input_box( $post->ID, '_download_expiry', array( 'placeholder' => __( 'Number of days', 'dokan' ) ) ); ?>
+                    <?php dokan_post_input_box( $post->ID, '_download_expiry', array( 'placeholder' => __( 'Number of days', 'dokan' ), 'min' => 1, 'step' => 1 ), 'number' ); ?>
                 </div>
             </li>
         </ul>
@@ -141,7 +141,7 @@ $_downloadable   = get_post_meta( $post->ID, '_downloadable', true );
 
 <?php do_action( 'dokan_product_edit_after_downloadable' ); ?>
 
-<aside class="product-gallery">
+<aside class="product-gallery hide">
     <div class="dokan-side-head">
         <?php _e( 'Image Gallery', 'dokan' ); ?>
     </div>

@@ -154,11 +154,11 @@ function dokan_variable_product_type_options() {
 
             <p class="toolbar">
 
-                <button type="button" class="btn btn-sm btn-success button-primary add_variation" <?php disabled( $variation_attribute_found, false ); ?>><?php _e( 'Add Variation', 'woocommerce' ); ?></button>
+                <button type="button" class="btn btn-sm btn-success button-primary add_variation" <?php disabled( $variation_attribute_found, false ); ?>><?php _e( 'Add Variation', 'dokan' ); ?></button>
 
-                <button type="button" class="btn btn-sm btn-default link_all_variations" <?php disabled( $variation_attribute_found, false ); ?>><?php _e( 'Link all variations', 'woocommerce' ); ?></button>
+                <button type="button" class="btn btn-sm btn-default link_all_variations" <?php disabled( $variation_attribute_found, false ); ?>><?php _e( 'Link all variations', 'dokan' ); ?></button>
 
-                <strong><?php _e( 'Default selections:', 'woocommerce' ); ?></strong>
+                <strong><?php _e( 'Default selections:', 'dokan' ); ?></strong>
                 <?php
                     $default_attributes = maybe_unserialize( get_post_meta( $post->ID, '_default_attributes', true ) );
                     foreach ( $attributes as $attribute ) {
@@ -171,7 +171,7 @@ function dokan_variable_product_type_options() {
                         $variation_selected_value = isset( $default_attributes[ sanitize_title( $attribute['name'] ) ] ) ? $default_attributes[ sanitize_title( $attribute['name'] ) ] : '';
 
                         // Name will be something like attribute_pa_color
-                        echo '<select name="default_attribute_' . sanitize_title( $attribute['name'] ) . '"><option value="">' . __( 'No default', 'woocommerce' ) . ' ' . esc_html( wc_attribute_label( $attribute['name'] ) ) . '&hellip;</option>';
+                        echo '<select name="default_attribute_' . sanitize_title( $attribute['name'] ) . '"><option value="">' . __( 'No default', 'dokan' ) . ' ' . esc_html( wc_attribute_label( $attribute['name'] ) ) . '&hellip;</option>';
 
                         // Get terms for attribute taxonomy or value if its a custom attribute
                         if ( $attribute['is_taxonomy'] ) {
@@ -312,9 +312,9 @@ function dokan_variable_product_type_options() {
                     jQuery(el).block({ message: null, overlayCSS: { background: '#fff url(<?php echo $woocommerce->plugin_url(); ?>/assets/images/ajax-loader.gif) no-repeat center', opacity: 0.6 } });
 
                     var data = {
-                        action: 'woocommerce_remove_variation',
-                        variation_id: variation,
-                        security: '<?php echo wp_create_nonce("delete-variation"); ?>'
+                        action: 'woocommerce_remove_variations',
+                        variation_ids: variation,
+                        security: '<?php echo wp_create_nonce("delete-variations"); ?>'
                     };
 
                     jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
@@ -471,7 +471,7 @@ function dokan_process_product_meta( $post_id ) {
     // Get types
     $product_type       = empty( $_POST['_product_type'] ) ? 'simple' : sanitize_title( stripslashes( $_POST['_product_type'] ) );
     $is_downloadable    = isset( $_POST['_downloadable'] ) ? 'yes' : 'no';
-    $is_virtual         = isset( $_POST['_virtual'] ) ? 'yes' : 'no';
+    $is_virtual         = ( $is_downloadable == 'yes' ) ? 'yes' : 'no';
 
     // Product type + Downloadable/Virtual
     wp_set_object_terms( $post_id, $product_type, 'product_type' );
@@ -515,9 +515,19 @@ function dokan_process_product_meta( $post_id ) {
 
     //Save shipping meta data
     update_post_meta( $post_id, '_disable_shipping', stripslashes( isset( $_POST['_disable_shipping'] ) ? $_POST['_disable_shipping'] : '' ) );
-    update_post_meta( $post_id, '_overwrite_shipping', stripslashes( isset( $_POST['_overwrite_shipping'] ) ? $_POST['_overwrite_shipping'] : '' ) );
-    update_post_meta( $post_id, '_additional_price', stripslashes( isset( $_POST['_additional_price'] ) ? $_POST['_additional_price'] : '' ) );
-    update_post_meta( $post_id, '_additional_qty', stripslashes( isset( $_POST['_additional_qty'] ) ? $_POST['_additional_qty'] : '' ) );    
+
+    if ( isset( $_POST['_overwrite_shipping'] ) && $_POST['_overwrite_shipping'] == 'yes' ) {
+        update_post_meta( $post_id, '_overwrite_shipping', stripslashes( $_POST['_overwrite_shipping'] ) );
+        update_post_meta( $post_id, '_additional_price', stripslashes( isset( $_POST['_additional_price'] ) ? $_POST['_additional_price'] : '' ) );
+        update_post_meta( $post_id, '_additional_qty', stripslashes( isset( $_POST['_additional_qty'] ) ? $_POST['_additional_qty'] : '' ) );    
+        update_post_meta( $post_id, '_dps_processing_time', stripslashes( isset( $_POST['_dps_processing_time'] ) ? $_POST['_dps_processing_time'] : '' ) );
+    } else {
+        update_post_meta( $post_id, '_overwrite_shipping', 'no' );
+        update_post_meta( $post_id, '_additional_price', '' );
+        update_post_meta( $post_id, '_additional_qty', '' );    
+        update_post_meta( $post_id, '_dps_processing_time', '' );
+    }
+        
 
     // Save shipping class
     $product_shipping_class = $_POST['product_shipping_class'] > 0 && $product_type != 'external' ? absint( $_POST['product_shipping_class'] ) : '';
@@ -548,28 +558,7 @@ function dokan_process_product_meta( $post_id ) {
             update_post_meta( $post_id, '_sku', '' );
         }
     }
-    
-    //start status print
-    if ( isset( $_POST['meta_status_print'] ) ) {  
-        //$t_id = $term_id;  
-        $term_id = wp_get_post_terms( $post_id, 'pa_print', array('fields' => 'ids') );
-        //var_dump(empty($term_id));
-        
-        $term_meta = array();
-        if(!empty($term_id)){
-            foreach ( $term_id as $key=>$t_id ){
-                $term_meta[$t_id] = $_POST['meta_status_print'][0][$t_id];
-            }
-        }else{
-            $term_meta = $_POST['meta_status_print'];
-        }
-        
-        //save the option array
-        update_option( "pa_print_status_".$post_id, $term_meta );
-        
-    }
-    
-    //end status print
+
     // Save Attributes
     $attributes = array();
 
@@ -751,7 +740,7 @@ function dokan_process_product_meta( $post_id ) {
             // Stock status is always determined by children so sync later
             $stock_status = '';
 
-            if ( ! empty( $_POST['_manage_stock'] ) ) {
+            if ( ! empty( $_POST['_manage_stock'] ) && $_POST['_manage_stock'] == 'yes' ) {
                 $manage_stock = 'yes';
                 $backorders   = wc_clean( $_POST['_backorders'] );
             }
@@ -902,8 +891,19 @@ function dokan_save_variations( $post_id ) {
             $variation_id = absint( $variable_post_id[ $i ] );
 
             // Virtal/Downloadable
-            $is_virtual = isset( $variable_is_virtual[ $i ] ) ? 'yes' : 'no';
             $is_downloadable = isset( $variable_is_downloadable[ $i ] ) ? 'yes' : 'no';
+            
+            if ( isset( $variable_is_virtual[ $i ] ) ) {
+                $is_virtual = 'yes';    
+            } else {
+                
+                if ( $is_downloadable == 'yes' ) {
+                    $is_virtual = 'yes';
+                } else {
+                    $is_virtual = 'no';
+                } 
+            }
+            // $is_virtual = isset(  ) ? 'yes' : 'no';
 
             // Enabled or disabled
             $post_status = isset( $variable_enabled[ $i ] ) ? 'publish' : 'private';
@@ -949,20 +949,11 @@ function dokan_save_variations( $post_id ) {
             update_post_meta( $variation_id, '_thumbnail_id', absint( $upload_image_id[ $i ] ) );
             update_post_meta( $variation_id, '_virtual', wc_clean( $is_virtual ) );
             update_post_meta( $variation_id, '_downloadable', wc_clean( $is_downloadable ) );
-
-            // Stock handling
             update_post_meta( $variation_id, '_manage_stock', $manage_stock );
 
             // Only update stock status to user setting if changed by the user, but do so before looking at stock levels at variation level
             if ( ! empty( $variable_stock_status[ $i ] ) ) {
-                //var_dump( $variable_stock_status[ $i ] );
-                if( isset( $variable_stock[$i] ) && !empty( $variable_stock[$i] ) ) {
-                    update_post_meta( $variation_id, '_stock_status', $variable_stock_status[ $i ] );
-                } else {
-                    update_post_meta( $variation_id, '_stock_status', 'outofstock' );
-                } 
-                //wc_update_product_stock_status( $variation_id, $variable_stock_status[ $i ] );
-                //WC_Product_Variable::sync_stock_status( $variation_id );                
+                wc_update_product_stock_status( $variation_id, $variable_stock_status[ $i ] );
             }
 
             if ( 'yes' === $manage_stock ) {
@@ -1446,9 +1437,9 @@ add_filter( 'registration_errors', 'dokan_seller_registration_errors' );
  * @return array
  */
 function dokan_new_customer_data( $data ) {
-    //$allowed_roles = array( 'customer', 'seller' );
-    ///$role = ( isset( $_POST['role'] ) && in_array( $_POST['role'], $allowed_roles ) ) ? $_POST['role'] : 'customer';
-    $role = 'seller';
+    $allowed_roles = array( 'customer', 'seller' );
+    $role = ( isset( $_POST['role'] ) && in_array( $_POST['role'], $allowed_roles ) ) ? $_POST['role'] : 'customer';
+
     $data['role'] = $role;
 
     if ( $role == 'seller' ) {
@@ -1478,7 +1469,6 @@ function dokan_on_create_seller( $user_id, $data ) {
 
     $dokan_settings = array(
         'store_name'     => strip_tags( $_POST['shopname'] ),
-        'user_date_of_birth'    => $_POST['dateofbirth'],
         'social'         => array(),
         'payment'        => array(),
         'phone'          => $_POST['phone'],
@@ -1773,6 +1763,7 @@ function dokan_user_update_to_seller( $user, $data ) {
     // Add role
     $user->add_role( 'seller' );
 
+    $user_id = wp_update_user( array( 'ID' => $user_id, 'user_nicename' => $data['shopurl'] ) );
     update_user_meta( $user_id, 'first_name', $data['fname'] );
     update_user_meta( $user_id, 'last_name', $data['lname'] );
 

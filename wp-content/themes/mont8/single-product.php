@@ -1,4 +1,5 @@
 <?php
+
 	/**
 	 * The Template for displaying all single products.
 	 *
@@ -6,7 +7,13 @@
 	 * @subpackage WooCommerce/Templates
 	 * @version 1.6.4
 	 */
+
+	// Enque the required dependencies on this page - iboostme/hooks.php
+	load_product_page_assets();
+	
+
 	get_header();
+
 ?>
 
 <?php //get_sidebar( 'product-single' ); ?>
@@ -40,15 +47,18 @@
 			?>
 		</div>
 
-		<!--<div class="row" style="clear:both;">
-			<h2><?php /*_e( 'Same Artists', 'woocommerce' ); */?></h2>
-			<?/*=do_shortcode('[recent_products per_page="5" columns="5" orderby="rand" order="rand"]')*/?>
-		</div>
+		<section class="related-artworks artists-artwork">
 
-		<div class="row" style="clear:both;">
-			<h2><?php /*_e( 'Similar Images', 'woocommerce' ); */?></h2>
-			<?/*=do_shortcode('[recent_products per_page="5" columns="5" orderby="rand" order="rand"]')*/?>
-		</div>-->
+			<div class="row same-artists" style="clear:both;">
+				<h2 class="text-center nice-title"><?php _e( 'SAME ARTISTS', 'woocommerce' ); ?></h2>
+				<?=do_shortcode('[recent_products per_page="5" columns="5" orderby="rand" author="1" order="rand"]')?>
+			</div>
+
+			<div class="row recommended-images" style="clear:both;" >
+				<h2 class="text-center nice-title"><?php _e( 'RECOMMENDED FOR YOU', 'woocommerce' ); ?></h2>
+				<?=do_shortcode('[recent_products per_page="5" columns="5" orderby="rand" order="rand"]')?>
+			</div>
+		</section>
 		<!-- #content .site-content -->
 	</div><!-- #primary .content-area -->
 

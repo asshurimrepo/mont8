@@ -15,3 +15,15 @@
         </span>
     </div><!-- /input-group -->
 </form>
+
+
+<form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+    <div class="search_panel">
+        <div class="right-inner-addon ">
+            <i class="fa fa-search fa-lg"></i>
+            <input type="search"
+                   class="form-control" />
+        </div>
+    </div>
+</form>
+

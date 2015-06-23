@@ -108,10 +108,37 @@ a:hover {
 :: Header
 -------------------------------------------------- */
 .site-header {  	  	
-  	background: #fff;  	
+  	background: #f3f3f3;  	livere
   	min-height:115px;
 	padding: 15px 0 0;
 }
+.mmm_fullwidth_container{
+  background: transparent !important;
+}
+
+#mega_main_menu.primary > .menu_holder > .menu_inner > ul > li > .item_link{
+    background: transparent;
+    padding: 5px 30px;
+    padding-bottom: 80px !important;
+    font-weight: 600 !important;
+}
+
+#mega_main_menu.primary > .menu_holder > .menu_inner > ul > li > .item_link > .link_content > .link_text{
+    font-weight: 600 !important;
+}
+
+.mega_main_menu_ul{
+    position: static;
+}
+
+ul.mega_dropdown{
+    top: 85px !important;
+}
+
+#mega_main_menu > .menu_holder > .menu_inner > ul{
+    margin-bottom: -17px;
+}
+
 .site-header .header {
   margin-bottom: 10px;
   overflow: hidden;
@@ -437,7 +464,7 @@ a:hover {
 	padding: 8px 10px;		
 	color:#555555;
 }
-.fa-shopping-cart{
+#masthead .fa-shopping-cart{
 	border:#e1e1e1 1px solid;
 	padding: 10px;	
 	margin-right: 12px;	
@@ -2254,6 +2281,9 @@ ul.subsubsub li.active a {
   font-weight: bold;
   display: inline-block !important;
 }
+
+
+
 .woocommerce.single-product .entry-summary .product_meta,
 .woocommerce-page.single-product .entry-summary .product_meta {
   margin: 15px 0 0 0;
@@ -2336,6 +2366,27 @@ ul.subsubsub li.active a {
   padding-top: 20px;
   border-right: 1px solid #ededed;
 }
+.woocommerce .login-form input, .woocommerce .reg-form input{
+  border-radius: 0;
+  padding: 20px;
+}
+.woocommerce .login-form .btn-theme{
+  background-color: #f4f400;
+  font-weight: bold;
+  padding: 12px;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+.woocommerce .reg-form .btn-theme{
+  background-color: #fc0d9e;
+  font-weight: bold;
+  padding: 12px;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-radius: 0;
+  color: #fff;
+}
 .woocommerce .login-form form,
 .woocommerce-page .login-form form {
   width: 60%;
@@ -2343,7 +2394,7 @@ ul.subsubsub li.active a {
 .woocommerce .reg-form,
 .woocommerce-page .reg-form {
   padding-top: 20px;
-  padding-left: 12%;
+  padding-left: 10%;
 }
 .woocommerce .reg-form form,
 .woocommerce-page .reg-form form {
@@ -3010,214 +3061,9 @@ label[for=print],
 	font-size:26px !important;
 }
 
-.framed-photo-prints{
-	-webkit-border-image: url('assets/images/brownframe.png') 32 fill round;
-	border-image: url('assets/images/brownframe.png') 32 fill round;
-	border-image-source: url('assets/images/brownframe.png');
-	border-image-slice: 100;
-	border-image-repeat: stretch;
-	border-width: 100px;
-	padding: 0%;
-	border-style: solid;
-	
-}
-.art-prints{
-	-webkit-border-image: url('assets/images/brownframe.png') 32 fill round;
-	border-image: url('assets/images/brownframe.png') 32 fill round;
-	border-image-source: url('assets/images/brownframe.png');
-	border-image-slice: 100;
-	border-image-repeat: stretch;
-	border-width: 50px;
-	padding: 0%;
-	
-}
 
 
-.Brown{
-	-webkit-border-image: url('assets/images/brownframe.png') 100 fill round;
-	border-image: url('assets/images/brownframe.png') 100 fill round;
-	border-image-source: url('assets/images/brownframe.png');
-	
-}
-.ArtPrint{
-	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	padding:25px;	
-}
-.photography{
-	/*-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);*/
-}
-.images a{
-	width:100%;
-	float:left;
-}
-.swatchinput label[for="Black"]{
-	background-color: #fff !important; border: 5px solid #000;
-}
-.swatchinput label[for="Brown"]{
-	background-color: #fff !important; border: 5px solid #7c5c48;
-}
-.swatchinput label[for="White"]{
-	background-color: #fff !important; border: 5px solid #fff;
-}
-
-
-.White_1{
-	-webkit-border-image: url('assets/images/white.png') 100 fill round;
-	border-image: url('assets/images/white.png') 100 fill round;
-	border-image-source: url('assets/images/white.png');
-}
-.Black_2{
-	-webkit-border-image: url('assets/images/blackframe.png') 100 fill round;
-	border-image: url('assets/images/blackframe.png') 100 fill round;
-	border-image-source: url('assets/images/blackframe.png');
-	
-}
-.Box_0.Brown_0.Off-White_0{
-	-webkit-border-image: url('assets/images/brown-offwhite.png') 160 fill round;
-	border-image: url('assets/images/brown-offwhite.png')160 fill round;
-	border-image-source: url('assets/images/brown-offwhite.png');	
-}
-.Brown_0.Off-White_0{
-	-webkit-border-image: url('assets/images/brown-offwhite.png') 100 fill round;
-	border-image: url('assets/images/brown-offwhite.png') 100 fill round;
-	border-image-source: url('assets/images/brown-offwhite.png');	
-}
-.a1.imagesize img.attachment-shop_single{
-	width:60% !important;
-	margin:auto !important;	
-}
-.a2.imagesize img.attachment-shop_single{
-	width:70% !important;
-	margin:auto !important;	
-}
-.a3.imagesize img.attachment-shop_single{
-	width:80% !important;
-	margin:auto !important;	
-}
-.a4.imagesize img.attachment-shop_single{
-	width:90% !important;
-	margin:auto !important;	
-}
-.a5.imagesize img.attachment-shop_single{
-	width:100% !important;
-	margin:auto !important;	
-}
-
-
-
-
-
-
-
-
-.Box_0.Brown_0.Black_1{
-	-webkit-border-image: url('assets/images/brown_black.png') 160 fill round;
-	border-image: url('assets/images/brown_black.png')160 fill round;
-	border-image-source: url('assets/images/brown_black.png');	
-}
-.Brown_0.Black_1{
-	-webkit-border-image: url('assets/images/brown_black.png') 100 fill round;
-	border-image: url('assets/images/brown_black.png') 100 fill round;
-	border-image-source: url('assets/images/brown_black.png');	
-}
-
-
-.Box_0.Brown_0.Bright-White_2{
-	-webkit-border-image: url('assets/images/brown-white.png') 160 fill round;
-	border-image: url('assets/images/brown-white.png')160 fill round;
-	border-image-source: url('assets/images/brown-white.png');	
-}
-.Brown_0.Bright-White_2{
-	-webkit-border-image: url('assets/images/brown-white.png') 100 fill round;
-	border-image: url('assets/images/brown-white.png') 100 fill round;
-	border-image-source: url('assets/images/brown-white.png');	
-}
-
-
-.Box_0.White_1.Off-White_0{
-	-webkit-border-image: url('assets/images/white-offwhite.png') 160 fill round;
-	border-image: url('assets/images/white-offwhite.png')160 fill round;
-	border-image-source: url('assets/images/white-offwhite.png');	
-}
-.White_1.Off-White_0{
-	-webkit-border-image: url('assets/images/white-offwhite.png') 100 fill round;
-	border-image: url('assets/images/white-offwhite.png') 100 fill round;
-	border-image-source: url('assets/images/white-offwhite.png');
-}
-
-
-.Box_0.White_1.Black_1{
-	-webkit-border-image: url('assets/images/white-black.png') 160 fill round;
-	border-image: url('assets/images/white-black.png')160 fill round;
-	border-image-source: url('assets/images/white-black.png');	
-}
-.White_1.Black_1{
-	-webkit-border-image: url('assets/images/white-black.png') 100 fill round;
-	border-image: url('assets/images/white-black.png') 100 fill round;
-	border-image-source: url('assets/images/white-black.png');	
-}
-
-
-.Box_0.White_1.Bright-White_2{
-	-webkit-border-image: url('assets/images/white-white.png') 160 fill round;
-	border-image: url('assets/images/white-white.png')160 fill round;
-	border-image-source: url('assets/images/white-white.png');	
-}
-.White_1.Bright-White_2{
-	-webkit-border-image: url('assets/images/white-white.png') 100 fill round;
-	border-image: url('assets/images/white-white.png') 100 fill round;
-	border-image-source: url('assets/images/white-white.png');	
-}
-
-
-
-.Box_0.Black_2.Off-White_0{
-	-webkit-border-image: url('assets/images/black-offwhite.png') 160 fill round;
-	border-image: url('assets/images/black-offwhite.png')160 fill round;
-	border-image-source: url('assets/images/black-offwhite.png');	
-}
-.Black_2.Off-White_0{
-	-webkit-border-image: url('assets/images/black-offwhite.png') 100 fill round;
-	border-image: url('assets/images/black-offwhite.png') 100 fill round;
-	border-image-source: url('assets/images/black-offwhite.png');	
-}
-
-
-
-.Box_0.Black_2.Black_1{
-	-webkit-border-image: url('assets/images/black-black.png') 160 fill round;
-	border-image: url('assets/images/black-black.png')160 fill round;
-	border-image-source: url('assets/images/black-black.png');	
-}
-.Black_2.Black_1{
-	-webkit-border-image: url('assets/images/black-black.png') 100 fill round;
-	border-image: url('assets/images/black-black.png') 100 fill round;
-	border-image-source: url('assets/images/black-black.png');	
-}
-
-
-.Box_0.Black_2.Bright-White_2{
-	-webkit-border-image: url('assets/images/black-white.png') 160 fill round;
-	border-image: url('assets/images/black-white.png')160 fill round;
-	border-image-source: url('assets/images/black-white.png');	
-}
-.Black_2.Bright-White_2{
-	-webkit-border-image: url('assets/images/black-white.png') 100 fill round;
-	border-image: url('assets/images/black-white.png') 100 fill round;
-	border-image-source: url('assets/images/black-white.png');	
-}
-
-
-
-
-
-
-
-
-.archive ul.products .canvas-style img,
-.single-product .canvas img{
+/*.canvas-style img{
 	border:none!important;
 	padding:0px !important;
 	box-shadow: 0px 0px 20px rgba(0,0,0,0.25) !important;
@@ -3278,7 +3124,7 @@ label[for=print],
 .canvas::after{
     background: #eef3f6;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.05) inset;
-}
+}*/
 .framed_art{
 	border: #222222 9px solid;
 	padding: 12px;
@@ -3290,7 +3136,7 @@ ul.list-unstyled .seller-name{
 	border: #f3f315 1px solid !important;
 	background: #f3f315 !important;
 	border-radius:0px!important;
-	padding: 13px 21px !important;	
+	/*padding: 13px 21px !important;	*/
 	font-size:16px !important;
 	box-shadow:none !important;
 	color:#000000 !important;
@@ -3302,18 +3148,72 @@ ul.list-unstyled .seller-name{
 }
 
 
-/*Modification*/
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
+
+.left-inner-addon {
+  position: relative;
+}
+.left-inner-addon input {
+  padding-left: 30px;
+}
+.left-inner-addon i {
+  position: absolute;
+  padding: 10px 12px;
+  pointer-events: none;
 }
 
-.tmcp-select{
-  height: 46px;
+.right-inner-addon {
+  position: relative;
+}
+.right-inner-addon input {
+  padding-right: 30px;
+}
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 12px 12px;
+  pointer-events: none;
+}
+.search_panel{
+  width: 30%;
+  float: right;
+}
+.search_panel input{
+  border-radius: 0;
+  border: #e1e1e1 1px solid;
+  cursor: pointer;
+}
+.search_panel .fa{
+  font-size: 17px;
+}
+.expand.search_panel{
+  width: 100% !important;
 }
 
-.tmcp-field-wrap{
-  padding: 0em 0.5em 0 0 !important;
+
+
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu{
+  background: #f1f1f1;
+}
+
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li a>i.fa{
+  display: none;
+}
+
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li{
+  background: #f1f1f1;
+  border-bottom-color: #ebebeb;
+}
+
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li a{
+  color: #2e2e2e;
+  font-weight: 600;
+}
+
+h1.nice{
+  margin-top: 0 !important;
+  margin-bottom: 33px !important;
+}
+
+.dokan-dash-sidebar .settings{
+  display: none !important;
 }

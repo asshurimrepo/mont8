@@ -29,28 +29,28 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <?php do_action( 'woocommerce_login_form_start' ); ?>
 
             <p class="form-row form-row-wide">
-                <label for="username"><?php _e( 'Username or email address', 'dokan' ); ?> <span class="required">*</span></label>
-                <input type="text" class="input-text form-control" name="username" id="username" />
+                <input type="text" class="input-text form-control" name="username" id="username" placeholder="<?php _e( 'Username or email address', 'dokan' ); ?> *"/>
             </p>
             <p class="form-row form-row-wide">
-                <label for="password"><?php _e( 'Password', 'dokan' ); ?> <span class="required">*</span></label>
-                <input class="input-text form-control" type="password" name="password" id="password" />
+                <input class="input-text form-control" type="password" name="password" id="password" placeholder="<?php _e( 'Password', 'dokan' ); ?> *"/>
             </p>
 
             <?php do_action( 'woocommerce_login_form' ); ?>
 
+            <!--Login Button-->
             <p class="form-row">
-                <label for="rememberme" class="inline">
+                <?php wp_nonce_field( 'woocommerce-login' ); ?>
+                <input type="submit" class="btn btn-theme btn-block" name="login" value="<?php _e( 'Login', 'dokan' ); ?>" />
+            </p>
+            <!--Remember Me-->
+            <p class="form-row">
+                <label for="rememberme" class="inline" style="font-weight: normal;">
                     <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'dokan' ); ?>
                 </label>
             </p>
 
-            <p class="form-row">
-                <?php wp_nonce_field( 'woocommerce-login' ); ?>
-                <input type="submit" class="btn btn-theme" name="login" value="<?php _e( 'Login', 'dokan' ); ?>" />
-            </p>
             <p class="lost_password">
-                <a href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'dokan' ); ?></a>
+                <b><a href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'dokan' ); ?></a></b>
             </p>
 
             <?php do_action( 'woocommerce_login_form_end' ); ?>
@@ -99,7 +99,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
             <p class="form-row">
                 <?php wp_nonce_field( 'woocommerce-register', '_wpnonce' ); ?>
-                <input type="submit" class="btn btn-theme" name="register" value="<?php _e( 'Register', 'dokan' ); ?>" />
+                <input type="submit" class="btn btn-theme btn-block" name="register" value="<?php _e( 'Register', 'dokan' ); ?>" />
             </p>
 
             <?php do_action( 'woocommerce_register_form_end' ); ?>

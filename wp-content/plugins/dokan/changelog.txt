@@ -1,5 +1,64 @@
 ==================== Plugin Version ====================
 
+v2.2.2 -> May 15, 2015
+---------------------
+
+- [fix] Fix shipping calculation for 'everywhere else country' in checkout
+- [fix] Fix undefine error on single product shipping tab if select everywhere else country
+- [fix] Make override shipping value empty once set and then remove it
+- [fix] Show shipping tab on product edit for both simple and variable type product
+- [fix] Change same hooks on different settings forms
+- [fix] Fix dokan store tab margin
+- [fix] Fix store review template class/id
+
+v2.2.1 -> May 12, 2015
+---------------------
+
+- [fix] Fix whight and dimensions string translation error on product edit shipping tab
+- [fix] Fix store listing shortcode rendering error
+- [fix] Remove (#) sign from url when dokan gravatar and banner image upload
+- [fix] Fix require once file name which rename 'theme-fucntion.php' to 'functions.php'
+- [fix] Fix product listing sku search condition bug
+
+v2.2 -> May 11, 2015
+---------------------
+
+- [new] Settings pages divided into submenu
+- [new] Dokan product listing search by sku and product id added
+- [new] Tabs added on store page
+- [fix] Fix translation issues on product and order status text
+- [fix] Fix user migration shop url error
+- [fix] Category problem fixed for updated WordPress 4.2
+- [fix] Fix issue on plugin update checker. Was breaking getting plugin update info
+- [fix] Don't allow users to create coupons with same code
+- [tweak] Added "Elsewhere" for countries as well in shipping
+
+
+v2.1 -> April 2, 2015
+---------------------
+- [new] Seller announcement feature
+- [new] Seller Profile completeness
+- [new] Product listing filter and search field in seller dashboard product page
+- [new] Add admin view withdraw table row action
+- [new] Added shipping processing time for individual product
+- [new] Seller total earning view on seller dashboard
+- [tweak] Shipping tab disable for downloadable product
+- [tweak] Enable store contact seller and map show option of backend
+- [tweak] Variable product image size
+- [tweak] Product variation sku tooltip display
+- [tweak] Shipping tab extra info added
+- [tweak] Order refund by seller removed
+- [tweak] Download limit text and input type changed to number
+- [tweak] Admin all log order status display
+- [tweak] Restricted shipping charge for downloadable product or virtual product
+- [tweak] Show hide override shipping option according to disable shipping in single product
+- [fix] Shipping info display error
+- [fix] Shipping disable logical issue
+- [fix] Variation remove item problem
+- [fix] Variation stock management
+- [fix] Wp editor content render with auto p
+- [fix] Inventory stock management
+
 v2.0.1 -> March 9, 2015
 ---------------------
 - [fix] Minor bug in shipping gateway

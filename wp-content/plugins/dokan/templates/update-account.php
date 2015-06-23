@@ -41,11 +41,6 @@ $cu_slug = get_user_meta( $user_id, 'nickname', true );
                 <input type="text" class="input-text form-control" name="lname" id="last-name" value="<?php if ( ! empty( $l_name ) ) echo esc_attr( $l_name ); ?>" required="required" />
             </p>
         </div>
-        
-        <p class="form-row form-group form-row-wide">
-            <label for="date-of-birth"><?php _e( 'Date of birth', 'dokan' ); ?> <span class="required">*</span></label>
-            <input type="text" class="input-text form-control" name="dateofbirth" id="dateofbirth" value="<?php if ( ! empty( $_POST['dateofbirth'] ) ) echo esc_attr($_POST['dateofbirth']); ?>" required="required" />
-        </p>
 
         <p class="form-row form-group form-row-wide">
             <label for="company-name"><?php _e( 'Shop Name', 'dokan' ); ?> <span class="required">*</span></label>

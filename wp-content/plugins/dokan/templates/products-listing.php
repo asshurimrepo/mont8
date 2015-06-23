@@ -6,7 +6,6 @@
         <?php do_action( 'dokan_before_listing_product' ); ?>
 
             <article class="dokan-product-listing-area">
-
                 <div class="product-listing-top dokan-clearfix">
                     <?php dokan_product_listing_status_filter(); ?>
 
@@ -17,16 +16,20 @@
 
                 <?php dokan_product_dashboard_errors(); ?>
 
+                <div class="dokan-w12">
+                    <?php dokan_product_listing_filter(); ?>
+                </div>
+
                 <table class="table table-striped product-listing-table">
                     <thead>
                         <tr>
                             <th><?php _e( 'Image', 'dokan' ); ?></th>
                             <th><?php _e( 'Name', 'dokan' ); ?></th>
                             <th><?php _e( 'Status', 'dokan' ); ?></th>
-                            <th><?php _e( 'SKU', 'dokan' ); ?></th>
-                            <th><?php _e( 'Stock', 'dokan' ); ?></th>
-                            <th><?php _e( 'Price', 'dokan' ); ?></th>
-                            <th><?php _e( 'Type', 'dokan' ); ?></th>
+                            <!-- <th><?php _e( 'SKU', 'dokan' ); ?></th> -->
+                            <!-- <th><?php _e( 'Stock', 'dokan' ); ?></th> -->
+                            <!-- <th><?php _e( 'Price', 'dokan' ); ?></th> -->
+                            <!-- <th><?php _e( 'Type', 'dokan' ); ?></th> -->
                             <th><?php _e( 'Views', 'dokan' ); ?></th>
                             <th><?php _e( 'Date', 'dokan' ); ?></th>
                         </tr>
@@ -50,9 +53,29 @@
                             $args['post_status'] = $_GET['post_status'];
                         }
 
+                        if( isset( $_GET['date'] ) && $_GET['date'] != 0 ) {
+                            $args['m'] = $_GET['date'];
+                        }
+
+                        if( isset( $_GET['product_cat'] ) && $_GET['product_cat'] != -1 ) {
+                            $args['tax_query']= array(
+                                array(
+                                    'taxonomy' => 'product_cat',
+                                    'field' => 'id',
+                                    'terms' => (int)  $_GET['product_cat'],
+                                    'include_children' => false,
+                                )
+                            );
+                        }
+
+                        if ( isset( $_GET['product_search_name']) && !empty( $_GET['product_search_name'] ) ) {
+                            $args['s'] = $_GET['product_search_name'];
+                        }
+
+
                         $original_post = $post;
                         $product_query = new WP_Query( apply_filters( 'dokan_product_listing_query', $args ) );
-
+                        
                         if ( $product_query->have_posts() ) {
                             while ($product_query->have_posts()) {
                                 $product_query->the_post();
@@ -76,7 +99,7 @@
                                     <td class="post-status">
                                         <label class="dokan-label <?php echo $post->post_status; ?>"><?php echo dokan_get_post_status( $post->post_status ); ?></label>
                                     </td>
-                                    <td>
+                                    <td class="hide">
                                         <?php
                                         if ( $product->get_sku() ) {
                                             echo $product->get_sku();
@@ -85,7 +108,7 @@
                                         }
                                         ?>
                                     </td>
-                                    <td>
+                                    <td class="hide">
                                         <?php
                                         if ( $product->is_in_stock() ) {
                                             echo '<mark class="instock">' . __( 'In stock', 'woocommerce' ) . '</mark>';
@@ -98,7 +121,7 @@
                                         endif;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td class="hide">
                                         <?php
                                         if ( $product->get_price_html() ) {
                                             echo $product->get_price_html();
@@ -107,7 +130,7 @@
                                         }
                                         ?>
                                     </td>
-                                    <td>
+                                    <td class="hide">
                                         <?php
                                             if( $product->product_type == 'grouped' ):
                                                 echo '<span class="product-type tips grouped" title="' . __( 'Grouped', 'woocommerce' ) . '"></span>';

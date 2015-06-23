@@ -291,74 +291,144 @@ function dokan_order_listing_status_filter() {
     <?php
 }
 
+/**
+ * Dashboard Navigation menus
+ *
+ * @return array
+ */
 function dokan_get_dashboard_nav() {
+
     $urls = array(
         'dashboard' => array(
             'title' => __( 'Dashboard', 'dokan'),
-            //'icon'  => '<i class="fa fa-tachometer"></i>',
+            'icon'  => '<i class="fa fa-tachometer"></i>',
             'url'   => dokan_get_navigation_url()
         ),
         'product' => array(
             'title' => __( 'Products', 'dokan'),
-            //'icon'  => '<i class="fa fa-briefcase"></i>',
+            'icon'  => '<i class="fa fa-briefcase"></i>',
             'url'   => dokan_get_navigation_url( 'products' )
         ),
         'order' => array(
-            'title' => __( 'Orders', 'dokan'),
-            //'icon'  => '<i class="fa fa-shopping-cart"></i>',
+            'title' => __( 'Sales History', 'dokan'),
+            'icon'  => '<i class="fa fa-shopping-cart"></i>',
             'url'   => dokan_get_navigation_url( 'orders' )
-        ),/*
+        ),
         'coupon' => array(
             'title' => __( 'Coupons', 'dokan'),
             'icon'  => '<i class="fa fa-gift"></i>',
             'url'   => dokan_get_navigation_url( 'coupons' )
-        ),*/
+        ),
         'report' => array(
             'title' => __( 'Reports', 'dokan'),
-            //'icon'  => '<i class="fa fa-line-chart"></i>',
+            'icon'  => '<i class="fa fa-line-chart"></i>',
             'url'   => dokan_get_navigation_url( 'reports' )
         ),
         'reviews' => array(
             'title' => __( 'Reviews', 'dokan'),
-           // 'icon'  => '<i class="fa fa-comments-o"></i>',
+            'icon'  => '<i class="fa fa-comments-o"></i>',
             'url'   => dokan_get_navigation_url( 'reviews' )
         ),
         'withdraw' => array(
             'title' => __( 'Withdraw', 'dokan'),
-          //  'icon'  => '<i class="fa fa-upload"></i>',
+            'icon'  => '<i class="fa fa-upload"></i>',
             'url'   => dokan_get_navigation_url( 'withdraw' )
         ),
     );
 
-    $dokan_shipping_option = get_option( 'woocommerce_dokan_product_shipping_settings' );
-    $enable_shipping = ( isset( $dokan_shipping_option['enabled'] ) ) ? $dokan_shipping_option['enabled'] : 'yes';
-
-    /*if ( $enable_shipping == 'yes' ) {
-        $urls['shipping'] = array(
-            'title' => __( 'Shipping', 'dokan'),
-            'icon'  => '<i class="fa fa-truck"></i>',
-            'url'   => dokan_get_navigation_url( 'shipping' )
-        );
-    }*/
-
     $urls = apply_filters( 'dokan_get_dashboard_nav', $urls );
 
-    $urls['settings'] = array(
-        'title' => __( 'Settings', 'dokan'),
-        //'icon'  => '<i class="fa fa-cog"></i>',
-        'url'   => dokan_get_navigation_url( 'settings' )
+    $settings = array(
+        'title' => __( 'Settings <i class="fa fa-angle-right pull-right"></i>', 'dokan'),
+        'icon'  => '<i class="fa fa-cog"></i>',
+        'url'   => dokan_get_navigation_url( 'settings/store' )
     );
 
-    return $urls;
+    $settings_sub = array(
+        'back' => array(
+            'title' => __( 'Back to Dashboard', 'dokan'),
+            'icon'  => '<i class="fa fa-long-arrow-left"></i>',
+            'url'   => dokan_get_navigation_url()
+        ),
+        'store' => array(
+            'title' => __( 'Store', 'dokan'),
+            'icon'  => '<i class="fa fa-university"></i>',
+            'url'   => dokan_get_navigation_url( 'settings/store' )
+        ),
+        'payment' => array(
+            'title' => __( 'Payment', 'dokan'),
+            'icon'  => '<i class="fa fa-credit-card"></i>',
+            'url'   => dokan_get_navigation_url( 'settings/payment' )
+        )
+    );
+
+    $dokan_shipping_option = get_option( 'woocommerce_dokan_product_shipping_settings' );
+    $enable_shipping       = ( isset( $dokan_shipping_option['enabled'] ) ) ? $dokan_shipping_option['enabled'] : 'yes';
+
+    if ( $enable_shipping == 'yes' ) {
+        $settings_sub['shipping'] = array(
+            'title' => __( 'Shipping', 'dokan'),
+            'icon'  => '<i class="fa fa-truck"></i>',
+            'url'   => dokan_get_navigation_url( 'settings/shipping' )
+        );
+    }
+
+    $settings_sub['social'] = array(
+        'title' => __( 'Social Profile', 'dokan'),
+        'icon'  => '<i class="fa fa-share-alt-square"></i>',
+        'url'   => dokan_get_navigation_url( 'settings/social' )
+    );
+
+    /**
+     * Filter to get the seller dashboard settings navigation.
+     *
+     * @since 2.2
+     *
+     * @param array.
+     */
+    $settings['sub']  = apply_filters( 'dokan_get_dashboard_settings_nav', $settings_sub );
+
+    $urls['settings'] = $settings;
+
+    /**
+     * Filter to get the final seller dashboard navigation.
+     *
+     * @since 2.2
+     *
+     * @param array $urls.
+     */
+    return apply_filters( 'dokan_get_seller_dashboard_nav', $urls );
 }
 
-function dokan_dashboard_nav( $active_menu ) {
-    $urls = dokan_get_dashboard_nav();
+/**
+ * Renders the Dokan dashboard menu
+ *
+ * For settings menu, the active menu format is `settings/menu_key_name`.
+ * The active menu will be splitted at `/` and the `menu_key_name` will be matched
+ * with settings sub menu array. If it's a match, the settings menu will be shown
+ * only. Otherwise the main navigation menu will be shown.
+ *
+ * @param  string  $active_menu
+ *
+ * @return string rendered menu HTML
+ */
+function dokan_dashboard_nav( $active_menu = '' ) {
+
+    $nav_menu          = dokan_get_dashboard_nav();
+    $active_menu_parts = explode( '/', $active_menu );
+
+    if ( isset( $active_menu_parts[1] ) && $active_menu_parts[0] == 'settings' && array_key_exists( $active_menu_parts[1], $nav_menu['settings']['sub'] ) ) {
+        $urls        = $nav_menu['settings']['sub'];
+        $active_menu = $active_menu_parts[1];
+    } else {
+        $urls = $nav_menu;
+    }
+
     $menu = '<ul class="dokan-dashboard-menu">';
 
     foreach ($urls as $key => $item) {
-        $class = ( $active_menu == $key ) ? ' class="active"' : '';
-        $menu .= sprintf( '<li%s><a href="%s">%s %s</a></li>', $class, $item['url'], $item['icon'], $item['title'] );
+        $class = ( $active_menu == $key ) ? 'active ' . $key : $key;
+        $menu .= sprintf( '<li class="%s"><a href="%s">%s %s</a></li>', $class, $item['url'], $item['icon'], $item['title'] );
     }
     $menu .= '</ul>';
 
@@ -436,35 +506,35 @@ add_action( 'save_post', 'dokan_store_category_delete_transient' );
 
 
 function dokan_seller_reg_form_fields() {
-    $role = isset( $_POST['role'] ) ? $_POST['role'] : 'seller';
-    //$role_style = ( $role == 'customer' ) ? ' style="display:none"' : '';
+    $role = isset( $_POST['role'] ) ? $_POST['role'] : 'customer';
+    $role_style = ( $role == 'customer' ) ? ' style="display:none"' : '';
     ?>
-    <div class="show_if_seller">
+    <div class="show_if_seller"<?php echo $role_style; ?>>
 
         <div class="split-row form-row-wide">
             <p class="form-row form-group">
                 <label for="first-name"><?php _e( 'First Name', 'dokan' ); ?> <span class="required">*</span></label>
-                <input type="text" class="input-text form-control" name="fname" id="first-name" value="<?php if ( ! empty( $_POST['fname'] ) ) echo esc_attr($_POST['fname']); ?>" required />
+                <input type="text" class="input-text form-control" name="fname" id="first-name" value="<?php if ( ! empty( $_POST['fname'] ) ) echo esc_attr($_POST['fname']); ?>" required="required" />
             </p>
 
             <p class="form-row form-group">
                 <label for="last-name"><?php _e( 'Last Name', 'dokan' ); ?> <span class="required">*</span></label>
-                <input type="text" class="input-text form-control" name="lname" id="last-name" value="<?php if ( ! empty( $_POST['lname'] ) ) echo esc_attr($_POST['lname']); ?>" required />
+                <input type="text" class="input-text form-control" name="lname" id="last-name" value="<?php if ( ! empty( $_POST['lname'] ) ) echo esc_attr($_POST['lname']); ?>" required="required" />
             </p>
         </div>
-        
-        <p class="form-row form-group form-row-wide">
-            <label for="date-of-birth"><?php _e( 'Date of birth', 'dokan' ); ?> <span class="required">*</span></label>
-            <input type="text" class="input-text form-control" name="dateofbirth" id="dateofbirth" value="<?php if ( ! empty( $_POST['dateofbirth'] ) ) echo esc_attr($_POST['dateofbirth']); ?>" required />
-        </p>
 
         <p class="form-row form-group form-row-wide">
             <label for="company-name"><?php _e( 'Shop Name', 'dokan' ); ?> <span class="required">*</span></label>
+            <input type="text" class="input-text form-control" name="shopname" id="company-name" value="<?php if ( ! empty( $_POST['shopname'] ) ) echo esc_attr($_POST['shopname']); ?>" required="required" />
+        </p>
+
+        <p class="form-row form-group form-row-wide">
+            <label for="seller-url" class="pull-left"><?php _e( 'Shop URL', 'dokan' ); ?> <span class="required">*</span></label>
             <strong id="url-alart-mgs" class="pull-right"></strong>
-            <input type="text" class="input-text form-control" name="shopurl" id="seller-url" value="<?php if ( ! empty( $_POST['shopurl'] ) ) echo esc_attr($_POST['shopurl']); ?>" required />
+            <input type="text" class="input-text form-control" name="shopurl" id="seller-url" value="<?php if ( ! empty( $_POST['shopurl'] ) ) echo esc_attr($_POST['shopurl']); ?>" required="required" />
             <small><?php echo home_url() . '/' . dokan_get_option( 'custom_store_url', 'dokan_selling', 'store' ); ?>/<strong id="url-alart"></strong></small>
         </p>
-        <?php /*
+
         <p class="form-row form-group form-row-wide">
             <label for="seller-address"><?php _e( 'Address', 'dokan' ); ?><span class="required">*</span></label>
             <textarea type="text" id="seller-address" name="address" class="form-control input" required="required"><?php if ( ! empty( $_POST['address'] ) ) echo esc_textarea($_POST['address']); ?></textarea>
@@ -474,7 +544,6 @@ function dokan_seller_reg_form_fields() {
             <label for="shop-phone"><?php _e( 'Phone', 'dokan' ); ?><span class="required">*</span></label>
             <input type="text" class="input-text form-control" name="phone" id="shop-phone" value="<?php if ( ! empty( $_POST['phone'] ) ) echo esc_attr($_POST['phone']); ?>" required="required" />
         </p>
-        */?>
 
         <?php  do_action( 'dokan_seller_registration_field_after' ); ?>
 
@@ -483,7 +552,6 @@ function dokan_seller_reg_form_fields() {
     <?php do_action( 'dokan_reg_form_field' ); ?>
 
     <p class="form-row form-group user-role">
-        <?php /*
         <label class="radio">
             <input type="radio" name="role" value="customer"<?php checked( $role, 'customer' ); ?>>
             <?php _e( 'I am a customer', 'dokan' ); ?>
@@ -493,7 +561,6 @@ function dokan_seller_reg_form_fields() {
             <input type="radio" name="role" value="seller"<?php checked( $role, 'seller' ); ?>>
             <?php _e( 'I am a seller', 'dokan' ); ?>
         </label>
-        */?>
         <?php do_action( 'dokan_registration_form_role', $role ); ?>
     </p>
 
@@ -522,20 +589,20 @@ function dokan_header_user_menu() {
     ?>
     
     <div class="col-xs-12 col-sm-12 col-lg-12">
-    	
+        
         <div class="language">
-        	<ul>
-            	<li><a href="#">EN</a></li>
+            <ul>
+                <li><a href="#">EN</a></li>
                 <li><a href="#">AR</a></li>
             </ul>
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section_padding">
         
-        	<ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
     
-    	<li>
-        	<div class="search_panel">
+        <li class="hide">
+            <div class="search_panel">
                     <div class="search">
                         <a href="#"><i class="fa fa-search fa-lg"></i></a>
                     </div>
@@ -598,7 +665,7 @@ function dokan_header_user_menu() {
 
         <?php } else { ?>
         
-        	
+            
             <li class="login_panel"><a href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?php _e( 'Log in', 'dokan' ); ?></a></li>
             <li class="reg_panel"><a href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?php _e( 'Sign Up', 'dokan' ); ?></a></li>
             
@@ -611,10 +678,7 @@ function dokan_header_user_menu() {
     
     
     </div>
-    
-    
-    
-    
+
     
     
     

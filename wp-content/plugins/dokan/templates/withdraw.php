@@ -30,12 +30,17 @@ $dokan_withdraw = Dokan_Template_Withdraw::init();
             </div><!-- .entry-content -->
 
             <?php $current = isset( $_GET['type'] ) ? $_GET['type'] : 'pending'; ?>
+
+            <div class="alert alert-info">
+               <i class="fa fa-info"></i> Payments will be made on or before the <b>15<sup>th</sup></b> of <b>every month</b> for sales in the previous month via the chosen payment method.
+            </div>
+
             <ul class="list-inline subsubsub">
                 <li<?php echo $current == 'pending' ? ' class="active"' : ''; ?>>
                     <a href="<?php echo dokan_get_navigation_url( 'withdraw' ); ?>"><?php _e( 'Withdraw Request', 'dokan' ); ?></a>
                 </li>
                 <li<?php echo $current == 'approved' ? ' class="active"' : ''; ?>>
-                    <a href="<?php echo add_query_arg( array( 'type' => 'approved' ), dokan_get_navigation_url( 'withdraw' ) ); ?>"><?php _e( 'Approved Requests', 'dokan' ); ?></a>
+                    <a href="<?php echo add_query_arg( array( 'type' => 'approved' ), dokan_get_navigation_url( 'withdraw' ) ); ?>"><?php _e( 'Payment History', 'dokan' ); ?></a>
                 </li>
             </ul>
 

@@ -1,13 +1,25 @@
 <?php
-
+/**
+ * Dokan Update class
+ *
+ * Performas license validation and update checking
+ *
+ * @package Dokan
+ */
 class Dokan_Update {
 
-    const base_url   = 'http://wedevs.com/';
-    const product_id = 'dokan';
-    const option     = 'dokan_license';
-    const slug       = 'dokan';
+    const base_url     = 'https://wedevs.com/';
+    const update_check = 'http://api.wedevs.com/update_check';
+    const product_id   = 'dokan';
+    const option       = 'dokan_license';
+    const slug         = 'dokan';
 
     function __construct() {
+
+        // bail out if it's a local server
+        if ( $this->is_local_server() ) {
+            return;
+        }
 
         add_action( 'dokan_admin_menu', array($this, 'admin_menu'), 99 );
 
@@ -22,7 +34,17 @@ class Dokan_Update {
         }
 
         add_filter( 'pre_set_site_transient_update_plugins', array($this, 'check_update') );
-        add_filter( 'plugins_api', array(&$this, 'check_info'), 10, 3 );
+        add_filter( 'pre_set_transient_update_plugins', array($this, 'check_update') );
+        add_filter( 'plugins_api', array($this, 'check_info'), 10, 3 );
+    }
+
+    /**
+     * Check if the current server is localhost
+     *
+     * @return boolean
+     */
+    private function is_local_server() {
+        return in_array( $_SERVER['REMOTE_ADDR'], array( '127.0.0.1', '::1' ) );
     }
 
     /**
@@ -125,6 +147,14 @@ class Dokan_Update {
         $update     = wp_remote_retrieve_body( $response );
 
         if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {
+            if ( is_wp_error( $response ) ) {
+                echo '<div class="error"><p><strong>Dokan Activation Error:</strong> ' . $response->get_error_message() . '</p></div>';
+            }
+
+            if ( $response['response']['code'] != 200 ) {
+                echo '<div class="error"><p><strong>Dokan Activation Error:</strong> ' . $response['response']['code'] .' - ' . $response['response']['message'] . '</p></div>';
+            }
+
             return false;
         }
 
@@ -196,7 +226,7 @@ class Dokan_Update {
             return $obj;
         }
 
-        return false;
+        return $false;
     }
 
     /**
@@ -251,7 +281,7 @@ class Dokan_Update {
             )
         );
 
-        $response = wp_remote_post( self::base_url . '?action=wedevs_update_check', $params );
+        $response = wp_remote_post( self::update_check, $params );
         $update   = wp_remote_retrieve_body( $response );
 
         if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {

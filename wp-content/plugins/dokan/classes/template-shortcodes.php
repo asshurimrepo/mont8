@@ -59,10 +59,6 @@ class Dokan_Template_Shortcodes {
     public function load_template_files() {
         global $wp;
 
-        $dokan_shipping_option = get_option( 'woocommerce_dokan_product_shipping_settings' );
-
-        $enable_shipping = ( isset( $dokan_shipping_option['enabled'] ) ) ? $dokan_shipping_option['enabled'] : 'yes';
-
         if ( ! function_exists( 'WC' ) ) {
             return sprintf( __( 'Please install <a href="%s"><strong>WooCommerce</strong></a> plugin first', 'dokan' ), 'http://wordpress.org/plugins/woocommerce/' );
         }
@@ -102,14 +98,57 @@ class Dokan_Template_Shortcodes {
             return;
         }
 
-        if ( isset( $wp->query_vars['shipping'] ) && $enable_shipping == 'yes' ) {
-            dokan_get_template_part( 'shipping' );
+        if ( isset( $wp->query_vars['announcement'] ) ) {
+            dokan_get_template_part( 'announcement' );
             return;
         }
 
-        if ( isset( $wp->query_vars['settings'] ) ) {
-            dokan_get_template_part( 'settings' );
+        if ( isset( $wp->query_vars['single-announcement'] ) ) {
+            dokan_get_template_part( 'single-announcement' );
             return;
+        }
+
+
+
+
+        if ( isset( $wp->query_vars['settings'] ) ) {
+            switch ($wp->query_vars['settings']) {
+
+                case 'store':
+                    dokan_get_template_part( 'settings/store' );
+                    break;
+
+                case 'social':
+                    dokan_get_template_part( 'settings/social' );
+                    break;
+
+                case 'shipping':
+                    $dokan_shipping_option = get_option( 'woocommerce_dokan_product_shipping_settings', array( 'enabled' => 'yes' ) );
+                    $enable_shipping       = ( isset( $dokan_shipping_option['enabled'] ) ) ? $dokan_shipping_option['enabled'] : 'yes';
+
+                    if ( $enable_shipping == 'yes') {
+                        dokan_get_template_part( 'settings/shipping' );
+                    }
+                    break;
+
+                case 'payment':
+                    dokan_get_template_part( 'settings/payment' );
+                    break;
+
+                default:
+                    /**
+                     * Allow plugins too hook into here and add their
+                     * own settings pages
+                     *
+                     * @since 2.2
+                     */
+                    $template_path = apply_filters( 'dokan_settings_template', false, $wp->query_vars['settings'] );
+
+                    if ( $template_path !== false && file_exists( $template_path ) ) {
+                        require_once $template_path;
+                    }
+                    break;
+            }
         }
 
         if ( isset( $wp->query_vars['page'] ) ) {
@@ -150,6 +189,7 @@ class Dokan_Template_Shortcodes {
             $price          = floatval( $_POST['price'] );
             $featured_image = absint( $_POST['feat_image_id'] );
 
+
             if ( empty( $post_title ) ) {
 
                 $errors[] = __( 'Please enter product title', 'dokan' );
@@ -163,10 +203,19 @@ class Dokan_Template_Shortcodes {
             } else {
                 if( !isset( $_POST['product_cat'] ) && empty( $_POST['product_cat'] ) ) {
                     $errors[] = __( 'Please select atleast one category', 'dokan' );
-                }    
+                }
             }
-            
+
             self::$errors = apply_filters( 'dokan_can_add_product', $errors );
+
+
+            //Overriding normal dokan for customization Check if has errors @asshurim
+            if( count(self::$errors) > 0){
+                header("HTTP/1.0 404 Not Found");
+                echo json_encode($errors);
+                exit;
+            }
+
 
             if ( !self::$errors ) {
 
@@ -188,19 +237,19 @@ class Dokan_Template_Shortcodes {
                         set_post_thumbnail( $product_id, $featured_image );
                     }
 
-                    if( isset( $_POST['product_tag'] ) && !empty( $_POST['product_tag'] ) ) {                
+                    if( isset( $_POST['product_tag'] ) && !empty( $_POST['product_tag'] ) ) {
                         $tags_ids = array_map( 'intval', (array)$_POST['product_tag'] );
                         wp_set_object_terms( $product_id, $tags_ids, 'product_tag' );
-                    } 
+                    }
 
                     /** set product category * */
                     if( dokan_get_option( 'product_category_style', 'dokan_selling', 'single' ) == 'single' ) {
                         wp_set_object_terms( $product_id, (int) $_POST['product_cat'], 'product_cat' );
                     } else {
-                        if( isset( $_POST['product_cat'] ) && !empty( $_POST['product_cat'] ) ) {                
+                        if( isset( $_POST['product_cat'] ) && !empty( $_POST['product_cat'] ) ) {
                             $cat_ids = array_map( 'intval', (array)$_POST['product_cat'] );
                             wp_set_object_terms( $product_id, $cat_ids, 'product_cat' );
-                        } 
+                        }
                     }
 
                     /** Set Product type by default simple */
@@ -211,11 +260,23 @@ class Dokan_Template_Shortcodes {
                     update_post_meta( $product_id, '_price', $price );
                     update_post_meta( $product_id, '_visibility', 'visible' );
 
+                    // Apply Markups
+                    update_post_meta( $product_id, '_framed_print_markup', (int) $_POST['_framed_print_markup'] );
+                    update_post_meta( $product_id, '_art_print_markup', (int) $_POST['_art_print_markup'] );
+                    update_post_meta( $product_id, '_photo_print_markup', (int) $_POST['_photo_print_markup'] );
+                    update_post_meta( $product_id, '_canvas_markup', (int) $_POST['_canvas_markup'] );
+                    update_post_meta( $product_id, '_poster_markup', (int) $_POST['_poster_markup'] );
+
                     do_action( 'dokan_new_product_added', $product_id, $post_data );
 
                     if ( dokan_get_option( 'product_add_mail', 'dokan_general', 'on' ) == 'on' ) {
                         Dokan_Email::init()->new_product_added( $product_id, $product_status );
                     }
+
+
+                    // Override Redirect
+                    echo dokan_edit_product_url( $product_id );
+                    exit;
 
                     wp_redirect( dokan_edit_product_url( $product_id ) );
                     exit;
@@ -246,30 +307,42 @@ class Dokan_Template_Shortcodes {
 
             wp_update_post( $product_info );
 
+
+            // Apply Markups
+            update_post_meta( $post_id, '_framed_print_markup', (int) $_POST['_framed_print_markup'] );
+            update_post_meta( $post_id, '_art_print_markup', (int) $_POST['_art_print_markup'] );
+            update_post_meta( $post_id, '_photo_print_markup', (int) $_POST['_photo_print_markup'] );
+            update_post_meta( $post_id, '_canvas_markup', (int) $_POST['_canvas_markup'] );
+            update_post_meta( $post_id, '_poster_markup', (int) $_POST['_poster_markup'] );
+
+
             /** Set Product tags */
-            if( isset( $_POST['product_tag'] ) ) { 
+            if( isset( $_POST['product_tag'] ) ) {
                 $tags_ids = array_map( 'intval', (array)$_POST['product_tag'] );
             } else {
                 $tags_ids = array();
-            } 
-            wp_set_object_terms( $post_id, $tags_ids, 'product_tag' ); 
+            }
+            wp_set_object_terms( $post_id, $tags_ids, 'product_tag' );
 
 
             /** set product category * */
-            
+
             if( dokan_get_option( 'product_category_style', 'dokan_selling', 'single' ) == 'single' ) {
                 wp_set_object_terms( $post_id, (int) $_POST['product_cat'], 'product_cat' );
             } else {
-                if( isset( $_POST['product_cat'] ) && !empty( $_POST['product_cat'] ) ) {                
+                if( isset( $_POST['product_cat'] ) && !empty( $_POST['product_cat'] ) ) {
                     $cat_ids = array_map( 'intval', (array)$_POST['product_cat'] );
                     wp_set_object_terms( $post_id, $cat_ids, 'product_cat' );
-                } 
+                }
             }
 
             wp_set_object_terms( $post_id, 'simple', 'product_type' );
 
             /**  Process all variation products meta */
             dokan_process_product_meta( $post_id );
+
+
+
 
             /** set images **/
             $featured_image = absint( $_POST['feat_image_id'] );
@@ -282,13 +355,13 @@ class Dokan_Template_Shortcodes {
             exit;
         }
 
-       
+
     }
 
     /**
      * Handle the coupons submission
-     * 
-     * @return void 
+     *
+     * @return void
      */
     function handle_coupons() {
 
@@ -318,7 +391,7 @@ class Dokan_Template_Shortcodes {
      * @return void
      */
     function handle_delete_product() {
-        
+
         if ( ! is_user_logged_in() ) {
             return;
         }
@@ -518,14 +591,14 @@ class Dokan_Template_Shortcodes {
         if ( ! dokan_is_user_seller( get_current_user_id() ) ) {
             return;
         }
-        
+
 
         if( isset( $_POST['dokan_update_shipping_options'] ) && wp_verify_nonce( $_POST['dokan_shipping_form_field_nonce'], 'dokan_shipping_form_field' ) ) {
-            
-            $user_id = get_current_user_id();   
+
+            $user_id = get_current_user_id();
             $s_rates = array();
             $rates = array();
-            
+
             if( isset( $_POST['dps_enable_shipping'] ) ) {
                 update_user_meta( $user_id, '_dps_shipping_enable', $_POST['dps_enable_shipping'] );
             }
@@ -563,7 +636,7 @@ class Dokan_Template_Shortcodes {
             }
 
             if ( isset( $_POST['dps_country_to'] ) ) {
-                
+
                 foreach ($_POST['dps_country_to'] as $key => $value) {
                     $country = $value;
                     $c_price = floatval( $_POST['dps_country_to_price'][$key] );
@@ -580,9 +653,9 @@ class Dokan_Template_Shortcodes {
 
             update_user_meta( $user_id, '_dps_country_rates', $rates );
 
-            if ( isset( $_POST['dps_state_to'] ) ) {                
+            if ( isset( $_POST['dps_state_to'] ) ) {
                 foreach ( $_POST['dps_state_to'] as $country_code => $states ) {
-                    
+
                     foreach ( $states as $key_val => $name ) {
                         $country_c = $country_code;
                         $state_code = $name;
@@ -594,14 +667,14 @@ class Dokan_Template_Shortcodes {
 
                         if ( !empty( $name ) ) {
                             $s_rates[$country_c][$state_code] = $s_price;
-                        }    
+                        }
                     }
                 }
             }
 
             update_user_meta( $user_id, '_dps_state_rates', $s_rates );
 
-            $shipping_url = dokan_get_navigation_url( 'shipping' );
+            $shipping_url = dokan_get_navigation_url( 'settings/shipping' );
             wp_redirect( add_query_arg( array( 'message' => 'shipping_saved' ), $shipping_url ) );
             exit;
         }
@@ -615,9 +688,16 @@ class Dokan_Template_Shortcodes {
      * @return string
      */
     function best_selling_product_shortcode( $atts ) {
-        $per_page = shortcode_atts( array(
+        /**
+        * Filter return the number of best selling product per page.
+        *
+        * @since 2.2
+        *
+        * @param array
+        */
+        $per_page = shortcode_atts( apply_filters( 'dokan_best_selling_product_per_page', array(
             'no_of_product' => 8
-        ), $atts );
+        ), $atts ) );
 
         ob_start();
         ?>
@@ -644,9 +724,16 @@ class Dokan_Template_Shortcodes {
      * @return string
      */
     function top_rated_product_shortcode( $atts ) {
-        $per_page = shortcode_atts( array(
+        /**
+        * Filter return the number of top rated product per page.
+        *
+        * @since 2.2
+        *
+        * @param array
+        */
+        $per_page = shortcode_atts( apply_filters( 'dokan_top_rated_product_per_page', array(
             'no_of_product' => 8
-        ), $atts );
+        ), $atts ) );
 
         ob_start();
         ?>
@@ -674,9 +761,16 @@ class Dokan_Template_Shortcodes {
     function store_listing( $atts ) {
         global $post;
 
-        $attr = shortcode_atts( array(
+        /**
+        * Filter return the number of store listing number per page.
+        *
+        * @since 2.2
+        *
+        * @param array
+        */
+        $attr = shortcode_atts( apply_filters( 'dokan_store_listing_per_page', array(
                 'per_page' => 10,
-            ), $atts );
+            ) ), $atts );
 
         $paged  = max( 1, get_query_var( 'paged' ) );
         $limit  = $attr['per_page'];
