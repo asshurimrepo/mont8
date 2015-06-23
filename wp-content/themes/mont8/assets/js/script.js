@@ -9,6 +9,12 @@ jQuery(function($) {
     });
 
 
+    $("#menu-item-193 .mega_dropdown").append(
+        '<div class="row" style="clear: both">' +
+        '<a href="/artists" class="more-artists-btn">MORE ARTISTS <i class="fa fa-angle-double-right"></i></a>' +
+        '</div>'
+    );
+
     //search panel
     var searchPanel = $('.search_panel');
     var searchPanelInput = $('.search_panel input');

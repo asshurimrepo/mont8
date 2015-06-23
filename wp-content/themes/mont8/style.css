@@ -8,6 +8,12 @@ Version: 2.1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+
+@font-face {
+    font-family: modern_sans;
+    src: url(iboostme/css/MODERNE%20SANS.ttf);
+}
+
 h1,
 h2,
 h3 {
@@ -133,6 +139,17 @@ a:hover {
 
 #masthead .nav-menu, .mega_main_menu_ul, #mega_main_menu, #mega_main_menu > .menu_holder, #mega_main_menu > .menu_holder > .menu_inner > ul{
     position: static;
+}
+
+#masthead .more-artists-btn{
+    margin: 13px 30px 0;
+    display: block;
+    color: #fc0997 !important;
+    font-weight: 700;
+    font-size: 11px;
+}
+#masthead .more-artists-btn *{
+    color: #fc0997 !important;
 }
 
 #mega_main_menu.primary ul li .mega_dropdown > li > .item_link .link_text{
@@ -316,6 +333,18 @@ ul.mega_dropdown{
 -------------------------------------------------- */
 .woocommerce-demo-store .navbar-top-area {
   margin-top: 32px;
+}
+
+
+#menu-item-193 .mega_dropdown:before{
+    content: 'Popular Artists';
+    font-family: modern_sans;
+    text-transform: uppercase;
+    margin: 0 16px 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    display: block;
+    border-bottom: 1px solid #232323;
 }
 
 .navbar-nav{
