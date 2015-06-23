@@ -592,8 +592,8 @@ function dokan_header_user_menu() {
         
         <div class="language">
             <ul>
-                <li><a href="#">EN</a></li>
-                <li><a href="#">AR</a></li>
+                <li><a href="#" class="active">EN</a></li>
+                <li><a href="#">عربي</a></li>
             </ul>
         </div>
         
