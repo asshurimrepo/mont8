@@ -22,7 +22,10 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/assets/js/html5.js" type="text/javascript"></script>
 	<![endif]-->
 
+	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/css/animate.css';?>"/>
+	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/css/cart-sidebar.css';?>"/>
 	<?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -87,7 +90,7 @@
 			<!-- .row -->
 		</div>
 		<!-- .container -->
-
+	<?php get_template_part('widgets/widget', 'cart-sidebar'); ?>
 
 	</header>
 	<!-- #masthead .site-header -->

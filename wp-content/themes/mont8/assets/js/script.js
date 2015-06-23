@@ -86,4 +86,22 @@ jQuery(function($) {
         $(button).children('i').addClass('fa-spin');
     });
 
+
+    // cart sidebar
+    $('.btn-cart-sidebar').click(function(e){
+        var cartSidebar = $('.cart-sidebar');
+
+        if(cartSidebar.is(":visible") ){
+            cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
+            setTimeout(function(){
+                cartSidebar.toggle();
+            }, 1000);
+        }else{
+            cartSidebar.toggle().addClass('slideInRight').removeClass('slideOutRight');
+
+
+        }
+
+
+    });
 });
