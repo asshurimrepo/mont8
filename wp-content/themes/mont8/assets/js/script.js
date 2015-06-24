@@ -75,17 +75,30 @@ jQuery(function($) {
 
 
     // cart sidebar
+    var hideCart = false;
     $('.btn-cart-sidebar').click(function(e){
         var cartSidebar = $('.cart-sidebar');
 
-        if(cartSidebar.is(":visible") ){
+        cartSidebar.show();
+
+        hideCart = !hideCart;
+
+        if(hideCart){
+            cartSidebar.addClass('slideInRight').removeClass('slideOutRight');
+        }else{
+            cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
+        }
+
+        /*if(cartSidebar.is(":visible") ){
             cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
             setTimeout(function(){
-                cartSidebar.toggle();
+                //cartSidebar.toggle();
             }, 1000);
         }else{
-            cartSidebar.toggle().addClass('slideInRight').removeClass('slideOutRight');
-        }
+            //cartSidebar.toggle().addClass('slideInRight').removeClass('slideOutRight');
+
+            cartSidebar.addClass('slideInRight').removeClass('slideOutRight');
+        }*/
     });
 
     //search panel
