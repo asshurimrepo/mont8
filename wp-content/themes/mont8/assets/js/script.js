@@ -11,7 +11,7 @@ jQuery(function($) {
 
     $("#menu-item-193 .mega_dropdown").append(
         '<div class="row" style="clear: both">' +
-        '<a href="/artists" class="more-artists-btn">MORE ARTISTS <i class="fa fa-angle-double-right"></i></a>' +
+        '<a href="/store-listing" class="more-artists-btn">MORE ARTISTS <i class="fa fa-angle-double-right"></i></a>' +
         '</div>'
     );
 

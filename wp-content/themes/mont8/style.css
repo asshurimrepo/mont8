@@ -57,6 +57,11 @@ a:hover {
     text-decoration: none;
 }
 
+
+.right{
+    text-align: right;
+}
+
 /* Text meant only for screen readers */
 .assistive-text {
     clip: rect(1px 1px 1px 1px);

@@ -535,7 +535,7 @@ function get_body_class( $class = '' ) {
 	if ( is_front_page() )
 		$classes[] = 'home';
 	if ( is_home() )
-		$classes[] = 'blog';
+		$classes[] = '';
 	if ( is_archive() )
 		$classes[] = 'archive';
 	if ( is_date() )

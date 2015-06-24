@@ -1,0 +1,104 @@
+.avatar.photo{
+    width: auto !important;
+    max-width: 100% !important;
+}
+
+.user-info{
+    margin: 62px 0 10px;
+}
+
+.user-bio{
+    text-align: left !important;
+}
+
+.user-bio, .user-stat{
+    margin: 0;
+}
+
+.userpro-nostyle{
+    display: none;
+}
+
+.user-bio>h1{
+    font-family: modern_sans;
+}
+.user-bio>p{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+h1{
+    font-size: 50px !important;
+    font-family: modern_sans, 'Open Sans' !important;
+}
+h1>small{
+    font-family: 'Open Sans';
+    display: block;
+    font-size: 35% !important;
+}
+
+
+/*Social Icons*/
+.ib-social{
+    width: 29px;
+    height: 28px;
+    display: inline-block;
+    background: url("images/social-icons-sprite.png") no-repeat;
+}
+
+.ib-social.instagram{
+    background-position: -31px;
+}
+.ib-social.twitter{
+    background-position: -61px;
+}
+.ib-social.pinterest{
+    background-position: -92px;
+}
+.ib-social.heart{
+    background-position: -123px;
+}
+
+a.userpro-follow.notfollowing:before{
+    font-family: 'FontAwesome';
+    content: '\f055';
+    margin:0 8px 0 -5px;
+    color: #232323;
+    font-weight: 300;
+}
+a.userpro-follow.notfollowing.following:before{
+    content: '';
+}
+a.userpro-follow.notfollowing.following.red:before{
+    font-family: 'FontAwesome';
+    content: '\f056';
+    margin:0 8px 0 -5px;
+    color: #FFF;
+}
+
+
+.follow-actions{
+    text-align: right;
+}
+
+.userpro-sc-flw{
+    /*display: inline-block !important;*/
+    float: right;
+    padding-left: 10px;
+}
+
+.follow-actions h4 {
+    text-align: center;
+    display: inline-block;
+    color: #ff0095;
+    font-weight: 700;
+    margin: 4px 10px;
+}
+.follow-actions h4 small{
+    display: block;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+
+
