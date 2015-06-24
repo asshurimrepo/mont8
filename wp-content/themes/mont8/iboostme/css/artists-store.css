@@ -113,3 +113,7 @@ a.userpro-follow.notfollowing.following.red:before{
 .product-item{
     margin-bottom: 20px;
 }
+
+.latest-artwork{
+    padding: 2em 0;
+}

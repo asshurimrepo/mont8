@@ -220,12 +220,14 @@ ul.mega_dropdown {
     margin-bottom: 7px;
     padding-bottom: 0px;
     margin-top: -4px;
+    position: relative;
+    z-index: 999;
 }
 
 .site-header h1.site-title a {
     color: #cccccc;
-    background: url('assets/images/logo-mont8.com.png') no-repeat 0% 0%;
-    width: 300px;
+    /*background: url('assets/images/logo-mont8.com.png') no-repeat 0% 0%;*/
+    width: auto;
     height: 90px;
     display: block;
     text-indent: -9999px;
@@ -3837,6 +3839,12 @@ ul.list-unstyled .seller-name {
 h1.nice {
     margin-top: 0 !important;
     margin-bottom: 33px !important;
+}
+h1.nice2{
+    font-family: 'Open Sans' !important;
+    font-size: 32px !important;
+    font-weight: 400;
+    color: #232323;
 }
 
 .dokan-dash-sidebar .settings {

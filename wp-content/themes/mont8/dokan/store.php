@@ -1,19 +1,22 @@
 <?php
 /**
- * The Template for displaying all single posts.
+ * The Template for displaying all seller artworks.
  *
  * @package dokan
  * @package dokan - 2014 1.0
  */
+global $wp_query;
 
 $store_user = get_userdata( get_query_var( 'author' ) );
 $store_info = dokan_get_store_info( $store_user->ID );
 $user_meta = get_user_meta( $store_user->ID );
 
-//var_dump($user_meta);
+//var_dump($wp_query->query_vars);
 
 $following = unserialize($user_meta['_userpro_following_ids'][0]);
 $followers = unserialize($user_meta['_userpro_followers_ids'][0]);
+
+//var_dump()
 
 if(!isset($user_meta['_userpro_following_ids'][0])){
 	$following = [];
@@ -81,7 +84,6 @@ get_header();
 
     <div id="primary" class="content-area dokan-single-store col-md-9">
         <div id="content" class="site-content store-page-wrap woocommerce" role="main">
-
 			<div class="seller-items">
 
                 <?php $art_count = 0; woocommerce_product_loop_start();  ?>
@@ -95,6 +97,14 @@ get_header();
                 <?php woocommerce_product_loop_end(); ?>
 				<span class="art-count hide"><?=$art_count?></span>
             </div>
+
+
+            <?php if($wp_query->query_vars['taxonomy'] != 'product_cat'): ?>
+	            <h1 class="nice2"><?=_e('LATEST', 'dokan')?></h1>
+	            <div class="latest-artwork">
+	                    <?=do_shortcode('[recent_products per_page="5" columns="5"]')?>
+				</div>
+            <?php endif; ?>
 
         </div>
     </div>
