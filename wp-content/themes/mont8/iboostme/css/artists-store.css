@@ -100,5 +100,20 @@ a.userpro-follow.notfollowing.following.red:before{
     font-size: 12px;
 }
 
+.seller-name{
+    display: none;
+}
 
+.shop_heading_text{
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
 
+.product-item{
+    margin-bottom: 20px;
+}
+
+.latest-artwork{
+    padding: 2em 0;
+}
