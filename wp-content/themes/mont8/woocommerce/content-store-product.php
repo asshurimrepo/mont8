@@ -27,91 +27,18 @@
 	if ( ! $product || ! $product->is_visible() )
 		return;
 
+	$poster_markup = get_user_meta($product->post->post_author, '_poster_markup', true);
+
 	// Increase loop count
 	$woocommerce_loop['loop']++;
 
+	$poster_markup = get_post_meta($product->id, '_poster_markup', true);
+	$base_price = get_base_price('poster');
+	$markup_price = $base_price[0] * ($poster_markup/100);
+	$preview_price = get_woocommerce_currency_symbol().($base_price[0] + $markup_price);
 ?>
 
 <li class="col-md-4 product-item">
-
-	<?php if(is_product_tag( 'stretched-canvases' )) {?>
-
-		<div class="canvas-style">
-
-			<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
-			<a href="<?php the_permalink(); ?>">
-
-				<?php
-					/**
-					 * woocommerce_before_shop_loop_item_title hook
-					 *
-					 * @hooked woocommerce_show_product_loop_sale_flash - 10
-					 * @hooked woocommerce_template_loop_product_thumbnail - 10
-					 */
-					do_action( 'woocommerce_before_shop_loop_item_title' );
-				?>
-
-				<h3 class="shop_heading_text"><?php the_title(); ?></h3>
-
-				<?php
-					/**
-					 * woocommerce_after_shop_loop_item_title hook
-					 *
-					 * @hooked woocommerce_template_loop_rating - 5
-					 * @hooked woocommerce_template_loop_price - 10
-					 */
-					do_action( 'woocommerce_after_shop_loop_item_title' );
-				?>
-
-			</a>
-
-		</div>
-
-	<?php } else if(is_product_tag( 'framed-art' )) {?>
-
-
-		<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
-		<a href="<?php the_permalink(); ?>">
-			<div class="framed_art">
-				<?php
-
-					do_action( 'woocommerce_before_shop_loop_item_title' );
-				?>
-			</div>
-			<h3 class="shop_heading_text"><?php the_title(); ?></h3>
-
-			<?php
-
-				do_action( 'woocommerce_after_shop_loop_item_title' );
-			?>
-
-		</a>
-
-
-	<?php } else if(is_product_tag('fine-art')) {?>
-
-		<div class="fine_art">
-			<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
-			<a href="<?php the_permalink(); ?>">
-
-				<?php
-
-					do_action( 'woocommerce_before_shop_loop_item_title' );
-				?>
-
-				<h3 class="shop_heading_text"><?php the_title(); ?></h3>
-
-				<?php
-
-					do_action( 'woocommerce_after_shop_loop_item_title' );
-				?>
-
-			</a>
-
-		</div>
-
-	<?php } else { ?>
-
 
 		<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 		<a href="<?php the_permalink(); ?>">
@@ -122,7 +49,9 @@
 				?>
 			</div>
 
-			<h3 class="shop_heading_text"><?php the_title(); ?></h3>
+			<h3 class="shop_heading_text"><?php the_title(); ?>
+				<small><?=$preview_price?></small>
+			</h3>
 
 			<?php
 
@@ -130,9 +59,6 @@
 			?>
 
 		</a>
-
-	<?php } ?>
-
 
 	<?php
 

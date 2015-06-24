@@ -39,8 +39,7 @@ get_header(); ?>
 <div id="primary" class="content-area col-md-9">
     <div id="content" class="site-content" role="main">
     
-    
-   
+
 
 	<?php
 		/**

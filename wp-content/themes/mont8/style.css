@@ -571,6 +571,7 @@ ul.mega_dropdown {
     border-left: none;
     padding: 6px;
     float: left;
+    background: #FFF;
 }
 
 .search_panel {
@@ -2219,7 +2220,6 @@ p.newsletter_title {
     color: #232323;
     font-weight: 300;
     padding-bottom: 20px;
-    text-align: center;
 }
 
 .site-footer .footer-copy a {
@@ -2850,12 +2850,7 @@ ul.subsubsub li.active a {
 .woocommerce .form-row.user-role input[type=radio],
 .woocommerce-page .form-row.user-role input[type=radio] {
     float: none;
-    margin: 7px 0 0 0;
-}
-
-
-.woocommerce-page .radio span{
-    margin-left: 22px;
+    margin: 0;
 }
 
 .woocommerce .split-row p,
@@ -3509,6 +3504,7 @@ li.form-group {
     color: #888888 !important;
     padding: 6px;
     border: #fff 1px solid;
+    height: 35px;
 }
 
 .categorydd::before {
@@ -3570,7 +3566,7 @@ li.form-group {
 .blog {
     border: #e1e1e1 1px solid;
     padding: 0;
-    text-align: center;
+    /*text-align: center;*/
     margin-bottom: 15px;
 }
 

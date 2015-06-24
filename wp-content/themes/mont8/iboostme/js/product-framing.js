@@ -649,7 +649,7 @@
 		},
 
 		populate_size_input: function(){
-			var options = $("select.select-image-size:first-of-type > option").clone();
+			var options = $("select.base-image-size > option").clone();
 			$('select.wall.select-image-size').append(options).change(framing.update_frame);
 		}
 	};

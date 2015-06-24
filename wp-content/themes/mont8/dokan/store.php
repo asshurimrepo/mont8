@@ -58,6 +58,11 @@ get_header();
 			<div class="col-md-9 user-bio">
 				<h1><?=$store_user->user_login?></h1>
 				<p><?=nl2br($user_meta['description'][0])?></p>
+
+				<?php /*Show Default Follow*/ if( ! is_user_logged_in() ): ?>
+					<div class="userpro-sc-flw"><a href="<?=BASE_URL.'/my-account'?>" class="userpro-button secondary userpro-follow notfollowing" data-follow-text="Follow" data-unfollow-text="Unfollow" data-following-text="Following" data-follow-to="4" data-follow-from="1" id="fb-post-data" data-fbappid="" data-message="" data-caption="" data-link="" data-name="" data-description=""><i class="userpro-icon-share"></i>Follow</a></div>
+				<?php endif; ?>
+
 			</div>
 
 			<div class="col-md-3 right user-stat">
