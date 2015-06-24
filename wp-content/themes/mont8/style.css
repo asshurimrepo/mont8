@@ -2219,6 +2219,7 @@ p.newsletter_title {
     color: #232323;
     font-weight: 300;
     padding-bottom: 20px;
+    text-align: center;
 }
 
 .site-footer .footer-copy a {
