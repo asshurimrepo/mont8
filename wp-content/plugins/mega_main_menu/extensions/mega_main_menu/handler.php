@@ -117,7 +117,7 @@
 			$items_wrap = '';
 			$items_wrap .= mm_common::ntab(0) . '<div id="mega_main_menu" class="' . $container_class_imploded . ' mega_main mega_main_menu">';
 			$items_wrap .= mm_common::ntab(1) . '<div class="menu_holder"' . $data_sticky . '>';
-			$items_wrap .= mm_common::ntab(1) . '<div class="mmm_fullwidth_container"></div><!-- class="fullwidth_container" -->';
+			$items_wrap .= mm_common::ntab(1) . '<div class=""></div><!-- class="fullwidth_container" -->'; //mmm_fullwidth_container
 			$items_wrap .= mm_common::ntab(2) . '<div class="menu_inner">';
 			$items_wrap .= mm_common::ntab(3) . '<span class="nav_logo">';
 			if( ( is_array( $mega_main_menu->get_option( $theme_location_safe_name . '_included_components' ) ) && in_array( 'company_logo', $mega_main_menu->get_option( $theme_location_safe_name . '_included_components' ) ) ) && $mega_main_menu->get_option( 'logo_src' ) ) {

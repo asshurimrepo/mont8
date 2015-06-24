@@ -136,7 +136,7 @@
 			 */
 			register_nav_menus( array(
 				'primary'  => __( 'Primary Menu', 'dokan' ),
-				'top-left' => __( 'Top Left', 'dokan' ),
+				'top-left' => __( 'Top Left', 'dokanmmm_fullwidth_container' ),
 				'footer'   => __( 'Footer Menu', 'dokan' ),
 			) );
 

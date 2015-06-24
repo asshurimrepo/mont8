@@ -38,13 +38,14 @@
 			<div class="row nav-row">
 
 				<div class="col-xs-12 col-sm-12 col-lg-12 hidden-lg hidden-sm hidden-md mobile_view">
-					<?php dokan_header_user_menu(); ?>
+					<?php /*dokan_header_user_menu();*/ ?>
 				</div>
 
 
-				<div class="col-xs-12 col-sm-12 col-lg-2" style="padding:0;">
+				<div class="col-lg-2" style="padding:0;">
 					<hgroup>
-						<h1 class="site-title"><a href="<?php echo home_url( '/' ); ?>"
+						<h1 class="site-title">
+							<a href="<?php echo home_url( '/' ); ?>"
 						                          title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
 						                          rel="home"><?php bloginfo( 'name' ); ?>
 								<small> - <?php bloginfo( 'description' ); ?></small>
@@ -53,36 +54,14 @@
 				</div>
 
 
-				<div class="col-xs-12 col-sm-7 col-lg-5 nav-menu" style="padding:0;">
+				<div class="col-lg-5 nav-menu" style="padding:0;">
+
 					<?php echo wp_nav_menu( array( "theme_location" => "primary" ) ); ?>
-					<!--<nav role="navigation" class="site-navigation main-navigation clearfix">
-                                <h1 class="assistive-text"><i class="icon-reorder"></i> <?php //_e( 'Menu', 'dokan' ); ?></h1>
-                                <div class="assistive-text skip-link"><a href="#content" title="<?php //esc_attr_e( 'Skip to content', 'dokan' ); ?>"><?php //_e( 'Skip to content', 'dokan' ); ?></a></div>
-                                    <nav role="navigation">
-                                       <div class="navbar-header">
-                                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                                                <span class="sr-only"><?php //_e( 'Toggle navigation', 'dokan' ); ?></span>
-                                                <i class="fa fa-bars"></i>
-                                            </button>                                            
-                                        </div>
-                                        <div class="collapse navbar-collapse navbar-main-collapse">
-                                            <?php /*?><?php
-                                                wp_nav_menu( array(
-                                                    'theme_location'    => 'primary',
-                                                    'container'         => 'div',
-                                                    'container_class'   => 'collapse navbar-collapse navbar-main-collapse',
-                                                    'menu_class'        => 'nav navbar-nav',
-                                                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                                                    'walker'            => new wp_bootstrap_navwalker())
-                                                );
-                                            ?><?php */ ?>
-                                        </div>
-                                    </nav>
-                            </nav>-->
+
 				</div>
 
 
-				<div class="col-xs-12 col-sm-5 col-lg-5 hidden-xs" style="padding:0;">
+				<div class="col-lg-5 hidden-xs" style="padding:0;">
 					<?php dokan_header_user_menu(); ?>
 				</div>
 
