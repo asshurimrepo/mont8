@@ -15,19 +15,6 @@ jQuery(function($) {
         '</div>'
     );
 
-    //search panel
-    var searchPanel = $('.search_panel');
-    var searchPanelInput = $('.search_panel input');
-    var isToggled = false;
-    searchPanel.click(function(){
-        isToggled = !isToggled;
-        searchPanel.toggleClass('expand', isToggled);
-    });
-
-    searchPanelInput.blur(function(){
-        isToggled = !isToggled;
-        searchPanel.toggleClass('expand', isToggled);
-    });
 
     // set dashboard menu height
     var dashboardMenu = $('ul.dokan-dashboard-menu'),
@@ -98,10 +85,21 @@ jQuery(function($) {
             }, 1000);
         }else{
             cartSidebar.toggle().addClass('slideInRight').removeClass('slideOutRight');
-
-
         }
-
-
     });
+
+    //search panel
+    var searchPanel = $('.search_panel');
+    var searchPanelInput = $('.search_panel input');
+    var isToggled = false;
+    searchPanel.click(function(){
+        isToggled = !isToggled;
+        searchPanel.toggleClass('expand', isToggled);
+    });
+
+    searchPanelInput.blur(function(){
+        isToggled = !isToggled;
+        searchPanel.toggleClass('expand', isToggled);
+    });
+
 });

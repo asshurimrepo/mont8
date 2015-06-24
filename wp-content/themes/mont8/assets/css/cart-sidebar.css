@@ -78,3 +78,46 @@
     font-size: 12px;
     cursor: pointer;
 }
+
+
+
+
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input {
+    padding-left: 30px;
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 12px 12px;
+    pointer-events: none;
+}
+.search_panel{
+    width: 30%;
+    float: right;
+}
+.search_panel input{
+    border-radius: 0;
+    border: #e1e1e1 1px solid;
+    cursor: pointer;
+}
+.search_panel .fa{
+    font-size: 17px;
+}
+.expand.search_panel{
+    width: 100% !important;
+}

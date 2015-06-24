@@ -601,14 +601,16 @@ function dokan_header_user_menu() {
         
             <ul class="nav navbar-nav navbar-right">
     
-        <li class="hide">
+        <li>
             <div class="search_panel">
-                    <div class="search">
-                        <a href="#"><i class="fa fa-search fa-lg"></i></a>
+                <form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+                    <div class="right-inner-addon">
+                        <i class="fa fa-search fa-lg"></i>
+                        <input type="text" id="s" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" class="form-control" />
                     </div>
-                </div>
+                </form>
+            </div>
         </li>
-    
         <li>
             <a href="#" class="dropdown-toggle btn-cart-sidebar" data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
 

@@ -53,7 +53,7 @@
 				</div>
 
 
-				<div class="col-xs-12 col-sm-7 col-lg-7 nav-menu" style="padding:0;">
+				<div class="col-xs-12 col-sm-7 col-lg-5 nav-menu" style="padding:0;">
 					<?php echo wp_nav_menu( array( "theme_location" => "primary" ) ); ?>
 					<!--<nav role="navigation" class="site-navigation main-navigation clearfix">
                                 <h1 class="assistive-text"><i class="icon-reorder"></i> <?php //_e( 'Menu', 'dokan' ); ?></h1>
@@ -82,7 +82,7 @@
 				</div>
 
 
-				<div class="col-xs-12 col-sm-5 col-lg-3 hidden-xs" style="padding:0;">
+				<div class="col-xs-12 col-sm-5 col-lg-5 hidden-xs" style="padding:0;">
 					<?php dokan_header_user_menu(); ?>
 				</div>
 
