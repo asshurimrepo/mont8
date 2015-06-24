@@ -24,6 +24,7 @@
 
 	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/css/animate.css';?>"/>
 	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/css/cart-sidebar.css';?>"/>
+	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/js/bootstrap-datepicker/css/bootstrap-datepicker.min.css';?>"/>
 	<?php wp_head(); ?>
 
 </head>

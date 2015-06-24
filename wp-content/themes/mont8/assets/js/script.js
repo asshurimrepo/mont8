@@ -102,4 +102,7 @@ jQuery(function($) {
         searchPanel.toggleClass('expand', isToggled);
     });
 
+    // Date Pickers
+    $('.datepicker').datepicker();
+
 });

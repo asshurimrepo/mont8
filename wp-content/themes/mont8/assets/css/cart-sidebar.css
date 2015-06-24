@@ -131,3 +131,19 @@
 .expand.search_panel{
     width: 100% !important;
 }
+.datepicker {
+    padding-left: 40px !important;
+}
+
+.social-login-group {
+    margin-top: 75px;
+    text-align: center;
+}
+.social-login-group li{
+    padding: 2px 0;
+}
+.social-old-fashion{
+    position: absolute;
+    left: -10px;
+    bottom: -60px;
+}

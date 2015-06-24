@@ -65,6 +65,8 @@
 
 <?php wp_footer(); ?>
 
+<script src="<?=get_template_directory_uri().'/assets/js/bootstrap-datepicker/js/bootstrap-datepicker.min.js';?>"></script>
+
 <div id="yith-wcwl-popup-message" style="display:none;"><div id="yith-wcwl-message"></div></div>
 </body>
 </html>

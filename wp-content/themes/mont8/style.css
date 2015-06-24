@@ -2849,7 +2849,12 @@ ul.subsubsub li.active a {
 .woocommerce .form-row.user-role input[type=radio],
 .woocommerce-page .form-row.user-role input[type=radio] {
     float: none;
-    margin: 0;
+    margin: 7px 0 0 0;
+}
+
+
+.woocommerce-page .radio span{
+    margin-left: 22px;
 }
 
 .woocommerce .split-row p,

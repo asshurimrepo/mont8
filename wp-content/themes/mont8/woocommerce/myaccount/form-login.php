@@ -22,44 +22,59 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <?php endif; ?>
 
-        <h2><?php _e( 'Login', 'dokan' ); ?></h2>
+        <div class="col-md-8">
+            <h2><?php _e( 'Login', 'dokan' ); ?></h2>
 
-        <form method="post" class="login">
 
-            <?php do_action( 'woocommerce_login_form_start' ); ?>
+            <form method="post" class="login" style="width: 100%;">
 
-            <p class="form-row form-row-wide">
-                <input type="text" class="input-text form-control" name="username" id="username" placeholder="<?php _e( 'Username or email address', 'dokan' ); ?> *"/>
-            </p>
-            <p class="form-row form-row-wide">
-                <input class="input-text form-control" type="password" name="password" id="password" placeholder="<?php _e( 'Password', 'dokan' ); ?> *"/>
-            </p>
+                <?php do_action( 'woocommerce_login_form_start' ); ?>
 
-            <?php do_action( 'woocommerce_login_form' ); ?>
+                <p class="form-row form-row-wide">
+                    <input type="text" class="input-text form-control" name="username" id="username" placeholder="<?php _e( 'Username or email address', 'dokan' ); ?> *"/>
+                </p>
+                <p class="form-row form-row-wide">
+                    <input class="input-text form-control" type="password" name="password" id="password" placeholder="<?php _e( 'Password', 'dokan' ); ?> *"/>
+                </p>
 
-            <!--Login Button-->
-            <p class="form-row">
-                <?php wp_nonce_field( 'woocommerce-login' ); ?>
-                <input type="submit" class="btn btn-theme btn-block" name="login" value="<?php _e( 'Login', 'dokan' ); ?>" />
-            </p>
-            <!--Remember Me-->
-            <p class="form-row">
-                <label for="rememberme" class="inline" style="font-weight: normal;">
-                    <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'dokan' ); ?>
-                </label>
-            </p>
+                <?php do_action( 'woocommerce_login_form' ); ?>
 
-            <p class="lost_password">
-                <b><a href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'dokan' ); ?></a></b>
-            </p>
+                <!--Login Button-->
+                <p class="form-row">
+                    <?php wp_nonce_field( 'woocommerce-login' ); ?>
+                    <input type="submit" class="btn btn-theme btn-block" name="login" value="<?php _e( 'Login', 'dokan' ); ?>" />
+                </p>
+                <!--Remember Me-->
+                <p class="form-row">
+                    <label for="rememberme" class="inline" style="font-weight: normal;">
+                        <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'dokan' ); ?>
+                    </label>
+                </p>
 
-            <?php do_action( 'woocommerce_login_form_end' ); ?>
+                <p class="lost_password">
+                    <b><a href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'dokan' ); ?></a></b>
+                </p>
 
-        </form>
+                <?php do_action( 'woocommerce_login_form_end' ); ?>
 
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <ul class="list-unstyled social-login-group">
+                <li><a href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-facebook.png' ?>" alt="Facebook Login"/></a></li>
+                <li><a href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-twitter.png'  ?>" alt="Twitter Login"/></a></li>
+                <li><a href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-google.png' ?>" alt="Goggle Plus Login"/></a></li>
+            </ul>
+            <span class="social-old-fashion visible-md visible-lg ">
+                <img src="<?= get_template_directory_uri() . '/assets/images/login-old-fashion.jpg' ?>" class="" alt=""/>
+            </span>
+        </div>
 <?php if ( get_option('woocommerce_enable_myaccount_registration') == 'yes' && get_option( 'users_can_register' ) == '1' ) : ?>
 
     </div>
+    
+
 
     <div class="col-md-6 reg-form">
 

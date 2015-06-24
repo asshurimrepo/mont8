@@ -523,27 +523,33 @@ function dokan_seller_reg_form_fields() {
             </p>
         </div>
 
+        <p class="form-row form-group form-row-wide left-inner-addon">
+            <label for="date_birth"><?php _e( 'Date of Birth', 'dokan' ); ?> <span class="required">*</span></label>
+            <i class="fa fa-calendar" style="font-size: 24px; color: #c0c0c0;"></i>
+            <input type="text" class="input-text form-control datepicker" name="date_birth" id="date_birth" value="<?php if ( ! empty( $_POST['date_birth'] ) ) echo esc_attr($_POST['date_birth']); ?>" required="required" />
+        </p>
+
         <p class="form-row form-group form-row-wide">
             <label for="company-name"><?php _e( 'Shop Name', 'dokan' ); ?> <span class="required">*</span></label>
-            <input type="text" class="input-text form-control" name="shopname" id="company-name" value="<?php if ( ! empty( $_POST['shopname'] ) ) echo esc_attr($_POST['shopname']); ?>" required="required" />
+            <input  type="text" class="input-text form-control" name="shopname" id="company-name" value="<?php if ( ! empty( $_POST['shopname'] ) ) echo esc_attr($_POST['shopname']); ?>" required="required" />
         </p>
 
-        <p class="form-row form-group form-row-wide">
-            <label for="seller-url" class="pull-left"><?php _e( 'Shop URL', 'dokan' ); ?> <span class="required">*</span></label>
+        <!--<p class="form-row form-group form-row-wide">
+            <label for="seller-url" class="pull-left"><?php /*_e( 'Shop URL', 'dokan' ); */?> <span class="required">*</span></label>
             <strong id="url-alart-mgs" class="pull-right"></strong>
-            <input type="text" class="input-text form-control" name="shopurl" id="seller-url" value="<?php if ( ! empty( $_POST['shopurl'] ) ) echo esc_attr($_POST['shopurl']); ?>" required="required" />
-            <small><?php echo home_url() . '/' . dokan_get_option( 'custom_store_url', 'dokan_selling', 'store' ); ?>/<strong id="url-alart"></strong></small>
+            <input type="text" class="input-text form-control" name="shopurl" id="seller-url" value="<?php /*if ( ! empty( $_POST['shopurl'] ) ) echo esc_attr($_POST['shopurl']); */?>" required="required" />
+            <small><?php /*echo home_url() . '/' . dokan_get_option( 'custom_store_url', 'dokan_selling', 'store' ); */?>/<strong id="url-alart"></strong></small>
+        </p>-->
+
+        <!--<p class="form-row form-group form-row-wide">
+            <label for="seller-address"><?php /*_e( 'Address', 'dokan' ); */?><span class="required">*</span></label>
+            <textarea type="text" id="seller-address" name="address" class="form-control input" required="required"><?php /*if ( ! empty( $_POST['address'] ) ) echo esc_textarea($_POST['address']); */?></textarea>
         </p>
 
         <p class="form-row form-group form-row-wide">
-            <label for="seller-address"><?php _e( 'Address', 'dokan' ); ?><span class="required">*</span></label>
-            <textarea type="text" id="seller-address" name="address" class="form-control input" required="required"><?php if ( ! empty( $_POST['address'] ) ) echo esc_textarea($_POST['address']); ?></textarea>
-        </p>
-
-        <p class="form-row form-group form-row-wide">
-            <label for="shop-phone"><?php _e( 'Phone', 'dokan' ); ?><span class="required">*</span></label>
-            <input type="text" class="input-text form-control" name="phone" id="shop-phone" value="<?php if ( ! empty( $_POST['phone'] ) ) echo esc_attr($_POST['phone']); ?>" required="required" />
-        </p>
+            <label for="shop-phone"><?php /*_e( 'Phone', 'dokan' ); */?><span class="required">*</span></label>
+            <input type="text" class="input-text form-control" name="phone" id="shop-phone" value="<?php /*if ( ! empty( $_POST['phone'] ) ) echo esc_attr($_POST['phone']); */?>" required="required" />
+        </p>-->
 
         <?php  do_action( 'dokan_seller_registration_field_after' ); ?>
 
@@ -554,12 +560,12 @@ function dokan_seller_reg_form_fields() {
     <p class="form-row form-group user-role">
         <label class="radio">
             <input type="radio" name="role" value="customer"<?php checked( $role, 'customer' ); ?>>
-            <?php _e( 'I am a customer', 'dokan' ); ?>
+            <span><?php _e( 'I am a customer', 'dokan' ); ?></span>
         </label>
 
         <label class="radio">
             <input type="radio" name="role" value="seller"<?php checked( $role, 'seller' ); ?>>
-            <?php _e( 'I am a seller', 'dokan' ); ?>
+            <span><?php _e( 'I am a seller', 'dokan' ); ?></span>
         </label>
         <?php do_action( 'dokan_registration_form_role', $role ); ?>
     </p>
