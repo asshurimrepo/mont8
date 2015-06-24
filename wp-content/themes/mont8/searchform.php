@@ -17,7 +17,7 @@
 </form>
 
 
-<form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+<!--<form method="get" id="searchform" action="<?php /*echo esc_url( home_url( '/' ) ); */?>" role="search">
     <div class="search_panel">
         <div class="right-inner-addon ">
             <i class="fa fa-search fa-lg"></i>
@@ -26,4 +26,4 @@
         </div>
     </div>
 </form>
-
+-->
