@@ -58,7 +58,7 @@ get_header();
 			</div>
 
 			<div class="col-md-3 right user-stat">
-				<h1>8 <small><?=_e('ARTWORK', 'dokan')?></small></h1>
+				<h1> <span class="artwork-count">0</span> <small><?=_e('ARTWORK', 'dokan')?></small></h1>
 				<div class="socials">
 					<a href="#"><span class="ib-social"></span></a>
 					<a href="#"><span class="ib-social instagram"></span></a>
@@ -84,16 +84,16 @@ get_header();
 
 			<div class="seller-items">
 
-                <?php woocommerce_product_loop_start(); ?>
+                <?php $art_count = 0; woocommerce_product_loop_start();  ?>
 
-                    <?php while ( have_posts() ) : the_post(); ?>
+                    <?php while ( have_posts() ) : the_post(); $art_count += 1; ?>
 
-                        <?php wc_get_template_part( 'content', 'product' ); ?>
+                        <?php wc_get_template_part( 'content', 'store-product' ); ?>
 
                     <?php endwhile; // end of the loop. ?>
 
                 <?php woocommerce_product_loop_end(); ?>
-
+				<span class="art-count hide"><?=$art_count?></span>
             </div>
 
         </div>

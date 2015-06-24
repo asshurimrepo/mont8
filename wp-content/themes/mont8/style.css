@@ -3568,7 +3568,7 @@ li.form-group {
 
 .blog img {
     width: 100%;
-    max-height: 250px;
+    /*max-height: 250px;*/
 }
 
 h2.blog_title {
