@@ -609,7 +609,7 @@ function dokan_header_user_menu() {
     
         <li>
             <div class="search_panel">
-                <form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+                <form method="get" id="searchform" action="<?php echo esc_url( home_url( '/store' ) ); ?>" role="search">
                     <div class="right-inner-addon">
                         <i class="fa fa-search fa-lg"></i>
                         <input type="text" id="s" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" class="form-control" />
