@@ -612,7 +612,10 @@ function dokan_header_user_menu() {
             </div>
         </li>
         <li>
-            <a href="#" class="dropdown-toggle btn-cart-sidebar" data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
+            <div class="cart-sidebar-group">
+                <span class="badge">3</span>
+                <a href="#" class="dropdown-toggle btn-cart-sidebar" data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
+            </div>
 
             <ul class="dropdown-menu">
                 <li>

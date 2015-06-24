@@ -3,7 +3,7 @@
 </style>
 
 <div class="cart-sidebar animated" style="display: none;">
-    <div class="btn-cart-sidebar cart-sidebar-close">close</div>
+    <div class="btn-cart-sidebar cart-sidebar-close">X</div>
     <span class="cart-sidebar-detail cart-sidebar-item-number">Items <span class="badge">3</span></span>
     <span class="cart-sidebar-detail cart-sidebar-sign-in"><i class="fa fa-sign-in"></i> Sign In</span>
     <div class="clearfix"></div>
