@@ -19,7 +19,7 @@
 
 			<div class="tagcloud">
 
-				<?php foreach ( get_prouct_tags() as $tags ): ?>
+				<?php foreach ( get_product_tags() as $tags ): ?>
 
 					<a href="<?= BASE_URL ?>/store/<?= $store_info['store_name'] ?>/?collection=<?= $tags->term_id ?>"
 					   title="<?= $tags->name ?>" style="font-size: 22pt;">

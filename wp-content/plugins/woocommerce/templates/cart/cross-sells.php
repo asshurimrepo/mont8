@@ -13,8 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product, $woocommerce_loop;
 
-	echo 'HEllo';
-
 $crosssells = WC()->cart->get_cross_sells();
 
 if ( sizeof( $crosssells ) == 0 ) return;

@@ -309,6 +309,11 @@ function dokan_get_dashboard_nav() {
             'icon'  => '<i class="fa fa-briefcase"></i>',
             'url'   => dokan_get_navigation_url( 'products' )
         ),
+        'featured-product' => array(
+            'title' => __( 'Featured Products', 'dokan'),
+            'icon'  => '<i class="fa fa-briefcase"></i>',
+            'url'   => get_permalink( get_page_by_path( 'featured-products' ) )
+        ),
         'order' => array(
             'title' => __( 'Sales History', 'dokan'),
             'icon'  => '<i class="fa fa-shopping-cart"></i>',
@@ -619,7 +624,7 @@ function dokan_header_user_menu() {
         </li>
         <li>
             <div class="cart-sidebar-group">
-                <span class="badge">3</span>
+                <span class="badge"><?=WC()->cart->cart_contents_count?></span>
                 <a href="#" class="dropdown-toggle btn-cart-sidebar" data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
             </div>
 

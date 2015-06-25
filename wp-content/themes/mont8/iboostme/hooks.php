@@ -188,8 +188,9 @@
 		return add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 	}
 
-	function get_prouct_tags(){
-		return get_terms(['product_tag']);
+	function li()
+	{
+		return get_terms( [ 'product_tag' ] );
 	}
 
 	function iboost_include( $path, $data = array() )
@@ -248,5 +249,24 @@
 	add_filter( 'dokan_get_dashboard_nav', 'dokan_add_dashboard_menu' );
 
 
-		
+	function get_product_tags()
+	{
+		$taxonomies = array(
+			'product_tag',
+		);
+
+		return get_terms( $taxonomies );
+	}
+
+
+	function get_my_account_url()
+	{
+		$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
+		if ( $myaccount_page_id )
+		{
+			return get_permalink( $myaccount_page_id );
+		}
+
+		return null;
+	}
 	

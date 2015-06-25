@@ -3855,3 +3855,19 @@ h1.nice2{
 .dokan-dash-sidebar .settings {
     display: none !important;
 }
+
+.cart-sidebar-btn-checkout{
+    background: #ff0099;
+    border-radius: 0;
+    border: none;
+    font-weight: 600;
+}
+
+.cart-sidebar-btn-checkout:hover{
+    background: #cc0099;
+}
+
+.cart-sidebar{
+    z-index: 9999 !important;
+    overflow: auto;
+}

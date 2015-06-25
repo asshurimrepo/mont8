@@ -7,6 +7,12 @@
 	 * @package dokan
 	 * @package dokan - 2013 1.0
 	 */
+	global $post;
+
+	/*Restricted only for user logged in, otherwise redirect to login page*/
+	if( ! is_user_logged_in() && $post->post_slug != 'my-account' ){
+		header('redirect: '.BASE_URL.'/my-account');
+	}
 
 	get_header();
 

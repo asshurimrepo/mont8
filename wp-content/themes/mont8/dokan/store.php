@@ -31,6 +31,7 @@ wp_enqueue_script( 'google-maps', $scheme . '://maps.google.com/maps/api/js?sens
 load_style('artists-style', 'artists-store.css');
 load_js('artists-script', 'artists-store.js');
 
+
 get_header();
 
 ?>
@@ -94,16 +95,35 @@ get_header();
         <div id="content" class="site-content store-page-wrap woocommerce" role="main">
 			<div class="seller-items">
 
+				<?php
+				       $args = array( 'post_type' => 'product', 'posts_per_page' => 6 );
+
+                       if(isset($_GET['collection']) && $_GET['collection']){
+                            $args = array( 'post_type' => 'product',
+                                            'posts_per_page' => 6,
+                                            'author'=>$store_user->ID,
+	                            'tax_query' => array(
+												array(
+													'taxonomy' => 'product_tag',
+													'terms'    => $_GET['collection'],
+												),
+											)
+                                        );
+
+                       }
+
+                       $loop = new WP_Query( $args );
+				 ?>
+
                 <?php $art_count = 0; woocommerce_product_loop_start();  ?>
 
-                    <?php while ( have_posts() ) : the_post(); $art_count += 1; ?>
+                    <?php while ( $loop->have_posts() ) : $loop->the_post();  ?>
 
                         <?php wc_get_template_part( 'content', 'store-product' ); ?>
-						<?php if($art_count > 5) break; ?>
-                    <?php endwhile; // end of the loop. ?>
+
+                    <?php endwhile; wp_reset_query();  // end of the loop.  ?>
 
                 <?php woocommerce_product_loop_end(); ?>
-				<span class="art-count hide"><?=$art_count?></span>
             </div>
 
 
