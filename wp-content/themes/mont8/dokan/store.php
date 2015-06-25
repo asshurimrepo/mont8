@@ -66,8 +66,11 @@ get_header();
 			</div>
 
 			<div class="col-md-3 right user-stat">
-				<h1> <span class="artwork-count">0</span> <small><?=_e('ARTWORK', 'dokan')?></small></h1>
-				<div class="socials">
+
+				<!--Artwork Count-->
+				<h1> <span class="artwork-count"><?=count_artwork($store_user->ID)?></span> <small><?=_e('ARTWORK', 'dokan')?></small></h1>
+
+					<div class="socials">
 					<a href="#"><span class="ib-social"></span></a>
 					<a href="#"><span class="ib-social instagram"></span></a>
 					<a href="#"><span class="ib-social twitter"></span></a>
@@ -96,7 +99,7 @@ get_header();
                     <?php while ( have_posts() ) : the_post(); $art_count += 1; ?>
 
                         <?php wc_get_template_part( 'content', 'store-product' ); ?>
-
+						<?php if($art_count > 5) break; ?>
                     <?php endwhile; // end of the loop. ?>
 
                 <?php woocommerce_product_loop_end(); ?>
@@ -107,7 +110,7 @@ get_header();
             <?php if($wp_query->query_vars['taxonomy'] != 'product_cat'): ?>
 	            <h1 class="nice2"><?=_e('LATEST', 'dokan')?></h1>
 	            <div class="latest-artwork">
-	                    <?=do_shortcode('[recent_products per_page="5" columns="5"]')?>
+	                    <?=do_shortcode('[recent_products per_page="5" columns="6"]')?>
 				</div>
             <?php endif; ?>
 

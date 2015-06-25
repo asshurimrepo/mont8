@@ -33,7 +33,7 @@
 	function get_base_price( $key = null )
 	{
 		$base_prices = get_option( '_art_print_base_prices' );
-		$base_prices = json_decode($base_prices);
+		$base_prices = json_decode( $base_prices );
 
 		if ( ! $key )
 		{
@@ -161,6 +161,17 @@
 		return $wpdb->get_var( 'SELECT COUNT(*) as count FROM mo_yith_wcwl WHERE prod_id = ' . $prod_id );
 	}
 
+	function count_artwork( $author_id = null )
+	{
+		global $wpdb;
+
+		if ( ! $author_id )
+		{
+			return 0;
+		}
+
+		return $wpdb->get_var( "SELECT COUNT(*) as count FROM mo_posts WHERE post_author = {$author_id} AND post_type = 'product' AND post_status='publish'" );
+	}
 
 	function iboost_get_template_part( $atts )
 	{
@@ -168,6 +179,17 @@
 			'foo' => 'something',
 			'bar' => 'something else',
 		), $atts );
+	}
+
+	function current_url()
+	{
+		global $wp;
+
+		return add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+	}
+
+	function get_prouct_tags(){
+		return get_terms(['product_tag']);
 	}
 
 	function iboost_include( $path, $data = array() )
