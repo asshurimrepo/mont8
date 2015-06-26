@@ -212,6 +212,10 @@
 			wp_enqueue_style( 'dokan-theme', $template_directory . '/style.css', false, null );
 			wp_enqueue_style( 'dokan-theme-skin', $template_directory . '/assets/css/skins/' . $skin, false, null );
 
+			if(is_user_logged_in()){
+				load_style('user-logged-in-style', 'user-logged.css', '1.0.1');
+			}
+
 			/****** Scripts ******/
 			if ( is_single() && comments_open() && get_option( 'thread_comments' ) )
 			{

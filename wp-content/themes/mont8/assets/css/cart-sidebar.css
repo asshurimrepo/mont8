@@ -132,7 +132,7 @@
     width: 100% !important;
 }
 .datepicker {
-    padding-left: 40px !important;
+    padding-left: 40px;
 }
 
 .social-login-group {

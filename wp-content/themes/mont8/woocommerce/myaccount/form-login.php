@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <?php endif; ?>
 
-        <div class="col-md-8">
+        <div class="col-md-7">
             <h2><?php _e( 'Login', 'dokan' ); ?></h2>
 
 
@@ -58,22 +58,34 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 <?php do_action( 'woocommerce_login_form_end' ); ?>
 
             </form>
+	        <div class="user-pro-login hide">
+		        <?= do_shortcode( '[userpro template=login]' ) ?>
+	        </div>
+
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-5">
             <ul class="list-unstyled social-login-group">
-                <li><a href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-facebook.png' ?>" alt="Facebook Login"/></a></li>
-                <li><a href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-twitter.png'  ?>" alt="Twitter Login"/></a></li>
-                <li><a href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-google.png' ?>" alt="Goggle Plus Login"/></a></li>
+                <li><a onclick="jQuery('.userpro-social-facebook').click();" href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-facebook.png' ?>" alt="Facebook Login"/></a></li>
+                <li><a onclick="jQuery('.userpro-social-twitter').get(0).click();" href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-twitter.png'  ?>" alt="Twitter Login"/></a></li>
+                <li><a onclick="jQuery('.userpro-social-google').get(0).click();" href="#"><img src="<?= get_template_directory_uri() . '/assets/images/login-google.png' ?>" alt="Goggle Plus Login"/></a></li>
             </ul>
             <span class="social-old-fashion visible-md visible-lg ">
                 <img src="<?= get_template_directory_uri() . '/assets/images/login-old-fashion.jpg' ?>" class="" alt=""/>
             </span>
+
+
         </div>
 <?php if ( get_option('woocommerce_enable_myaccount_registration') == 'yes' && get_option( 'users_can_register' ) == '1' ) : ?>
 
-    </div>
-    
+
+
+
+	</div>
+
+
+
+
 
 
     <div class="col-md-6 reg-form">
@@ -117,7 +129,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 <input type="submit" class="btn btn-theme btn-block" name="register" value="<?php _e( 'Register', 'dokan' ); ?>" />
             </p>
 
+	        <input type="hidden" name="role" value="customer">
             <?php do_action( 'woocommerce_register_form_end' ); ?>
+
+	        <script>
+		        (function($){
+
+			        $(".user-role").remove();
+			        $(".show_if_seller").show();
+
+		        })(jQuery);
+	        </script>
 
         </form>
 

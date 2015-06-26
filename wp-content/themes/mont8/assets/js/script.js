@@ -1,4 +1,5 @@
 jQuery(function($) {
+    var base_url = $("[name=base_url]").prop('content');
     // $('button.single_add_to_cart_button').removeClass('button').addClass('btn btn-danger');
     // $('a.button').removeClass('button').addClass('btn btn-danger');
 
@@ -11,7 +12,7 @@ jQuery(function($) {
 
     $("#menu-item-193 .mega_dropdown").append(
         '<div class="row" style="clear: both">' +
-        '<a href="/store-listing" class="more-artists-btn">MORE ARTISTS <i class="fa fa-angle-double-right"></i></a>' +
+        '<a href="'+ base_url +'/store-listing" class="more-artists-btn">MORE ARTISTS <i class="fa fa-angle-double-right"></i></a>' +
         '</div>'
     );
 
@@ -105,12 +106,12 @@ jQuery(function($) {
     var searchPanel = $('.search_panel');
     var searchPanelInput = $('.search_panel input');
     var isToggled = false;
-    searchPanel.click(function(){
+    searchPanel.focusin(function(){
         isToggled = !isToggled;
         searchPanel.toggleClass('expand', isToggled);
     });
 
-    searchPanelInput.blur(function(){
+    searchPanelInput.focusout(function(){
         isToggled = !isToggled;
         searchPanel.toggleClass('expand', isToggled);
     });

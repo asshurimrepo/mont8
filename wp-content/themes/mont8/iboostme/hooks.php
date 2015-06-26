@@ -216,7 +216,30 @@
 
 	function dokan_add_dashboard_menu( $menus )
 	{
+		/*If user is not a seller*/
+		if ( ! dokan_is_user_seller( get_current_user_id() ) )
+		{
+			$menus['my-account'] = array(
+				'title' => __( 'My Account', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'my-account' ) )
+			);
 
+			$menus['my-orders'] = array(
+				'title' => __( 'My Orders', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'my-orders' ) )
+			);
+
+			$menus['wishlist'] = array(
+				'title' => __( 'My Wishlist', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'wishlist' ) )
+			);
+
+
+			return $menus;
+		}
+
+
+		/*if user is a seller*/
 		$menus['payments'] = array(
 			'title' => __( 'Payments', 'dokan' ),
 			'url'   => dokan_get_navigation_url( 'settings/payment' )
@@ -240,6 +263,16 @@
 		$menus['my-account'] = array(
 			'title' => __( 'My Account', 'dokan' ),
 			'url'   => get_permalink( get_page_by_path( 'my-account' ) )
+		);
+
+		$menus['my-orders'] = array(
+			'title' => __( 'My Orders', 'dokan' ),
+			'url'   => get_permalink( get_page_by_path( 'my-orders' ) )
+		);
+
+		$menus['wishlist'] = array(
+			'title' => __( 'My Wishlist', 'dokan' ),
+			'url'   => get_permalink( get_page_by_path( 'wishlist' ) )
 		);
 
 
