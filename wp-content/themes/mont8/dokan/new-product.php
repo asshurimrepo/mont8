@@ -2,7 +2,9 @@
 
 	//begin customization
 	upload_artwork_script();
-	User_Actions::listens();
+//	User_Actions::listens();
+
+	include_once DOKAN_LIB_DIR . '/class.category-walker.php';
 
 ?>
 
@@ -40,7 +42,7 @@
 
 						<!-- New Artwork Uploader -->
 
-						<a id="add-new-artwork" action="/image/upload" method="post" enctype="multipart/form-data"
+						<a id="add-new-artwork"
 						   class="dropzone uploader row--popsbear dz-clickable">
 
 							<div class="dz-default dz-message"><span>
@@ -91,7 +93,7 @@
 											          placeholder="<?php esc_attr_e( 'Brief Description', 'dokan' ); ?>">{{ description }}</textarea>
 										</div>
 
-										<?php get_template_part( 'iboostme/dashboard/new-product-gallery', 'form' ) ?>
+										<?php //get_template_part( 'iboostme/dashboard/new-product-gallery', 'form' ) ?>
 
 										<?php if ( dokan_get_option( 'product_category_style', 'dokan_selling', 'single' ) == 'single' ): ?>
 											<div class="dokan-form-group">
@@ -113,8 +115,8 @@
 											</div>
 										<?php elseif ( dokan_get_option( 'product_category_style', 'dokan_selling', 'single' ) == 'multiple' ): ?>
 											<h4><?php _e( 'Choose a category', 'dokan' ); ?></h4>
-											<div class="dokan-form-group dokan-list-category-box">
-												<ul class="dokan-checkbox-cat">
+											<div class="dokan-form-group">
+												<ul class="dokan-checkbox-cat row">
 													<?php
 														include_once DOKAN_LIB_DIR . '/class.category-walker.php';
 														wp_list_categories( array(
@@ -134,9 +136,9 @@
 
 										<div class="dokan-form-group">
 
-											<h4><?php _e( 'Choose Product Tags', 'dokan' ); ?></h4>
+											<h4><?php _e( 'Choose Product', 'dokan' ); ?></h4>
 
-											<div class="dokan-form-group dokan-list-category-box">
+											<div class="dokan-form-group">
 												<ul class="dokan-checkbox-cat">
 													<?php
 														wp_list_categories( array(
@@ -179,7 +181,11 @@
 						</script>
 
 
-						<?php /*Gallery*/ get_template_part( 'iboostme/dashboard/new-product-gallery', 'modal-form' ) ?>
+						<hr/>
+
+						<a href="<?=get_permalink_by_slug('upload-guideline-explained')?>">Have questions about uploading images?</a>
+
+						<?php /*Gallery*/ //get_template_part( 'iboostme/dashboard/new-product-gallery', 'modal-form' ) ?>
 
 
 					<?php }

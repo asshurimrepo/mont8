@@ -13,39 +13,40 @@
 	$_poster_markup       = $global_pricing->get_markup( 'poster' );
 
 
-	$art_products =[
+	$art_products = [
 		'framed_print' => [
-			'id' => '_framed_print_markup',
-			'image' => 'product-FP.jpg',
-			'label' => 'Framed Print',
+			'id'      => '_framed_print_markup',
+			'image'   => 'product-FP.jpg',
+			'label'   => 'Framed Print',
+			'slug'    => 'framed-art',
 			'default' => $_framed_print_markup
 		],
-
-		'art_print' => [
-			'id' => '_art_print_markup',
-			'image' => 'product-PO.jpg',
-			'label' => 'Art Print',
+		'art_print'    => [
+			'id'      => '_art_print_markup',
+			'image'   => 'product-PO.jpg',
+			'label'   => 'Art Print',
+			'slug'    => 'art-print',
 			'default' => $_art_print_markup
 		],
-
-		'photo_print' => [
-			'id' => '_photo_print_markup',
-			'image' => 'product-PO.jpg',
-			'label' => 'Photo Print',
+		'photo_print'  => [
+			'id'      => '_photo_print_markup',
+			'image'   => 'product-PO.jpg',
+			'label'   => 'Photo Print',
+			'slug'    => 'photography',
 			'default' => $_photo_print_markup
 		],
-
-		'canvas' => [
-			'id' => '_canvas_markup',
-			'image' => 'product-S.jpg',
-			'label' => 'Canvas',
+		'canvas'       => [
+			'id'      => '_canvas_markup',
+			'image'   => 'product-S.jpg',
+			'label'   => 'Canvas',
+			'slug'    => 'stretched-canvases',
 			'default' => $_canvas_markup
 		],
-
-		'poster' => [
-			'id' => '_poster_markup',
-			'image' => 'product-PO.jpg',
-			'label' => 'Poster',
+		'poster'       => [
+			'id'      => '_poster_markup',
+			'image'   => 'product-PO.jpg',
+			'label'   => 'Poster',
+			'slug'    => 'posters',
 			'default' => $_poster_markup
 		]
 	];
@@ -58,8 +59,9 @@
 		'poster'       => [ 54, 90 ]
 	];
 
-	foreach( $art_products as $id => $art ){
-		$base_price[$id][2] = $base_price[$id][0] * ( .1 + ( $art['default'] / 100 ) );
+	foreach ( $art_products as $id => $art )
+	{
+		$base_price[ $id ][2] = $base_price[ $id ][0] * ( .1 + ( $art['default'] / 100 ) );
 	}
 ?>
 
@@ -78,18 +80,18 @@
 	<tbody>
 
 
-	<?php foreach( $art_products as $id => $art ): ?>
-	<tr>
-		<td><img src="<?= get_image( $art['image'] ) ?>" class="img-responsive"></td>
-		<td><?=$art['label']?></td>
-		<td class="hide_in_product"><?= $base_price[$id][0] ?> AED - <?= $base_price[$id][1] ?> AED</td>
-		<td class="hide_in_product"><?= $base_price[$id][2] ?> AED - <?= $base_price[$id][0] ?> AED</td>
-		<td class="hide_in_product"><?= $base_price[$id][2] ?> AED</td>
-		<td>
-			<input type="number" name="<?=$art['id']?>" class="form-control right"
-			       value="<?= $_post_meta[$art['id']][0] ?: $art['default'] ?>">
-		</td>
-	</tr>
+	<?php foreach ( $art_products as $id => $art ): ?>
+		<tr id="pricing-<?=$art['slug']?>" class="hide">
+			<td><img src="<?= get_image( $art['image'] ) ?>" class="img-responsive"></td>
+			<td><?= $art['label'] ?></td>
+			<td class="hide_in_product"><?= $base_price[ $id ][0] ?> AED - <?= $base_price[ $id ][1] ?> AED</td>
+			<td class="hide_in_product"><?= $base_price[ $id ][2] ?> AED - <?= $base_price[ $id ][0] ?> AED</td>
+			<td class="hide_in_product"><?= $base_price[ $id ][2] ?> AED</td>
+			<td>
+				<input disabled type="number" name="<?= $art['id'] ?>" class="form-control right"
+				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">
+			</td>
+		</tr>
 
 	<?php endforeach; ?>
 

@@ -97,6 +97,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="wc-proceed-to-checkout">
 
+		<p>		<a  href="<?=shop_url()?>" class="button alt wc-forward btn-block"><?=__('Continue Shopping', 'woocommerce')?></a>
+		</p>
 		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 
 	</div>

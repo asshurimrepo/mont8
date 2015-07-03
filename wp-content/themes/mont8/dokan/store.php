@@ -46,7 +46,7 @@ get_header();
 <div class="row user-info">
 
 	<div class="col-md-3 avatar">
-		<?=get_avatar( $store_user->ID, 280 )?>
+		<a href="<?=dokan_get_store_url($store_user->ID)?>"><?=get_avatar( $store_user->ID, 280 )?></a>
 	</div>
 
 	<div class="col-md-9">
@@ -93,41 +93,25 @@ get_header();
 
     <div id="primary" class="content-area dokan-single-store col-md-9">
         <div id="content" class="site-content store-page-wrap woocommerce" role="main">
+
+
 			<div class="seller-items">
 
-				<?php
-				       $args = array( 'post_type' => 'product', 'posts_per_page' => 6 );
+					<?php
+						if(isset($_GET['collection']))
+						{
+							wc_get_template_part( 'content', 'store-collection' );
 
-                       if(isset($_GET['collection']) && $_GET['collection']){
-                            $args = array( 'post_type' => 'product',
-                                            'posts_per_page' => 6,
-                                            'author'=>$store_user->ID,
-	                            'tax_query' => array(
-												array(
-													'taxonomy' => 'product_tag',
-													'terms'    => $_GET['collection'],
-												),
-											)
-                                        );
+						}else{
+							wc_get_template_part( 'content', 'store-featured-products' );
 
-                       }
+						}
+					?>
 
-                       $loop = new WP_Query( $args );
-				 ?>
-
-                <?php $art_count = 0; woocommerce_product_loop_start();  ?>
-
-                    <?php while ( $loop->have_posts() ) : $loop->the_post();  ?>
-
-                        <?php wc_get_template_part( 'content', 'store-product' ); ?>
-
-                    <?php endwhile; wp_reset_query();  // end of the loop.  ?>
-
-                <?php woocommerce_product_loop_end(); ?>
-            </div>
+			</div>
 
 
-            <?php if($wp_query->query_vars['taxonomy'] != 'product_cat'): ?>
+            <?php if(!isset($_GET['collection'])): ?>
 	            <h1 class="nice2"><?=_e('LATEST', 'dokan')?></h1>
 	            <div class="latest-artwork">
 	                    <?=do_shortcode('[recent_products per_page="5" columns="6"]')?>

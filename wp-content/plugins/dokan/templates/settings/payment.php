@@ -87,6 +87,7 @@ if ( $validate !== false && !is_wp_error( $validate ) ) {
                     </fieldset>
                 <?php } ?>
 
+
                 <?php 
                 /**
                  * @since 2.2.2 Insert action on botton of payment settings form

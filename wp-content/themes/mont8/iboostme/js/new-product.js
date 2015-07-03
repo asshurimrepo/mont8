@@ -7,20 +7,20 @@
  * @since 0.1.0
  */
 function renderMediaUploader($) {
- 
+
     var file_frame, image_data;
- 
+
     /**
      * If an instance of file_frame already exists, then we can open it
      * rather than creating a new instance.
      */
-    if ( undefined !== file_frame ) {
- 
+    if (undefined !== file_frame) {
+
         file_frame.open();
         return;
- 
+
     }
- 
+
     /**
      * If we're this far, then an instance does not exist, so we need to
      * create our own.
@@ -40,7 +40,7 @@ function renderMediaUploader($) {
         },
         multiple: true
     });
- 
+
     /**
      * Setup an event handler for what to do when an image has been
      * selected.
@@ -49,11 +49,11 @@ function renderMediaUploader($) {
      * the file_frame, we need to make sure that the handler is attached
      * to the insert event.
      */
-    file_frame.on( 'select', function() {
- 
+    file_frame.on('select', function () {
+
         selection = file_frame.state().get('selection');
 
-        var source   = $("#entry-template").html();
+        var source = $("#entry-template").html();
         var template = Handlebars.compile(source);
 
 
@@ -61,7 +61,7 @@ function renderMediaUploader($) {
         $('#new-product-form').empty();
 
 
-        selection.map( function( attachment ) {
+        selection.map(function (attachment) {
 
             attachment = attachment.toJSON();
 
@@ -70,19 +70,19 @@ function renderMediaUploader($) {
             var thumb_link = $("<a>");
 
             thumb.prop('src', attachment.sizes.thumbnail.url)
-                 .prop('class', 'img-thumbnail');
+                .prop('class', 'img-thumbnail');
 
-            thumb_link.attr('data-show', "form.art-" + attachment.id).append( thumb );
+            thumb_link.attr('data-show', "form.art-" + attachment.id).append(thumb);
 
-            thumb_link.click(function(){
+            thumb_link.click(function () {
 
                 var to_show = $(this).data('show');
 
                 $(this).addClass('active').siblings().removeClass('active');
 
                 $(to_show).show()
-                          .siblings()
-                          .hide();
+                    .siblings()
+                    .hide();
 
 
             });
@@ -90,24 +90,27 @@ function renderMediaUploader($) {
             $("#selection>a:first-child").addClass('active');
 
 
-            $("#selection").append( thumb_link );
+            $("#selection").append(thumb_link);
             $('#new-product-form').append(html);
+
+            //Pricing Tags Event
+            pricingTagsInit($("form.art-" + attachment.id));
 
 
             console.log(attachment);
 
-           
+
         });
 
         $(".chosen").chosen();
 
-        setTimeout(function(){ 
+        setTimeout(function () {
             $("#selection>a:first-child").click();
         }, 700);
 
 
-         // Show Product Pricing
-        $(".change-product-pricing-btn").click(function(){
+        // Show Product Pricing
+        $(".change-product-pricing-btn").click(function () {
 
             $(".product-pricing").fadeToggle();
 
@@ -116,86 +119,104 @@ function renderMediaUploader($) {
         addFormEvent($);
 
 
+
+
     });
- 
+
     // Now display the actual file_frame
     file_frame.open();
- 
+
 }
 
 var selection;
- 
-(function( $ ) {
- 
-    $(function() {
-        $( '#add-new-artwork' ).on( 'click', function( evt ) {
- 
+
+(function ($) {
+
+    $(function () {
+        $('#add-new-artwork').on('click', function (evt) {
+
             // Stop the anchor's default behavior
             evt.preventDefault();
- 
+
             // Display the media uploader
             renderMediaUploader($);
+
+
+
         });
 
- 
+
     });
- 
-})( jQuery );
+
+})(jQuery);
 
 
-
-function addFormEvent($){
+function addFormEvent($) {
     // Submit form via Ajax
-    $( "form" ).on( "submit", function( e ) {
-          event.preventDefault();
+    $("form").on("submit", function (e) {
+        event.preventDefault();
 
-          var form = $(this);
+        var form = $(this);
 
-          form.addClass('is-updating');
+        form.addClass('is-updating');
 
-          $.post($(this).prop('action'), $(this).serialize(), 'json').success(function(data){
-                // alert(1);
-                $(".errors").empty().html('');
-                
-                var succes_div = $("<div>").prop('class', 'dokan-alert dokan-alert-success');
-                var edit_link = $("<a>")
-                                    .prop('target', '_blank')
-                                    .prop('href', data);
+        $.post($(this).prop('action'), $(this).serialize(), 'json').success(function (data) {
+            // alert(1);
+            $(".errors").empty().html('');
 
-                edit_link.html('This Artwork Successfully Saved. <b>Click here</b> to edit this artwork');
+            var succes_div = $("<div>").prop('class', 'dokan-alert dokan-alert-success');
+            var edit_link = $("<a>")
+                .prop('target', '_blank')
+                .prop('href', data);
 
-                succes_div.append(edit_link);
+            edit_link.html('This Artwork Successfully Saved. <b>Click here</b> to edit this artwork');
 
-                form.html(succes_div);
+            succes_div.append(edit_link);
 
-                form.removeClass('is-updating');
+            form.html(succes_div);
 
-          }).error(function(data){
+            form.removeClass('is-updating');
 
+        }).error(function (data) {
+
+            $(".errors").empty();
+
+            data = $.parseJSON(data.responseText);
+
+            console.log(data);
+
+            for (i in data) {
+                var error_div = $("<div>").prop('class', 'dokan-alert dokan-alert-danger');
+                error_div.append(data[i]);
+                error_div.fadeIn(500);
+                $(".errors").append(error_div);
+            }
+
+            setTimeout(function () {
                 $(".errors").empty();
+            }, 5000);
 
-                data = $.parseJSON(data.responseText);
-
-                console.log(data);
-
-                for(i in data){
-                    var error_div = $("<div>").prop('class', 'dokan-alert dokan-alert-danger');
-                    error_div.append( data[i] );
-                    error_div.fadeIn(500);
-                    $(".errors").append(error_div);
-                }
-
-                setTimeout(function(){
-                    $(".errors").empty();
-                }, 5000);
-
-                form.removeClass('is-updating');
-          });
+            form.removeClass('is-updating');
+        });
     });
 }
 
 
+function pricingTagsInit(form) {
+    var $ = jQuery;
+
+    form.find("input[data-slug]").change(function () {
 
 
+        var ref = $(this).data('slug');
+        var target = form.find('#pricing-' + ref);
+        var is_disabled = target.find('input').prop('disabled');
 
+
+        target.toggleClass('hide')
+            .find('input')
+            .prop('disabled', !is_disabled)
+    });
+
+}
 

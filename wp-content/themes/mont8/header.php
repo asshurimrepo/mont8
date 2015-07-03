@@ -7,13 +7,18 @@
  * @package dokan
  * @package dokan - 2014 1.0
  */
+global $current_user;
+$user_id = $current_user->ID;
+
+
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="base_url" content="<?=BASE_URL?>" />
+	<meta name="base_url" content="<?= BASE_URL ?>"/>
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11"/>
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>"/>
@@ -23,9 +28,10 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/assets/js/html5.js" type="text/javascript"></script>
 	<![endif]-->
 
-	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/css/animate.css';?>"/>
-	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/css/cart-sidebar.css';?>"/>
-	<link rel="stylesheet" href="<?=get_template_directory_uri().'/assets/js/bootstrap-datepicker/css/bootstrap-datepicker.min.css';?>"/>
+	<link rel="stylesheet" href="<?= get_template_directory_uri() . '/assets/css/animate.css'; ?>"/>
+	<link rel="stylesheet" href="<?= get_template_directory_uri() . '/assets/css/cart-sidebar.css'; ?>"/>
+	<link rel="stylesheet"
+	      href="<?= get_template_directory_uri() . '/assets/js/bootstrap-datepicker/css/bootstrap-datepicker.min.css'; ?>"/>
 	<?php wp_head(); ?>
 
 </head>
@@ -48,22 +54,26 @@
 					<hgroup>
 						<h1 class="site-title">
 							<a href="<?php echo home_url( '/' ); ?>"
-						                          title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
-						                          rel="home"><?php bloginfo( 'name' ); ?>
+							   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
+							   rel="home"><?php bloginfo( 'name' ); ?>
 								<small> - <?php bloginfo( 'description' ); ?></small>
 							</a></h1>
 					</hgroup>
 				</div>
 
 
-				<div class="col-lg-5 nav-menu" style="padding:0;">
+				<div class="col-lg-6 nav-menu" style="padding:0;">
 
 					<?php echo wp_nav_menu( array( "theme_location" => "primary" ) ); ?>
+
+					<?php if ( dokan_is_user_seller( $user_id ) ): ?>
+						<a href="<?= dokan_get_navigation_url( 'new-product' ) ?>" class="btn-upload">Upload Art</a>
+					<?php endif; ?>
 
 				</div>
 
 
-				<div class="col-lg-5 hidden-xs" style="padding:0;">
+				<div class="col-lg-4 hidden-xs" style="padding:0;">
 					<?php dokan_header_user_menu(); ?>
 				</div>
 
@@ -71,7 +81,7 @@
 			<!-- .row -->
 		</div>
 		<!-- .container -->
-	<?php get_template_part('widgets/widget', 'cart-sidebar'); ?>
+		<?php get_template_part( 'widgets/widget', 'cart-sidebar' ); ?>
 
 	</header>
 	<!-- #masthead .site-header -->

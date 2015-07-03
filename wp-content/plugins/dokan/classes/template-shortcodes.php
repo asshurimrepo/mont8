@@ -192,7 +192,7 @@ class Dokan_Template_Shortcodes {
 
             if ( empty( $post_title ) ) {
 
-                $errors[] = __( 'Please enter product title', 'dokan' );
+                $errors[] = __( 'Please enter artwork title', 'dokan' );
             }
 
             if( dokan_get_option( 'product_category_style', 'dokan_selling', 'single' ) == 'single' ) {
@@ -205,6 +205,11 @@ class Dokan_Template_Shortcodes {
                     $errors[] = __( 'Please select atleast one category', 'dokan' );
                 }
             }
+
+	        /*Handles Product Tags*/
+	        if( !isset( $_POST['product_tag'] ) && empty( $_POST['product_tag'] ) ) {
+		        $errors[] = __( 'Please select at least one Product', 'dokan' );
+	        }
 
             self::$errors = apply_filters( 'dokan_can_add_product', $errors );
 

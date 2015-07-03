@@ -5,6 +5,7 @@
  * @package dokan
  * @package dokan - 2014 1.0
  */
+	global $post;
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -12,7 +13,7 @@
         <h1 class="entry-title"><?php the_title(); ?></h1>
     </header><!-- .entry-header -->
 
-    <div class="entry-content">
+    <div class="entry-content <?=$post->post_name;?>">
         <?php the_content(); ?>
         <?php wp_link_pages( array('before' => '<div class="page-links">' . __( 'Pages:', 'dokan' ), 'after' => '</div>') ); ?>
         <?php edit_post_link( __( 'Edit', 'dokan' ), '<span class="edit-link">', '</span>' ); ?>

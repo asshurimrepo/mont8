@@ -1,0 +1,24 @@
+
+
+a.uploader {
+    border: 6px dashed #c7cdd1;
+    /*padding: 10.75rem 1.375rem !important;*/
+    font-size: 3em;
+    text-align: center !important;
+    display: block;
+    position: relative;
+    min-height: 200px;
+    line-height: 5em;
+}
+
+a.uploader:hover{
+    background: #fafafa;
+}
+
+.featured-cont h3{
+    text-align: center;
+}
+
+.featured{
+    display: none;
+}

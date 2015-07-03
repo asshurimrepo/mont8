@@ -1,4 +1,8 @@
+<div class="cart-overlay"></div>
+
 <div class="cart-sidebar animated" style="display: none;">
+
+
 	<div class="btn-cart-sidebar cart-sidebar-close">X</div>
 	<span class="cart-sidebar-detail cart-sidebar-item-number">Items <span class="badge"><?=WC()->cart->cart_contents_count?></span></span>
 

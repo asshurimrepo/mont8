@@ -11,6 +11,11 @@
     /*display: none;*/
 }
 
+
+.square-artwork{
+    display: none;
+}
+
 .summary .product-title h1{
     font-family: modern_sans, 'Open Sans';
     text-transform: uppercase;

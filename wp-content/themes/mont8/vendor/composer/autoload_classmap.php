@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'GlobalPricing' => $baseDir . '/iboostme/class/global_pricing.php',
+    'IB_Utils' => $baseDir . '/iboostme/class/IB_Utils.php',
     'User_Actions' => $baseDir . '/iboostme/class/User_Actions.php',
 );

@@ -1,7 +1,10 @@
 {
-
   "autoload": {
-      "classmap": ["iboostme/class/"]
+    "classmap": [
+      "iboostme/class/"
+    ],
+    "files": [
+      "iboostme/lib/uploading_artwork.php"
+    ]
   }
-
 }

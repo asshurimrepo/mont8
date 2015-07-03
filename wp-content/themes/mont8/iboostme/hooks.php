@@ -5,6 +5,9 @@
 // Constants
 	define( 'THEME_PATH', get_template_directory_uri() );
 
+	/*Handling Upload */
+//	(new IB_Artwork_Upload)->init();
+
 
 //	Init
 	function init_mont8()
@@ -77,6 +80,8 @@
 		load_js( 'handlebars', 'handlebars.js', '3.0.3' );
 
 		load_js( 'new-product-script', 'new-product.js' );
+
+//		load_js( 'jquery-cookie', 'jquery-cookie.js' );
 
 		load_style( 'new-product-style', 'new-product.css', '1.0.2' );
 
@@ -214,19 +219,74 @@
 	add_shortcode( 'iboost_get_template', 'iboost_get_template' );
 
 
+	function a_link( $atts, $content = null )
+	{
+		$a = shortcode_atts( array(
+			'href'  => '#1',
+			'class' => 'btn',
+		), $atts );
+
+		return '<a href="' . $a['href'] . '" class="' . $a['class'] . '">' . $content . '</a>';
+	}
+
+	add_shortcode( 'a', 'a_link' );
+
+
+	function h_space( $atts )
+	{
+
+		$a = shortcode_atts( array(
+			'size' => '10',
+		), $atts );
+
+		return '<div class="h_space" style="padding:' . $a['size'] . 'px"></div>';
+
+	}
+
+	add_shortcode( 'h_space', 'h_space' );
+
+	function h1( $atts, $content = null )
+	{
+
+		$a = shortcode_atts( array(
+			'class' => '',
+		), $atts );
+
+		return '<h1 class="' . $a['class'] . '"><span>' . $content . '</span></h1>';
+
+	}
+
+	add_shortcode( 'h1', 'h1' );
+
+
+	function row( $atts, $content = null )
+	{
+		return '<div class="row">' . do_shortcode( $content ) . '</div>';
+	}
+
+	add_shortcode( 'row', 'row' );
+
+	function col_1_5( $atts, $content = null )
+	{
+		return '<div class="col-1-5">' . do_shortcode( $content ) . '</div>';
+	}
+
+	add_shortcode( 'col-1-5', 'col_1_5' );
+
+
 	function dokan_add_dashboard_menu( $menus )
 	{
 		/*If user is not a seller*/
 		if ( ! dokan_is_user_seller( get_current_user_id() ) )
 		{
-			$menus['my-account'] = array(
+			$menus['my - account'] = array(
 				'title' => __( 'My Account', 'dokan' ),
-				'url'   => get_permalink( get_page_by_path( 'my-account' ) )
+				'url'   => get_permalink( get_page_by_path( 'my - account' ) )
 			);
 
-			$menus['my-orders'] = array(
+			$menus['my - orders'] = array(
 				'title' => __( 'My Orders', 'dokan' ),
-				'url'   => get_permalink( get_page_by_path( 'my-orders' ) )
+				'url'   => get_permalink( get_page_by_path( 'my - orders' ) )
 			);
 
 			$menus['wishlist'] = array(
@@ -260,14 +320,9 @@
 			'url'   => get_permalink( '' )
 		);
 
-		$menus['my-account'] = array(
+		$menus['my - account'] = array(
 			'title' => __( 'My Account', 'dokan' ),
-			'url'   => get_permalink( get_page_by_path( 'my-account' ) )
-		);
-
-		$menus['my-orders'] = array(
-			'title' => __( 'My Orders', 'dokan' ),
-			'url'   => get_permalink( get_page_by_path( 'my-orders' ) )
+			'url'   => get_permalink( get_page_by_path( 'my - account' ) )
 		);
 
 		$menus['wishlist'] = array(
@@ -292,6 +347,10 @@
 	}
 
 
+	function shop_url(){
+		return get_permalink( get_page_by_path( 'shop' ) );
+	}
+
 	function get_my_account_url()
 	{
 		$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
@@ -302,4 +361,17 @@
 
 		return null;
 	}
-	
+
+	function get_permalink_by_slug($slug){
+		return get_permalink( get_page_by_path( $slug ) );
+	}
+
+	function is_square($id){
+		$image = wp_get_attachment_metadata( $id );
+
+		if($image['width'] == $image['height']){
+			return true;
+		}
+
+		return false;
+	}

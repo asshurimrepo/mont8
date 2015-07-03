@@ -337,9 +337,9 @@
 		//return empty array if user is not a seller;
 		if ( ! dokan_is_user_seller( get_current_user_id() ) )
 		{
-			$urls = apply_filters( 'dokan_get_dashboard_nav', [] );
-			return  apply_filters( 'dokan_get_seller_dashboard_nav', $urls );
-;
+			$urls = apply_filters( 'dokan_get_dashboard_nav', [ ] );
+
+			return apply_filters( 'dokan_get_seller_dashboard_nav', $urls );;
 		}
 
 
@@ -349,36 +349,41 @@
 				'icon'  => '<i class="fa fa-tachometer"></i>',
 				'url'   => dokan_get_navigation_url()
 			),
+			'notifications'    => array(
+				'title' => __( 'Notifications', 'dokan' ),
+				'icon'  => '<i class="fa fa-alert"></i>',
+				'url'   => get_permalink( get_page_by_path( 'notifications' ) )
+			),
 			'product'          => array(
 				'title' => __( 'Products', 'dokan' ),
 				'icon'  => '<i class="fa fa-briefcase"></i>',
 				'url'   => dokan_get_navigation_url( 'products' )
 			),
-			'featured-product' => array(
+			'featured-products' => array(
 				'title' => __( 'Featured Products', 'dokan' ),
 				'icon'  => '<i class="fa fa-briefcase"></i>',
 				'url'   => get_permalink( get_page_by_path( 'featured-products' ) )
 			),
 			'order'            => array(
-				'title' => __( 'Sales History', 'dokan' ),
+				'title' => __( 'Orders', 'dokan' ),
 				'icon'  => '<i class="fa fa-shopping-cart"></i>',
 				'url'   => dokan_get_navigation_url( 'orders' )
 			),
-			'coupon'           => array(
+			/*'coupon'           => array(
 				'title' => __( 'Coupons', 'dokan' ),
 				'icon'  => '<i class="fa fa-gift"></i>',
 				'url'   => dokan_get_navigation_url( 'coupons' )
-			),
+			),*/
 			'report'           => array(
-				'title' => __( 'Reports', 'dokan' ),
-				'icon'  => '<i class="fa fa-line-chart"></i>',
+				'title' => __( 'Sales History', 'dokan' ),
+				'icon'  => '<i class="fa fa-l   ine-chart"></i>',
 				'url'   => dokan_get_navigation_url( 'reports' )
 			),
-			'reviews'          => array(
+			/*'reviews'          => array(
 				'title' => __( 'Reviews', 'dokan' ),
 				'icon'  => '<i class="fa fa-comments-o"></i>',
 				'url'   => dokan_get_navigation_url( 'reviews' )
-			),
+			),*/
 			'withdraw'         => array(
 				'title' => __( 'Withdraw', 'dokan' ),
 				'icon'  => '<i class="fa fa-upload"></i>',
@@ -613,22 +618,36 @@
 				       } ?>" required="required"/>
 			</p>
 
-			<p class="form-row form-group form-row-wide">
-            <label for="seller-url" class="pull-left"><?php _e( 'Shop URL', 'dokan' );  ?> <span class="required">*</span></label>
-            <strong id="url-alart-mgs" class="pull-right"></strong>
-            <input type="text" class="input-text form-control" name="shopurl" id="seller-url" value="<?php if ( ! empty( $_POST['shopurl'] ) ) echo esc_attr($_POST['shopurl']);  ?>" required="required" />
-            <small><?php echo home_url() . '/' . dokan_get_option( 'custom_store_url', 'dokan_selling', 'store' );  ?>/<strong id="url-alart"></strong></small>
-        </p>
+			<p class="form-row form-group form-row-wide hide">
+				<label for="seller-url" class="pull-left"><?php _e( 'Shop URL', 'dokan' ); ?> <span
+						class="required">*</span></label>
+				<strong id="url-alart-mgs" class="pull-right"></strong>
+				<input type="text" class="input-text form-control" name="shopurl" id="seller-url"
+				       value="<?php if ( ! empty( $_POST['shopurl'] ) )
+				       {
+					       echo esc_attr( $_POST['shopurl'] );
+				       } ?>" required="required"/>
+				<small><?php echo home_url() . '/' . dokan_get_option( 'custom_store_url', 'dokan_selling', 'store' ); ?>
+					/<strong id="url-alart"></strong></small>
+			</p>
 
-		<p class="form-row form-group form-row-wide hide">
-            <label for="seller-address"><?php _e( 'Address', 'dokan' );  ?><span class="required">*</span></label>
-            <textarea type="text" id="seller-address" name="address" class="form-control input" required="required"><?php if ( ! empty( $_POST['address'] ) ) echo esc_textarea($_POST['address']);  ?></textarea>
-        </p>
+			<p class="form-row form-group form-row-wide hide">
+				<label for="seller-address"><?php _e( 'Address', 'dokan' ); ?><span class="required">*</span></label>
+				<textarea type="text" id="seller-address" name="address" class="form-control input"
+				          required="required"><?php if ( ! empty( $_POST['address'] ) )
+					{
+						echo esc_textarea( $_POST['address'] );
+					} ?></textarea>
+			</p>
 
-        <p class="form-row form-group form-row-wide hide">
-            <label for="shop-phone"><?php _e( 'Phone', 'dokan' );  ?><span class="required">*</span></label>
-            <input type="text" class="input-text form-control" name="phone" id="shop-phone" value="<?php if ( ! empty( $_POST['phone'] ) ) echo esc_attr($_POST['phone']);  ?>" required="required" />
-        </p>
+			<p class="form-row form-group form-row-wide hide">
+				<label for="shop-phone"><?php _e( 'Phone', 'dokan' ); ?><span class="required">*</span></label>
+				<input type="text" class="input-text form-control" name="phone" id="shop-phone"
+				       value="<?php if ( ! empty( $_POST['phone'] ) )
+				       {
+					       echo esc_attr( $_POST['phone'] );
+				       } ?>" required="required"/>
+			</p>
 
 			<?php do_action( 'dokan_seller_registration_field_after' ); ?>
 
@@ -673,25 +692,34 @@
 		 */
 		function dokan_header_user_menu()
 		{
+
+			global $current_user;
+			$user_id = $current_user->ID;
 			?>
 
-			<div class="col-xs-12 col-sm-12 col-lg-12">
+			<div class="right-ribbons">
 
-				<div class="language">
-					<ul>
+				<div class="language ">
+					<ul class="hide">
 						<li><a href="#" class="active">EN</a></li>
 						<li><a href="#">عربي</a></li>
 					</ul>
 				</div>
 
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section_padding">
+				<div class="section_padding">
+
+
 
 					<ul class="nav navbar-nav navbar-right">
 
-						<li>
+<!--						<li style="padding: 0 5px;" class="search-cont">-->
+<!--							<input type="text" data-url="" class="form-control search-mont">-->
+<!--						</li>-->
+						<li style="width: 47%; padding-left:5px">
 							<div class="search_panel">
 								<form method="get" id="searchform"
 								      action="<?php echo esc_url( home_url( '/shop' ) ); ?>" role="search">
+
 									<div class="right-inner-addon">
 										<i class="fa fa-search fa-lg"></i>
 										<input type="text" id="s" name="s"
@@ -701,27 +729,32 @@
 								</form>
 							</div>
 						</li>
-						<li>
-							<div class="cart-sidebar-group">
-								<span class="badge"><?= WC()->cart->cart_contents_count ?></span>
-								<a href="#" class="dropdown-toggle btn-cart-sidebar"
-								   data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
-							</div>
 
-							<ul class="dropdown-menu">
-								<li>
-									<div class="widget_shopping_cart_content"></div>
-								</li>
-							</ul>
-						</li>
+						<!--Cart-->
+						<?php if ( WC()->cart->cart_contents_count ): ?>
+							<li>
+								<div class="cart-sidebar-group">
+									<span class="badge"><?= WC()->cart->cart_contents_count ?></span>
+									<a href="#" class="dropdown-toggle btn-cart-sidebar"
+									   data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
+								</div>
+
+								<ul class="dropdown-menu">
+									<li>
+										<div class="widget_shopping_cart_content"></div>
+									</li>
+								</ul>
+							</li>
+						<?php endif; ?>
+
 
 						<?php if ( is_user_logged_in() )
 						{ ?>
 
 							<?php
-							global $current_user;
 
-							$user_id = $current_user->ID;
+							$seller_name = explode(' ', $current_user->display_name);
+
 							if ( dokan_is_user_seller( $user_id ) )
 							{
 								?>
@@ -731,39 +764,100 @@
 
 							<li class="dropdown login_panel">
 								<a href="#" class="dropdown-toggle"
-								   data-toggle="dropdown"><?php echo esc_html( $current_user->display_name ); ?> <b
+								   data-toggle="dropdown"><?php echo esc_html( $seller_name[0] ); ?> <b
 										class="caret"></b></a>
 								<ul class="dropdown-menu">
+
+									<?php if ( dokan_is_user_seller( $user_id ) ): ?>
+
+										<li>
+											<a href="<?= dokan_get_navigation_url() ?>"><?= __( 'Dashboard', 'dokan' ) ?></a>
+										</li>
+
+
+										<li>
+											<a href="<?php echo dokan_get_store_url( $user_id ); ?>"
+											   target="_blank"><?=__( 'My Store', 'dokan' )?></a>
+										</li>
+
+										<li>
+											<a href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?= __( 'My Account', 'dokan' ) ?></a>
+										</li>
+
+										<li class="divider"></li>
+
+										<li>
+											<a href="<?= get_permalink( get_page_by_path( 'print-shop' ) ) ?>"><?= __( 'Print Shop', 'dokan' ) ?></a>
+										</li>
+
+									<?php else: ?>
+
+										<li>
+											<a href="<?php echo dokan_get_page_url( 'my_orders' ); ?>"><?=__( 'My Orders', 'dokan' )?></a>
+										</li>
+
+										<li>
+											<a href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?=__( 'My Account', 'dokan' )?></a>
+										</li>
+
+										<li class="divider"></li>
+
+										<li>
+											<a href="<?php echo wc_get_endpoint_url( 'edit-address', 'billing', get_permalink( wc_get_page_id( 'myaccount' ) ) );
+											?>"><?php _e( 'Billing Address', 'dokan' );
+												?></a>
+										</li>
+										<li>
+											<a href="<?php echo wc_get_endpoint_url( 'edit-address', 'shipping', get_permalink( wc_get_page_id( 'myaccount' ) ) );
+											?>"><?php _e( 'Shipping Address', 'dokan' );
+												?></a>
+										</li>
+
+
+									<?php endif; ?>
+									<!--<li><a href="<?php /*echo dokan_get_store_url( $user_id ); */
+									?>"
+									       target="_blank"><?php /*_e( 'My Store', 'dokan' ); */
+									?></a></li>
 									<li>
-										<a href="<?php echo dokan_get_page_url( 'my_orders' ); ?>"><?php _e( 'My Orders', 'dokan' ); ?></a>
+										<a href="<?php /*echo dokan_get_page_url( 'my_orders' ); */
+									?>"><?php /*_e( 'My Orders', 'dokan' ); */
+									?></a>
 									</li>
 									<li>
-										<a href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?php _e( 'My Account', 'dokan' ); ?></a>
+										<a href="<?php /*echo dokan_get_page_url( 'myaccount', 'woocommerce' ); */
+									?>"><?php /*_e( 'My Account', 'dokan' ); */
+									?></a>
 									</li>
 									<li>
-										<a href="<?php echo wc_customer_edit_account_url(); ?>"><?php _e( 'Edit Account', 'dokan' ); ?></a>
+										<a href="<?php /*echo wc_customer_edit_account_url(); */
+									?>"><?php /*_e( 'Edit Account', 'dokan' ); */
+									?></a>
 									</li>
 									<li class="divider"></li>
 									<li>
-										<a href="<?php echo wc_get_endpoint_url( 'edit-address', 'billing', get_permalink( wc_get_page_id( 'myaccount' ) ) ); ?>"><?php _e( 'Billing Address', 'dokan' ); ?></a>
+										<a href="<?php /*echo wc_get_endpoint_url( 'edit-address', 'billing', get_permalink( wc_get_page_id( 'myaccount' ) ) ); */
+									?>"><?php /*_e( 'Billing Address', 'dokan' ); */
+									?></a>
 									</li>
 									<li>
-										<a href="<?php echo wc_get_endpoint_url( 'edit-address', 'shipping', get_permalink( wc_get_page_id( 'myaccount' ) ) ); ?>"><?php _e( 'Shipping Address', 'dokan' ); ?></a>
+										<a href="<?php /*echo wc_get_endpoint_url( 'edit-address', 'shipping', get_permalink( wc_get_page_id( 'myaccount' ) ) ); */
+									?>"><?php /*_e( 'Shipping Address', 'dokan' ); */
+									?></a>
 									</li>
 
-
-									<li><a href="<?php echo dokan_get_store_url( $user_id ); ?>"
-									       target="_blank"><?php _e( 'Visit your store', 'dokan' ); ?></a></li>
 									<li class="divider"></li>
 									<?php
-										$nav_urls = dokan_get_dashboard_nav();
+										/*										$nav_urls = dokan_get_dashboard_nav();
 
-										foreach ( $nav_urls as $key => $item )
-										{
-											printf( '<li><a href="%s">%s &nbsp;%s</a></li>', $item['url'], $item[''], $item['title'] );
-										}
+																				foreach ( $nav_urls as $key => $item )
+																				{
+																					printf( '<li><a href="%s">%s &nbsp;%s</a></li>', $item['url'], $item[''], $item['title'] );
+																				}
+																			*/
 									?>
 
+									<li class="divider"></li>-->
 									<li class="divider"></li>
 
 									<li><?php wp_loginout( home_url() ); ?></li>

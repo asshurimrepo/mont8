@@ -33,11 +33,13 @@ h3 {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Century Gothic', 'Open Sans', sans-serif;
     font-size: 14px;
     line-height: 150%;
     color: #444;
     background: #ffffff;
+    width: auto !important;
+    overflow-x: hidden !important;
 }
 
 body .container {
@@ -48,10 +50,11 @@ h1,
 h2,
 h3,
 h4,
-h5,
-select {
-    font-family: 'Open Sans', sans-serif;
+h5{
+    font-family: modern_sans, 'Open Sans', sans-serif;
 }
+
+
 
 a:hover {
     text-decoration: none;
@@ -159,6 +162,7 @@ a:hover {
 
 #mega_main_menu.primary > .menu_holder > .menu_inner > ul > li > .item_link > .link_content > .link_text {
     font-weight: 600 !important;
+    font-family: modern_sans, 'Century Gothic', 'Open Sans';
 }
 
 #masthead .nav-row {
@@ -581,6 +585,7 @@ ul.mega_dropdown {
 .language {
     float: right;
     width: 100%;
+    min-height: 15px;
 }
 
 .language ul {
@@ -633,6 +638,14 @@ ul.navbar-right a {
 
 ul.navbar-right a > .fa, ul.navbar-right .login_panel {
     background: #FFF;
+    /*max-width: 71px;*/
+}
+
+ul .login_panel > a{
+    /*overflow: hidden;*/
+    white-space: nowrap;
+    /*max-width: 100%;*/
+    /*text-overflow: ellipsis;*/
 }
 
 .nav .open > a,
@@ -927,6 +940,7 @@ h1.entry-title {
 
 .site-content .entry-content {
     margin-bottom: 15px;
+    font-size: 16px;
 }
 
 .site-content .entry-meta {
@@ -2162,6 +2176,7 @@ p.newsletter_title {
     padding: 0 0 15px 0;
     border-left: none;
     margin: 0 0 15px 0;
+    text-transform: uppercase;
 }
 
 .site-footer .widget ul li {
@@ -3437,7 +3452,7 @@ span.error {
 }
 
 p.subtitle {
-    font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, serif;
+    /*font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, serif;*/
     color: #888888;
     text-align: center;
     padding-bottom: 15px;
@@ -3794,25 +3809,31 @@ ul.list-unstyled .seller-name {
 }
 
 .right-inner-addon input {
-    padding-right: 30px;
+    /*padding-right: 30px;*/
 }
 
 .right-inner-addon i {
     position: absolute;
-    right: 0px;
-    padding: 12px 12px;
+    right: 0;
+    /*padding: 12px 2px;*/
     pointer-events: none;
 }
 
+.search_panel.expand .right-inner-addon i{
+    /*padding: 12px 12px;*/
+}
+
 .search_panel {
-    width: 30%;
-    float: right;
+    width: 44%;
+    /*float: right;*/
+    transition: all .3s;
 }
 
 .search_panel input {
     border-radius: 0;
     border: #e1e1e1 1px solid;
     cursor: pointer;
+
 }
 
 .search_panel .fa {
@@ -3821,6 +3842,7 @@ ul.list-unstyled .seller-name {
 
 .expand.search_panel {
     width: 100% !important;
+    padding-right: 12px;
 }
 
 .dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu {
@@ -3863,6 +3885,17 @@ h1.nice2{
     font-weight: 600;
 }
 
+.cart-overlay{
+    display: none;
+    position: fixed;
+    background: rgba(0,0,0,.2);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
 .cart-sidebar-btn-checkout:hover{
     background: #cc0099;
 }
@@ -3876,3 +3909,257 @@ h1.nice2{
     height: 40px;
     padding: 0 13px;
 }
+
+.shop_heading_text small{
+    display: block;
+    font-size: 13px;
+    padding: 5px 0;
+}
+ul.products>.product>a{
+    display: block;
+    position: relative;
+}
+
+.has-border{
+    display: block;
+}
+
+.archive-framed-art, .featured-products .framed-art{
+    -webkit-border-image: url('iboostme/css/images/flat-frame-brown-white.png') 32 fill;
+    border-image: url('iboostme/css/images/flat-frame-brown-white.png') 32 fill;
+    border-image-source: url('iboostme/css/images/flat-frame-brown-white.png');
+    border-image-slice: 99 102 101 102;
+    border-width: 16px;
+}
+
+.featured-products .featured{
+    border-width: 20px !important;
+    position: relative;
+}
+
+.archive-photography, .archive-art-print, .featured-products .art-print, .featured-products .poster, .featured-products .photo-print{
+    -webkit-border-image: url('iboostme/css/images/a-a1a2.png') 32 fill;
+    border-image: url('iboostme/css/images/a-a1a2.png') 32 fill;
+    border-image-source: url('iboostme/css/images/a-a1a2.png');
+    border-image-slice: 116 142 154 117;
+    border-width: 13px 19px 19px 14px;
+}
+
+.archive-stretched-canvases, .featured-products .canvas{
+    -webkit-border-image: url('iboostme/css/images/a-canvas.png') 32 fill;
+    border-image: url('iboostme/css/images/a-canvas.png') 32 fill;
+    border-image-source: url('iboostme/css/images/a-canvas.png');
+    border-image-slice: 0 158 171 0;
+    border-width: 0 12px 12px 0;
+}
+
+.archive-posters{
+    -webkit-border-image: url('iboostme/css/images/a-poster.png') 32 fill;
+    border-image: url('iboostme/css/images/a-poster.png') 32 fill;
+    border-image-source: url('iboostme/css/images/a-poster.png');
+    border-image-slice: 7 8 9 7;
+    border-width: 9px;
+}
+.archive-posters:before, .featured-products .poster:before{
+    content: "";
+    background: url('iboostme/css/images/a-poster-curve.png') no-repeat bottom right;
+    background-size: 20%;
+    position: absolute;
+    top: 0;
+    bottom: -9px;
+    left: 0;
+    right: -10px;
+    z-index: 2;
+}
+
+.featured-products .poster:before{
+    bottom: -15px;
+    right: -20px;
+    background-size: 19%;
+}
+
+
+.faq-topic.active a{
+    font-weight: 600;
+}
+
+
+img.img-responsive{
+    margin: 0 auto;
+}
+
+.btn-mont-success{
+    background-color: #77bf31;
+    color: #FFF;
+    font-size: 17px;
+    padding: 10px 17px;
+    border-bottom: 3px solid #478b17;
+}
+.btn-mont-success:hover{
+    color: #FFF;
+    background: #78b839;
+    border-bottom: 3px solid #407c16;
+}
+
+.fancy {
+    line-height: 0.5;
+    text-align: center;
+    font-size: 40px;
+    margin: 50px 0;
+}
+.fancy span {
+    display: inline-block;
+    position: relative;
+}
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid #cacaca;
+    top: 0;
+    width: 600px;
+}
+.fancy span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.fancy.no-line span:before,
+.fancy.no-line span:after {
+    content: "";
+    border:none !important;
+}
+
+.col-1-5{
+    width: 20%;
+    padding: 0 5px;
+    float: left;
+}
+
+.sell-your-art{
+    font-size: 17px;
+}
+
+.wishlist.btn{
+    border: none;
+    color: #8a95a5;
+    transition: all .4s;
+    float: right;
+}
+.wishlist.btn:hover{
+    color: #3a3c3c;
+}
+
+
+
+
+#gallery-freewall .cell{
+    margin: 10px 0;
+}
+
+.prod-meta{
+    opacity: 0;
+    font-family: 'Open Sans' !important;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    color: #FFF;
+    padding: 15px;
+    margin: 0 15px;
+    -webkit-font-smoothing: antialiased;
+    transition: opacity .3s ease-out;
+}
+
+.prod-meta .yith-wcwl-add-to-wishlist{
+    /*display: none;*/
+    float: right;
+}
+.prod-meta .yith-wcwl-add-button{
+    float: right;
+}
+
+.prod-meta:hover{
+    opacity: 1;
+}
+
+.prod-meta .info>a{
+    padding: 0px 0;
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16.88px;
+    font-size: 1.55469rem;
+}
+
+.prod-meta .info{
+    position: absolute;
+    bottom: 10px;
+}
+
+.prod-meta .info .title{
+    color: #fff !important;
+    font-weight: 600;
+
+}
+
+
+.woocommerce a.add_to_wishlist.button.alt {
+    background: #333333;
+    color: #ffffff;
+    border-color: #333333;
+}
+
+a.btn-upload{
+    background-color: #F3F315;
+    color: #2E2E2E;
+    padding: 4px 7px !important;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+    position: absolute;
+    right: 30.5%;
+    top: 24px;
+}
+
+a.btn-upload:hover{
+    background-color: #ecec12 !important;
+}
+
+.woocommerce-cart table.cart img{
+    width: 130px;
+}
+
+.invi-link{
+    display: block;
+    height: 100%;
+}
+
+.cpf-type-header.hide-div{
+    display: none;
+}
+
+
+/*
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+    border-right:0;
+    box-shadow:0 0 0;
+    border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.search-cont{
+    width: 15%;
+}*/

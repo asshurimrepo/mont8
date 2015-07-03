@@ -2,7 +2,13 @@
 
 	class User_Actions {
 
+		/**
+		 * @var
+		 */
 		protected $data;
+		/**
+		 * @var mixed
+		 */
 		protected $user_meta;
 
 		/**
@@ -21,16 +27,24 @@
 			}
 		}
 
+		/**
+		 *
+		 */
 		public static function listens()
 		{
 			$user_actions = new User_Actions();
 
-			if ( isset( $_POST['add_gallery'] ) )
+			if ( isset( $_POST['set_featured_products'] ) )
 			{
-				$user_actions->createGallery();
+				return $user_actions->setFeaturedProducts();
 			}
+
+			return null;
 		}
 
+		/**
+		 *
+		 */
 		public function createGallery()
 		{
 			if ( ! isset( $this->user_meta['_galleries'][0] ) )
@@ -40,6 +54,13 @@
 
 
 			exit;
+		}
+
+		private function setFeaturedProducts()
+		{
+			update_user_meta( $this->user_id, 'featured_products', $this->data['items'] );
+
+			return ['message' => 'Featured Products Successfully Updated',];
 		}
 
 

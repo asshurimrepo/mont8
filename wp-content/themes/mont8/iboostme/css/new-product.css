@@ -19,7 +19,7 @@
 
 #new-product-form{
 	padding: 3rem 0;
-	padding-bottom: 5rem;
+	padding-bottom: 0;
 }
 
 .uploader {
@@ -125,7 +125,7 @@ form{
 	border: none !important;
 	width: 100% !important;
 	height: auto !important;
-	
+
 }
 
 .product-edit-container .dokan-feat-image-upload img{
@@ -136,9 +136,9 @@ form{
 .product-edit-container .dokan-feat-image-upload a.close{
   background: #000000;
   color: #FF0000;
-  width: auto !important; 
+  width: auto !important;
   height: auto !important;
-  top: 0; 
+  top: 0;
   left: 0 !important;
   right: 0 !important;
   bottom: 0;
@@ -161,4 +161,13 @@ form{
 }
 .dokan_tabs{
 	display: none;
+}
+
+.dokan-checkbox-cat{
+    padding: 0;
+    margin: 0;
+}
+
+[data-setting="url"], [data-setting="caption"], [data-setting="alt"], #post-title, #post-content{
+    display: none !important;
 }

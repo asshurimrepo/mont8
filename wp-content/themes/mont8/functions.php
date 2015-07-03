@@ -1,8 +1,7 @@
 <?php
-
-	require_once('iboostme/hooks.php');
-	require_once('iboostme/constants.php');
-	require_once('vendor/autoload.php');
+	require_once( 'vendor/autoload.php' );
+	require_once( 'iboostme/constants.php' );
+	require_once( 'iboostme/hooks.php' );
 
 
 	/**
@@ -22,7 +21,6 @@
 	{
 		$content_width = 640;
 	}
-
 
 
 	/**
@@ -212,8 +210,16 @@
 			wp_enqueue_style( 'dokan-theme', $template_directory . '/style.css', false, null );
 			wp_enqueue_style( 'dokan-theme-skin', $template_directory . '/assets/css/skins/' . $skin, false, null );
 
-			if(is_user_logged_in()){
-				load_style('user-logged-in-style', 'user-logged.css', '1.0.1');
+			if ( is_user_logged_in() )
+			{
+				load_style( 'user-logged-in-style', 'user-logged.css', '1.0.1' );
+			}
+
+			/*Load Required Dependencies For Home*/
+			if ( is_front_page() )
+			{
+				load_js( 'frewall-script', 'freewall.js', '1.05' );
+				load_style('home-style', 'home-style.css', '0.0.1');
 			}
 
 			/****** Scripts ******/
@@ -287,19 +293,20 @@
 	//add_action( 'dokan_new_product_added', 'dokan_create_variable_product', 2, 10 );
 
 
-
-	function dokan_child_get_seller_commission_by_order( $order_id ) {
+	function dokan_child_get_seller_commission_by_order( $order_id )
+	{
 		global $wpdb;
 
-		$order        = new WC_Order( $order_id );
+		$order             = new WC_Order( $order_id );
 		$seller_commission = 0;
-		$items = $order->get_items();
+		$items             = $order->get_items();
 
-		foreach ( $items as $item ) {
+		foreach ( $items as $item )
+		{
 			$variation_id = $item['variation_id'];
-			$seller_commission +=  get_post_meta( $variation_id, 'seller_commission', true );
+			$seller_commission += get_post_meta( $variation_id, 'seller_commission', true );
 		}
-		
+
 		return $seller_commission;
 	}
 
@@ -464,7 +471,6 @@
 			'url'   => dokan_get_navigation_url( 'settings' )
 		);
 
-		
 
 		return $urls;
 	}

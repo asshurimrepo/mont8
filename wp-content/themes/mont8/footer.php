@@ -43,7 +43,7 @@
     <div class="copy-container">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="footer-copy">
                        <?php
 	                       $footer_text = get_theme_mod( 'footer_text' );
@@ -56,6 +56,10 @@
 	                       }
                        ?>
                     </div>
+                </div>
+                
+                <div class="col-md-6 text-right">
+	                <a href="#!"><img src="<?= THEME_PATH . '/assets/images/payment.png' ?>" alt="Payments"/></a>
                 </div>
             </div><!-- .row -->
         </div><!-- .container -->

@@ -51,23 +51,30 @@ get_header(); ?>
 		do_action('woocommerce_before_main_content');
 	?>
 
-		
-
 		<?php do_action( 'woocommerce_archive_description' ); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<?php woocommerce_product_loop_start(); ?>
+
+			<?php //woocommerce_product_loop_start(); ?>
 
 				<?php woocommerce_product_subcategories(); ?>
 
-				<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php wc_get_template_part( 'content', 'product' ); ?>
+			<div id="gallery-freewall"">
 
-				<?php endwhile; // end of the loop. ?>
 
-			<?php woocommerce_product_loop_end(); ?>
+
+			<?php while ( have_posts() ) : the_post(); ?>
+
+					<?php wc_get_template_part( 'content-archive', 'product' ); ?>
+
+			<?php endwhile; // end of the loop. ?>
+
+
+			</div>
+
+			<?php //woocommerce_product_loop_end(); ?>
 
 			<?php
 				/**

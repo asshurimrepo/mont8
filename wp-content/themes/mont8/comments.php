@@ -22,9 +22,7 @@ if ( post_password_required() )
     return;
 ?>
 
-asdasdasd
-
-<div id="comments" class="comments-area clearfix">
+<div id="comments" class="comments-area clearfix hide">
 
     <?php // You can start editing here -- including this comment! ?>
 
