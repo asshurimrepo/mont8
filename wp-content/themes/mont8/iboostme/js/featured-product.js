@@ -42,7 +42,7 @@ function renderMediaUploader($, item) {
 
             console.log(attachment);
 
-            image.prop('src', attachment.sizes.shop_single.url);
+            image.prop('src', attachment.sizes.shop_catalog.url);
             image_cont.show();
 
             input.val(attachment.id);

@@ -109,6 +109,17 @@
 
 	function my_myme_types( $mime_types )
 	{
+
+		global $current_user;
+		$user_roles = $current_user->roles;
+		$user_role  = array_shift( $user_roles );
+
+		/*Continue if not seller*/
+		if ( $user_role == 'administrator' )
+		{
+			return $mime_types;
+		}
+
 		//Creating a new array will reset the allowed filetypes
 		$mime_types = array(
 			'jpg|jpeg|jpe' => 'image/jpeg',

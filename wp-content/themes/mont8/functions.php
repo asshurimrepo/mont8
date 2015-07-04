@@ -203,6 +203,10 @@
 			$skin               = get_theme_mod( 'color_skin', 'orange.css' );
 
 			// register styles
+
+			wp_enqueue_style( 'animate', $template_directory . '/assets/css/animate.css', false, null );
+			wp_enqueue_style( 'cart-sidebar', $template_directory . '/assets/css/cart-sidebar.css', false, null );
+			wp_enqueue_style( 'bootstrap-datepicker', $template_directory . '/assets/js/bootstrap-datepicker/css/bootstrap-datepicker.min.css', false, null );
 			wp_enqueue_style( 'bootstrap', $template_directory . '/assets/css/bootstrap.css', false, null );
 			wp_enqueue_style( 'flexslider', $template_directory . '/assets/css/flexslider.css', false, null );
 			wp_enqueue_style( 'fontawesome', $template_directory . '/assets/css/font-awesome.min', false, null );
@@ -210,17 +214,11 @@
 			wp_enqueue_style( 'dokan-theme', $template_directory . '/style.css', false, null );
 			wp_enqueue_style( 'dokan-theme-skin', $template_directory . '/assets/css/skins/' . $skin, false, null );
 
-			if ( is_user_logged_in() )
+			/*if ( is_user_logged_in() )
 			{
 				load_style( 'user-logged-in-style', 'user-logged.css', '1.0.1' );
-			}
+			}*/
 
-			/*Load Required Dependencies For Home*/
-			if ( is_front_page() )
-			{
-				load_js( 'frewall-script', 'freewall.js', '1.05' );
-				load_style('home-style', 'home-style.css', '0.0.1');
-			}
 
 			/****** Scripts ******/
 			if ( is_single() && comments_open() && get_option( 'thread_comments' ) )
@@ -240,6 +238,7 @@
 			wp_enqueue_script( 'flexslider', $template_directory . '/assets/js/jquery.flexslider-min.js', array( 'jquery' ) );
 
 			wp_enqueue_script( 'dokan-theme-scripts', $template_directory . '/assets/js/script.js', false, null, true );
+			wp_enqueue_script( 'bootstrap-datepicker-scripts', $template_directory . '/assets/js/bootstrap-datepicker/js/bootstrap-datepicker.min.js', false, null, true );
 		}
 
 		/**

@@ -23,6 +23,8 @@
 	$is_square = is_square( $product->get_image_id() );
 ?>
 
+<div class="overlay-preloader"></div>
+
 
 <div itemprop="description" class="product-description collapsed">
 	<?php echo apply_filters( 'woocommerce_short_description', get_the_content() ) ?>
@@ -147,6 +149,9 @@
 			});
 		</script>
 	<?php endif; ?>
+
+
+
 
 
 <?php endif; ?>

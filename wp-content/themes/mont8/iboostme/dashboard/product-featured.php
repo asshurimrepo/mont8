@@ -40,7 +40,7 @@
 						<?php
 							if ( isset( $featured_products[ $index ] ) && $featured_products[ $index ] )
 							{
-								echo wp_get_attachment_image( $featured_products[ $index ], 'shop_single', null, [ ] );
+								echo wp_get_attachment_image( $featured_products[ $index ], 'shop_catalog', null, [ ] );
 							}
 							else
 							{

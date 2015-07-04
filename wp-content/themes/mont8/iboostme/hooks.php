@@ -108,6 +108,9 @@
 		// Framing Script
 		load_js( 'framing-the-print-script', 'product-framing.js' );
 
+		// Preview on the wall script
+		load_js( 'preview-on-the-wall', 'preview-on-the-wall.js' );
+
 		// load style
 		load_style( 'single-product-style', 'style.css', '1.0.6' );
 
@@ -310,20 +313,20 @@
 			'url'   => get_permalink( get_page_by_path( 'pricing' ) )
 		);
 
-		$menus['printshop'] = array(
+		/*$menus['printshop'] = array(
 			'title' => __( 'Printshop', 'dokan' ),
 			'url'   => dokan_get_navigation_url( 'printshop' )
-		);
+		);*/
 
 		$menus['marketing'] = array(
 			'title' => __( 'Marketing', 'dokan' ),
 			'url'   => get_permalink( '' )
 		);
 
-		$menus['my - account'] = array(
+		/*$menus['my - account'] = array(
 			'title' => __( 'My Account', 'dokan' ),
 			'url'   => get_permalink( get_page_by_path( 'my - account' ) )
-		);
+		);*/
 
 		$menus['wishlist'] = array(
 			'title' => __( 'My Wishlist', 'dokan' ),

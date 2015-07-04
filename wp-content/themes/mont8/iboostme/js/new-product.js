@@ -118,6 +118,10 @@ function renderMediaUploader($) {
 
         addFormEvent($);
 
+        // Hide unwanted table
+        $("table tbody>tr").addClass('hide');
+        $("table tbody>tr input").attr('disabled', true);
+
 
 
 
@@ -140,7 +144,6 @@ var selection;
 
             // Display the media uploader
             renderMediaUploader($);
-
 
 
         });

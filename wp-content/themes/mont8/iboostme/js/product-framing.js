@@ -4,13 +4,13 @@
  * @package iBoostme
  * @package iBoostme - 2014.1.10
  */
-
+var el;
 
 
 (function ($) {
 
     // Elements
-    var el = {
+    el = {
         frame_this_div: $(".frame-this-print-div"),
         framing_check_input: $("input.frame-this-print"),
         art_frame: $("#tmcp_choice_0_0_1").parent(),
@@ -365,7 +365,7 @@
 
             artwork.update();
 
-            preview_on_wall.clone_main_frame();
+            //preview_on_wall.clone_main_frame();
 
         },
 
@@ -601,7 +601,7 @@
     social_share.init();
 
 
-    // Preview On the Wall
+    /*// Preview On the Wall
     var preview_on_wall = {
         init: function () {
             // Show Wall
@@ -673,7 +673,7 @@
         }
     };
 
-    preview_on_wall.init();
+    preview_on_wall.init();*/
 
 
 })(jQuery);

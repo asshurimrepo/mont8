@@ -1057,6 +1057,20 @@ dd.tm-final-totals{
     right: 0;
 }
 
+#modal-product .frame-this-print-btn{
+    margin-top: 0;
+    position: relative;
+}
+
+#modal-product .frame-this-print-btn:before{
+    top: 7px;
+    left: 5%;
+}
+
+#modal-product .staging-products-item:first-child{
+    display: none;
+}
+
 .is-visuallyHidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -1113,4 +1127,3 @@ dd.tm-final-totals{
   color: #30beda;
 
 }
-

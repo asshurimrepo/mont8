@@ -93,6 +93,11 @@ a:hover {
     text-align: center;
 }
 
+/*Text Alignment*/
+.text-center{
+    text-align: center;
+}
+
 .clearfloat {
     clear: both;
 }
@@ -3860,7 +3865,12 @@ ul.list-unstyled .seller-name {
 
 .dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li a {
     color: #2e2e2e;
-    font-weight: 600;
+    font-weight: 400;
+    padding-left: 24px;
+}
+
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li a>b{
+    margin-left: -8px;
 }
 
 h1.nice {
@@ -3894,6 +3904,16 @@ h1.nice2{
     left: 0;
     right: 0;
     z-index: 9999;
+}
+
+.overlay-preloader{
+    position: fixed;
+    background: #FFF;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right:0;
+    z-index: 999;
 }
 
 .cart-sidebar-btn-checkout:hover{
@@ -4145,6 +4165,15 @@ a.btn-upload:hover{
     display: none;
 }
 
+
+
+.follow-counter h1{
+    font-size: 54px;
+}
+
+.dokan-dashboard .dokan-dashboard-content{
+    font-size: 15px;
+}
 
 /*
 .stylish-input-group .input-group-addon{

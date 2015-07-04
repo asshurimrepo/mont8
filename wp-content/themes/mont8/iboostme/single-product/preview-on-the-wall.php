@@ -29,9 +29,12 @@
                 
                 <div class="row">
                     
-                    <div class="col-md-3">
-                        <select  class="form-control wall select-image-size"></select>
-                    </div>
+                    <div class="col-md-3 select-image-size-modal"></div>
+                    <div class="col-md-5 frame-this-print-div"></div>
+
+	                <div class="col-md-3 frame-style-modal"></div>
+	                <div class="col-md-3 mattecolor-modal"></div>
+	                <div class="col-md-3 frame-color-modal"></div>
                    
 
                 </div>

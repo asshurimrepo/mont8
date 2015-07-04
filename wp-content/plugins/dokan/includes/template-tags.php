@@ -344,51 +344,103 @@
 
 
 		$urls = array(
-			'dashboard'        => array(
+			/*STORE*/
+			'store-heading'         => array(
+				'title' => __( '<b>STORE</b>', 'dokan' ),
+				'url'   => '#!'
+			),
+			'dashboard'         => array(
 				'title' => __( 'Dashboard', 'dokan' ),
-				'icon'  => '<i class="fa fa-tachometer"></i>',
 				'url'   => dokan_get_navigation_url()
 			),
-			'notifications'    => array(
-				'title' => __( 'Notifications', 'dokan' ),
-				'icon'  => '<i class="fa fa-alert"></i>',
-				'url'   => get_permalink( get_page_by_path( 'notifications' ) )
-			),
-			'product'          => array(
+			'product'           => array(
 				'title' => __( 'Products', 'dokan' ),
-				'icon'  => '<i class="fa fa-briefcase"></i>',
 				'url'   => dokan_get_navigation_url( 'products' )
+			),
+			'report'            => array(
+				'title' => __( 'Sales History', 'dokan' ),
+				'url'   => dokan_get_navigation_url( 'reports' )
+			),
+			'withdraw'          => array(
+				'title' => __( 'Withdraw', 'dokan' ),
+				'url'   => dokan_get_navigation_url( 'withdraw' )
+			),
+			'payments' => array(
+				'title' => __( 'Payments', 'dokan' ),
+				'url'   => dokan_get_navigation_url( 'settings/payment' )
+			),
+			'pricing' => array(
+				'title' => __( 'Pricing', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'pricing' ) )
 			),
 			'featured-products' => array(
 				'title' => __( 'Featured Products', 'dokan' ),
-				'icon'  => '<i class="fa fa-briefcase"></i>',
 				'url'   => get_permalink( get_page_by_path( 'featured-products' ) )
 			),
-			'order'            => array(
+			'marketing' => array(
+				'title' => __( 'Marketing', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'marketing' ) )
+			),
+
+
+
+			/*PRINT SHOP*/
+			'printshop' => array(
+				'title' => __( '<b>PRINTSHOP</b>', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'printshop' ) )
+			),
+
+			/*Purchases*/
+			'purchases' => array(
+				'title' => __( '<b>PURCHASES</b>', 'dokan' ),
+				'url'   => '#!'
+			),
+			'order'             => array(
 				'title' => __( 'Orders', 'dokan' ),
-				'icon'  => '<i class="fa fa-shopping-cart"></i>',
 				'url'   => dokan_get_navigation_url( 'orders' )
 			),
+
+
+			/*My Account*/
+			'my-account' => array(
+				'title' => __( '<b>MY ACCOUNT</b>', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'my-account' ) )
+			),
+
+			'edit-account'     => array(
+				'title' => __( 'Edit Account', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'my-account' ) ).'edit-account'
+			),
+			'billing-address'     => array(
+				'title' => __( 'Billing Address', 'dokan' ),
+				'url'   => wc_get_endpoint_url('edit-address', 'billing')
+			),
+			'shipping-address'     => array(
+				'title' => __( 'Shipping Address', 'dokan' ),
+				'url'   => wc_get_endpoint_url('edit-address', 'shipping')
+			),
+			'wishlist'     => array(
+				'title' => __( 'My Wishlists', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'wishlists' ) )
+			),
+			'notifications'     => array(
+				'title' => __( 'Notifications', 'dokan' ),
+				'url'   => get_permalink( get_page_by_path( 'notifications' ) )
+			),
+
+
 			/*'coupon'           => array(
 				'title' => __( 'Coupons', 'dokan' ),
 				'icon'  => '<i class="fa fa-gift"></i>',
 				'url'   => dokan_get_navigation_url( 'coupons' )
 			),*/
-			'report'           => array(
-				'title' => __( 'Sales History', 'dokan' ),
-				'icon'  => '<i class="fa fa-l   ine-chart"></i>',
-				'url'   => dokan_get_navigation_url( 'reports' )
-			),
+
 			/*'reviews'          => array(
 				'title' => __( 'Reviews', 'dokan' ),
 				'icon'  => '<i class="fa fa-comments-o"></i>',
 				'url'   => dokan_get_navigation_url( 'reviews' )
 			),*/
-			'withdraw'         => array(
-				'title' => __( 'Withdraw', 'dokan' ),
-				'icon'  => '<i class="fa fa-upload"></i>',
-				'url'   => dokan_get_navigation_url( 'withdraw' )
-			),
+
 		);
 
 		$urls = apply_filters( 'dokan_get_dashboard_nav', $urls );
@@ -709,12 +761,11 @@
 				<div class="section_padding">
 
 
-
 					<ul class="nav navbar-nav navbar-right">
 
-<!--						<li style="padding: 0 5px;" class="search-cont">-->
-<!--							<input type="text" data-url="" class="form-control search-mont">-->
-<!--						</li>-->
+						<!--						<li style="padding: 0 5px;" class="search-cont">-->
+						<!--							<input type="text" data-url="" class="form-control search-mont">-->
+						<!--						</li>-->
 						<li style="width: 47%; padding-left:5px">
 							<div class="search_panel">
 								<form method="get" id="searchform"
@@ -753,7 +804,7 @@
 
 							<?php
 
-							$seller_name = explode(' ', $current_user->display_name);
+							$seller_name = explode( ' ', $current_user->display_name );
 
 							if ( dokan_is_user_seller( $user_id ) )
 							{
@@ -777,7 +828,7 @@
 
 										<li>
 											<a href="<?php echo dokan_get_store_url( $user_id ); ?>"
-											   target="_blank"><?=__( 'My Store', 'dokan' )?></a>
+											   target="_blank"><?= __( 'My Store', 'dokan' ) ?></a>
 										</li>
 
 										<li>
@@ -793,11 +844,11 @@
 									<?php else: ?>
 
 										<li>
-											<a href="<?php echo dokan_get_page_url( 'my_orders' ); ?>"><?=__( 'My Orders', 'dokan' )?></a>
+											<a href="<?php echo dokan_get_page_url( 'my_orders' ); ?>"><?= __( 'My Orders', 'dokan' ) ?></a>
 										</li>
 
 										<li>
-											<a href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?=__( 'My Account', 'dokan' )?></a>
+											<a href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?= __( 'My Account', 'dokan' ) ?></a>
 										</li>
 
 										<li class="divider"></li>

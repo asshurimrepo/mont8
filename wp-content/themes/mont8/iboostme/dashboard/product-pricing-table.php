@@ -81,14 +81,14 @@
 
 
 	<?php foreach ( $art_products as $id => $art ): ?>
-		<tr id="pricing-<?=$art['slug']?>" class="hide">
+		<tr id="pricing-<?=$art['slug']?>">
 			<td><img src="<?= get_image( $art['image'] ) ?>" class="img-responsive"></td>
 			<td><?= $art['label'] ?></td>
 			<td class="hide_in_product"><?= $base_price[ $id ][0] ?> AED - <?= $base_price[ $id ][1] ?> AED</td>
 			<td class="hide_in_product"><?= $base_price[ $id ][2] ?> AED - <?= $base_price[ $id ][0] ?> AED</td>
 			<td class="hide_in_product"><?= $base_price[ $id ][2] ?> AED</td>
 			<td>
-				<input disabled type="number" name="<?= $art['id'] ?>" class="form-control right"
+				<input type="number" name="<?= $art['id'] ?>" class="form-control right"
 				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">
 			</td>
 		</tr>

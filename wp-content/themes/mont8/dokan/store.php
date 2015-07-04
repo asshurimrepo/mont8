@@ -9,10 +9,8 @@ global $wp_query;
 
 $store_user = get_userdata( get_query_var( 'author' ) );
 $store_info = dokan_get_store_info( $store_user->ID );
+
 $user_meta = get_user_meta( $store_user->ID );
-
-//var_dump($wp_query->query_vars);
-
 $following = unserialize($user_meta['_userpro_following_ids'][0]);
 $followers = unserialize($user_meta['_userpro_followers_ids'][0]);
 
@@ -109,7 +107,6 @@ get_header();
 					?>
 
 			</div>
-
 
             <?php if(!isset($_GET['collection'])): ?>
 	            <h1 class="nice2"><?=_e('LATEST', 'dokan')?></h1>
