@@ -15,7 +15,7 @@
 
 
             if ($(this).hasClass('azm-facebook'))
-                window.open('https://www.facebook.com/dialog/feed?display=popup&redirect_uri=' + link + '&link=' + link + '&name=' + title + '&picture=' + image, 'sharer', 'toolbar=0,status=0,width=548,height=325,top=' + top + ',left=' + left);
+                window.open('https://www.facebook.com/dialog/feed?app_id=1465144977129173&display=popup&caption=' + title + '&link=' + link + '&picture=' + image + '&redirect_uri=' + link + '?close=window', 'sharer', 'toolbar=0,status=0,width=548,height=325,top=' + top + ',left=' + left);
 
             if ($(this).hasClass('azm-twitter'))
                 window.open('https://twitter.com/intent/tweet?url=' + link + '&text=' + title + '&via=mont8&hashtags=mont8%2Cart%2C', 'sharer', 'toolbar=0,status=0,width=548,height=325,top=' + top + ',left=' + left);

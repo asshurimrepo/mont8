@@ -34,6 +34,12 @@ get_header();
 
 ?>
 
+<?php if(isset($_GET['close'])): ?>
+<script>
+	self.close();
+</script>
+<?php endif; ?>
+
 <?php $url = get_template_directory_uri() . '/assets/images/footer'; ?>
 
 
