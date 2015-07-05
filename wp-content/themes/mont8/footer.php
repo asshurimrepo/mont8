@@ -33,7 +33,14 @@
 				                      </span>
 								</div>
 							</div>
-		                </div></aside>
+		                </div>
+                    </aside>
+                    <ul class="list-inline list-unstyled list-payments">
+                        <li><a href="#"><img src="<?= THEME_PATH . '/assets/images/payments/cash-delivery.png' ?>" alt="Cash on Delivery"/></a></li>
+                        <li><a href="#"><img src="<?= THEME_PATH . '/assets/images/payments/visa.png' ?>" alt="Visa"/></a></li>
+                        <li><a href="#"><img src="<?= THEME_PATH . '/assets/images/payments/master-card.png' ?>" alt="Master Card"/></a></li>
+                        <li><a href="#"><img src="<?= THEME_PATH . '/assets/images/payments/paypal.png' ?>" alt="Paypal"/></a></li>
+                    </ul>
                 </div>
                 
             </div> <!-- .footer-widget-area -->
@@ -43,7 +50,7 @@
     <div class="copy-container">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="footer-copy">
                        <?php
 	                       $footer_text = get_theme_mod( 'footer_text' );
@@ -57,10 +64,7 @@
                        ?>
                     </div>
                 </div>
-                
-                <div class="col-md-6 text-right">
-	                <a href="#!"><img src="<?= THEME_PATH . '/assets/images/payment.png' ?>" alt="Payments"/></a>
-                </div>
+
             </div><!-- .row -->
         </div><!-- .container -->
     </div> <!-- .copy-container -->
