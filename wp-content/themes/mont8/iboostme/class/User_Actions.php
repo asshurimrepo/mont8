@@ -39,7 +39,13 @@
 				return $user_actions->setFeaturedProducts();
 			}
 
-			return null;
+
+			if ( isset( $_POST['update_notification'] ) )
+			{
+				return $user_actions->updateNotification();
+			}
+
+			return [];
 		}
 
 		/**
@@ -60,7 +66,26 @@
 		{
 			update_user_meta( $this->user_id, 'featured_products', $this->data['items'] );
 
-			return ['message' => 'Featured Products Successfully Updated',];
+			return [ 'message' => 'Featured Products Successfully Updated', ];
+		}
+
+		/**
+		 *Update Notification settings of the user
+		 */
+		private function updateNotification()
+		{
+			$valid = [ 'comment', 'follow', 'order' ];
+			$notifications = [];
+
+			foreach($this->data['_notifications'] as $key => $notif){
+				if(in_array($key, $valid)){
+					$notifications[$key] = $notif;
+				}
+			}
+
+			update_user_meta( $this->user_id, '_notifications', $notifications );
+
+			return [ 'message' => 'Notification Settings Successfully Updated', ];
 		}
 
 

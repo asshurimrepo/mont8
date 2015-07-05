@@ -63,7 +63,7 @@ $user_id = $current_user->ID;
 					<?php echo wp_nav_menu( array( "theme_location" => "primary" ) ); ?>
 
 					<?php if ( dokan_is_user_seller( $user_id ) ): ?>
-						<a href="<?= dokan_get_navigation_url( 'new-product' ) ?>" class="btn-upload">Upload Art</a>
+						<a href="<?= dokan_get_navigation_url( 'new-product' ) ?>" class="btn-upload"><?=__('Upload Art', 'dokan')?></a>
 					<?php endif; ?>
 
 				</div>

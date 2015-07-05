@@ -13,10 +13,10 @@ class DokanCategoryWalker extends Walker_Category{
         ), $args);
 
         extract($args);
-        
-        ob_start(); ?>   
 
-        <li class="col-sm-6">
+	    ob_start(); ?>
+
+        <li class="col-sm-6 <?=$category->slug?>">
             <input type="checkbox" <?php echo checked( in_array( $category->term_id, $selected ), true ); ?> id="category-<?php print $category->term_id; ?>" name="<?php print $name; ?>[]" value="<?php print $category->term_id; ?>" />
             <label for="category-<?php print $category->term_id; ?>">
                 <?php print esc_attr( $category->name ); ?>

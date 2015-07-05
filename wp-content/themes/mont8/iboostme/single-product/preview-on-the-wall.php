@@ -25,17 +25,18 @@
                 </ul>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-8">
                 
                 <div class="row">
                     
                     <div class="col-md-3 select-image-size-modal"></div>
-                    <div class="col-md-5 frame-this-print-div"></div>
+                    <div class="col-md-3 frame-this-print-div"></div>
 
-	                <div class="col-md-3 frame-style-modal"></div>
-	                <div class="col-md-3 mattecolor-modal"></div>
-	                <div class="col-md-3 frame-color-modal"></div>
-                   
+	                <div class="col-md-2 frame-style-modal"></div>
+	                <div class="col-md-2 mattecolor-modal"></div>
+	                <div class="col-md-2 frame-color-modal"></div>
+	                <div class="col-md-3 price-modal"></div>
+
 
                 </div>
 

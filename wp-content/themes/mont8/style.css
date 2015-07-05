@@ -8,6 +8,7 @@ Version: 2.1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+@import url('assets/css/azm-social.css');
 
 @font-face {
     font-family: modern_sans;
@@ -432,7 +433,7 @@ ul.mega_dropdown {
 
 .navbar-nav > li > a:hover {
     background: none !important;
-    color: #f3f315;
+    color: #ff069e;
 }
 
 .navbar-toggle {
@@ -4137,19 +4138,21 @@ img.img-responsive{
 }
 
 a.btn-upload{
-    background-color: #F3F315;
-    color: #2E2E2E;
+    text-transform: uppercase;
+    background-color: #ff0095;
+    color: #FFF;
     padding: 4px 7px !important;
     font-size: 12px;
     font-weight: 600;
     margin-top: 4px;
     position: absolute;
-    right: 30.5%;
+    right: 28.5%;
     top: 24px;
+    z-index: 9;
 }
 
 a.btn-upload:hover{
-    background-color: #ecec12 !important;
+    background-color: #e11190 !important;
 }
 
 .woocommerce-cart table.cart img{

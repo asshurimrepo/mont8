@@ -472,14 +472,14 @@
 		$dokan_shipping_option = get_option( 'woocommerce_dokan_product_shipping_settings' );
 		$enable_shipping       = ( isset( $dokan_shipping_option['enabled'] ) ) ? $dokan_shipping_option['enabled'] : 'yes';
 
-		if ( $enable_shipping == 'yes' )
+		/*if ( $enable_shipping == 'yes' )
 		{
 			$settings_sub['shipping'] = array(
 				'title' => __( 'Shipping', 'dokan' ),
 				'icon'  => '<i class="fa fa-truck"></i>',
 				'url'   => dokan_get_navigation_url( 'settings/shipping' )
 			);
-		}
+		}*/
 
 		$settings_sub['social'] = array(
 			'title' => __( 'Social Profile', 'dokan' ),
@@ -838,7 +838,7 @@
 										<li class="divider"></li>
 
 										<li>
-											<a href="<?= get_permalink( get_page_by_path( 'print-shop' ) ) ?>"><?= __( 'Print Shop', 'dokan' ) ?></a>
+											<a href="<?= get_permalink( get_page_by_path( 'printshop' ) ) ?>"><?= __( 'Printshop', 'dokan' ) ?></a>
 										</li>
 
 									<?php else: ?>

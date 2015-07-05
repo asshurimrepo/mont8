@@ -8,7 +8,12 @@
  */
 ?>
 
-<?php do_action( 'yith_wcwl_before_wishlist_form', $wishlist_meta ); ?>
+<?php
+    do_action( 'yith_wcwl_before_wishlist_form', $wishlist_meta );
+    $show_stock_status = false;
+    $show_price = false;
+?>
+
 
 <form
 	id="yith-wcwl-form"

@@ -6,7 +6,18 @@
 
 	include_once DOKAN_LIB_DIR . '/class.category-walker.php';
 
+	$is_printshop = (isset($_GET['type']) && $_GET['type'] == 'printshop') ?: false;
+
+	$term = get_term_by( 'slug', 'printshop', 'product_cat' );
+//	var_dump($term);
 ?>
+
+<?php if($is_printshop): ?>
+
+	<meta name="is_printshop" content="1">
+	<meta name="after_select_url" content="<?=get_permalink_by_slug('printshop', 'cart')?>">
+
+<?php endif; ?>
 
 <div class="dokan-dashboard-wrap">
 	<?php dokan_get_template( 'dashboard-nav.php', array( 'active_menu' => 'product' ) ); ?>
@@ -47,7 +58,7 @@
 
 							<div class="dz-default dz-message"><span>
                 <i class="fa fa-cloud-upload"></i>
-                    <br>Click here to begin adding your artwork
+                    <br><?=!$is_printshop ? __('Click here to begin adding your artwork', 'dokan') : __('Click here to select your atwork to be printed by mont8', 'dokan')?>
                 </span></div>
 						</a>
 
@@ -58,10 +69,16 @@
 
 						<div id="new-product-form"></div>
 
-						<!-- Handle Bar Tempalte -->
+						<!-- Handle Bar Template -->
 						<script id="entry-template" type="text/x-handlebars-template">
 
 							<form class="dokan-form-container row art-{{ id }}" method="post">
+
+
+								<?php if($is_printshop): ?>
+									<input type="hidden" name="is_printshop" value="1">
+									<center><i class="fa fa-refresh fa-spin"></i></center>
+								<?php endif; ?>
 
 								<div class="row product-edit-container dokan-clearfix">
 									<div class="dokan-w4 col-md-5">
@@ -95,27 +112,9 @@
 
 										<?php //get_template_part( 'iboostme/dashboard/new-product-gallery', 'form' ) ?>
 
-										<?php if ( dokan_get_option( 'product_category_style', 'dokan_selling', 'single' ) == 'single' ): ?>
-											<div class="dokan-form-group">
 
-												<?php
-													wp_dropdown_categories( array(
-														'show_option_none' => __( '- Select a category -', 'dokan' ),
-														'hierarchical'     => 1,
-														'hide_empty'       => 0,
-														'name'             => 'product_cat',
-														'id'               => 'product_cat',
-														'taxonomy'         => 'product_cat',
-														'title_li'         => '',
-														'class'            => 'product_cat dokan-form-control chosen',
-														'exclude'          => '',
-														'selected'         => Dokan_Template_Shortcodes::$product_cat,
-													) );
-												?>
-											</div>
-										<?php elseif ( dokan_get_option( 'product_category_style', 'dokan_selling', 'single' ) == 'multiple' ): ?>
-											<h4><?php _e( 'Choose a category', 'dokan' ); ?></h4>
-											<div class="dokan-form-group">
+											<h4 class="<?=!$is_printshop ?: 'hide'?>"><?php _e( 'Choose a category', 'dokan' ); ?></h4>
+											<div class="<?=!$is_printshop ?: 'hide'?> dokan-form-group">
 												<ul class="dokan-checkbox-cat row">
 													<?php
 														include_once DOKAN_LIB_DIR . '/class.category-walker.php';
@@ -132,9 +131,8 @@
 													?>
 												</ul>
 											</div>
-										<?php endif; ?>
 
-										<div class="dokan-form-group">
+										<div class="dokan-form-group <?=!$is_printshop ?: 'hide'?>" >
 
 											<h4><?php _e( 'Choose Product', 'dokan' ); ?></h4>
 
@@ -157,10 +155,10 @@
 											</div>
 										</div>
 
-										<input type="submit" class="dokan-btn dokan-btn-danger dokan-btn-theme"
+										<input type="submit" class="dokan-btn dokan-btn-danger dokan-btn-theme <?=!$is_printshop ?: 'hide'?>"
 										       value="<?php esc_attr_e( 'Save Artwork', 'dokan' ); ?>"/>
 
-										<p><a href="#!" class="change-product-pricing-btn">Change products and pricing
+										<p><a href="#!" class="change-product-pricing-btn <?=!$is_printshop ?: 'hide'?>">Change products and pricing
 												for this art piece</a></p>
 									</div>
 								</div>

@@ -269,13 +269,16 @@ var el;
 
             if(this_art_frame == 'Art Print_1' || this_art_frame == 'Photo Print_2'){
                 $(".frame-style option:nth-child(3)").hide();
+                el.frame_style_input.val('Flat Frame_0');
             }
 
             if(this_art_frame == 'Canvas_3'){
                 $(".frame-style option:nth-child(1), .frame-style option:nth-child(2)").hide();
                 el.frame_style_input.val('Floater Frame_2');
-                el.size_input.change();
             }
+
+            el.size_input.change();
+
 
         },
 

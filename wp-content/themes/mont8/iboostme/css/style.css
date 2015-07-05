@@ -7,7 +7,7 @@
 
 /*Single Product*/
 .summary {
-    font-family: 'Open Sans';
+    /*font-family: 'Open Sans';*/
     /*display: none;*/
 }
 
@@ -17,7 +17,7 @@
 }
 
 .summary .product-title h1{
-    font-family: modern_sans, 'Open Sans';
+    /*font-family: modern_sans, 'Open Sans';*/
     text-transform: uppercase;
     line-height: 1.4em;
 }
@@ -28,7 +28,7 @@
 }
 
 .summary .price .amount{
-      font-family: modern_sans, 'Open Sans';
+      /*font-family: modern_sans, 'Open Sans';*/
       padding: 20px 0 !important;
       font-size: 45px !important;
       color: #000 !important;
@@ -40,7 +40,7 @@
     border-top: 1px solid #ccc;
     padding-top: 20px;
     color: #232323;
-    font-family: "Open Sans";
+    /*font-family: "Open Sans";*/
     font-weight: 400; 
     /*padding: 20px 0 !important;*/
     margin: 20px 0 5px 0 !important;
@@ -66,7 +66,7 @@
 }
 
 .single_add_to_cart_button{
-    font-family: 'Open Sans';
+    /*font-family: 'Open Sans';*/
     font-weight: 700 !important;
     font-size: 16px !important;
     color: #000;
@@ -81,7 +81,7 @@
 }
 
 .swatchinput .print-name{
-    font-family: modern_sans, 'Open Sans';
+    /*font-family: modern_sans, 'Open Sans';*/
     font-size: 11px;
     white-space: nowrap;
     overflow: hidden;
@@ -92,7 +92,7 @@
 }
 
 .nice-title{
-    font-family: modern_sans, 'Open Sans';
+    /*font-family: modern_sans, 'Open Sans';*/
     font-size: 30px !important;
     padding-bottom: 15px;
 }
@@ -236,7 +236,7 @@ span.frame-this-print.tm-epo-field-label, .frame-this-print-ul, .tm-epo-field-la
     border-color: #000 !important;
 }
 .checkbox_image_label{
-    font-family: 'Open Sans';
+    /*font-family: 'Open Sans';*/
     font-size: 11px;
     white-space: nowrap;
     overflow: hidden;
@@ -260,7 +260,7 @@ dt.tm-final-totals{
     display: none;
 }
 dd.tm-final-totals{
-    font-family: modern_sans, 'Open Sans';
+    /*font-family: modern_sans, 'Open Sans';*/
     font-size: 30px !important;
     color: #000 !important;
     display: block;
@@ -1025,6 +1025,11 @@ dd.tm-final-totals{
     z-index: 9999;
     background: url(images/staging-002b.jpg) no-repeat center center;
     background-size: 100% auto;
+
+}
+
+#modal-product .tm-extra-product-options-totals{
+    margin: 0;
 }
 
 #modal-product .images{
@@ -1055,6 +1060,11 @@ dd.tm-final-totals{
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+#modal-product .images.landscape{
+    margin-top: 30px;
+    width: 25% !important;
 }
 
 #modal-product .frame-this-print-btn{

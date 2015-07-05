@@ -318,10 +318,10 @@
 			'url'   => dokan_get_navigation_url( 'printshop' )
 		);*/
 
-		$menus['marketing'] = array(
+		/*$menus['marketing'] = array(
 			'title' => __( 'Marketing', 'dokan' ),
 			'url'   => get_permalink( '' )
-		);
+		);*/
 
 		/*$menus['my - account'] = array(
 			'title' => __( 'My Account', 'dokan' ),
@@ -365,8 +365,8 @@
 		return null;
 	}
 
-	function get_permalink_by_slug($slug){
-		return get_permalink( get_page_by_path( $slug ) );
+	function get_permalink_by_slug($slug, $sub = null){
+		return get_permalink( get_page_by_path( $slug ) ).$sub;
 	}
 
 	function is_square($id){

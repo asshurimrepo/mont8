@@ -10,6 +10,10 @@ function renderMediaUploader($) {
 
     var file_frame, image_data;
 
+    window.is_printshop = $("[name=is_printshop]").attr('content');
+
+    var multiple = is_printshop ? false : true;
+
     /**
      * If an instance of file_frame already exists, then we can open it
      * rather than creating a new instance.
@@ -38,7 +42,7 @@ function renderMediaUploader($) {
         button: {
             text: 'Select Artwork',
         },
-        multiple: true
+        multiple: multiple
     });
 
     /**
@@ -106,6 +110,7 @@ function renderMediaUploader($) {
 
         setTimeout(function () {
             $("#selection>a:first-child").click();
+
         }, 700);
 
 
@@ -164,10 +169,21 @@ function addFormEvent($) {
         form.addClass('is-updating');
 
         $.post($(this).prop('action'), $(this).serialize(), 'json').success(function (data) {
+
             // alert(1);
             $(".errors").empty().html('');
 
             var succes_div = $("<div>").prop('class', 'dokan-alert dokan-alert-success');
+
+            if(is_printshop){
+                window.location.href = '?page_id='+data;
+
+                succes_div.html('Waiting for the process to be completed.')
+                form.html(succes_div);
+
+                return;
+            }
+
             var edit_link = $("<a>")
                 .prop('target', '_blank')
                 .prop('href', data);
@@ -179,6 +195,12 @@ function addFormEvent($) {
             form.html(succes_div);
 
             form.removeClass('is-updating');
+
+            if(is_printshop){
+                window.location.href = '?page_id='+data;
+                return;
+            }
+
 
         }).error(function (data) {
 
@@ -202,6 +224,13 @@ function addFormEvent($) {
             form.removeClass('is-updating');
         });
     });
+
+
+    if(is_printshop){
+        $("input.dokan-btn").click();
+    }
+
+
 }
 
 
