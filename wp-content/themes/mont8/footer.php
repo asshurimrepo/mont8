@@ -21,19 +21,39 @@
                 <div class="col-md-3"><?php dynamic_sidebar('footer-2'); ?></div>
                 <div class="col-md-3"><?php dynamic_sidebar('footer-3'); ?></div>
                 <div class="col-md-3">
-
-
-	                <aside id="nav_menu-2" class="widget widget_nav_menu"><h3 class="widget-title">Newsletter</h3><div class="menu-footer-column-1-container">
-			                <p class="newsletter_title"><b>10%</b> discount when you subscribe for the newsletter</p>
-							<div class="newsletter">
-								<div class="input-group">
-									<input type="text" class="form-control newsletter_txt" placeholder="Email Address">
-				                      <span class="input-group-btn">
-				                        <button class="btn btn-default btn-go" type="button">Go!</button>
-				                      </span>
-								</div>
-							</div>
-		                </div>
+                    <aside id="email-subscribers-2" class="widget widget_nav_menu"><h3 class="widget-title">Newsletter</h3>
+                        <div class="menu-footer-column-1-container">
+                            <link rel="stylesheet" media="screen" type="text/css" href="<?= site_url() . '/wp-content/plugins/email-subscribers/widget/es-widget.css' ?>">
+                            <script language="javascript" type="text/javascript" src="<?= site_url() . '/wp-content/plugins/email-subscribers/widget/es-widget.js' ?>"></script>
+                            <p class="newsletter_title"><b>10%</b> discount when you subscribe for the newsletter</p>
+                            <div class="es_msg"><span id="es_msg"></span></div>
+                            <div class="newsletter">
+                                <div class="input-group">
+                                    <input type="email" class="form-control newsletter_txt" name="es_txt_email" id="es_txt_email"  placeholder="Email Address" onkeypress="if(event.keyCode==13) es_submit_page('<?= site_url(); ?>')" maxlength="225">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default btn-go" name="es_txt_button" id="es_txt_button" onclick="return es_submit_page('<?= site_url(); ?>')"  type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <input name="es_txt_name" id="es_txt_name" value="" type="hidden">
+                            <input name="es_txt_group" id="es_txt_group" value="" type="hidden">
+                        </div>
+                    </aside>
+                    <!--<aside id="email-subscribers-2" class="widget widget_text elp-widget">
+                        <link rel="stylesheet" media="screen" type="text/css" href="<?/*= site_url() . '/wp-content/plugins/email-subscribers/widget/es-widget.css' */?>">
+                        <script language="javascript" type="text/javascript" src="<?/*= site_url() . '/wp-content/plugins/email-subscribers/widget/es-widget.js' */?>"></script>
+                        <div>
+                            <div class="es_msg"><span id="es_msg"></span></div>
+                            <div class="es_lablebox">Email *</div>
+                            <div class="es_textbox">
+                                <input class="es_textbox_class" name="es_txt_email" id="es_txt_email" onkeypress="if(event.keyCode==13) es_submit_page('http://mont8.app:8000')" value="" maxlength="225" type="text">
+                            </div>
+                            <div class="es_button">
+                                <input class="es_textbox_button" name="es_txt_button" id="es_txt_button" onclick="return es_submit_page('http://mont8.app:8000')" value="Subscribe" type="button">
+                            </div>
+                            <input name="es_txt_name" id="es_txt_name" value="" type="hidden">
+                            <input name="es_txt_group" id="es_txt_group" value="" type="hidden">
+                        </div>-->
                     </aside>
                     <ul class="list-inline list-unstyled list-payments">
                         <li><a href="#"><img src="<?= THEME_PATH . '/assets/images/payments/cash-delivery.png' ?>" alt="Cash on Delivery"/></a></li>
