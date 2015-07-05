@@ -47,28 +47,28 @@ var el;
     var framing_options = {
         sizes: [
             {
-                ref: 'A1 - 23.4" x 33.1"_0',
+                ref: 'A1 - 84.1 x 59 cm_0',
                 class: 'a1'
             },
 
             {
-                ref: 'A2 - 16.5" x 23.4"_1',
+                ref: 'A2 - 59.4 x 42 cm_1',
                 class: 'a2'
             },
 
             {
-                ref: 'A3 - 11.7" x 16.5"_2',
+                ref: 'A3 - 42 x 29.7 cm_2',
                 class: 'a3'
 
             },
 
             {
-                ref: 'A4 - 8.3" x 11.7"_3',
+                ref: 'A4 - 29.7 x 21 cm_3',
                 class: 'a4'
             },
 
             {
-                ref: 'A5 - 5.8" x 8.3"_4',
+                ref: 'A5 - 21 x 14.8 cm_4',
                 class: 'a5'
             },
             {
