@@ -262,12 +262,24 @@
 	add_shortcode( 'h1', 'h1' );
 
 
+//	ROW
 	function row( $atts, $content = null )
 	{
+
 		return '<div class="row">' . do_shortcode( $content ) . '</div>';
 	}
-
 	add_shortcode( 'row', 'row' );
+
+//	DIV
+	function div($atts, $content = null){
+		$a = shortcode_atts( array(
+			'class' => '',
+		), $atts );
+
+		return '<div class="'.$a['class'].'">' . do_shortcode( $content ) . '</div>';
+	}
+	add_shortcode('div','div');
+
 
 	function col_1_5( $atts, $content = null )
 	{
