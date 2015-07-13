@@ -76,6 +76,7 @@ function wc_add_to_cart_message( $product_id ) {
 		$added_text = sprintf( __( 'Added %s to your cart.', 'woocommerce' ), wc_format_list_of_items( $titles ) );
 
 	} else {
+		load_js('after-add-to-cart-script', 'after-add-to-cart.js');
 		$added_text = sprintf( __( '&quot;%s&quot; was successfully added to your cart.', 'woocommerce' ), get_the_title( $product_id ) );
 	}
 

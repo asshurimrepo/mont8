@@ -128,8 +128,6 @@ function renderMediaUploader($) {
         $("table tbody>tr input").attr('disabled', true);
 
 
-
-
     });
 
     // Now display the actual file_frame
@@ -153,6 +151,18 @@ var selection;
 
         });
 
+        var error_message = null, new_error_message;
+
+        setInterval(function () {
+            if (!error_message) {
+                error_message = $(".upload-error-message").html();
+            }
+            var link = $("#menu-item-414 a").prop('href');
+            new_error_message = error_message.replace('click here for more information about uploading guidelines', '<a target="_blank" style="color: #21759b !important" href="' + link + '">click here for more information about uploading guidelines</a>');
+            $(".upload-error-message").html(new_error_message);
+
+        }, 1000);
+
 
     });
 
@@ -175,8 +185,8 @@ function addFormEvent($) {
 
             var succes_div = $("<div>").prop('class', 'dokan-alert dokan-alert-success');
 
-            if(is_printshop){
-                window.location.href = '?page_id='+data;
+            if (is_printshop) {
+                window.location.href = '?page_id=' + data;
 
                 succes_div.html('Waiting for the process to be completed.')
                 form.html(succes_div);
@@ -196,8 +206,8 @@ function addFormEvent($) {
 
             form.removeClass('is-updating');
 
-            if(is_printshop){
-                window.location.href = '?page_id='+data;
+            if (is_printshop) {
+                window.location.href = '?page_id=' + data;
                 return;
             }
 
@@ -226,7 +236,7 @@ function addFormEvent($) {
     });
 
 
-    if(is_printshop){
+    if (is_printshop) {
         $("input.dokan-btn").click();
     }
 
@@ -251,4 +261,5 @@ function pricingTagsInit(form) {
     });
 
 }
+
 

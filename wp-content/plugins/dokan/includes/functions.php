@@ -1644,33 +1644,46 @@ add_filter( 'posts_search', 'dokan_product_search_by_sku' );
 function dokan_get_social_profile_fields() {
     $fields = array(
         'fb' => array(
-            'icon'  => 'facebook-square',
+            'icon'  => 'facebook',
             'title' => __( 'Facebook', 'dokan' ),
         ),
-        'gplus' => array(
-            'icon'  => 'google-plus-square',
-            'title' => __( 'Google Plus', 'dokan' ),
-        ),
         'twitter' => array(
-            'icon'  => 'twitter-square',
-            'title' => __( 'Twitter', 'dokan' ),
-        ),
-        'linkedin' => array(
-            'icon'  => 'linkedin-square',
-            'title' => __( 'LinkedIn', 'dokan' ),
-        ),
-        'youtube' => array(
-            'icon'  => 'youtube-square',
-            'title' => __( 'Youtube', 'dokan' ),
+	        'icon'  => 'twitter',
+	        'title' => __( 'Twitter', 'dokan' ),
         ),
         'instagram' => array(
-            'icon'  => 'instagram',
-            'title' => __( 'Instagram', 'dokan' ),
+	        'icon'  => 'instagram',
+	        'title' => __( 'Instagram', 'dokan' ),
+        ),
+        'pinterest' => array(
+	        'icon'  => 'pinterest',
+	        'title' => __( 'Pinterest', 'dokan' ),
+        ),
+        'deviantart' => array(
+	        'icon'  => 'deviantart',
+	        'title' => __( 'Deviant Art', 'dokan' ),
+        ),
+        'gplus' => array(
+            'icon'  => 'google-plus',
+            'title' => __( 'Google Plus', 'dokan' ),
         ),
         'flickr' => array(
-            'icon'  => 'flickr',
-            'title' => __( 'Flickr', 'dokan' ),
+	        'icon'  => 'flickr2',
+	        'title' => __( 'Flickr', 'dokan' ),
         ),
+        '500px' => array(
+	        'icon'  => '500px',
+	        'title' => __( '500px', 'dokan' ),
+        ),
+
+        'weburl' => array(
+            'icon'  => 'network',
+            'title' => __( 'Web URL', 'dokan' ),
+        ),
+
+
+
+
     );
 
     return apply_filters( 'dokan_profile_social_fields', $fields );

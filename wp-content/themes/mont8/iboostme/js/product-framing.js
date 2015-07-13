@@ -115,17 +115,22 @@ var el;
         mattecolors: [
             {
                 ref: 'No-Matt_0',
-                class: 'no-matt',
+                class: 'no-matt'
             },
 
             {
                 ref: 'Matt - Black_1',
-                class: 'matt-black',
+                class: 'matt-black'
             },
 
             {
                 ref: 'Matt - White_2',
-                class: 'matt-white',
+                class: 'matt-white'
+            },
+
+            {
+                ref: 'Matt - Off White_3',
+                class: 'matt-offwhite'
             }
         ],
 
@@ -153,7 +158,7 @@ var el;
             },
 
             {
-                ref: 'Art Print_1',
+                ref: 'Fine Art Print_1',
                 class: 'art-print'
             },
 
@@ -218,6 +223,8 @@ var el;
                 el.framing_check_input.change();
                 $("input[name=tmcp_radio_0]:radio:checked").change();
 
+                el.size_input.change();
+
             });
 
             // Event Declaration
@@ -267,7 +274,7 @@ var el;
             //Hide optons section
             $(".frame-style option").show();
 
-            if(this_art_frame == 'Art Print_1' || this_art_frame == 'Photo Print_2'){
+            if(this_art_frame == 'Fine Art Print_1' || this_art_frame == 'Photo Print_2'){
                 $(".frame-style option:nth-child(3)").hide();
                 el.frame_style_input.val('Flat Frame_0');
             }
@@ -302,6 +309,9 @@ var el;
             el.product_image.attr('data-class', artwork_class);
 
 
+            applyZoomEffect($);
+
+
             if (!el.art_frame_input.prop('checked') && el.framing_check_input.prop('checked')) {
 
                 framing.enable_framing();
@@ -331,6 +341,14 @@ var el;
         },
 
         update_frame: function () {
+
+
+
+            //Apply Zoom Effect
+            applyZoomEffect($);
+
+
+
 
             // update multiple instances of select image size input
             if ($(this).hasClass('select-image-size')) {
@@ -422,7 +440,7 @@ var el;
         data: [
 
             {
-                ref: 'Art Print_1',
+                ref: 'Fine Art Print_1',
 
                 options: [
                     'Printed on 300 gsm heavyweight Cotton paper',
@@ -549,7 +567,7 @@ var el;
             $(document).ready(function () {
 
                 $(".images").append($(".artwork-thumbnail"));
-                $(".images>a").after($(".preview-wall-container"));
+                $(".images>.image-grey>a").after($(".preview-wall-container"));
 
                 var main_image_url = $(".woocommerce-main-image").prop('href');
 
@@ -682,6 +700,80 @@ var el;
 })(jQuery);
 
 
+function applyZoomEffect($){
+    $('.image-grey .woocommerce-main-image>img').addimagezoom({ // single image zoom
+        zoomrange: [1.5, 3],
+        magnifiersize: [ $(".entry-summary").width(), $('.image-grey').height()],
+        magnifierpos: 'right',
+        cursorshade: true,
+        zIndex: 99,
+        largeimage:  $('.woocommerce-page div.product div.images img').prop('src')//<-- No comma after last option!
+    });
+}
+
+
+
+
+
+jQuery(document).ready(function($){
+
+    var ptype = getParameterByName('ptype');
+
+    setTimeout(function(){
+        switch (ptype){
+            case 'framed-art':
+                $("input.frame-this-print").click();
+
+                break;
+            case 'photography':
+                $("#tmcp_choice_0_2_3").click();
+                break;
+            case 'stretched-canvases':
+                $("#tmcp_choice_0_3_4").click();
+                break;
+            case 'posters':
+                if(window.is_square !== undefined){
+                    return;
+                }
+                $("#tmcp_choice_0_4_5").click();
+                break;
+        }
+    }, 1000);
+
+
+
+
+    /*Sync sizes*/
+    //art-print
+    sync_sizes_inputs("select.art-print-sizes");
+    sync_sizes_inputs("select.art-sq-print-sizes");
+
+    //photo-print
+    sync_sizes_inputs("select.photo-print-sizes");
+    sync_sizes_inputs("select.photo-sq-print-sizes");
+
+    //canvas
+    sync_sizes_inputs("select.canvas-print-sizes");
+    sync_sizes_inputs("select.canvas-sq-print-sizes");
+
+});
+
+
+function sync_sizes_inputs(ref){
+    $(ref).change(function(){
+        var v = $(this).val();
+        $(ref).each(function(){
+            $(this).val(v);
+        });
+    });
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 
 

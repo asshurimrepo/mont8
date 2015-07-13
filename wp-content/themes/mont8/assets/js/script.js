@@ -62,79 +62,28 @@ jQuery(function ($) {
         maxItems: getGridSize()
     });
 
-    $('body').on('added_to_cart', function (event, data) {
-        $('i.fa-shopping-cart').removeClass('fa-spin');
-
-        $('.dokan-cart-amount-top > .amount').fadeOut('fast', function () {
-            $('.dokan-cart-amount-top > .amount').html(data.amount).fadeIn('fast');
-        });
-    });
-
-    $('body').on('adding_to_cart', function (e, button) {
-        $(button).children('i').addClass('fa-spin');
-    });
-
-
-    $(".cart-overlay").click(function () {
-
-        $(".cart-overlay").fadeToggle();
-
-        var cartSidebar = $('.cart-sidebar');
-
-        hideCart = !hideCart;
-
-        cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
-
-    });
-
-    $('[data-toggle="tooltip"]').tooltip();
-
-
-    // cart sidebar
-    var hideCart = false;
-    $('.btn-cart-sidebar').click(function (e) {
-
-        $(".cart-overlay").fadeToggle();
-
-        var cartSidebar = $('.cart-sidebar');
-
-        cartSidebar.show();
-
-        hideCart = !hideCart;
-
-        if (hideCart) {
-            cartSidebar.addClass('slideInRight').removeClass('slideOutRight');
-        } else {
-            cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
-        }
-
-        /*if(cartSidebar.is(":visible") ){
-         cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
-         setTimeout(function(){
-         //cartSidebar.toggle();
-         }, 1000);
-         }else{
-         //cartSidebar.toggle().addClass('slideInRight').removeClass('slideOutRight');
-
-         cartSidebar.addClass('slideInRight').removeClass('slideOutRight');
-         }*/
-    });
-
-    //search panel
-    var searchPanel = $('.search_panel');
-    var searchPanelInput = $('.search_panel input');
-    var isToggled = false;
-    searchPanel.focusin(function () {
-        isToggled = !isToggled;
-        searchPanel.toggleClass('expand', isToggled);
-    });
-
-    searchPanelInput.focusout(function () {
-        isToggled = !isToggled;
-        searchPanel.toggleClass('expand', isToggled);
-    });
-
     // Date Pickers
     $('.datepicker').datepicker();
 
 });
+
+
+function onLike(v) {
+    var $ = jQuery;
+
+    if (v.type == 'likebtn.like' || v.type == 'likebtn.unlike') {
+        var this_btn = jQuery(v.wrapper);
+
+        if (this_btn.attr('data-user-logged-in') == 'false') {
+            this_btn.find('.likebtn-button>span').click();
+            window.location.href = jQuery(".login_panel>a").prop('href');
+            return;
+        }
+    }
+
+
+    if(v.type == 'likebtn.like'){
+        var data = v.settings;
+        $.get($("[name=base_url]").prop('content'), {action: 'notify_user_liked_artwork', prod_id: data.identifier});
+    }
+}

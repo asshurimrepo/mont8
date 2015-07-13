@@ -56,7 +56,7 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-6 fade-effect">
 							<a href="<?= get_site_url() ?>/product-tag/stretched-canvases/"><img
-									src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/canvas_pic.jpg"
+									src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/stretched_canvas.jpg"
 									class="img-responsive center-block" alt=""/></a>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-6 fade-effect">

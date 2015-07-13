@@ -8,6 +8,9 @@
  * @subpackage WooCommerce/Templates
  * @version 2.0.0
  */
+ global $wp_query;
+// 	var_dump($wp_query->query_vars);
+
 get_header(); ?>
 
 
@@ -65,11 +68,15 @@ get_header(); ?>
 
 
 
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php $i = 0; while ( have_posts() ) : the_post(); ?>
 
 					<?php wc_get_template_part( 'content-archive', 'product' ); ?>
 
-			<?php endwhile; // end of the loop. ?>
+					<?php if($i%3==2):?>
+						<div class="col-md-12">&nbsp;</div>
+					<?php endif; ?>
+
+			<?php $i++; endwhile; // end of the loop. ?>
 
 
 			</div>

@@ -10,6 +10,9 @@
 
      };*/
 
+    //Dynamically add class  to tm main total display
+    //$(".tm-totals-form-main").addClass('col-md-6');
+
     // Preview On the Wall
     var preview_on_wall = {
 

@@ -119,6 +119,7 @@
 					<input value="<?php echo $email; ?>" name="settings[paypal][email]" class="dokan-form-control email"
 					       placeholder="you@domain.com" type="text">
 				</div>
+
 			</div>
 		</div>
 		<?php
@@ -286,6 +287,8 @@
 	 * get comma seperated value from "dokan_withdraw_get_active_order_status()" return array
 	 *
 	 * @param array array
+	 *
+	 * @return string
 	 */
 	function dokan_withdraw_get_active_order_status_in_comma()
 	{

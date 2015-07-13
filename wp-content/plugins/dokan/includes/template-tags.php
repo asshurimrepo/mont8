@@ -361,14 +361,6 @@
 				'title' => __( 'Sales History', 'dokan' ),
 				'url'   => dokan_get_navigation_url( 'reports' )
 			),
-			'withdraw'          => array(
-				'title' => __( 'Withdraw', 'dokan' ),
-				'url'   => dokan_get_navigation_url( 'withdraw' )
-			),
-			'payments' => array(
-				'title' => __( 'Payments', 'dokan' ),
-				'url'   => dokan_get_navigation_url( 'settings/payment' )
-			),
 			'pricing' => array(
 				'title' => __( 'Pricing', 'dokan' ),
 				'url'   => get_permalink( get_page_by_path( 'pricing' ) )
@@ -407,17 +399,26 @@
 				'url'   => get_permalink( get_page_by_path( 'my-account' ) )
 			),
 
+			'withdraw'          => array(
+				'title' => __( 'Withdraw', 'dokan' ),
+				'url'   => dokan_get_navigation_url( 'withdraw' )
+			),
+			'settings/payment' => array(
+				'title' => __( 'Payments', 'dokan' ),
+				'url'   => dokan_get_navigation_url( 'settings/payment' )
+			),
+
 			'edit-account'     => array(
 				'title' => __( 'Edit Account', 'dokan' ),
 				'url'   => get_permalink( get_page_by_path( 'my-account' ) ).'edit-account'
 			),
 			'billing-address'     => array(
 				'title' => __( 'Billing Address', 'dokan' ),
-				'url'   => wc_get_endpoint_url('edit-address', 'billing')
+				'url'   => get_permalink_by_slug('my-account', 'edit-address/billing')
 			),
 			'shipping-address'     => array(
 				'title' => __( 'Shipping Address', 'dokan' ),
-				'url'   => wc_get_endpoint_url('edit-address', 'shipping')
+				'url'   => get_permalink_by_slug('my-account', 'edit-address/shipping')
 			),
 			'wishlist'     => array(
 				'title' => __( 'My Wishlists', 'dokan' ),
@@ -469,6 +470,9 @@
 			)
 		);
 
+		//Override settings sub
+		$settings_sub = [];
+
 		$dokan_shipping_option = get_option( 'woocommerce_dokan_product_shipping_settings' );
 		$enable_shipping       = ( isset( $dokan_shipping_option['enabled'] ) ) ? $dokan_shipping_option['enabled'] : 'yes';
 
@@ -481,11 +485,11 @@
 			);
 		}*/
 
-		$settings_sub['social'] = array(
+		/*$settings_sub['social'] = array(
 			'title' => __( 'Social Profile', 'dokan' ),
 			'icon'  => '<i class="fa fa-share-alt-square"></i>',
 			'url'   => dokan_get_navigation_url( 'settings/social' )
-		);
+		);*/
 
 		/**
 		 * Filter to get the seller dashboard settings navigation.
@@ -526,6 +530,8 @@
 
 		$nav_menu          = dokan_get_dashboard_nav();
 		$active_menu_parts = explode( '/', $active_menu );
+
+//		var_dump($active_menu);
 
 		if ( isset( $active_menu_parts[1] ) && $active_menu_parts[0] == 'settings' && array_key_exists( $active_menu_parts[1], $nav_menu['settings']['sub'] ) )
 		{
@@ -661,7 +667,7 @@
 				       } ?>" required="required"/>
 			</p>
 
-			<p class="form-row form-group form-row-wide">
+			<p class="form-row form-group form-row-wide hide">
 				<label for="company-name"><?php _e( 'Shop Name', 'dokan' ); ?> <span class="required">*</span></label>
 				<input type="text" class="input-text form-control" name="shopname" id="company-name"
 				       value="<?php if ( ! empty( $_POST['shopname'] ) )
@@ -756,6 +762,9 @@
 						<li><a href="#" class="active">EN</a></li>
 						<li><a href="#">عربي</a></li>
 					</ul>
+					<ul>
+						<li><?=do_shortcode('[woocs]')?></li>
+					</ul>
 				</div>
 
 				<div class="section_padding">
@@ -822,7 +831,7 @@
 									<?php if ( dokan_is_user_seller( $user_id ) ): ?>
 
 										<li>
-											<a href="<?= dokan_get_navigation_url() ?>"><?= __( 'Dashboard', 'dokan' ) ?></a>
+											<a href="<?= dokan_get_navigation_url() ?>"><?= __( 'My Gallery Tools', 'dokan' ) ?></a>
 										</li>
 
 

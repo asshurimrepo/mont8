@@ -1,0 +1,157 @@
+.steps{
+    margin:50px 0;
+    clear: both;
+    font-size: 16px;
+}
+
+.steps *{
+    color: #222;
+}
+
+.steps li{
+    float: left;
+    margin-right: 10px;
+}
+
+.steps li>a{
+    font-weight: 300;
+    font-size: 16px;
+    padding: 20px 30px 20px 50px;
+    background: #f7f7f7;
+    position: relative;
+}
+
+.steps li>a>.number{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 20px 20px;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.steps li.active>a{
+    background: #f5f501;
+}
+
+.steps li:last-child{
+    margin-right: 0;
+}
+
+.order-steps-container{
+    padding: 100px 0;
+}
+
+.cart-table{
+    width: 100%;
+}
+
+table .cart_item>td{
+    padding: 30px 0;
+}
+
+table .product-thumbnail{
+    width: 142px;
+    padding-right: 15px !important;
+}
+
+table th{
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.product-price{
+    display: block !important;
+
+}
+td.product-price{
+    text-align: center;
+    font-size: 20px;
+}
+.table > thead > tr > th{
+    border: none !important;
+}
+
+.product-remove a{
+    font-weight: 600;
+}
+
+.woocommerce .quantity .qty{
+    margin: 0 auto;
+}
+
+.product-quantity, .product-subtotal, .product-remove{
+    max-width: 90px;
+    text-align: center !important;
+    vertical-align: top !important;
+}
+
+.product-subtotal .amount{
+    font-size: 35px;
+}
+
+.woocommerce td.product-name dl.variation dd {
+    margin-bottom: 0 !important;
+}
+
+.variation-Isasquareartwork, .variation-Framethisprint{
+    display: none !important;
+}
+
+.coupon_input{
+    background: #f7f7f7;
+    border: 2px solid #e5e5e5;
+    display: inline-block;
+    padding: 8px;
+    width: 200px;
+    margin: 0 10px !important;
+}
+
+.coupon-text{
+    padding: 0 4px;
+}
+
+.woocommerce-info{
+    display: none;
+}
+
+.cart_item .product-name .prod-name {
+    font-size: 20px !important;
+}
+
+.btn-black{
+    text-transform: uppercase;
+    background: #595959 !important;
+    color: #FFF !important;
+    border:1px solid #252525 !important;
+    border-bottom-width: 4px !important;
+    padding: 10px 10px !important;
+    border-radius: 0 !important;
+}
+
+.btn-black:active{
+    border-bottom-width: 1px !important;
+}
+td.actions{
+    border-bottom: 1px #ddd solid;
+}
+
+.step-item{
+    display: none;
+}
+
+.step-item.active{
+    display: block;
+}
+
+.error{
+    color: red;
+}
+input.error{
+    border-color: #a00;
+}
+
+.cart_totals  .amount{
+    font-weight: 600 !important;
+}

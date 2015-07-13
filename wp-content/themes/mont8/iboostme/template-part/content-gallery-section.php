@@ -17,10 +17,10 @@
 		</a>
 
 		<div class="prod-meta">
-			<div class="hide">
-				<?=do_shortcode("[yith_wcwl_add_to_wishlist product_id={$artwork->id}]")?>
+			<div class="pull-right">
+				<?=do_shortcode('[likebtn identifier="'.$artwork->post->ID.'" theme="disk" event_handler="onLike" dislike_enabled="0"  show_like_label="0" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
 			</div>
-			<button onclick="jQuery('[data-product-id=<?=$artwork->id?>]').get(0).click();" class="wishlist btn btn-default" data-toggle="tooltip" title="Like this Artwork"><i class="fa fa-heart"></i></button>
+
 			<a href="<?= $artwork->get_permalink() ?>" class="invi-link">&nbsp;</a>
 			<div class="info">
 					<a href="<?= $artwork->get_permalink() ?>"><span class="title"><?= $artwork->get_title() ?></span></a>

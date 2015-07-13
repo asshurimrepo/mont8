@@ -122,3 +122,20 @@ a.userpro-follow.notfollowing.following.red:before{
 .latest-artwork{
     padding: 2em 0;
 }
+.socials a{
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 30px;
+    text-align: center;
+}
+.socials a>i.icon{
+    padding: 6px;
+    height: 30px;
+    width: 30px;
+    background-color: #000;
+    display: block;
+    border-radius: 30px;
+    font-size: 1.3em;
+    color: #FFF;
+    border: 1px solid #FFF;
+}

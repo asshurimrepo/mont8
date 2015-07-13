@@ -19,16 +19,25 @@
 		return;
 	}
 
-
+	$prod_description = $product->post->post_content;
 	$is_square = is_square( $product->get_image_id() );
+
+	$cart = end(WC()->cart->get_cart());
 ?>
+
+<script>
+	window.last_cart_added = <?=json_encode($cart)?>;
+	window.shop_url = '<?=shop_url()?>';
+	window.checkout_url = '<?=WC()->cart->get_checkout_url()?>';
+</script>
 
 <div class="overlay-preloader"></div>
 
-
+<?php if($prod_description): ?>
 <div itemprop="description" class="product-description collapsed">
 	<?php echo apply_filters( 'woocommerce_short_description', get_the_content() ) ?>
 </div>
+<?php endif; ?>
 
 <?php
 	// Availability
@@ -46,6 +55,9 @@
 
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+
+
+<!--		<div class="currency-switcher col-md-6"></div>-->
 
 
 		<?php
@@ -90,7 +102,7 @@
 
 		<div class="preview-wall-container">
 			<a href="#!" class="preview-wall-btn"><i
-					class="fa fa-arrows-alt"></i> <?= _e( 'View this piece on the wall', 'dokan' ) ?></a>
+					class="fa fa-arrows-alt"></i> <?= _e( 'View this piece on a wall', 'dokan' ) ?></a>
 		</div>
 
 		<div class="artwork-thumbnail">
@@ -109,6 +121,9 @@
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>
+
+	<?//=do_shortcode("[woocs show_flags=1 width='100%']")?>
+
 
 	<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 
@@ -141,6 +156,7 @@
 
 	<?php if ( $is_square ): ?>
 		<script>
+			var is_square = true;
 			jQuery(document).ready(function(){
 
 				jQuery("input.square-artwork").click();

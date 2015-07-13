@@ -30,5 +30,4 @@
 		get_template_part( 'single-product', 'private' );
 	}
 
-
 	get_footer();

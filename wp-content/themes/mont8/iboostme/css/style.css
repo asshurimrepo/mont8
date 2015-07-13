@@ -277,9 +277,18 @@ dd.tm-final-totals{
 /*Product Image*/
 .woocommerce div.product div.images img{
     max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
 }
 .woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images{
     text-align: center;
+
+}
+
+.images>.image-grey{
+    background-color: #F3F3F3;
+    padding: 29px 0px 24px 0px;
+    margin-bottom: 10px;
 }
 
 
@@ -311,8 +320,8 @@ dd.tm-final-totals{
 }
 
 /*with matt*/
-.framed-photo-prints.framed-art.matt-black, .framed-photo-prints.framed-art.matt-white{
-    border-width: 47px;
+.framed-photo-prints.framed-art.matt-black, .framed-photo-prints.framed-art.matt-white, .framed-photo-prints.framed-art.matt-offwhite{
+    border-width: 70px;
 }
 
 
@@ -320,7 +329,7 @@ dd.tm-final-totals{
 .framed-photo-prints.framed-art.box-frame{
     border-width: 20px;
 }
-.framed-photo-prints.framed-art.box-frame.matt-black, .framed-photo-prints.framed-art.box-frame.matt-white{
+.framed-photo-prints.framed-art.box-frame.matt-black, .framed-photo-prints.framed-art.box-frame.matt-white, .framed-photo-prints.framed-art.box-frame.matt-offwhite{
     border-width: 60px !important;
 }
 
@@ -416,6 +425,10 @@ dd.tm-final-totals{
     z-index: 2;
 }
 
+#modal-product .images .poster-print:before{
+    background: none;
+}
+
 /*Canvas Print*/
 .images .canvas-print{
     -webkit-border-image: url('images/a-canvas.png') 32 fill;
@@ -426,7 +439,7 @@ dd.tm-final-totals{
 }
 
 /*Art Print and Photo Print*/
-.images .photo-print, .images .art-print{
+.images .photo-print, .images .art-print, #modal-product .images .poster-print{
     -webkit-border-image: url('images/a-a1a2.png') 32 fill;
     border-image: url('images/a-a1a2.png') 32 fill;
     border-image-source: url('images/a-a1a2.png');
@@ -452,7 +465,7 @@ dd.tm-final-totals{
     -webkit-border-image: url('images/flat-frame-brown-white.png') 32 fill;
     border-image: url('images/flat-frame-brown-white.png') 32 fill;
     border-image-source: url('images/flat-frame-brown-white.png');
-    border-image-slice: 99 102 101 102;
+    border-image-slice: 144 145 145 145;
 }
 
 /*FLAT FRAME - matt frame-brown black*/
@@ -460,7 +473,15 @@ dd.tm-final-totals{
     -webkit-border-image: url('images/flat-frame-brown-black.png') 32 fill;
     border-image: url('images/flat-frame-brown-black.png') 32 fill;
     border-image-source: url('images/flat-frame-brown-black.png');
-    border-image-slice: 99 102 101 102;
+    border-image-slice: 144 145 145 145;
+}
+
+/*FLAT FRAME - matt frame-brown offwhite*/
+.framed-photo-prints.framed-art.flat-frame.frame-brown.matt-offwhite{
+    -webkit-border-image: url('images/flat-frame-brown-offwhite.png') 32 fill;
+    border-image: url('images/flat-frame-brown-offwhite.png') 32 fill;
+    border-image-source: url('images/flat-frame-brown-offwhite.png');
+    border-image-slice: 144 145 145 145;
 }
 
 
@@ -490,6 +511,14 @@ dd.tm-final-totals{
     border-image-slice: 113 114 115 113;
 }
 
+/*BOX FRAME - matt frame-brown offwhite*/
+.framed-photo-prints.framed-art.box-frame.frame-brown.matt-offwhite{
+    -webkit-border-image: url('images/box-frame-brown-offwhite.jpg') 32 fill;
+    border-image: url('images/box-frame-brown-offwhite.jpg') 32 fill;
+    border-image-source: url('images/box-frame-brown-offwhite.jpg');
+    border-image-slice: 113 114 115 113;
+}
+
 
 
 /*
@@ -510,7 +539,7 @@ dd.tm-final-totals{
     -webkit-border-image: url('images/flat-frame-white-black.png') 32 fill;
     border-image: url('images/flat-frame-white-black.png') 32 fill;
     border-image-source: url('images/flat-frame-white-black.png');
-    border-image-slice: 99 100 100 100;
+    border-image-slice: 144 145 145 145;
 }
 
 /*FLAT FRAME - matt frame-white white*/
@@ -518,7 +547,15 @@ dd.tm-final-totals{
     -webkit-border-image: url('images/flat-frame-white-white.png') 32 fill;
     border-image: url('images/flat-frame-white-white.png') 32 fill;
     border-image-source: url('images/flat-frame-white-white.png');
-    border-image-slice: 99 100 100 100;
+    border-image-slice: 144 145 145 145;
+}
+
+/*FLAT FRAME - matt frame-white white*/
+.framed-photo-prints.framed-art.flat-frame.frame-white.matt-offwhite{
+    -webkit-border-image: url('images/flat-frame-white-offwhite.png') 32 fill;
+    border-image: url('images/flat-frame-white-offwhite.png') 32 fill;
+    border-image-source: url('images/flat-frame-white-offwhite.png');
+    border-image-slice: 144 145 145 145;
 }
 
 
@@ -548,6 +585,14 @@ dd.tm-final-totals{
     border-image-slice: 113 114 115 113;
 }
 
+/*BOX FRAME - matt frame-white offwhite*/
+.framed-photo-prints.framed-art.box-frame.frame-white.matt-offwhite{
+    -webkit-border-image: url('images/box-frame-white-offwhite.jpg') 32 fill;
+    border-image: url('images/box-frame-white-offwhite.jpg') 32 fill;
+    border-image-source: url('images/box-frame-white-offwhite.jpg');
+    border-image-slice: 113 114 115 113;
+}
+
 
 /*
 **** FRAME BLACK
@@ -568,7 +613,7 @@ dd.tm-final-totals{
     -webkit-border-image: url('images/flat-frame-black-black.png') 32 fill;
     border-image: url('images/flat-frame-black-black.png') 32 fill;
     border-image-source: url('images/flat-frame-black-black.png');
-    border-image-slice: 99 102 101 102;
+    border-image-slice: 144 145 145 145;
 }
 
 /*FLAT FRAME - matt frame-black white*/
@@ -576,7 +621,15 @@ dd.tm-final-totals{
     -webkit-border-image: url('images/flat-frame-black-white.png') 32 fill;
     border-image: url('images/flat-frame-black-white.png') 32 fill;
     border-image-source: url('images/flat-frame-black-white.png');
-    border-image-slice: 99 102 101 102;
+    border-image-slice: 144 145 145 145;
+}
+
+/*FLAT FRAME - matt frame-black white*/
+.framed-photo-prints.framed-art.flat-frame.frame-black.matt-offwhite{
+    -webkit-border-image: url('images/flat-frame-black-offwhite.png') 32 fill;
+    border-image: url('images/flat-frame-black-offwhite.png') 32 fill;
+    border-image-source: url('images/flat-frame-black-offwhite.png');
+    border-image-slice: 144 145 145 145;
 }
 
 
@@ -606,6 +659,14 @@ dd.tm-final-totals{
     border-image-slice: 113 114 115 113;
 }
 
+/*BOX FRAME - matt frame-black offwhite*/
+.framed-photo-prints.framed-art.box-frame.frame-black.matt-offwhite{
+    -webkit-border-image: url('images/box-frame-black-offwhite.jpg') 32 fill;
+    border-image: url('images/box-frame-black-offwhite.jpg') 32 fill;
+    border-image-source: url('images/box-frame-black-offwhite.jpg');
+    border-image-slice: 113 114 115 113;
+}
+
 
 
 /*FLOATER FRAME*/
@@ -613,21 +674,21 @@ dd.tm-final-totals{
     -webkit-border-image: url('images/floater-frame-brown.png') 32 fill;
     border-image: url('images/floater-frame-brown.png') 32 fill;
     border-image-source: url('images/floater-frame-brown.png');
-    border-image-slice: 52 51 52 54;
+    border-image-slice: 46 47 45 47;
 }
 
 .framed-photo-prints.framed-art.floater-frame.frame-white{
     -webkit-border-image: url('images/floater-frame-white.png') 32 fill;
     border-image: url('images/floater-frame-white.png') 32 fill;
     border-image-source: url('images/floater-frame-white.png');
-    border-image-slice: 52 51 52 54;
+    border-image-slice: 46 47 45 47;
 }
 
 .framed-photo-prints.framed-art.floater-frame.frame-black{
     -webkit-border-image: url('images/floater-frame-black.png') 32 fill;
     border-image: url('images/floater-frame-black.png') 32 fill;
     border-image-source: url('images/floater-frame-black.png');
-    border-image-slice: 52 51 52 54;
+    border-image-slice: 46 47 45 47;
 }
 
 
@@ -732,7 +793,7 @@ dd.tm-final-totals{
   position: absolute;
   top: 1px;
   left: 13px;
-  content: '\f004';
+  content: '\f005';
   font-size: 2.2rem;
   color: #a8a8a7;
 }
@@ -993,6 +1054,8 @@ dd.tm-final-totals{
 }
 
 
+.qty{ display: none; }
+
 /*PP Holder*/
 .pp_pic_holder .ppt{
     display: none !important;
@@ -1036,6 +1099,10 @@ dd.tm-final-totals{
     float: none !important;
     margin: 0 auto;
     width: 17% !important;
+}
+
+#modal-product .images img{
+    opacity: 1 !important;
 }
 
 #modal-product .images .preview-wall-container{
@@ -1136,4 +1203,23 @@ dd.tm-final-totals{
 .staging-products-item.active label {
   color: #30beda;
 
+}
+
+
+/*Currency Switcher*/
+.woocommerce-currency-switcher-form {
+    position: absolute;
+    left: 235px;
+    right: 52px;
+    bottom: 103px;
+}
+
+.summary.entry-summary{
+    position: relative;
+}
+
+.woocommerce-currency-switcher-form{
+    bottom: 62px !important;
+    right: 0 !important;
+    left: auto !important;
 }

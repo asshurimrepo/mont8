@@ -76,7 +76,7 @@
 	                       $footer_text = get_theme_mod( 'footer_text' );
 
 	                       if ( empty( $footer_text ) ) {
-		                       printf( __( '&copy; %d, %s. All rights are reserved.', 'dokan' ), date( 'Y' ), get_bloginfo( 'name' ) );
+		                       printf( __( '&copy; Copyrights %d, %s. All rights are reserved.', 'dokan' ), date( 'Y' ), get_bloginfo( 'name' ) );
 
 	                       } else {
 		                       echo $footer_text;
@@ -94,6 +94,61 @@
 <?php wp_footer(); ?>
 
 <script src="<?=get_template_directory_uri().'/assets/js/bootstrap-datepicker/js/bootstrap-datepicker.min.js';?>"></script>
+
+<script>
+    jQuery(document).ready(function($){
+
+	    $(".cart-overlay").click(function () {
+
+		    $(".cart-overlay").fadeToggle();
+
+		    var cartSidebar = $('.cart-sidebar');
+
+		    hideCart = !hideCart;
+
+		    cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
+
+	    });
+
+	    $('[data-toggle="tooltip"]').tooltip();
+
+
+	    // cart sidebar
+	    var hideCart = false;
+	    $('.btn-cart-sidebar').click(function (e) {
+
+		    $(".cart-overlay").fadeToggle();
+
+		    var cartSidebar = $('.cart-sidebar');
+
+		    cartSidebar.show();
+
+		    hideCart = !hideCart;
+
+		    if (hideCart) {
+			    cartSidebar.addClass('slideInRight').removeClass('slideOutRight');
+		    } else {
+			    cartSidebar.addClass('slideOutRight').removeClass('slideInRight');
+		    }
+
+	    });
+
+	    //search panel
+	    var searchPanel = $('.search_panel');
+	    var searchPanelInput = $('.search_panel input');
+	    var isToggled = false;
+	    searchPanel.focusin(function () {
+		    isToggled = !isToggled;
+		    searchPanel.toggleClass('expand', isToggled);
+	    });
+
+	    searchPanelInput.focusout(function () {
+		    isToggled = !isToggled;
+		    searchPanel.toggleClass('expand', isToggled);
+	    });
+
+    });
+</script>
 
 <div id="yith-wcwl-popup-message" style="display:none;"><div id="yith-wcwl-message"></div></div>
 </body>

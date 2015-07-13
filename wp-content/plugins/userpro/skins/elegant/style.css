@@ -204,14 +204,14 @@ div.userpro div.ajax-file-upload {
     font-size: 15px;
     padding: 2px 20px !important;
     height: auto !important;
-
+	text-transform: uppercase;
 	border-radius: 3px  !important;
 	color: #fff  !important;
 	text-shadow: none !important;
-	border: 1px solid #353535  !important;
-	background: #444 !important;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#444), to(#333))  !important;
-    background: -moz-linear-gradient(0% 0% 270deg,#444, #333) !important;
+	border: 1px solid #45a300  !important;
+	background: #45a300 !important;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#45a300), to(#45a300)) !important
+    background: -moz-linear-gradient(0% 0% 270deg,#45a300, #45a300) !important;
 }
 
 input.userpro-button:hover,

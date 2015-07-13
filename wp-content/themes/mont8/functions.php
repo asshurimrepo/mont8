@@ -219,6 +219,11 @@
 				load_style( 'user-logged-in-style', 'user-logged.css', '1.0.1' );
 			}*/
 
+			if ( ! is_user_logged_in() )
+			{
+				load_style( 'visitor-specific-style', 'visitor-specific.css', '0.0.1' );
+			}
+
 
 			/****** Scripts ******/
 			if ( is_single() && comments_open() && get_option( 'thread_comments' ) )
@@ -237,8 +242,14 @@
 			wp_enqueue_script( 'bootstrap-min', $template_directory . '/assets/js/bootstrap.min.js', false, null, true );
 			wp_enqueue_script( 'flexslider', $template_directory . '/assets/js/jquery.flexslider-min.js', array( 'jquery' ) );
 
-			wp_enqueue_script( 'dokan-theme-scripts', $template_directory . '/assets/js/script.js', false, null, true );
+			wp_enqueue_script( 'dokan-theme-scripts', $template_directory . '/assets/js/script.js', false, '1.2.1', true );
 			wp_enqueue_script( 'bootstrap-datepicker-scripts', $template_directory . '/assets/js/bootstrap-datepicker/js/bootstrap-datepicker.min.js', false, null, true );
+
+			if ( get_query_var( 'pagename' ) == 'dashboard' )
+			{
+				load_plugin( 'bootstrap-switch.min' );
+			}
+
 		}
 
 		/**
@@ -429,17 +440,6 @@
 	}
 
 
-	/**
-	 * @desc Remove in all product type
-	 */
-	function wc_remove_all_quantity_fields( $return, $product )
-	{
-		return true;
-	}
-
-	add_filter( 'woocommerce_is_sold_individually', 'wc_remove_all_quantity_fields', 10, 2 );
-
-
 	add_action( 'init', 'jk_remove_wc_breadcrumbs' );
 	function jk_remove_wc_breadcrumbs()
 	{
@@ -564,3 +564,5 @@
 
 		<?php
 	}
+
+

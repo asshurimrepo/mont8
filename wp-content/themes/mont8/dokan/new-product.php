@@ -134,7 +134,7 @@
 
 										<div class="dokan-form-group <?=!$is_printshop ?: 'hide'?>" >
 
-											<h4><?php _e( 'Choose Product', 'dokan' ); ?></h4>
+											<h4><?php _e( 'CHOOSE PRODUCTS TO BE AVAILABLE FOR SALE', 'dokan' ); ?></h4>
 
 											<div class="dokan-form-group">
 												<ul class="dokan-checkbox-cat">

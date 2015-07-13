@@ -6,5 +6,8 @@
     "files": [
       "iboostme/lib/uploading_artwork.php"
     ]
+  },
+  "require": {
+    "nesbot/carbon": "^1.20"
   }
 }

@@ -1,19 +1,14 @@
 <?php
-
-//	require_once('class/global_pricing.php');
-
-// Constants
 	define( 'THEME_PATH', get_template_directory_uri() );
 
-	/*Handling Upload */
-//	(new IB_Artwork_Upload)->init();
+
+//	IB_Ajax::handle();
 
 
-//	Init
 	function init_mont8()
 	{
 
-		if ( get_option( '_art_print_base_prices' ) )
+		/*if ( get_option( '_art_print_base_prices' ) )
 		{
 			return;
 		}
@@ -26,7 +21,7 @@
 			'poster'       => [ 54, 90 ]
 		];
 
-		update_option( '_art_print_base_prices', json_encode( $base_price ) );
+		update_option( '_art_print_base_prices', json_encode( $base_price ) );*/
 	}
 
 	add_action( 'init', 'init_mont8' );
@@ -112,7 +107,12 @@
 		load_js( 'preview-on-the-wall', 'preview-on-the-wall.js' );
 
 		// load style
-		load_style( 'single-product-style', 'style.css', '1.0.6' );
+		load_style( 'single-product-style', 'style.css', '1.1.0' );
+
+		// Multi zoom
+		load_js( 'multizoom-script', 'multizoom.js' );
+		load_style( 'multizoom-style', 'multizoom.css' );
+
 
 	}
 
@@ -124,6 +124,24 @@
 			get_stylesheet_directory_uri() . "/iboostme/js/{$path}",
 			array(), $version, true
 		);
+	}
+
+	/**
+	 * @param $id
+	 * @param string $v
+	 * @param array|[css, js] $is_included
+	 */
+	function load_plugin( $id, $v = '1.0.0', $is_included = [ 'css', 'js' ] )
+	{
+		if ( $is_included[0] )
+		{
+			load_style( "{$id}-style", "{$id}.css", $v );
+		}
+
+		if ( $is_included[1] )
+		{
+			load_js( "{$id}-script", "{$id}.js", $v );
+		}
 	}
 
 	function load_style( $id, $path, $version = '1.0.0' )
@@ -216,7 +234,12 @@
 			'template' => '',
 		), $atts );
 
-		return get_template_part( "iboostme/{$a[template]}" );
+		ob_start();
+		get_template_part( "iboostme/{$a[template]}" );
+		$var = ob_get_contents();
+		ob_end_clean();
+
+		return $var;
 	}
 
 	add_shortcode( 'iboost_get_template', 'iboost_get_template' );
@@ -268,17 +291,33 @@
 
 		return '<div class="row">' . do_shortcode( $content ) . '</div>';
 	}
+
 	add_shortcode( 'row', 'row' );
 
+//  FontAwesome
+	function fa( $atts, $content = null )
+	{
+
+		$a = shortcode_atts( array(
+			'icon' => '',
+		), $atts );
+
+		return "<i style='margin: 0 10px;' class='fa fa-{$a[icon]}'></i>";
+	}
+
+	add_shortcode( 'fa', 'fa' );
+
 //	DIV
-	function div($atts, $content = null){
+	function div( $atts, $content = null )
+	{
 		$a = shortcode_atts( array(
 			'class' => '',
 		), $atts );
 
-		return '<div class="'.$a['class'].'">' . do_shortcode( $content ) . '</div>';
+		return '<div class="' . $a['class'] . '">' . do_shortcode( $content ) . '</div>';
 	}
-	add_shortcode('div','div');
+
+	add_shortcode( 'div', 'div' );
 
 
 	function col_1_5( $atts, $content = null )
@@ -315,7 +354,7 @@
 
 
 		/*if user is a seller*/
-		$menus['payments'] = array(
+		/*$menus['payments'] = array(
 			'title' => __( 'Payments', 'dokan' ),
 			'url'   => dokan_get_navigation_url( 'settings/payment' )
 		);
@@ -323,7 +362,7 @@
 		$menus['pricing'] = array(
 			'title' => __( 'Pricing', 'dokan' ),
 			'url'   => get_permalink( get_page_by_path( 'pricing' ) )
-		);
+		);*/
 
 		/*$menus['printshop'] = array(
 			'title' => __( 'Printshop', 'dokan' ),
@@ -362,7 +401,8 @@
 	}
 
 
-	function shop_url(){
+	function shop_url()
+	{
 		return get_permalink( get_page_by_path( 'shop' ) );
 	}
 
@@ -377,16 +417,53 @@
 		return null;
 	}
 
-	function get_permalink_by_slug($slug, $sub = null){
-		return get_permalink( get_page_by_path( $slug ) ).$sub;
+	function get_permalink_by_slug( $slug, $sub = null )
+	{
+		return get_permalink( get_page_by_path( $slug ) ) . $sub;
 	}
 
-	function is_square($id){
+	function is_square( $id )
+	{
 		$image = wp_get_attachment_metadata( $id );
 
-		if($image['width'] == $image['height']){
+		if ( $image['width'] == $image['height'] )
+		{
 			return true;
 		}
 
 		return false;
 	}
+
+
+
+	/*add_action( 'woocommerce_checkout_process', 'wc_minimum_order_amount' );
+//	add_action( 'woocommerce_before_cart' , 'wc_minimum_order_amount' );
+
+	function wc_minimum_order_amount() {
+		// Set this variable to specify a minimum order value
+		$minimum =100050;
+
+		if ( WC()->cart->total < $minimum ) {
+
+			if( is_cart() ) {
+
+				wc_print_notice(
+					sprintf( 'You must have an order with a minimum of %s to place your order, your current order total is %s.' ,
+						wc_price( $minimum ),
+						wc_price( WC()->cart->total )
+					), 'error'
+				);
+
+			} else {
+
+				wc_add_notice(
+					sprintf( 'You must have an order with a minimum of %s to place your order, your current order total is %s.' ,
+						wc_price( $minimum ),
+						wc_price( WC()->cart->total )
+					), 'error'
+				);
+
+			}
+		}
+
+	}*/

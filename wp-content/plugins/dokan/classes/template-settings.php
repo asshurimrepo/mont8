@@ -327,6 +327,8 @@
 					'payment' => array(),
 				);
 
+				$dokan_settings['payment']['primary'] = sanitize_text_field( $_POST['settings']['primary'] );
+
 				if ( isset( $_POST['settings']['bank'] ) )
 				{
 					$bank = $_POST['settings']['bank'];

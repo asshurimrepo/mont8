@@ -19,7 +19,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-<table class="shop_table cart" cellspacing="0">
+<table class="shop_table cart table" cellspacing="0">
 	<thead>
 		<tr>
 			<th class="product-remove">&nbsp;</th>

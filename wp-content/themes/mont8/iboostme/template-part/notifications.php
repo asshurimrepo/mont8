@@ -1,20 +1,47 @@
 <?php
 
+	use Carbon\Carbon;
+
 	$response       = User_Actions::listens();
 	$notif_settings = $featured_products = get_the_author_meta( '_notifications', get_current_user_id() );
 
+	$notifications = Notification::get();
+
 	$notif_types = [
 
-		'comment' => 'When a user comments in your artwork',
-		'follow'  => 'When a user followed you',
-		'order'   => 'When a user ordered your artwork',
+		'comment' => 'When a user comments on your artwork',
+		'follow'  => 'When a user follows you',
+		'order'   => 'When a user orders one of your artwork',
 
 	];
 
-//	var_dump( $notif_settings );
+	//	var_dump( $notif_settings );
 
 	iboost_include( 'iboostme/template-part/alerts', $response );
 ?>
+
+<div class="col-md-12">
+	<table class="table table-striped" style="background: #FFF;">
+		<?php foreach ( $notifications as $notif ): ?>
+			<tr>
+				<td>
+					<i class="fa fa-<?= $notif['icon'] ?>"></i>
+					<?= $notif['message'] ?>
+				</td>
+				<td>
+					<i class="fa fa-clock-o"></i> <?= Carbon::parse( $notif['date'] )->diffForHumans() ?>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+	</table>
+
+	<?php if ( ! count( $notifications ) ): ?>
+		<div class="alert alert-warning">
+			<i class="fa fa-info"></i> You don't have any notifications yet.
+		</div>
+	<?php endif; ?>
+
+</div>
 
 <div class="col-md-10">
 	<form method="post">

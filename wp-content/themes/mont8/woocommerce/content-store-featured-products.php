@@ -11,6 +11,14 @@
 	});
 
 
+	$collection_ids = [
+		get_term_by('slug', 'framed-art', 'product_tag'),
+		get_term_by('slug', 'art-print', 'product_tag'),
+		get_term_by('slug', 'photography', 'product_tag'),
+		get_term_by('slug', 'posters', 'product_tag'),
+		get_term_by('slug', 'stretched-canvases', 'product_tag'),
+	];
+
 	$labels = [
 		'framed-art'  => 'Framed Art',
 		'art-print'   => 'Art Print',
@@ -29,12 +37,13 @@
 	<?php $i=0; foreach($filtered as $key=>$featured): ?>
 
 		<div class="col-md-4">
-			<div class="featured <?=$key?>">
-				<?php
-					echo wp_get_attachment_image( $featured_products[ $key ], 'shop_catalog', null, [ 'class' => 'img-responsive', ] );
-				?>
-			</div>
-			<h3 style="text-align: center"><?=$labels[$key]?></h3>
+			<a href="?collection=<?= $collection_ids[ $i ]->term_id ?>">
+				<div class="featured <?= $key ?>">
+					<?php
+						echo wp_get_attachment_image( $featured_products[ $key ], 'shop_catalog', null, [ 'class' => 'img-responsive', ] );
+					?>
+				</div>
+				<h3 style="text-align: center"><?= $labels[ $key ] ?></h3></a>
 		</div>
 
 		<?php if ( $i % 3 == 2 ): ?>

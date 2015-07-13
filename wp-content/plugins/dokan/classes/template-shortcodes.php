@@ -317,6 +317,7 @@
 						update_post_meta( $product_id, '_regular_price', $price );
 						update_post_meta( $product_id, '_sale_price', '' );
 						update_post_meta( $product_id, '_price', $price );
+						update_post_meta( $product_id, '_sold_individually', 'no' );
 						update_post_meta( $product_id, '_visibility', $is_printshop ? 'hidden' : 'visible' );
 
 

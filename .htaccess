@@ -1,43 +1,4 @@
-# BEGIN FRESH-MINIFICATOR
-### Headers gzip, expires
-<IfModule mod_headers.c>
-<filesMatch .*\.(jpg|jpeg|png|gif|ico|js|css)(\.gz)?$>
-Header append Cache-Control "public"
-Header append Expires "A604800"
-</filesMatch>
-Header unset Accept-Ranges
-Header unset ETag
-Header unset Link
-Header unset Pragma
-Header unset Transfer-Encoding
-Header unset X-Pingback
-Header append Vary Accept-Encoding
-RewriteCond %{HTTP:Accept-encoding} gzip
-RewriteCond %{REQUEST_FILENAME}.gz -f
-RewriteRule ^(.*)$ $1.gz [L]
-<FilesMatch .*\.gz$>
-Header set Content-Encoding: gzip
-</FilesMatch>
-<FilesMatch .*\.css.gz$>
-ForceType text/css
-</FilesMatch>
-<FilesMatch .*\.html?.gz$>
-ForceType text/html
-Header unset Expires
-</FilesMatch>
-<FilesMatch .*\.js.gz$>
-# Works in IE8 and older but obsolete - today standart = application/javascript
-ForceType text/javascript
-</FilesMatch>
-<FilesMatch .*\.xml.gz$>
-ForceType text/xml
-</FilesMatch>
-<FilesMatch .*\.txt.gz$>
-ForceType text/plain
-</FilesMatch>
-</IfModule>
 
-# END FRESH-MINIFICATOR
 
 
 
