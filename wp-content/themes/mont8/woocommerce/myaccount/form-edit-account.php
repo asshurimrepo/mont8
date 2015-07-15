@@ -13,7 +13,7 @@
 	}
 
 	//	User_Actions::listens();
-	$store_info = get_user_meta($user->ID, 'dokan_profile_settings', true);
+	$store_info = get_user_meta( $user->ID, 'dokan_profile_settings', true );
 	//	var_dump($store_info);
 
 ?>
@@ -47,16 +47,19 @@
 		       value="<?php echo esc_attr( $user->user_email ); ?>"/>
 	</p>
 
-	<p class="form-row form-row-last">
-		<label for="account_last_name"><?php _e( 'Store Name', 'dokan' ); ?> <span
-				class="required">*</span></label>
-		<input type="text" class="input-text" name="dokan_store_name" id="dokan_store_name"
-		       value="<?php echo esc_attr( $store_info['store_name'] ); ?>"/>
-	</p>
+	<?php if ( dokan_is_user_seller( $user->ID ) ): ?>
+		<p class="form-row form-row-last">
+			<label for="account_last_name"><?php _e( 'Store Name', 'dokan' ); ?> <span
+					class="required">*</span></label>
+			<input type="text" class="input-text" name="dokan_store_name" id="dokan_store_name"
+			       value="<?php echo esc_attr( $store_info['store_name'] ); ?>"/>
+			<span class="text-muted"><em><?= dokan_get_store_url( $user->ID ) ?></em></span>
+		</p>
+	<?php endif; ?>
 
 	<div class="clear"></div>
 
-	<?=do_shortcode('[h_space]')?>
+	<?= do_shortcode( '[h_space]' ) ?>
 
 	<fieldset>
 		<legend><?php _e( 'Password Change', 'woocommerce' ); ?></legend>

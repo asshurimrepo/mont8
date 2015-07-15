@@ -37,6 +37,8 @@
 			$markup_price     = $base_price[0] * ( $poster_markup / 100 );
 			$final_base_price = number_format( $base_price[0] + $markup_price, 2 );
 			$final_base_price *= get_current_currency( 'rate' );
+			$final_base_price = round($final_base_price);
+
 			$preview_price = get_woocommerce_currency_symbol() . $final_base_price;
 
 			return $preview_price;

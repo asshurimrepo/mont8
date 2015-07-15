@@ -471,6 +471,7 @@
 			if ( strlen( $_POST['dokan_store_name'] ) < 1 )
 			{
 				$args->add( 'error', __( 'Store Name is required!', 'woocommerce' ), '' );
+
 				return;
 			}
 
@@ -485,7 +486,30 @@
 	}
 
 
+	add_filter( 'formatted_woocommerce_price', 'round_formatted_woocommerce_price', 999 );
+	function round_formatted_woocommerce_price( $price )
+	{
+//		var_dump('ass');
+//		return $price;
+//		return floatval( round( $price ) );
 
+//		$price = round((double) $price);
+
+		// $this_price = $price;
+		$price = str_replace( ',', '', $price );
+
+		return number_format(round( $price ), 2);
+	}
+
+
+	/*add_filter( 'woocommerce_get_price_excluding_tax', 'round_price_product', 10, 1 );
+	add_filter( 'woocommerce_get_price_including_tax', 'round_price_product', 10, 1 );
+	add_filter( 'woocommerce_tax_round', 'round_price_product', 10, 1);
+	add_filter( 'woocommerce_get_price', 'round_price_product', 10, 1);
+
+	function round_price_product( $price ){
+		return round( $price );
+	}*/
 
 
 	/*add_action( 'woocommerce_checkout_process', 'wc_minimum_order_amount' );
