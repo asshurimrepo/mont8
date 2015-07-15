@@ -14,6 +14,20 @@
 
 
 	$art_products = [
+		'art_print'    => [
+			'id'      => '_art_print_markup',
+			'image'   => 'product-AP.jpg',
+			'label'   => 'Fine Art Print',
+			'slug'    => 'art-print',
+			'default' => $_art_print_markup
+		],
+		'photo_print'  => [
+			'id'      => '_photo_print_markup',
+			'image'   => 'product-PP.jpg',
+			'label'   => 'Photo Print',
+			'slug'    => 'photography',
+			'default' => $_photo_print_markup
+		],
 		'framed_print' => [
 			'id'      => '_framed_print_markup',
 			'image'   => 'product-FP.jpg',
@@ -21,30 +35,16 @@
 			'slug'    => 'framed-art',
 			'default' => $_framed_print_markup
 		],
-		'art_print'    => [
-			'id'      => '_art_print_markup',
-			'image'   => 'product-PO.jpg',
-			'label'   => 'Fine Art Print',
-			'slug'    => 'art-print',
-			'default' => $_art_print_markup
-		],
-		'photo_print'  => [
-			'id'      => '_photo_print_markup',
-			'image'   => 'product-PO.jpg',
-			'label'   => 'Photo Print',
-			'slug'    => 'photography',
-			'default' => $_photo_print_markup
-		],
 		'canvas'       => [
 			'id'      => '_canvas_markup',
-			'image'   => 'product-S.jpg',
-			'label'   => 'Canvas',
+			'image'   => 'product-C.jpg',
+			'label'   => 'Stretched Canvas',
 			'slug'    => 'stretched-canvases',
 			'default' => $_canvas_markup
 		],
 		'poster'       => [
 			'id'      => '_poster_markup',
-			'image'   => 'product-PO.jpg',
+			'image'   => 'product-P.jpg',
 			'label'   => 'Poster',
 			'slug'    => 'posters',
 			'default' => $_poster_markup
@@ -117,3 +117,9 @@
 
 	</tbody>
 </table>
+
+<div class="row">
+	<div class="col-md-12">
+		Click <a href="?p=412">here</a> to know more about our products
+	</div>
+</div>

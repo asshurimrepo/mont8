@@ -12,9 +12,9 @@
 		exit; // Exit if accessed directly
 	}
 
-//	User_Actions::listens();
+	//	User_Actions::listens();
 	$store_info = get_user_meta($user->ID, 'dokan_profile_settings', true);
-//	var_dump($store_info);
+	//	var_dump($store_info);
 
 ?>
 

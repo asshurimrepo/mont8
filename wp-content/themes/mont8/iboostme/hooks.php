@@ -288,8 +288,11 @@
 //	ROW
 	function row( $atts, $content = null )
 	{
+		$a = shortcode_atts( array(
+			'style' => '',
+		), $atts );
 
-		return '<div class="row">' . do_shortcode( $content ) . '</div>';
+		return '<div class="row" style="' . $a['style'] . '">' . do_shortcode( $content ) . '</div>';
 	}
 
 	add_shortcode( 'row', 'row' );
@@ -453,6 +456,32 @@
 		}
 
 		return $currencies[ $currency ];
+	}
+
+
+	//Validate Edit Account
+	add_action( 'user_profile_update_errors', 'validate_store_info_upon_saving', 10, 1 );
+	function validate_store_info_upon_saving( $args )
+	{
+
+		global $current_user;
+
+		if ( isset( $_POST['dokan_store_name'] ) )
+		{
+			if ( strlen( $_POST['dokan_store_name'] ) < 1 )
+			{
+				$args->add( 'error', __( 'Store Name is required!', 'woocommerce' ), '' );
+				return;
+			}
+
+		}
+
+		$store_settings               = dokan_get_store_info( $current_user->ID );
+		$store_settings['store_name'] = $_POST['dokan_store_name'];
+
+		update_user_meta( $current_user->ID, 'dokan_profile_settings', $store_settings );
+
+//		do_action( 'dokan_process_seller_meta_fields', $current_user->ID );
 	}
 
 

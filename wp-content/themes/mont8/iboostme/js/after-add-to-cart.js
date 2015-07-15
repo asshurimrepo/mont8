@@ -63,9 +63,12 @@ jQuery(document).ready(function ($) {
 
             var _framed_text = v.section_label == 'Artwork Style' ? framed_text : '';
 
-            if (v.value != "Yes") {
-                list.append('<li><b>' + v.name + ': </b>' + _framed_text + v.value + '</li>');
+            if (v.value == "Yes" || v.value =='Seller Markup') {
+                return;
             }
+
+            list.append('<li><b>' + v.name + ': </b>' + _framed_text + v.value + '</li>');
+
         });
 
         list.append('<li><h3>' + last_cart_added.line_total + '</h3></li>');

@@ -104,7 +104,8 @@
 	add_filter( 'upload_size_limit', 'set_upload_size_limit' );
 	function set_upload_size_limit()
 	{
-		return 5000000;
+
+		return 30 * 1000000;
 	}
 
 	function my_myme_types( $mime_types )

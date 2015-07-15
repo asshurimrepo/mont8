@@ -45,7 +45,12 @@
 				return $user_actions->updateNotification();
 			}
 
-			return [];
+			if ( isset( $_POST['save_account_details'] ) )
+			{
+				var_dump( $_POST );
+			}
+
+			return [ ];
 		}
 
 		/**
@@ -74,12 +79,14 @@
 		 */
 		private function updateNotification()
 		{
-			$valid = [ 'comment', 'follow', 'order' ];
-			$notifications = [];
+			$valid         = [ 'comment', 'follow', 'order' ];
+			$notifications = [ ];
 
-			foreach($this->data['_notifications'] as $key => $notif){
-				if(in_array($key, $valid)){
-					$notifications[$key] = $notif;
+			foreach ( $this->data['_notifications'] as $key => $notif )
+			{
+				if ( in_array( $key, $valid ) )
+				{
+					$notifications[ $key ] = $notif;
 				}
 			}
 

@@ -74,7 +74,7 @@
 
 			<div class="row">
 				<div class="col-md-9 user-bio">
-					<h1><?= $store_user->user_login ?></h1>
+					<h1><?= $store_info['store_name'] ?></h1>
 
 					<p><?= nl2br( $user_meta['description'][0] ) ?></p>
 
