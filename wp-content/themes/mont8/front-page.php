@@ -36,8 +36,7 @@
 				<div class="col-xs-12 col-sm-12 col-lg-12 content_padding">
 					<h1 class="entry-title">Popular Products</h1>
 
-					<p class="subtitle">Designed and manufactured in-house since 2006. The world's most talented artists
-						and biggest brands<br/>trust us to make their artwork pop</p>
+					<p class="subtitle">These print-on-demand products are specially made-to-order for you, manufactured and handcrafted by art-lovers to art-lovers.</p>
 				</div>
 
 				<div class="popular_products col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -79,8 +78,7 @@
 				<div class="col-xs-12 col-sm-12 col-lg-12  section_padding">
 					<h1 class="entry-title">Shop The Gallery</h1>
 
-					<p class="subtitle">Shop among 20,000 arts from the best artists in the world which can make your
-						place whether it’s<br/>home, office looks better</p>
+					<p class="subtitle">Start collecting masterpieces immediately. View different styles from amazing artists. Select artist, add to cart, own art.</p>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-lg-12">
 					<?php get_template_part('iboostme/template-part/content', 'gallery-section') ?>

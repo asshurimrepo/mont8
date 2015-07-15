@@ -157,6 +157,10 @@ a:hover {
     padding: 15px 0 0;
 }
 
+/*.site-header h1.site-title a{
+    background: url("assets/images/logo-pink.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+}*/
+
 .mmm_fullwidth_container {
     background: transparent !important;
 }
@@ -171,6 +175,10 @@ a:hover {
 #mega_main_menu.primary > .menu_holder > .menu_inner > ul > li > .item_link > .link_content > .link_text {
     font-weight: 600 !important;
     font-family: modern_sans, 'Century Gothic', 'Open Sans';
+}
+
+#mega_main_menu.primary ul li .mega_dropdown>li>.item_link .link_text{
+    font-family: 'Century Gothic', 'Open Sans', sans-serif !important;
 }
 
 #masthead .nav-row {
@@ -3900,8 +3908,9 @@ h1.nice2{
     border: none;
     font-weight: 600;
 }
-.cart-sidebar-btn-checkout:active{
+.cart-sidebar-btn-checkout:active, .cart-sidebar-btn-checkout:focus{
     background: #0DD5FC;
+    color: #222222;
 }
 
 .cart-overlay{

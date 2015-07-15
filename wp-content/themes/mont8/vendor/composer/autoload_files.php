@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     $baseDir . '/iboostme/lib/uploading_artwork.php',
+    $baseDir . '/iboostme/lib/product_markup_shortcodes.php',
 );

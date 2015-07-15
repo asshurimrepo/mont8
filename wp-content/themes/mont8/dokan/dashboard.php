@@ -14,6 +14,8 @@
 	$user_meta = get_user_meta( $store_user->ID );
 	$following = unserialize($user_meta['_userpro_following_ids'][0]);
 	$followers = unserialize($user_meta['_userpro_followers_ids'][0]);
+
+	$current_user = wp_get_current_user();
 ?>
 
 <div class="dokan-dashboard-wrap">
@@ -37,19 +39,17 @@
 				<div class="row follow-counter">
 					<div class="dokan-w6 text-center">
 						<h1><?=count($following)?></h1>
-						<b>Total Following</b>
-						<p>
-							Be on <a href="#"><b>Socials</b></a>
-						</p>
+						<b>Total <a href="<?= get_permalink_by_slug( 'following',  $current_user->data->user_login)?>">Following</a></b>
+<!--						<p>Be on <a href="#"><b>Socials</b></a></p>-->
 					</div>
 					<div class="dokan-w6 text-center">
 						<h1><?=count($followers)?></h1>
-						<b>Total Followers</b>
-						<p>Connect with the <a href="#!"><b>Artist</b></a></p>
+						<b>Total <a href="<?= get_permalink_by_slug( 'followers',  $current_user->data->user_login)?>">Followers</a></b>
+<!--						<p>Connect with the <a href="#!"><b>Artist</b></a></p>-->
+						<?=$store_user->ID?>
 					</div>
 				</div>
-
-				<br />
+					<br />
 
 
 				<div class="dashboard-widget big-counter">

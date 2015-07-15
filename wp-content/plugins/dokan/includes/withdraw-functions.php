@@ -16,7 +16,7 @@
 				'title'    => __( 'Bank Transfer', 'dokan' ),
 				'callback' => 'dokan_withdraw_method_bank'
 			),
-			'western union' => array(
+			'western-union' => array(
 				'title'    => __( 'Western Union', 'dokan' ),
 				'callback' => 'dokan_withdraw_method_western_union'
 			),

@@ -51,7 +51,7 @@
 		<!-- .dokan-dashboard-header -->
 
 		<div class="dokan-page-help">
-			<?php _e( 'Social profiles help you to gain more trust. Consider adding your social profile links for better user interaction.', 'dokan' ); ?>
+			<?php _e( 'Link all of your favourite social profiles to drive your fans to your gallery! Tell us if these social media plug ins are enough.', 'dokan' ); ?>
 		</div>
 
 		<?php if ( is_wp_error( $validate ) ) {

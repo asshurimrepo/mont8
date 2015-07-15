@@ -18,10 +18,6 @@
 <div class="images">
 	<div class="image-grey">
 
-		<div class="row artwork-like" style="margin-bottom: 10px;">
-			<?=do_shortcode('[likebtn identifier="'.$post->ID.'" theme="disk" dislike_enabled="0" event_handler="onLike" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
-		</div>
-
 		<?php
 			if ( has_post_thumbnail() )
 			{

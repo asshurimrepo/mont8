@@ -9,6 +9,7 @@ return array(
     'GlobalPricing' => $baseDir . '/iboostme/class/global_pricing.php',
     'IB_Ajax' => $baseDir . '/iboostme/class/IB_Ajax.php',
     'IB_Utils' => $baseDir . '/iboostme/class/IB_Utils.php',
+    'MontWeightCalculator' => $baseDir . '/iboostme/class/MontWeightCalculator.php',
     'Notification' => $baseDir . '/iboostme/class/Notification.php',
     'User_Actions' => $baseDir . '/iboostme/class/User_Actions.php',
 );

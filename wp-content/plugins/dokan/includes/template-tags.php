@@ -350,7 +350,7 @@
 				'url'   => '#!'
 			),
 			'dashboard'         => array(
-				'title' => __( 'Dashboard', 'dokan' ),
+				'title' => __( 'Gallery Summary', 'dokan' ),
 				'url'   => dokan_get_navigation_url()
 			),
 			'product'           => array(
@@ -751,7 +751,7 @@
 		function dokan_header_user_menu()
 		{
 
-			global $current_user;
+			global $current_user, $OOCS;
 			$user_id = $current_user->ID;
 			?>
 

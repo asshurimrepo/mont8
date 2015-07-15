@@ -25,8 +25,6 @@
 
             el.size_input.change(this.clone_main_frame);
 
-            $(".overlay-preloader").hide();
-
             el.framing_check_input.change(function () {
 
                 var is_checked = $(this).prop('checked');
@@ -177,7 +175,6 @@
 
 
     $(function () {
-
 
         preview_on_wall.init();
 

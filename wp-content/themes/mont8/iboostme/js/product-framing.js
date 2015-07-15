@@ -741,6 +741,9 @@ jQuery(document).ready(function($){
     }, 1000);
 
 
+    setTimeout(function(){
+        $(".overlay-preloader").hide();
+    }, 500);
 
 
     /*Sync sizes*/
@@ -760,6 +763,9 @@ jQuery(document).ready(function($){
 
 
 function sync_sizes_inputs(ref){
+
+    var $ = jQuery;
+
     $(ref).change(function(){
         var v = $(this).val();
         $(ref).each(function(){

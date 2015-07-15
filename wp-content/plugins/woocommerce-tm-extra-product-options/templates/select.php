@@ -1,99 +1,115 @@
 <?php
 
-// Direct access security
+	// Direct access security
 
-if (!defined('TM_EPO_PLUGIN_SECURITY')){
+	if ( ! defined( 'TM_EPO_PLUGIN_SECURITY' ) )
+	{
 
-	die();
-
-}
-
-if (!isset($fieldtype)){
-
-	$fieldtype="tmcp-field";
-
-}
-
-if (isset($textafterprice) && $textafterprice!=''){
-
-	$textafterprice = '<span class="after-amount'.(!empty($hide_amount)?" ".$hide_amount:"").'">'.$textafterprice.'</span>';
-
-}
-
-if (!empty($class)){
-
-	$fieldtype .=" ".$class;
-
-}
-
-if (!empty($changes_product_image)){
-
-	$fieldtype .=" tm-product-image";
-
-}
-
-$li_class="";
-
-if (!empty($li_class)){
-
-	$li_class =" ".$li_class;
-
-}
-
-$element_data_attr_html = array();
-
-if (!empty($element_data_attr) && is_array($element_data_attr)){
-
-	foreach ($element_data_attr as $k => $v) {
-
-		$element_data_attr_html[] = $k.'="'.esc_attr($v).'"';
+		die();
 
 	}
 
-}
+	if ( ! isset( $fieldtype ) )
+	{
 
-if (!empty($element_data_attr_html)){
+		$fieldtype = "tmcp-field";
 
-	$element_data_attr_html = " ". implode(" ", $element_data_attr_html)." ";
+	}
 
-}else{
+	if ( isset( $textafterprice ) && $textafterprice != '' )
+	{
 
-	$element_data_attr_html = "";
+		$textafterprice = '<span class="after-amount' . ( ! empty( $hide_amount ) ? " " . $hide_amount : "" ) . '">' . $textafterprice . '</span>';
 
-}
+	}
+
+	if ( ! empty( $class ) )
+	{
+
+		$fieldtype .= " " . $class;
+
+	}
+
+	if ( ! empty( $changes_product_image ) )
+	{
+
+		$fieldtype .= " tm-product-image";
+
+	}
+
+	$li_class = "";
+
+	if ( ! empty( $li_class ) )
+	{
+
+		$li_class = " " . $li_class;
+
+	}
+
+	$element_data_attr_html = array();
+
+	if ( ! empty( $element_data_attr ) && is_array( $element_data_attr ) )
+	{
+
+		foreach ( $element_data_attr as $k => $v )
+		{
+
+			$element_data_attr_html[] = $k . '="' . esc_attr( $v ) . '"';
+
+		}
+
+	}
+
+	if ( ! empty( $element_data_attr_html ) )
+	{
+
+		$element_data_attr_html = " " . implode( " ", $element_data_attr_html ) . " ";
+
+	}
+	else
+	{
+
+		$element_data_attr_html = "";
+
+	}
 
 ?>
 
-<li class="tmcp-field-wrap<?php echo $li_class;?>">
+<li class="tmcp-field-wrap<?php echo $li_class; ?>">
 
-	<?php include('_quantity_start.php'); ?>
+	<?php include( '_quantity_start.php' ); ?>
 
 	<label for="<?php echo $id; ?>"></label>
-    
-    <div class="cartdd">
 
-	<select class="<?php echo $fieldtype;?> tm-epo-field tmcp-select" 
+	<div class="cartdd">
 
-		name="<?php echo $name; ?>" 
+		<select class="<?php echo $fieldtype; ?> tm-epo-field tmcp-select"
 
-		data-price="" 
+		        name="<?php echo $name; ?>"
 
-		data-rules="" <?php echo $element_data_attr_html; ?>
+		        data-price=""
 
-		id="<?php echo $id; ?>" 
+		        data-asshurim=""
 
-		tabindex="<?php echo $tabindex; ?>"  >
+		        data-rules="" <?php echo $element_data_attr_html; ?>
 
-	<?php echo $options; ?>
+		        id="<?php echo $id; ?>"
 
-	</select>
-    
-    </div>
+		        tabindex="<?php echo $tabindex; ?>">
 
-	<span class="amount<?php if (!empty($hide_amount)){echo " ".$hide_amount;} ?>"><?php echo $amount; ?></span>
+			<?php echo $options; ?>
+
+		</select>
+
+	</div>
+
+	<span class="amount<?php if ( ! empty( $hide_amount ) )
+	{
+		echo " " . $hide_amount;
+	} ?>"><?php echo $amount; ?></span>
 
 	<?php echo $textafterprice; ?>
 
-	<?php include('_quantity_end.php'); ?>
+	<?php include( '_quantity_end.php' ); ?>
 
 </li>

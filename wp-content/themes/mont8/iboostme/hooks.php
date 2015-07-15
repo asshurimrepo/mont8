@@ -101,10 +101,10 @@
 		load_js( 'readmorejs', 'readmore.min.js' );
 
 		// Framing Script
-		load_js( 'framing-the-print-script', 'product-framing.js' );
+		load_js( 'framing-the-print-script', 'product-framing.js', '1.2.1' );
 
 		// Preview on the wall script
-		load_js( 'preview-on-the-wall', 'preview-on-the-wall.js' );
+		load_js( 'preview-on-the-wall', 'preview-on-the-wall.js', '1.2.1' );
 
 		// load style
 		load_style( 'single-product-style', 'style.css', '1.1.0' );
@@ -401,6 +401,12 @@
 	}
 
 
+	function get_migration_to_seller_url()
+	{
+		return dokan_get_page_url( 'myaccount', 'woocommerce' ) . 'account-migration/seller/';
+	}
+
+
 	function shop_url()
 	{
 		return get_permalink( get_page_by_path( 'shop' ) );
@@ -433,6 +439,23 @@
 
 		return false;
 	}
+
+
+	function get_current_currency( $key = null )
+	{
+		global $WOOCS;
+		$currencies = $WOOCS->get_currencies();
+		$currency   = get_woocommerce_currency();
+
+		if ( $key )
+		{
+			return $currencies[ $currency ][ $key ];
+		}
+
+		return $currencies[ $currency ];
+	}
+
+
 
 
 

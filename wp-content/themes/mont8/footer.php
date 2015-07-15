@@ -25,7 +25,7 @@
                         <div class="menu-footer-column-1-container">
                             <link rel="stylesheet" media="screen" type="text/css" href="<?= site_url() . '/wp-content/plugins/email-subscribers/widget/es-widget.css' ?>">
                             <script language="javascript" type="text/javascript" src="<?= site_url() . '/wp-content/plugins/email-subscribers/widget/es-widget.js' ?>"></script>
-                            <p class="newsletter_title"><b>10%</b> discount when you subscribe for the newsletter</p>
+                            <p class="newsletter_title"><b>10%</b> discount for your eyes habibi. Offers and promotions inside!</p>
                             <div class="es_msg"><span id="es_msg"></span></div>
                             <div class="newsletter">
                                 <div class="input-group">

@@ -59,9 +59,18 @@
 		'poster'       => [ 54, 90 ]
 	];
 
+	$currency_rate = get_current_currency('rate');
+	$currency_name = get_current_currency('name');
+
 	foreach ( $art_products as $id => $art )
 	{
+
 		$base_price[ $id ][2] = $base_price[ $id ][0] + ( $base_price[ $id ][0] * ($art_products[$id]['default']/100) );
+		$base_price[ $id ][3] = $base_price[ $id ][1] + ( $base_price[ $id ][1] * ($art_products[$id]['default']/100) );
+		$base_price[ $id ][2] *= $currency_rate;
+		$base_price[ $id ][3] *= $currency_rate;
+		$base_price[ $id ][0] *= $currency_rate;
+		$base_price[ $id ][1] *= $currency_rate;
 	}
 ?>
 
@@ -85,14 +94,18 @@
 		<?php
 			$margin_min = $base_price[ $id ][0] * ($art_products[$id]['default']/100);
 			$margin_max = $base_price[ $id ][1] * ($art_products[$id]['default']/100);
+
+			//Apply Rate
+			$margin_min *= $currency_rate;
+			$margin_max *= $currency_rate;
 		?>
 
 		<tr id="pricing-<?=$art['slug']?>">
 			<td><img src="<?= get_image( $art['image'] ) ?>" class="img-responsive"></td>
 			<td><?= $art['label'] ?></td>
-			<td class="hide_in_product"><?= $base_price[ $id ][0] ?> AED - <?= $base_price[ $id ][1] ?> AED</td>
-			<td class="hide_in_product"><?= round($margin_min) ?> AED - <?= round($margin_max) ?> AED</td>
-			<td class="hide_in_product"><?= $base_price[ $id ][2] ?> AED</td>
+			<td class="hide_in_product"><?= round($base_price[ $id ][0]) ?> <?=$currency_name?> - <?= round($base_price[ $id ][1]) ?> <?=$currency_name?></td>
+			<td class="hide_in_product"><?= round($margin_min) ?> <?=$currency_name?> - <?= round($margin_max) ?> <?=$currency_name?></td>
+			<td class="hide_in_product"><?= round($base_price[ $id ][2]) ?> <?=$currency_name?> - <?= round($base_price[ $id ][3]) ?> <?=$currency_name?></td>
 			<td>
 				<input type="number" name="<?= $art['id'] ?>" class="form-control right"
 				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">

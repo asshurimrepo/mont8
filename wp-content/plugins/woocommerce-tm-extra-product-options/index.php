@@ -1,4 +1,1 @@
-<?php
-// Direct access security
-die();
-?>
+<?php// Direct access securitydie();

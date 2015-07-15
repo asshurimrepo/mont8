@@ -18,7 +18,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 <form action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
-
 <table class="shop_table cart" cellspacing="0">
 	<thead>
 		<tr class="tm-epo-cart-row-header">

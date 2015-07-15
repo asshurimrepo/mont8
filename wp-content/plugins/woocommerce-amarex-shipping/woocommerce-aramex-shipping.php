@@ -67,11 +67,12 @@
 					public function calculate_shipping( $package )
 					{
 
-//						var_dump( $package );
+//						var_dump( MontWeightCalculator::set( $package['contents'] )->getTotalWeights() );
 
 						$dest_country = $package['destination']['country'];
 						$dest_city    = $package['destination']['city'];
 						$is_dosmestic = $dest_country == 'AE';
+						$total_weight = MontWeightCalculator::set( $package['contents'] )->getTotalWeights();
 
 						$markup = $is_dosmestic ? .5 : .1;
 
@@ -97,8 +98,8 @@
 								'PaymentType'      => 'P',
 								'ProductGroup'     => $dest_country == 'AE' ? 'DOM' : 'EXP',
 								'ProductType'      => $dest_country == 'AE' ? 'OND' : 'PPX',
-								'ActualWeight'     => array( 'Value' => 5, 'Unit' => 'KG' ),
-								'ChargeableWeight' => array( 'Value' => 5, 'Unit' => 'KG' ),
+								'ActualWeight'     => array( 'Value' => $total_weight, 'Unit' => 'KG' ),
+								'ChargeableWeight' => array( 'Value' => $total_weight, 'Unit' => 'KG' ),
 								'NumberOfPieces'   => 1,
 								'CashOnDelivery'   => true
 							)
@@ -108,12 +109,13 @@
 						$results    = $soapClient->CalculateRate( $params );
 
 
-						if($results->HasErrors){
+						if ( $results->HasErrors )
+						{
 							return;
 						}
 
-						$aramex_shipping_amount  = $results->TotalAmount->Value;
-						$final_shipping_amount =  $aramex_shipping_amount + ($aramex_shipping_amount * $markup);
+						$aramex_shipping_amount = $results->TotalAmount->Value;
+						$final_shipping_amount  = $aramex_shipping_amount + ( $aramex_shipping_amount * $markup );
 
 
 						$rate = array(
@@ -127,7 +129,6 @@
 						$this->add_rate( $rate );
 
 					}
-
 
 
 				}
@@ -147,7 +148,7 @@
 	}
 
 
-//	add_action( 'woocommerce_before_cart' , 'wc_minimum_order_amount' );
+	//	add_action( 'woocommerce_before_cart' , 'wc_minimum_order_amount' );
 
 
 

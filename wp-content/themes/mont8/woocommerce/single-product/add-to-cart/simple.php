@@ -33,6 +33,13 @@
 
 <div class="overlay-preloader"></div>
 
+
+<div class="row artwork-like" style="padding: 7px 11px 0;">
+	<div class="col-md-12">
+		<?=do_shortcode('[likebtn identifier="'.$product->post->ID.'" theme="disk" dislike_enabled="0" show_like_label="0" event_handler="onLike" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
+	</div>
+</div>
+
 <?php if($prod_description): ?>
 <div itemprop="description" class="product-description collapsed">
 	<?php echo apply_filters( 'woocommerce_short_description', get_the_content() ) ?>

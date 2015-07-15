@@ -4,7 +4,8 @@
       "iboostme/class/"
     ],
     "files": [
-      "iboostme/lib/uploading_artwork.php"
+      "iboostme/lib/uploading_artwork.php",
+      "iboostme/lib/product_markup_shortcodes.php"
     ]
   },
   "require": {
