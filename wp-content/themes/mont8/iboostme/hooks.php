@@ -517,26 +517,24 @@
 
 
 	add_action( 'woocommerce_checkout_process', 'validate_aramex_shipping' );
-	add_action( 'woocommerce_checkout_update_order_review', 'validate_aramex_shipping', 1000 );
+//	add_action( 'woocommerce_checkout_update_order_review', 'validate_aramex_shipping' );
 
 	function validate_aramex_shipping()
 	{
 
-		wc_add_notice(
-			sprintf( "Error Something here."
-			), 'error'
-		);
+		$shipping = new AramexShippingRates( end( WC()->cart->get_shipping_packages() ) );
 
-		/*if ( isset( $_SESSION['aramex_shipping_notification'] ) )
+//		var_dump( $shipping->errors() );
+
+
+		if ( $shipping->errors() )
 		{
-			$notification = $_SESSION['aramex_shipping_notification'];
-
 			wc_add_notice(
-				sprintf( "<b>{$notification->Code}!</b> {$notification->Message}"
+				sprintf( "<b>{$shipping->errors()->Code}!</b> {$shipping->errors()->Message}"
 				), 'error'
 			);
 
-//			unset( $_SESSION['aramex_shipping_notification'] );
-		}*/
+			WC()->session->reload_checkout = true;
+		}
 
 	}

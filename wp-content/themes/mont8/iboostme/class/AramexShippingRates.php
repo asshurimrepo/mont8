@@ -53,6 +53,8 @@
 			$this->total_weight = MontWeightCalculator::set( $package['contents'] )->getTotalWeights();
 			$this->package      = $package;
 			$this->wsdl         = $wsdl;
+
+			$this->calculate();
 		}
 
 
@@ -195,6 +197,10 @@
 		public function getWsdl()
 		{
 			return ABSPATH . 'wp-content/plugins/woocommerce-amarex-shipping/' . 'aramex-rates-calculator-wsdl.wsdl';
+		}
+
+		public function __toString() {
+			return '';
 		}
 
 	}
