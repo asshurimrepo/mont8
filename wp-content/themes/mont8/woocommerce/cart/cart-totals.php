@@ -11,9 +11,9 @@
 	{
 		exit;
 	}
-	$packages = WC()->cart->get_shipping_packages();
-	$total_weight = MontWeightCalculator::set($packages[0]['contents'])->getTotalWeights();
-//	var_dump($total_weight);
+	$packages     = WC()->cart->get_shipping_packages();
+	$total_weight = MontWeightCalculator::set( $packages[0]['contents'] )->getTotalWeights();
+	//	var_dump($total_weight);
 
 ?>
 <div class="cart_totals <?php if ( WC()->customer->has_calculated_shipping() )
@@ -24,11 +24,11 @@
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
 	<p style="text-align: right; font-size: 20px;">
-		<?=__('Total Weights', 'woocommerce')?>: <b><?=$total_weight?> KG</b>
-		<br />
+		<?= __( 'Total Weights', 'woocommerce' ) ?>: <b><?= $total_weight ?> KG</b>
+		<br/>
 		<?php
 			;
-			if ( WC()->cart->get_cart_shipping_total() &&  WC()->cart->needs_shipping() && WC()->cart->show_shipping() ):
+			if ( WC()->cart->get_cart_shipping_total() && WC()->cart->needs_shipping() && WC()->cart->show_shipping() ):
 				wc_cart_totals_shipping_html();
 			endif;
 		?>

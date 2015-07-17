@@ -77,7 +77,7 @@
 
 	                       if ( empty( $footer_text ) ) {
 		                       printf( __( '&copy; Copyrights %d, %s. All rights are reserved.', 'dokan' ), date( 'Y' ), get_bloginfo( 'name' ) );
-
+		                       printf( __( ' <a href="%s">Terms & Conditions</a>, <a href="%s">Privacy Policy</a>', 'dokan' ), get_permalink_by_slug('terms-conditions'), get_permalink_by_slug('privacy-policy') );
 	                       } else {
 		                       echo $footer_text;
 	                       }

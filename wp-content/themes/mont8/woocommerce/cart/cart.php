@@ -12,7 +12,9 @@
 		exit; // Exit if accessed directly
 	}
 
-	wc_print_notices();
+//	wc_print_notices();
+
+//	WC()->cart->calculate_shipping();
 
 	do_action( 'woocommerce_before_cart' ); ?>
 

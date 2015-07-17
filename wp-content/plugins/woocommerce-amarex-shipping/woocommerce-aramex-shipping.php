@@ -67,11 +67,14 @@
 					public function calculate_shipping( $package )
 					{
 
-//						var_dump($package);
+//						var_dump( $package );
 //						var_dump( MontWeightCalculator::set( $package['contents'] )->getTotalWeights() );
+//						unset( $_SESSION['aramex_shipping_notification'] );
 
 						$dest_country = $package['destination']['country'];
 						$dest_city    = $package['destination']['city'];
+						$post_code    = $package['destination']['postcode'];
+						$state        = $package['destination']['state'];
 						$is_dosmestic = $dest_country == 'AE';
 						$total_weight = MontWeightCalculator::set( $package['contents'] )->getTotalWeights();
 
@@ -93,7 +96,9 @@
 							),
 							'DestinationAddress' => array(
 								'City'        => $dest_city,
-								'CountryCode' => $dest_country
+								'CountryCode' => $dest_country,
+								'PostCode'    => $post_code,
+								'State'       => $state,
 							),
 							'ShipmentDetails'    => array(
 								'PaymentType'      => 'P',
@@ -122,10 +127,19 @@
 							}
 						}
 
+//						var_dump($results->Notifications->Notification);
+
 						if ( $results->HasErrors )
 						{
+							$notification = $results->Notifications->Notification;
+
+							$_SESSION['aramex_shipping_notification'] = $notification;
+
 							return;
 						}
+
+						//clear error
+						unset( $_SESSION['aramex_shipping_notification'] );
 
 						$aramex_shipping_amount = $results->TotalAmount->Value;
 						$final_shipping_amount  = $aramex_shipping_amount + ( $aramex_shipping_amount * $markup );
