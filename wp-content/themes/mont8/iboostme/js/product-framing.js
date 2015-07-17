@@ -702,7 +702,7 @@ var el;
 
 function applyZoomEffect($){
     $('.image-grey .woocommerce-main-image>img').addimagezoom({ // single image zoom
-        zoomrange: [1.5, 3],
+        zoomrange: [2, 5],
         magnifiersize: [ $(".entry-summary").width(), $('.image-grey').height()],
         magnifierpos: 'right',
         cursorshade: true,
@@ -720,6 +720,9 @@ jQuery(document).ready(function($){
     var ptype = getParameterByName('ptype');
 
     setTimeout(function(){
+
+        $("select.base-image-size").change();
+
         switch (ptype){
             case 'framed-art':
                 $("input.frame-this-print").click();

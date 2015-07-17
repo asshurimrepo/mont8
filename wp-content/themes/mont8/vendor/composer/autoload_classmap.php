@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AramexShippingRates' => $baseDir . '/iboostme/class/AramexShippingRates.php',
     'GlobalPricing' => $baseDir . '/iboostme/class/global_pricing.php',
     'IB_Ajax' => $baseDir . '/iboostme/class/IB_Ajax.php',
     'IB_Utils' => $baseDir . '/iboostme/class/IB_Utils.php',

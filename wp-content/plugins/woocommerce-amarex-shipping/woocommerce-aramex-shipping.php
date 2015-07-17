@@ -71,7 +71,7 @@
 //						var_dump( MontWeightCalculator::set( $package['contents'] )->getTotalWeights() );
 //						unset( $_SESSION['aramex_shipping_notification'] );
 
-						$dest_country = $package['destination']['country'];
+						/*$dest_country = $package['destination']['country'];
 						$dest_city    = $package['destination']['city'];
 						$post_code    = $package['destination']['postcode'];
 						$state        = $package['destination']['state'];
@@ -139,22 +139,42 @@
 						}
 
 						//clear error
-						unset( $_SESSION['aramex_shipping_notification'] );
+//						unset( $_SESSION['aramex_shipping_notification'] );
 
 						$aramex_shipping_amount = $results->TotalAmount->Value;
-						$final_shipping_amount  = $aramex_shipping_amount + ( $aramex_shipping_amount * $markup );
+						$final_shipping_amount  = $aramex_shipping_amount + ( $aramex_shipping_amount * $markup );*/
+						/*
+												var_dump(plugin_dir_path( __FILE__ ) . 'aramex-rates-calculator-wsdl.wsdl');
 
+												$shipping = new AramexShippingRates( $package );
+												$shipping->calculate();
+
+												/*$rate = array(
+													'id'       => $this->id,
+													'label'    => $this->title,
+													'cost'     => $final_shipping_amount,
+													'calc_tax' => 'per_item'
+												);*/
+
+
+						$shipping = new AramexShippingRates( $package );
+						$shipping->calculate();
+
+						if ( $shipping->errors() )
+						{
+							return;
+						}
 
 						$rate = array(
 							'id'       => $this->id,
 							'label'    => $this->title,
-							'cost'     => $final_shipping_amount,
+							'cost'     => $shipping->getFinalAmount(),
 							'calc_tax' => 'per_item'
 						);
 
 
 						//Free Shipping if total weight is > 15KG
-						if ( $total_weight >= 15 )
+						if ( $shipping->getTotalWeight() >= 15 )
 						{
 							$rate['cost'] = 0;
 						}

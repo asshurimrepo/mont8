@@ -517,12 +517,17 @@
 
 
 	add_action( 'woocommerce_checkout_process', 'validate_aramex_shipping' );
-//	add_action( 'woocommerce_checkout_update_order_review', 'validate_aramex_shipping', 1000 );
+	add_action( 'woocommerce_checkout_update_order_review', 'validate_aramex_shipping', 1000 );
 
 	function validate_aramex_shipping()
 	{
 
-		if ( isset( $_SESSION['aramex_shipping_notification'] ) )
+		wc_add_notice(
+			sprintf( "Error Something here."
+			), 'error'
+		);
+
+		/*if ( isset( $_SESSION['aramex_shipping_notification'] ) )
 		{
 			$notification = $_SESSION['aramex_shipping_notification'];
 
@@ -531,7 +536,7 @@
 				), 'error'
 			);
 
-			unset( $_SESSION['aramex_shipping_notification'] );
-		}
+//			unset( $_SESSION['aramex_shipping_notification'] );
+		}*/
 
 	}
