@@ -2,11 +2,10 @@
 	define( 'THEME_PATH', get_template_directory_uri() );
 
 
-//	IB_Ajax::handle();
-
-
 	function init_mont8()
 	{
+
+		IB_Ajax::handle();
 
 		/*if ( get_option( '_art_print_base_prices' ) )
 		{
@@ -486,19 +485,24 @@
 	}
 
 
+	add_filter( 'woocommerce_get_item_data', 'add_weight_to_item_data', 999, 2 );
+	function add_weight_to_item_data( $a, $cart_item = '' )
+	{
+		$a[] = [
+			'name'  => 'Weight',
+			'value' => MontWeightCalculator::getWeightBySize( $cart_item )
+		];
+
+		return $a;
+	}
+
 	add_filter( 'formatted_woocommerce_price', 'round_formatted_woocommerce_price', 999 );
 	function round_formatted_woocommerce_price( $price )
 	{
-//		var_dump('ass');
-//		return $price;
-//		return floatval( round( $price ) );
 
-//		$price = round((double) $price);
-
-		// $this_price = $price;
 		$price = str_replace( ',', '', $price );
 
-		return number_format(round( $price ), 2);
+		return number_format( round( $price ), 2 );
 	}
 
 

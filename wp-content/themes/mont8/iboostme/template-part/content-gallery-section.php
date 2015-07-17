@@ -12,14 +12,15 @@
 	<?php $preview_price = IB_Utils::get_base_price( $artwork->id ); ?>
 	<div class="cell col-sm-3">
 
+		<div class="pull-right like-container">
+			<?=do_shortcode('[likebtn identifier="'.$artwork->post->ID.'" theme="disk" event_handler="onLike" dislike_enabled="0"  show_like_label="0" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
+		</div>
+
 		<a href="<?= $artwork->get_permalink() ?>">
 			<?= $artwork->get_image( 'shop_catalog', [ 'class' => 'img-responsive', ] ) ?>
 		</a>
 
 		<div class="prod-meta">
-			<div class="pull-right">
-				<?=do_shortcode('[likebtn identifier="'.$artwork->post->ID.'" theme="disk" event_handler="onLike" dislike_enabled="0"  show_like_label="0" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
-			</div>
 
 			<a href="<?= $artwork->get_permalink() ?>" class="invi-link">&nbsp;</a>
 			<div class="info">

@@ -65,17 +65,16 @@
 
 <div class="cell col-sm-4">
 
+	<div class="pull-right like-container">
+		<?=do_shortcode('[likebtn identifier="'.$product->post->ID.'" theme="disk" dislike_enabled="0"  event_handler="onLike" show_like_label="0" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
+	</div>
+
 	<a href="<?= $permalink ?>" class="has-border archive-<?=$wp_query->query_vars['product_tag']?>">
 		<?= $product->get_image( 'shop_catalog', [ 'class' => 'img-responsive', ] ) ?>
 	</a>
 
 
 	<div class="prod-meta">
-
-		<div class="pull-right">
-			<?=do_shortcode('[likebtn identifier="'.$product->post->ID.'" theme="disk" dislike_enabled="0"  event_handler="onLike" show_like_label="0" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
-		</div>
-
 		<a href="<?= $permalink ?>" class="invi-link">&nbsp;</a>
 		<div class="info">
 			<a href="<?= $permalink ?>"><span class="title"><?= $product->get_title() ?></span></a>

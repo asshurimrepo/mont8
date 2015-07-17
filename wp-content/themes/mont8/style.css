@@ -4262,6 +4262,18 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
 #masthead .dd-selected .dd-selected-text{
     margin: 0px 7px 0 7px !important;
 }
+
+
+.like-container {
+    position: absolute;
+    top: 16px;
+    right: 40px;
+    z-index: 999;
+}
+
+.lb-style-disk .lb-voted .lb-count, .lb-style-disk .lb-like:hover .lb-count{
+    color: #fafafa !important;
+}
 /*
 .stylish-input-group .input-group-addon{
     background: white !important;

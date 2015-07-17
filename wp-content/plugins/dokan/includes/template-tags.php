@@ -775,7 +775,7 @@
 						<!--						<li style="padding: 0 5px;" class="search-cont">-->
 						<!--							<input type="text" data-url="" class="form-control search-mont">-->
 						<!--						</li>-->
-						<li style="width: 47%; padding-left:5px">
+						<li style="width: 49.4%; padding-left:5px">
 							<div class="search_panel">
 								<form method="get" id="searchform"
 								      action="<?php echo esc_url( home_url( '/shop' ) ); ?>" role="search">

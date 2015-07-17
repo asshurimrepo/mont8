@@ -67,6 +67,7 @@
 					public function calculate_shipping( $package )
 					{
 
+//						var_dump($package);
 //						var_dump( MontWeightCalculator::set( $package['contents'] )->getTotalWeights() );
 
 						$dest_country = $package['destination']['country'];
@@ -74,14 +75,14 @@
 						$is_dosmestic = $dest_country == 'AE';
 						$total_weight = MontWeightCalculator::set( $package['contents'] )->getTotalWeights();
 
-						$markup = $is_dosmestic ? .5 : .1;
+						$markup = $is_dosmestic ? .1 : .05;
 
 						$params = array(
 							'ClientInfo'         => array(
 								'AccountCountryCode' => 'AE',
-								'AccountEntity'      => 'DEL',
-								// 'AccountNumber'		 	=> '51624',
-								'AccountPin'         => '543543',
+								'AccountEntity'      => 'DXB',
+								'AccountNumber'      => '51624',
+								'AccountPin'         => '432432',
 								'UserName'           => 'bilal@viii.ae',
 								'Password'           => 'omarbilal@902',
 								'Version'            => 'v1.0'
@@ -97,7 +98,7 @@
 							'ShipmentDetails'    => array(
 								'PaymentType'      => 'P',
 								'ProductGroup'     => $dest_country == 'AE' ? 'DOM' : 'EXP',
-								'ProductType'      => $dest_country == 'AE' ? 'OND' : 'PPX',
+								'ProductType'      => $dest_country == 'AE' ? 'CDS' : 'EDX',
 								'ActualWeight'     => array( 'Value' => $total_weight, 'Unit' => 'KG' ),
 								'ChargeableWeight' => array( 'Value' => $total_weight, 'Unit' => 'KG' ),
 								'NumberOfPieces'   => 1,
@@ -105,9 +106,21 @@
 							)
 						);
 
-						$soapClient = new SoapClient( plugin_dir_path( __FILE__ ) . 'aramex-rates-calculator-wsdl.wsdl', array( 'trace' => 1 ) );
-						$results    = $soapClient->CalculateRate( $params );
-
+						$connected_to_soap = false;
+						while ( ! $connected_to_soap )
+						{
+							try
+							{
+								$soapClient        = new SoapClient( plugin_dir_path( __FILE__ ) . 'aramex-rates-calculator-wsdl.wsdl', array( 'trace' => 1 ) );
+								$results           = $soapClient->CalculateRate( $params );
+								$connected_to_soap = true;
+							}
+							catch ( Exception $e )
+							{
+								$connected_to_soap = false;
+								//persists connection
+							}
+						}
 
 						if ( $results->HasErrors )
 						{
@@ -124,6 +137,13 @@
 							'cost'     => $final_shipping_amount,
 							'calc_tax' => 'per_item'
 						);
+
+
+						//Free Shipping if total weight is > 15KG
+						if ( $total_weight >= 15 )
+						{
+							$rate['cost'] = 0;
+						}
 
 						// Register the rate
 						$this->add_rate( $rate );
