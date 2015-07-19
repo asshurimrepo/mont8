@@ -518,15 +518,13 @@
 
 	add_action( 'woocommerce_checkout_process', 'validate_shipping' );
 	add_action( 'woocommerce_checkout_process', 'validate_shipping_if_cod' );
-//	add_action( 'woocommerce_checkout_process', 'validate_shipping' );
 //	add_action( 'woocommerce_checkout_update_order_review', 'update_payment_methods', 1 );
+
 
 	add_filter( 'woocommerce_available_payment_gateways', 'filter_gateways', 1 );
 
 	function filter_gateways( $gateways )
 	{
-		global $woocommerce;
-
 		$package     = end( WC()->cart->get_shipping_packages() );
 		$countryCode = $package['destination']['country'];
 

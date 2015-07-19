@@ -30,7 +30,7 @@
 	<section class="related-artworks artists-artwork">
 
 		<div class="row same-artists" style="clear:both;">
-			<h3 class="text-center "><?php _e( 'MORE FROM THE', 'woocommerce' ); ?> <a
+			<h3 class="text-center "><?php _e( 'MORE FROM ', 'woocommerce' ); ?> <a
 					href="<?= dokan_get_store_url( get_the_author_meta( 'ID' ) ) ?>"><?= get_the_author_meta( 'display_name' ) ?></a>
 			</h3>
 			<?= do_shortcode( '[recent_products per_page="5" columns="5" orderby="rand" author="' . get_the_author_meta( 'ID' ) . '" order="rand"]' ) ?>
