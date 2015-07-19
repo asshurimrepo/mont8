@@ -524,17 +524,12 @@
 
 		$shipping = new AramexShippingRates( end( WC()->cart->get_shipping_packages() ) );
 
-//		var_dump( $shipping->errors() );
-
-
 		if ( $shipping->errors() )
 		{
 			wc_add_notice(
 				sprintf( "<b>{$shipping->errors()->Code}!</b> {$shipping->errors()->Message}"
 				), 'error'
 			);
-
-			WC()->session->reload_checkout = true;
 		}
 
 	}
