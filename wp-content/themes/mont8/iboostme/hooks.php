@@ -516,14 +516,12 @@
 	}*/
 
 
-	add_action( 'woocommerce_checkout_process', 'validate_aramex_shipping' );
-	add_action( 'woocommerce_checkout_update_order_review', 'update_payment_methods', 1 );
+	add_action( 'woocommerce_checkout_process', 'validate_shipping' );
+	add_action( 'woocommerce_checkout_process', 'validate_shipping_if_cod' );
+//	add_action( 'woocommerce_checkout_process', 'validate_shipping' );
+//	add_action( 'woocommerce_checkout_update_order_review', 'update_payment_methods', 1 );
 
-
-	function update_payment_methods()
-	{
-		add_filter( 'woocommerce_available_payment_gateways', 'filter_gateways', 1 );
-	}
+	add_filter( 'woocommerce_available_payment_gateways', 'filter_gateways', 1 );
 
 	function filter_gateways( $gateways )
 	{
@@ -553,7 +551,38 @@
 		return $gateways;
 	}
 
-	function validate_aramex_shipping()
+	function validate_shipping_if_cod()
+	{
+		$payment_method = $_POST['payment_method'];
+
+		if ( $payment_method != 'cod' )
+		{
+			return;
+		}
+
+		$package       = end( WC()->cart->get_shipping_packages() );
+		$countryCode   = $package['destination']['country'];
+		$total         = WC()->cart->total;
+		$currency_rate = get_current_currency( 'rate' );
+		$max_amount    = $countryCode == 'AE' ? 2500 : 1835;
+		$max_amount *= $currency_rate;
+		$total *= $currency_rate;
+
+		$currency_name = get_current_currency( 'name' );
+
+		if ( $total > $max_amount )
+		{
+			$max_amount = ceil( $max_amount );
+
+			wc_add_notice(
+				sprintf( "<b>Exceeding Maximum Amount!</b> You are only allowed to checkout a maximum of <b>{$max_amount} {$currency_name}</b>"
+				), 'error'
+			);
+		}
+
+	}
+
+	function validate_shipping()
 	{
 		$shipping = new AramexShippingRates( end( WC()->cart->get_shipping_packages() ) );
 
