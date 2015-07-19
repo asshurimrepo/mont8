@@ -82,11 +82,11 @@
 						);
 
 
-						//Free Shipping if total weight is > 15KG
+						/*//Free Shipping if total weight is > 15KG
 						if ( $shipping->getTotalWeight() >= 15 )
 						{
 							$rate['cost'] = 0;
-						}
+						}*/
 
 						// Register the rate
 						$this->add_rate( $rate );

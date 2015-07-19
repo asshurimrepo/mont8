@@ -39,11 +39,13 @@
 		 */
 		private $wsdl;
 
+		private $range_weight = 10;
+
 		/**
 		 * @param $package
 		 * @param string $wsdl
 		 */
-		public function __construct( $package, $wsdl = null)
+		public function __construct( $package, $wsdl = null )
 		{
 			$this->dest_country = $package['destination']['country'];
 			$this->dest_city    = $package['destination']['city'];
@@ -100,7 +102,21 @@
 		 */
 		protected function getMarkup()
 		{
-			return $this->is_dosmestic ? .1 : .05;
+			//No markup if total weight is >= 10KG -> default range weight
+			if ( $this->getTotalWeight() >= $this->range_weight )
+			{
+				return 0;
+			}
+
+			//if total weights <= 5kg -> returns domestic 10% , international 5%
+			if ( $this->getTotalWeight() <= 5 )
+			{
+				return $this->is_dosmestic ? .1 : .05;
+			}
+
+			//if total weights > 5kg -> returns domestic 5% , international 5%
+			return $this->is_dosmestic ? .05 : .05;
+
 		}
 
 		/**
@@ -199,7 +215,8 @@
 			return ABSPATH . 'wp-content/plugins/woocommerce-amarex-shipping/' . 'aramex-rates-calculator-wsdl.wsdl';
 		}
 
-		public function __toString() {
+		public function __toString()
+		{
 			return '';
 		}
 
