@@ -517,11 +517,44 @@
 
 
 	add_action( 'woocommerce_checkout_process', 'validate_aramex_shipping' );
-//	add_action( 'woocommerce_checkout_update_order_review', 'validate_aramex_shipping' );
+	add_action( 'woocommerce_checkout_update_order_review', 'update_payment_methods', 1 );
+
+
+	function update_payment_methods()
+	{
+		add_filter( 'woocommerce_available_payment_gateways', 'filter_gateways', 1 );
+	}
+
+	function filter_gateways( $gateways )
+	{
+		global $woocommerce;
+
+		$package     = end( WC()->cart->get_shipping_packages() );
+		$countryCode = $package['destination']['country'];
+
+		$available_countries_for_cod = [
+
+			'ae',
+			'bh',
+			'kw',
+			'om',
+			'qa',
+			'sa',
+
+		];
+
+		if ( in_array( strtolower( $countryCode ), $available_countries_for_cod ) )
+		{
+			return $gateways;
+		}
+
+		unset( $gateways['cod'] );
+
+		return $gateways;
+	}
 
 	function validate_aramex_shipping()
 	{
-
 		$shipping = new AramexShippingRates( end( WC()->cart->get_shipping_packages() ) );
 
 		if ( $shipping->errors() )
