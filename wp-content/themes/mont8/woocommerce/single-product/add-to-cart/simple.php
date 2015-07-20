@@ -22,13 +22,17 @@
 	$prod_description = $product->post->post_content;
 	$is_square = is_square( $product->get_image_id() );
 
-	$cart = end(WC()->cart->get_cart());
+	$image_data = wp_get_attachment_metadata( $product->get_image_id() );
+
+	$cart = end( WC()->cart->get_cart() );
+	Share::setData( $product );
 ?>
 
 <script>
 	window.last_cart_added = <?=json_encode($cart)?>;
 	window.shop_url = '<?=shop_url()?>';
 	window.checkout_url = '<?=WC()->cart->get_checkout_url()?>';
+	window.image_data = <?=json_encode($image_data)?>;
 </script>
 
 <div class="overlay-preloader"></div>
@@ -36,14 +40,14 @@
 
 <div class="row artwork-like" style="padding: 7px 11px 0;">
 	<div class="col-md-12">
-		<?=do_shortcode('[likebtn identifier="'.$product->post->ID.'" theme="disk" dislike_enabled="0" show_like_label="0" event_handler="onLike" icon_dislike_show="0" white_label="1" popup_disabled="1" share_enabled="0"]')?>
+		<?php get_template_part( 'dokan/btn', 'like' ); ?>
 	</div>
 </div>
 
-<?php if($prod_description): ?>
-<div itemprop="description" class="product-description collapsed">
-	<?php echo apply_filters( 'woocommerce_short_description', get_the_content() ) ?>
-</div>
+<?php if ( $prod_description ): ?>
+	<div itemprop="description" class="product-description collapsed">
+		<?php echo apply_filters( 'woocommerce_short_description', get_the_content() ) ?>
+	</div>
 <?php endif; ?>
 
 <?php
@@ -64,7 +68,7 @@
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
 
-<!--		<div class="currency-switcher col-md-6"></div>-->
+		<!--		<div class="currency-switcher col-md-6"></div>-->
 
 
 		<?php
@@ -129,7 +133,7 @@
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>
 
-	<?//=do_shortcode("[woocs show_flags=1 width='100%']")?>
+	<? //=do_shortcode("[woocs show_flags=1 width='100%']")?>
 
 
 	<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
@@ -164,7 +168,7 @@
 	<?php if ( $is_square ): ?>
 		<script>
 			var is_square = true;
-			jQuery(document).ready(function(){
+			jQuery(document).ready(function () {
 
 				jQuery("input.square-artwork").click();
 				jQuery("input[value=Poster_4]").parent().hide();
@@ -172,9 +176,6 @@
 			});
 		</script>
 	<?php endif; ?>
-
-
-
 
 
 <?php endif; ?>

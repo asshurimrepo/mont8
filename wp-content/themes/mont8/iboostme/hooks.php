@@ -1,7 +1,13 @@
 <?php
+	/**
+	 *
+	 */
 	define( 'THEME_PATH', get_template_directory_uri() );
 
 
+	/**
+	 *
+	 */
 	function init_mont8()
 	{
 
@@ -24,9 +30,15 @@
 	}
 
 	add_action( 'init', 'init_mont8' );
+	add_action( 'wp_loaded', array( new Like_Artwork, 'init' ), 1 );
 
 
 //	Get Base Price
+	/**
+	 * @param null $key
+	 *
+	 * @return mixed|void
+	 */
 	function get_base_price( $key = null )
 	{
 		$base_prices = get_option( '_art_print_base_prices' );
@@ -45,6 +57,11 @@
 // Change avatar css
 	add_filter( 'get_avatar', 'change_avatar_css' );
 
+	/**
+	 * @param $class
+	 *
+	 * @return mixed
+	 */
 	function change_avatar_css( $class )
 	{
 		$class = str_replace( "class='avatar", "class='avatar img-circle", $class );
@@ -54,6 +71,9 @@
 
 
 	//	Disqus shortcode
+	/**
+	 * @param $disqus_shortname
+	 */
 	function disqus_embed( $disqus_shortname )
 	{
 		global $post;
@@ -68,6 +88,9 @@
 	}
 
 	// Load Upload Artwork Script
+	/**
+	 *
+	 */
 	function upload_artwork_script()
 	{
 
@@ -84,6 +107,9 @@
 
 
 	// Load Edit Artwork Script
+	/**
+	 *
+	 */
 	function edit_artwork_script()
 	{
 
@@ -94,6 +120,9 @@
 
 
 	// Load Frame this print Script
+	/**
+	 *
+	 */
 	function product_framing_js_scripts()
 	{
 		// readmore js
@@ -116,6 +145,11 @@
 	}
 
 
+	/**
+	 * @param $id
+	 * @param $path
+	 * @param string $version
+	 */
 	function load_js( $id, $path, $version = '1.0.0' )
 	{
 		wp_enqueue_script(
@@ -143,6 +177,11 @@
 		}
 	}
 
+	/**
+	 * @param $id
+	 * @param $path
+	 * @param string $version
+	 */
 	function load_style( $id, $path, $version = '1.0.0' )
 	{
 		wp_enqueue_style(
@@ -152,33 +191,55 @@
 		);
 	}
 
+	/**
+	 * @param $src
+	 *
+	 * @return string
+	 */
 	function get_image( $src )
 	{
 		return get_stylesheet_directory_uri() . '/iboostme/css/images/' . $src;
 	}
 
+	/**
+	 *
+	 */
 	function load_product_page_assets()
 	{
 		add_action( 'wp_enqueue_scripts', 'product_framing_js_scripts' );
 	}
 
 
+	/**
+	 * @return string
+	 */
 	function default_frame_art_thumb()
 	{
 		return get_stylesheet_directory_uri() . '/iboostme/css/images/frame-thumb/flat-frameframe-brown.jpg';
 	}
 
+	/**
+	 * @return string
+	 */
 	function default_frame_art_big()
 	{
 		return get_stylesheet_directory_uri() . '/iboostme/css/images/frame-thumb/flat-frameframe-brown-big.jpg';
 	}
 
+	/**
+	 * @return string
+	 */
 	function get_frame_art_dir()
 	{
 		return get_stylesheet_directory_uri() . '/iboostme/css/images/frame-thumb/';
 	}
 
 
+	/**
+	 * @param $prod_id
+	 *
+	 * @return null|string
+	 */
 	function count_wishlist( $prod_id )
 	{
 		global $wpdb;
@@ -186,6 +247,11 @@
 		return $wpdb->get_var( 'SELECT COUNT(*) as count FROM mo_yith_wcwl WHERE prod_id = ' . $prod_id );
 	}
 
+	/**
+	 * @param null $author_id
+	 *
+	 * @return int|null|string
+	 */
 	function count_artwork( $author_id = null )
 	{
 		global $wpdb;
@@ -198,6 +264,9 @@
 		return $wpdb->get_var( "SELECT COUNT(*) as count FROM mo_posts WHERE post_author = {$author_id} AND post_type = 'product' AND post_status='publish'" );
 	}
 
+	/**
+	 * @param $atts
+	 */
 	function iboost_get_template_part( $atts )
 	{
 		$a = shortcode_atts( array(
@@ -206,6 +275,9 @@
 		), $atts );
 	}
 
+	/**
+	 * @return string
+	 */
 	function current_url()
 	{
 		global $wp;
@@ -213,11 +285,18 @@
 		return add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 	}
 
+	/**
+	 * @return array|WP_Error
+	 */
 	function li()
 	{
 		return get_terms( [ 'product_tag' ] );
 	}
 
+	/**
+	 * @param $path
+	 * @param array $data
+	 */
 	function iboost_include( $path, $data = array() )
 	{
 		extract( $data );
@@ -227,6 +306,11 @@
 	}
 
 
+	/**
+	 * @param $atts
+	 *
+	 * @return string
+	 */
 	function iboost_get_template( $atts )
 	{
 		$a = shortcode_atts( array(
@@ -244,6 +328,12 @@
 	add_shortcode( 'iboost_get_template', 'iboost_get_template' );
 
 
+	/**
+	 * @param $atts
+	 * @param null $content
+	 *
+	 * @return string
+	 */
 	function a_link( $atts, $content = null )
 	{
 		$a = shortcode_atts( array(
@@ -257,6 +347,11 @@
 	add_shortcode( 'a', 'a_link' );
 
 
+	/**
+	 * @param $atts
+	 *
+	 * @return string
+	 */
 	function h_space( $atts )
 	{
 
@@ -270,6 +365,12 @@
 
 	add_shortcode( 'h_space', 'h_space' );
 
+	/**
+	 * @param $atts
+	 * @param null $content
+	 *
+	 * @return string
+	 */
 	function h1( $atts, $content = null )
 	{
 
@@ -285,6 +386,12 @@
 
 
 //	ROW
+	/**
+	 * @param $atts
+	 * @param null $content
+	 *
+	 * @return string
+	 */
 	function row( $atts, $content = null )
 	{
 		$a = shortcode_atts( array(
@@ -297,6 +404,12 @@
 	add_shortcode( 'row', 'row' );
 
 //  FontAwesome
+	/**
+	 * @param $atts
+	 * @param null $content
+	 *
+	 * @return string
+	 */
 	function fa( $atts, $content = null )
 	{
 
@@ -310,6 +423,12 @@
 	add_shortcode( 'fa', 'fa' );
 
 //	DIV
+	/**
+	 * @param $atts
+	 * @param null $content
+	 *
+	 * @return string
+	 */
 	function div( $atts, $content = null )
 	{
 		$a = shortcode_atts( array(
@@ -322,6 +441,12 @@
 	add_shortcode( 'div', 'div' );
 
 
+	/**
+	 * @param $atts
+	 * @param null $content
+	 *
+	 * @return string
+	 */
 	function col_1_5( $atts, $content = null )
 	{
 		return '<div class="col-1-5">' . do_shortcode( $content ) . '</div>';
@@ -330,6 +455,11 @@
 	add_shortcode( 'col-1-5', 'col_1_5' );
 
 
+	/**
+	 * @param $menus
+	 *
+	 * @return mixed
+	 */
 	function dokan_add_dashboard_menu( $menus )
 	{
 		/*If user is not a seller*/
@@ -393,6 +523,9 @@
 	add_filter( 'dokan_get_dashboard_nav', 'dokan_add_dashboard_menu' );
 
 
+	/**
+	 * @return array|WP_Error
+	 */
 	function get_product_tags()
 	{
 		$taxonomies = array(
@@ -403,17 +536,26 @@
 	}
 
 
+	/**
+	 * @return string
+	 */
 	function get_migration_to_seller_url()
 	{
 		return dokan_get_page_url( 'myaccount', 'woocommerce' ) . 'account-migration/seller/';
 	}
 
 
+	/**
+	 * @return bool|string
+	 */
 	function shop_url()
 	{
 		return get_permalink( get_page_by_path( 'shop' ) );
 	}
 
+	/**
+	 * @return bool|null|string
+	 */
 	function get_my_account_url()
 	{
 		$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
@@ -425,11 +567,22 @@
 		return null;
 	}
 
+	/**
+	 * @param $slug
+	 * @param null $sub
+	 *
+	 * @return string
+	 */
 	function get_permalink_by_slug( $slug, $sub = null )
 	{
 		return get_permalink( get_page_by_path( $slug ) ) . $sub;
 	}
 
+	/**
+	 * @param $id
+	 *
+	 * @return bool
+	 */
 	function is_square( $id )
 	{
 		$image = wp_get_attachment_metadata( $id );
@@ -443,6 +596,11 @@
 	}
 
 
+	/**
+	 * @param null $key
+	 *
+	 * @return mixed
+	 */
 	function get_current_currency( $key = null )
 	{
 		global $WOOCS;
@@ -460,6 +618,9 @@
 
 	//Validate Edit Account
 	add_action( 'user_profile_update_errors', 'validate_store_info_upon_saving', 10, 1 );
+	/**
+	 * @param $args
+	 */
 	function validate_store_info_upon_saving( $args )
 	{
 
@@ -486,8 +647,22 @@
 
 
 	add_filter( 'woocommerce_get_item_data', 'add_weight_to_item_data', 999, 2 );
+	/**
+	 * @param $a
+	 * @param string $cart_item
+	 *
+	 * @return array
+	 */
 	function add_weight_to_item_data( $a, $cart_item = '' )
 	{
+		$store_url = dokan_get_store_url( $cart_item['data']->post->post_author );
+
+		if ( $a[0]['name'] == 'Seller' )
+		{
+			$a[0]['value'] = '<a href="' . $store_url . '">' . $a[0]['value'] . '</a>';
+		}
+
+
 		$a[] = [
 			'name'  => 'Weight',
 			'value' => MontWeightCalculator::getWeightBySize( $cart_item )
@@ -497,6 +672,11 @@
 	}
 
 	add_filter( 'formatted_woocommerce_price', 'round_formatted_woocommerce_price', 999 );
+	/**
+	 * @param $price
+	 *
+	 * @return string
+	 */
 	function round_formatted_woocommerce_price( $price )
 	{
 
@@ -523,6 +703,11 @@
 
 	add_filter( 'woocommerce_available_payment_gateways', 'filter_gateways', 1 );
 
+	/**
+	 * @param $gateways
+	 *
+	 * @return mixed
+	 */
 	function filter_gateways( $gateways )
 	{
 		$package     = end( WC()->cart->get_shipping_packages() );
@@ -549,6 +734,9 @@
 		return $gateways;
 	}
 
+	/**
+	 *
+	 */
 	function validate_shipping_if_cod()
 	{
 		$payment_method = $_POST['payment_method'];
@@ -580,6 +768,9 @@
 
 	}
 
+	/**
+	 *
+	 */
 	function validate_shipping()
 	{
 		$shipping = new AramexShippingRates( end( WC()->cart->get_shipping_packages() ) );

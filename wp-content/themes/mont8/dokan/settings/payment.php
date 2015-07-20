@@ -20,7 +20,33 @@
 					</small>
 				</h1>
 			</header>
+
 			<!-- .dokan-dashboard-header -->
+			<h2><?php _e( 'When do I get paid', 'dokan' ); ?></h2>
+
+			<div>
+				You can claim your money from your available balance anytime during the month. All claimed payments that
+				satisfy the threshold for your payment method will be paid to our beloved artists on or before the 15th
+				day of the following month.<br/><br/>
+
+				At that time, we pay to you any shipped sales made up until the end of the previous month, given that
+				you have made over the threshold for your chosen payment type.
+				Let’s say: <br/><br/>
+				<ul style="margin: 0; padding: 0">
+					<li>• You made over the threshold for a PayPal payment and your sales were shipped by the end of
+						November, you
+						will get paid on or before 15th December.
+					</li>
+					<li>• A sale was made before the end of the previous month but has not yet shipped; this will be
+						paid on the
+						next eligible month, on which the threshold has been reached.
+						In short, if an order has been placed but not yet shipped, it is not yet payable. If an order is
+						cancelled,
+						for any reason before it ships, it will not be payable.
+					</li>
+				</ul>
+				<hr>
+			</div>
 
 			<div class="dokan-page-help">
 				<?php _e( 'These are the withdraw methods available for you. Please update your payment informations below to submit withdraw requests and get your store payments seamlessly.', 'dokan' ); ?>
@@ -67,9 +93,7 @@
 				}
 			?>
 
-			<div class="dokan-ajax-response">
-				<?php echo dokan_get_profile_progressbar(); ?>
-			</div>
+			<div class="dokan-ajax-response"></div>
 
 			<?php
 				/**
@@ -85,10 +109,10 @@
 					$primary = dokan_withdraw_get_method( $profile_info['payment']['primary'] );
 				?>
 
-				<?php if($primary): ?>
-				<p style="text-align: left">
-					<b>Your primary payment gateway: </b><?= $primary['title']?>
-				</p>
+				<?php if ( $primary ): ?>
+					<p style="text-align: left">
+						<b>Your primary payment gateway: </b><?= $primary['title'] ?>
+					</p>
 				<?php endif; ?>
 
 

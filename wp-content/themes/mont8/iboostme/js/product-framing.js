@@ -261,7 +261,6 @@ var el;
             }
 
 
-
             el.size_input.change();
             el.frame_this_div.hide();
             //el.art_frame_input.click();
@@ -274,12 +273,12 @@ var el;
             //Hide optons section
             $(".frame-style option").show();
 
-            if(this_art_frame == 'Fine Art Print_1' || this_art_frame == 'Photo Print_2'){
+            if (this_art_frame == 'Fine Art Print_1' || this_art_frame == 'Photo Print_2') {
                 $(".frame-style option:nth-child(3)").hide();
                 el.frame_style_input.val('Flat Frame_0');
             }
 
-            if(this_art_frame == 'Canvas_3'){
+            if (this_art_frame == 'Canvas_3') {
                 $(".frame-style option:nth-child(1), .frame-style option:nth-child(2)").hide();
                 el.frame_style_input.val('Floater Frame_2');
             }
@@ -296,7 +295,7 @@ var el;
             el.framing_btn.show();
 
             //Hide if poster
-            if($(this).val() == 'Poster_4'){
+            if ($(this).val() == 'Poster_4') {
                 el.framing_btn.hide();
             }
 
@@ -348,16 +347,14 @@ var el;
             applyZoomEffect($);
 
 
-
-
             // update multiple instances of select image size input
             if ($(this).hasClass('select-image-size')) {
 
                 el.size_input = $(this);
 
                 /*$("select.select-image-size").each(function () {
-                    $(this).val(el.size_input.val());
-                });*/
+                 $(this).val(el.size_input.val());
+                 });*/
 
             }
 
@@ -623,107 +620,104 @@ var el;
 
 
     /*// Preview On the Wall
-    var preview_on_wall = {
-        init: function () {
-            // Show Wall
-            el.preview_wall_btn.click(this.show_wall);
-            // Hide Wall
-            el.preview_close_btn.click(this.hide_wall);
-            // Generate Artwork Type
+     var preview_on_wall = {
+     init: function () {
+     // Show Wall
+     el.preview_wall_btn.click(this.show_wall);
+     // Hide Wall
+     el.preview_close_btn.click(this.hide_wall);
+     // Generate Artwork Type
 
-            this.clone_artwork_type();
+     this.clone_artwork_type();
 
-            this.populate_size_input();
+     this.populate_size_input();
 
-        },
+     },
 
-        show_wall: function () {
+     show_wall: function () {
 
-            preview_on_wall.clone_main_frame();
-            el.preview_wall.stop().fadeIn(500);
-
-
-        },
-
-        hide_wall: function () {
-            el.preview_wall.stop().fadeOut(500);
-
-        },
-
-        clone_artwork_type: function () {
-
-            var item = $("li.staging-products-item");
-            $(".staging-products").html('');
+     preview_on_wall.clone_main_frame();
+     el.preview_wall.stop().fadeIn(500);
 
 
-            $(".artwork-style-div .tm-per-row").each(function () {
-                var li = item.clone();
+     },
 
-                li.find('label')
-                    .html($(this).find('.checkbox_image_label').text())
-                    .attr('data-target', '#' + $(this).find('input').prop('id'));
+     hide_wall: function () {
+     el.preview_wall.stop().fadeOut(500);
 
-                li.click(preview_on_wall.update_frame);
+     },
 
-                $(".staging-products").append(li);
-            });
-        },
+     clone_artwork_type: function () {
 
-        update_frame: function () {
+     var item = $("li.staging-products-item");
+     $(".staging-products").html('');
 
 
-            $(this).addClass('active').siblings().removeClass('active');
-            var target = $(this).find('label').data('target');
-            $(target).click();
+     $(".artwork-style-div .tm-per-row").each(function () {
+     var li = item.clone();
 
-            if (target == '#tmcp_choice_0_0_1') {
-                $(".frame-this-print-btn").click();
-            }
+     li.find('label')
+     .html($(this).find('.checkbox_image_label').text())
+     .attr('data-target', '#' + $(this).find('input').prop('id'));
 
-            preview_on_wall.clone_main_frame();
-        },
+     li.click(preview_on_wall.update_frame);
 
-        clone_main_frame: function () {
-            // Update Frame
-            el.preview_wall.find('.modal-body .images').html(el.product_image.clone());
-        },
+     $(".staging-products").append(li);
+     });
+     },
 
-        populate_size_input: function () {
-            var options = $("select.base-image-size > option").clone();
-            $('select.wall.select-image-size').append(options).change(framing.update_frame);
-        }
-    };
+     update_frame: function () {
 
-    preview_on_wall.init();*/
+
+     $(this).addClass('active').siblings().removeClass('active');
+     var target = $(this).find('label').data('target');
+     $(target).click();
+
+     if (target == '#tmcp_choice_0_0_1') {
+     $(".frame-this-print-btn").click();
+     }
+
+     preview_on_wall.clone_main_frame();
+     },
+
+     clone_main_frame: function () {
+     // Update Frame
+     el.preview_wall.find('.modal-body .images').html(el.product_image.clone());
+     },
+
+     populate_size_input: function () {
+     var options = $("select.base-image-size > option").clone();
+     $('select.wall.select-image-size').append(options).change(framing.update_frame);
+     }
+     };
+
+     preview_on_wall.init();*/
 
 
 })(jQuery);
 
 
-function applyZoomEffect($){
+function applyZoomEffect($) {
     $('.image-grey .woocommerce-main-image>img').addimagezoom({ // single image zoom
         zoomrange: [2, 5],
-        magnifiersize: [ $(".entry-summary").width(), $('.image-grey').height()],
+        magnifiersize: [$(".entry-summary").width(), $('.image-grey').height()],
         magnifierpos: 'right',
         cursorshade: true,
         zIndex: 99,
-        largeimage:  $('.woocommerce-page div.product div.images img').prop('src')//<-- No comma after last option!
+        largeimage: $('.woocommerce-page div.product div.images img').prop('src')//<-- No comma after last option!
     });
 }
 
 
-
-
-
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
 
     var ptype = getParameterByName('ptype');
 
-    setTimeout(function(){
+    setTimeout(function () {
 
         $("select.base-image-size").change();
 
-        switch (ptype){
+        switch (ptype) {
             case 'framed-art':
                 $("input.frame-this-print").click();
 
@@ -735,7 +729,7 @@ jQuery(document).ready(function($){
                 $("#tmcp_choice_0_3_4").click();
                 break;
             case 'posters':
-                if(window.is_square !== undefined){
+                if (window.is_square !== undefined) {
                     return;
                 }
                 $("#tmcp_choice_0_4_5").click();
@@ -744,7 +738,7 @@ jQuery(document).ready(function($){
     }, 1000);
 
 
-    setTimeout(function(){
+    setTimeout(function () {
         $(".overlay-preloader").hide();
     }, 500);
 
@@ -765,13 +759,13 @@ jQuery(document).ready(function($){
 });
 
 
-function sync_sizes_inputs(ref){
+function sync_sizes_inputs(ref) {
 
     var $ = jQuery;
 
-    $(ref).change(function(){
+    $(ref).change(function () {
         var v = $(this).val();
-        $(ref).each(function(){
+        $(ref).each(function () {
             $(this).val(v);
         });
     });
@@ -785,10 +779,77 @@ function getParameterByName(name) {
 }
 
 
+/*hide sizes by minimum*/
+jQuery(document).ready(function ($) {
+    var w = window.image_data.width,
+        h = window.image_data.height;
+
+    var is_square = w == h;
+
+    //If landscape
+    if (w > h) {
+        w = window.image_data.height;
+        h = window.image_data.width;
+    }
+
+    var a5 = w >= 874 && h >= 1240,
+        a4 = w >= 1240 && h >= 1754,
+        a3 = w >= 1754 && h >= 2480,
+        a2 = w >= 2480 && h >= 3508,
+        a1 = w >= 3508 && h >= 4967,
+        small = w >= 1772,
+        medium = w >= 2362,
+        large = w >= 2953,
+        xlarge = w >= 3543;
+
+    //console.log($("select.select-image-size "));
 
 
+    if (is_square) {
+        if (!small) {
+            $("select.select-image-size>option:nth-child(4)").hide();
+        }
+
+        if (!medium) {
+            $("select.select-image-size>option:nth-child(3)").hide();
+        }
+
+        if (!large) {
+            $("select.select-image-size>option:nth-child(2)").hide();
+        }
+
+        if (!xlarge) {
+            $("select.select-image-size>option:nth-child(1)").hide();
+        }
+
+        return;
+    }
 
 
+    if (!a5) {
+        $("select.select-image-size>option:nth-child(5)").hide();
+    }
+
+    if (!a4) {
+        $("select.select-image-size>option:nth-child(4)").hide();
+    }
+
+    if (!a3) {
+        $("select.select-image-size>option:nth-child(3)").hide();
+        $(".artwork-style-ul>li:nth-child(4)").hide();
+    }
+
+    if (!a2) {
+        $("select.select-image-size>option:nth-child(2)").hide();
+        $(".artwork-style-ul>li:nth-child(5)").hide();
+    }
+
+    if (!a1) {
+        $("select.select-image-size>option:nth-child(1)").hide();
+    }
+
+
+});
 
 
 

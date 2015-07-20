@@ -16,6 +16,8 @@ jQuery(function ($) {
         '</div>'
     );
 
+    $(".tooltips").tooltip();
+
 
     // set dashboard menu height
     var dashboardMenu = $('ul.dokan-dashboard-menu'),
@@ -62,6 +64,31 @@ jQuery(function ($) {
         maxItems: getGridSize()
     });
 
+
+    //Handles Liking an Artwork
+    $("[data-ajax]").click(function () {
+        var nonce = $(this).data('nonce');
+        var like_count = $(this).parent().find(".like-count");
+
+        if ($(this).hasClass('active')) {
+            return;
+        }
+
+        $(this).addClass('active');
+
+
+        $.post($(this).data('ajax'), {nonce: nonce}, function (response) {
+
+            if (response.redirect) {
+                window.location.href = response.redirect;
+                return;
+            }
+
+            like_count.html(response.count);
+
+        }, 'json');
+    });
+
     // Date Pickers
     $('.datepicker').datepicker();
 
@@ -82,7 +109,7 @@ function onLike(v) {
     }
 
 
-    if(v.type == 'likebtn.like'){
+    if (v.type == 'likebtn.like') {
         var data = v.settings;
         $.get($("[name=base_url]").prop('content'), {action: 'notify_user_liked_artwork', prod_id: data.identifier});
     }

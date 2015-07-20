@@ -15,6 +15,9 @@ jQuery(document).ready(function ($) {
         var title = $(".order-title");
         var titles = ['Order Summary', 'Shippping Information', 'Checkout'];
 
+
+        $("html, body").animate({scrollTop: 0}, {duration: 500, queue: false});
+
         if (step_num == 3) {
 
             if(prev_num == 1){
