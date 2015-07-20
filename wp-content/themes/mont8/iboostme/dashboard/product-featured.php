@@ -19,6 +19,8 @@
 
 ?>
 
+
+
 <?php if ( isset( $response['message'] ) ): ?>
 	<div class="dokan-alert dokan-alert-success">
 		<a class="dokan-close" data-dismiss="alert">&times;</a>
@@ -27,6 +29,9 @@
 
 	</div>
 <?php endif; ?>
+
+
+<p><?= __( 'From this page you can pick a display image for each of your available for sale products!', 'dokan' ) ?></p>
 
 
 <form method="post" class="row featured-cont">

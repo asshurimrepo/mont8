@@ -84,7 +84,7 @@ wp_enqueue_script( 'google-maps', $scheme . '://maps.google.com/maps/api/js?sens
 
                 <?php wp_nonce_field( 'dokan_store_settings_nonce' ); ?>
 
-                <div class="dokan-banner">
+                <div class="dokan-banner hide">
 
                     <div class="image-wrap<?php echo $banner ? '' : ' dokan-hide'; ?>">
                         <?php $banner_url = $banner ? wp_get_attachment_url( $banner ) : ''; ?>
@@ -128,7 +128,7 @@ wp_enqueue_script( 'google-maps', $scheme . '://maps.google.com/maps/api/js?sens
                     </div>
                 </div>
 
-                <div class="dokan-form-group">
+                <div class="dokan-form-group hide">
                     <label class="dokan-w3 dokan-control-label" for="setting_address"><?php _e( 'Address', 'dokan' ); ?></label>
                     <div class="dokan-w5 dokan-text-left">
                         <textarea class="dokan-form-control" rows="4" id="setting_address" name="setting_address"><?php echo $address; ?></textarea>
@@ -142,7 +142,7 @@ wp_enqueue_script( 'google-maps', $scheme . '://maps.google.com/maps/api/js?sens
                     </div>
                 </div>
 
-                <div class="dokan-form-group">
+                <div class="dokan-form-group hide">
                     <label class="dokan-w3 dokan-control-label" for="setting_phone"><?php _e( 'Email', 'dokan' ); ?></label>
                     <div class="dokan-w5 dokan-text-left">
                         <div class="checkbox">
@@ -154,7 +154,7 @@ wp_enqueue_script( 'google-maps', $scheme . '://maps.google.com/maps/api/js?sens
                     </div>
                 </div>
 
-                <div class="dokan-form-group">
+                <div class="dokan-form-group hide">
                     <label class="dokan-w3 dokan-control-label" for="setting_map"><?php _e( 'Map', 'dokan' ); ?></label>
 
                     <div class="dokan-w6 dokan-text-left">

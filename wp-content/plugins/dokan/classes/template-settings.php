@@ -400,26 +400,67 @@
 			$track_val   = array();
 
 			$progress_values = array(
-				'banner_val'          => 15,
+				'billing_address'     => 20,
 				'profile_picture_val' => 15,
 				'store_name_val'      => 10,
 				'social_val'          => array(
-					'fb'       => 2,
-					'gplus'    => 2,
-					'twitter'  => 2,
-					'youtube'  => 2,
-					'linkedin' => 2,
+					'fb'        => 2,
+					'pinterest' => 2,
+					'twitter'   => 2,
+					'youtube'   => 2,
+					'instagram' => 2,
 				),
 				'payment_method_val'  => 15,
 				'phone_val'           => 10,
-				'address_val'         => 10,
-				'map_val'             => 15,
+//				'address_val'         => 10,
+				'shipping_address'    => 20,
 			);
 
 			// setting values for completion
 			$progress_values = apply_filters( 'dokan_profile_completion_values', $progress_values );
 
 			extract( $progress_values );
+
+
+			$user_meta = get_user_meta( get_current_user_id() );
+
+//			var_dump( $user_meta );
+
+
+			//calculate for billing data
+			if ( isset( $user_meta['billing_first_name'][0] ) && isset( $user_meta['billing_last_name'][0] ) )
+			{
+				$profile_val                  = $profile_val + $billing_address;
+				$track_val['billing_address'] = $billing_address;
+
+				$profile_val                   = $profile_val + $shipping_address;
+				$track_val['shipping_address'] = $shipping_address;
+			}
+			else
+			{
+				if ( strlen( $next_add ) == 0 )
+				{
+					$next_add = sprintf( __( 'Start with filling up the <a href="%s">Billing Address</a> to gain profile progress', 'dokan' ), get_permalink_by_slug( 'my-account', 'edit-address/billing' ) );
+				}
+			}
+
+
+			//calculate for shipping data
+			if ( isset( $user_meta['shipping_first_name'][0] ) && isset( $user_meta['shipping_last_name'][0] ) )
+			{
+				$profile_val                   = $profile_val + $shipping_address;
+				$track_val['shipping_address'] = $shipping_address;
+			}
+			else
+			{
+				if ( strlen( $next_add ) == 0 )
+				{
+					$next_add = sprintf( __( 'Fill up the <a href="%s">Shipping Address</a> to gain profile progress', 'dokan' ), get_permalink_by_slug( 'my-account', 'edit-address/shipping' ) );
+				}
+			}
+
+
+
 
 			//settings wise completeness section
 			if ( isset( $dokan_settings['gravatar'] ) ):
@@ -432,7 +473,7 @@
 				{
 					if ( strlen( $next_add ) == 0 )
 					{
-						$next_add = sprintf( __( 'Add Profile Picture to gain %s%% progress', 'dokan' ), $profile_picture_val );
+						$next_add = sprintf( __( 'Add <a href="%s">Profile Picture</a> to gain %s%% progress', 'dokan' ), dokan_get_navigation_url( 'settings/store' ), $profile_picture_val );
 					}
 				}
 			endif;
@@ -480,20 +521,20 @@
 
 			endif;
 
-			//calculate completeness for banner
-			if ( isset( $dokan_settings['banner'] ) ):
+			/*	//calculate completeness for banner
+				if ( isset( $dokan_settings['banner'] ) ):
 
-				if ( $dokan_settings['banner'] != 0 )
-				{
-					$profile_val         = $profile_val + $banner_val;
-					$track_val['banner'] = $banner_val;
-				}
-				else
-				{
-					$next_add = sprintf( __( 'Add Banner to gain %s%% progress', 'dokan' ), $banner_val );
-				}
+					if ( $dokan_settings['banner'] != 0 )
+					{
+						$profile_val         = $profile_val + $banner_val;
+						$track_val['banner'] = $banner_val;
+					}
+					else
+					{
+						$next_add = sprintf( __( 'Add Banner to gain %s%% progress', 'dokan' ), $banner_val );
+					}
 
-			endif;
+				endif;*/
 
 			//calculate completeness for store name
 			if ( isset( $dokan_settings['store_name'] ) ):
@@ -511,7 +552,7 @@
 				}
 			endif;
 
-			//calculate completeness for address
+			/*//calculate completeness for address
 			if ( isset( $dokan_settings['address'] ) ):
 				if ( strlen( trim( $dokan_settings['address'] ) ) != 0 )
 				{
@@ -525,7 +566,7 @@
 						$next_add = sprintf( __( 'Add address to gain %s%% progress', 'dokan' ), $address_val );
 					}
 				}
-			endif;
+			endif;*/
 
 			// Calculate Payment method val for Bank
 			if ( isset( $dokan_settings['payment']['bank'] ) )
@@ -562,15 +603,15 @@
 				}
 			}
 
-			// Calculate Payment method val for skrill
-			if ( isset( $dokan_settings['payment']['skrill'] ) )
+			// Calculate Payment method val for western union
+			if ( isset( $dokan_settings['payment']['western_union'] ) )
 			{
-				if ( $dokan_settings['payment']['skrill']['email'] != false )
+				if ( $dokan_settings['payment']['western_union']['email'] != false )
 				{
 
-					$profile_val         = $profile_val + $payment_method_val;
-					$track_val['skrill'] = $payment_method_val;
-					$payment_method_val  = 0;
+					$profile_val                = $profile_val + $payment_method_val;
+					$track_val['western_union'] = $payment_method_val;
+					$payment_method_val         = 0;
 				}
 			}
 
@@ -580,7 +621,7 @@
 				$next_add = sprintf( __( 'Add a Payment method to gain %s%% progress', 'dokan' ), $payment_method_val );
 			}
 
-			if ( isset( $dokan_settings['location'] ) && strlen( trim( $dokan_settings['location'] ) ) != 0 )
+			/*if ( isset( $dokan_settings['location'] ) && strlen( trim( $dokan_settings['location'] ) ) != 0 )
 			{
 				$profile_val           = $profile_val + $map_val;
 				$track_val['location'] = $map_val;
@@ -591,10 +632,12 @@
 				{
 					$next_add = sprintf( __( 'Add Map location to gain %s%% progress', 'dokan' ), $map_val );
 				}
-			}
+			}*/
 
 			$track_val['next_todo'] = $next_add;
 			$track_val['progress']  = $profile_val;
+
+//			var_dump( $track_val );
 
 			return $track_val;
 		}

@@ -33,8 +33,6 @@
 		<article class="dashboard-content-area">
 			<?php echo dokan_get_profile_progressbar(); ?>
 
-			<p>From this page you can pick a display image for each of your available for sale products!</p>
-
 			<div class="dokan-w6 dokan-dash-left">
 
 
