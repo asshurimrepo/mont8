@@ -24,7 +24,9 @@
 
 	$image_data = wp_get_attachment_metadata( $product->get_image_id() );
 
-	$cart = end( WC()->cart->get_cart() );
+	$cart       = end( WC()->cart->get_cart() );
+	$cart_price = ceil( $cart['tm_epo_options_prices'] * get_current_currency( 'rate' ) ) . ' ' . get_current_currency( 'name' );
+
 	Share::setData( $product );
 ?>
 
@@ -33,6 +35,7 @@
 	window.shop_url = '<?=shop_url()?>';
 	window.checkout_url = '<?=WC()->cart->get_checkout_url()?>';
 	window.image_data = <?=json_encode($image_data)?>;
+	window.cart_price = '<?=$cart_price?>';
 </script>
 
 <div class="overlay-preloader"></div>

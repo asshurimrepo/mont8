@@ -113,19 +113,12 @@
 			<td class="hide_in_product"><?= ceil( $base_price[ $id ][2] ) ?> <?= $currency_name ?>
 				- <?= ceil( $base_price[ $id ][3] ) ?> <?= $currency_name ?></td>
 			<td>
-				<input type="number" name="<?= $art['id'] ?>" class="form-control right"
+				<input min="0" type="number" name="<?= $art['id'] ?>" class="form-control right"
 				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">
 			</td>
 		</tr>
 
 	<?php endforeach; ?>
 
-
 	</tbody>
 </table>
-
-<div class="row">
-	<div class="col-md-12">
-		Click <a href="?p=412">here</a> to know more about our products
-	</div>
-</div>

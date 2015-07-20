@@ -71,7 +71,7 @@ jQuery(document).ready(function ($) {
 
         });
 
-        list.append('<li><h3>' + last_cart_added.line_total + '</h3></li>');
+        list.append('<li><h3>' + window.cart_price + '</h3></li>');
 
         $(".cart-info").append(list);
         $(".cart-img").append(img);

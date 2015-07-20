@@ -4,33 +4,32 @@
 	 */
 	define( 'THEME_PATH', get_template_directory_uri() );
 
-
-	/**
-	 *
-	 */
-	function init_mont8()
+	if ( $_REQUEST['action'] == 'like_artwork' )
 	{
-
-		IB_Ajax::handle();
-
-		/*if ( get_option( '_art_print_base_prices' ) )
-		{
-			return;
-		}
-
-		$base_price = [
-			'framed_print' => [ 70, 319 ],
-			'art_print'    => [ 33, 170 ],
-			'photo_print'  => [ 38, 195 ],
-			'canvas'       => [ 181, 564 ],
-			'poster'       => [ 54, 90 ]
-		];
-
-		update_option( '_art_print_base_prices', json_encode( $base_price ) );*/
+		add_action( 'wp_loaded', array( new Like_Artwork, 'init' ), 1 );
 	}
 
-	add_action( 'init', 'init_mont8' );
-	add_action( 'wp_loaded', array( new Like_Artwork, 'init' ), 1 );
+
+	add_filter( 'woocommerce_login_redirect', 'mont_login_redirect' );
+
+	function mont_login_redirect( $redirect_to )
+	{
+
+		$user = get_user_by( 'login', $_POST['username'] );
+
+		if ( dokan_is_user_seller( $user->ID ) )
+		{
+			$redirect_to = dokan_get_navigation_url();
+		}
+		else
+		{
+			$redirect_to = get_permalink( get_page_by_path( 'my - orders' ) );
+		}
+
+
+		return $redirect_to;
+
+	}
 
 
 //	Get Base Price
