@@ -25,7 +25,7 @@
 	$image_data = wp_get_attachment_metadata( $product->get_image_id() );
 
 	$cart       = end( WC()->cart->get_cart() );
-	$cart_price = ceil( $cart['tm_epo_options_prices'] * get_current_currency( 'rate' ) ) . ' ' . get_current_currency( 'name' );
+	$cart_price = ceil( $cart['tm_epo_options_prices'] * get_current_currency( 'rate' ) ) . ' ' . get_current_currency( 'symbol' );
 
 	Share::setData( $product );
 ?>

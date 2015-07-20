@@ -1991,7 +1991,7 @@
 //		var_dump($price);
 
 
-			return round( $price );
+			return $price;
 
 		}
 

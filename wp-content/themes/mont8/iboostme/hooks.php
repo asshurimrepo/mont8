@@ -679,9 +679,11 @@
 	function round_formatted_woocommerce_price( $price )
 	{
 
-		$price = str_replace( ',', '', $price );
+		/*$price = str_replace( ',', '', $price );
 
-		return number_format( round( $price ), 2 );
+		return number_format( round( $price ), 2 );*/
+
+		return $price;
 	}
 
 
