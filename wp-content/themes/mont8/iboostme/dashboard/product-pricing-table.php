@@ -92,7 +92,7 @@
 		$margin_min = $base_price[ $id ][0] * ( $art_products[ $id ]['default'] / 100 );
 		$margin_max = $base_price[ $id ][1] * ( $art_products[ $id ]['default'] / 100 );
 
-		$base_price[ $id ][2] = ceil($base_price[ $id ][0]) + ( $margin_min );
+		$base_price[ $id ][2] = $base_price[ $id ][0] + ( $margin_min );
 		$base_price[ $id ][3] = $base_price[ $id ][1] + ( $margin_max );
 
 
@@ -106,12 +106,22 @@
 		<tr id="pricing-<?= $art['slug'] ?>">
 			<td><img src="<?= get_image( $art['image'] ) ?>" class="img-responsive"></td>
 			<td><?= $art['label'] ?></td>
-			<td class="hide_in_product"><?= ceil( $base_price[ $id ][0] ) ?> <?= $currency_name ?>
-				- <?= ceil( $base_price[ $id ][1] ) ?> <?= $currency_name ?></td>
-			<td class="hide_in_product"><?= ceil( $margin_min ) ?> <?= $currency_name ?>
-				- <?= ceil( $margin_max ) ?> <?= $currency_name ?></td>
-			<td class="hide_in_product"><?= ceil( $base_price[ $id ][2] ) ?> <?= $currency_name ?>
-				- <?= ceil( $base_price[ $id ][3] ) ?> <?= $currency_name ?></td>
+			<td class="hide_in_product">
+				<?= number_format( $base_price[ $id ][0], 2 ) ?> <?= $currency_name ?>
+				-
+				<?= number_format( $base_price[ $id ][1], 2 ) ?> <?= $currency_name ?>
+			</td>
+
+			<td class="hide_in_product">
+				<?= number_format( $margin_min, 2 ) ?> <?= $currency_name ?>
+				-
+				<?= number_format( $margin_max, 2 ) ?> <?= $currency_name ?>
+			</td>
+
+			<td class="hide_in_product">
+				<?= number_format( $base_price[ $id ][2], 2 ) ?> <?= $currency_name ?>
+				-
+				<?= number_format( $base_price[ $id ][3], 2 ) ?> <?= $currency_name ?></td>
 			<td>
 				<input min="0" type="number" name="<?= $art['id'] ?>" class="form-control right"
 				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">
