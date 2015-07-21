@@ -12,9 +12,11 @@
 		exit; // Exit if accessed directly
 	}
 
+	global $current_user;
+
 	//	User_Actions::listens();
 	$store_info = get_user_meta( $user->ID, 'dokan_profile_settings', true );
-	//	var_dump($store_info);
+	$description = get_user_meta( $user->ID, 'description', true );
 
 ?>
 
@@ -56,6 +58,16 @@
 			<span class="text-muted"><em><?= dokan_get_store_url( $user->ID ) ?></em></span>
 		</p>
 	<?php endif; ?>
+
+
+	<p class="form-row form-row-wide">
+		<label for="dokan_description"><?php _e( 'Store Description', 'woocommerce' ); ?> <span
+				class="required">*</span></label>
+
+		<textarea name="dokan_description" id="dokan_description" class="form-control" rows="10"
+		          style="padding: 10px; height: 200px"><?php echo esc_attr( $description ); ?></textarea>
+	</p>
+
 
 	<div class="clear"></div>
 

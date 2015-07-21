@@ -123,7 +123,7 @@
 				-
 				<?= number_format( $base_price[ $id ][3], 2 ) ?> <?= $currency_name ?></td>
 			<td>
-				<input min="0" type="number" name="<?= $art['id'] ?>" class="form-control right"
+				<input min="0" max="100" type="number" name="<?= $art['id'] ?>" class="form-control right"
 				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">
 			</td>
 		</tr>

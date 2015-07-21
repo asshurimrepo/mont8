@@ -42,6 +42,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 			<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
+
 			<div class="pull-right">
 				<a style="margin-top: 0;" href="#" data-step="1" class="cart-sidebar-btn-checkout btn btn-primary btn-lg"><i class="fa fa-angle-double-left"></i> <?=__('Order Summary', 'dokan')?></a>
 				<a style="margin-top: 0;" href="#" data-step="3" class="cart-sidebar-btn-checkout btn btn-primary btn-lg"><?=__('Check out', 'dokan')?> <i class="fa fa-angle-double-right"></i></a>

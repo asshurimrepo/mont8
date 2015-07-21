@@ -34,9 +34,9 @@
 			<!--Popular Product-->
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-lg-12 content_padding">
-					<h1 class="entry-title">Popular Products</h1>
+					<h1 class="entry-title hero"><?php _e( 'Popular Products', 'dokan' ); ?></h1>
 
-					<p class="subtitle">These print-on-demand products are specially made-to-order for you, manufactured and handcrafted by art-lovers to art-lovers.</p>
+					<p class="subtitle"><?php _e( 'These print-on-demand products are specially made-to-order for you, manufactured and handcrafted by art-lovers to art-lovers.', 'dokan' ); ?></p>
 				</div>
 
 				<div class="popular_products col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -78,10 +78,11 @@
 				<div class="col-xs-12 col-sm-12 col-lg-12  section_padding">
 					<h1 class="entry-title">Shop The Gallery</h1>
 
-					<p class="subtitle">Start collecting masterpieces immediately. View different styles from amazing artists. Select artist, add to cart, own art.</p>
+					<p class="subtitle">Start collecting masterpieces immediately. View different styles from amazing
+						artists. Select artist, add to cart, own art.</p>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-lg-12">
-					<?php get_template_part('iboostme/template-part/content', 'gallery-section') ?>
+					<?php get_template_part( 'iboostme/template-part/content', 'gallery-section' ) ?>
 				</div>
 			</div>
 

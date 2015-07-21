@@ -65,6 +65,20 @@
 		 */
 		protected function getParams()
 		{
+			$is_cod = false;
+			if ( isset( $_POST['payment_method'] ) )
+			{
+				$is_cod = $_POST['payment_method'] == 'cod';
+			}
+
+
+			$prod_type = $this->is_dosmestic ? 'CDS' : 'EDX';
+
+			if ( $is_cod )
+			{
+				$prod_type = $this->is_dosmestic ? 'CDS' : 'PPX';
+			}
+
 			return array(
 				'ClientInfo'         => array(
 					'AccountCountryCode' => 'AE',
@@ -86,13 +100,12 @@
 					'State'       => $this->state,
 				),
 				'ShipmentDetails'    => array(
-					'PaymentType'      => 'P',
-					'ProductGroup'     => $this->dest_country == 'AE' ? 'DOM' : 'EXP',
-					'ProductType'      => $this->dest_country == 'AE' ? 'CDS' : 'EDX',
+					'PaymentType'      => $is_cod ? $this->is_dosmestic ? 'P' : 'C' : 'P',
+					'ProductGroup'     => $this->is_dosmestic ? 'DOM' : 'EXP',
+					'ProductType'      => $prod_type,
 					'ActualWeight'     => array( 'Value' => $this->total_weight, 'Unit' => 'KG' ),
 					'ChargeableWeight' => array( 'Value' => $this->total_weight, 'Unit' => 'KG' ),
-					'NumberOfPieces'   => 1,
-					'CashOnDelivery'   => true
+					'NumberOfPieces'   => 1
 				)
 			);
 		}
@@ -130,14 +143,15 @@
 			$max_tries         = 50;
 			$tries             = 0;
 
-//			var_dump($this->getWsdl());
+
+//			var_dump($_POST);
 
 			//persists connection
-			while ( ! $connected_to_soap && $tries <= $max_tries )
+			/*while ( ! $connected_to_soap && $tries <= $max_tries )
 			{
 				try
 				{
-					$soapClient        = new SoapClient( $this->getWsdl(), array( 'trace' => 1 ) );
+					$soapClient        = new SoapClient( 'http://localhost:8888/Shipping_API_PHP/aramex-rates-calculator-wsdl-2.wsdl', array( 'trace' => 1 ) );
 					$this->results     = $soapClient->CalculateRate( $this->getParams() );
 					$connected_to_soap = true;
 				}
@@ -151,7 +165,13 @@
 			if ( $tries > $max_tries )
 			{
 				throw new Exception( "Can't Connect to Aramex Rates API Server" );
-			}
+			}*/
+
+//			var_dump( $this->getParams() );
+
+			$soapClient        = new SoapClient( $this->getWsdl(), array( 'trace' => 1 ) );
+			$this->results     = $soapClient->CalculateRate( $this->getParams() );
+			$connected_to_soap = true;
 
 			return $this;
 
@@ -167,7 +187,10 @@
 				return null;
 			}
 
-			return $this->results->TotalAmount->Value;
+			$current_rate = get_current_currency( 'rate' );
+			$rate         = 1 / get_currency_by_name( $this->results->TotalAmount->CurrencyCode, 'rate' );
+
+			return ( $this->results->TotalAmount->Value * $rate ) * $current_rate;
 		}
 
 		/**

@@ -402,7 +402,7 @@
 			$progress_values = array(
 				'billing_address'     => 20,
 				'profile_picture_val' => 15,
-				'store_name_val'      => 10,
+				'store_name_val'     => 15,
 				'social_val'          => array(
 					'fb'        => 2,
 					'pinterest' => 2,
@@ -410,8 +410,8 @@
 					'youtube'   => 2,
 					'instagram' => 2,
 				),
-				'payment_method_val'  => 15,
-				'phone_val'           => 10,
+				'payment_method_val' => 20,
+//				'phone_val'           => 10,
 //				'address_val'         => 10,
 				'shipping_address'    => 20,
 			);
@@ -445,7 +445,7 @@
 			}
 
 
-			//calculate for shipping data
+			/*//calculate for shipping data
 			if ( isset( $user_meta['shipping_first_name'][0] ) && isset( $user_meta['shipping_last_name'][0] ) )
 			{
 				$profile_val                   = $profile_val + $shipping_address;
@@ -457,7 +457,7 @@
 				{
 					$next_add = sprintf( __( 'Fill up the <a href="%s">Shipping Address</a> to gain profile progress', 'dokan' ), get_permalink_by_slug( 'my-account', 'edit-address/shipping' ) );
 				}
-			}
+			}*/
 
 
 
@@ -503,7 +503,7 @@
 				}
 			endif;
 
-			//calculate completeness for phone
+			/*//calculate completeness for phone
 			if ( isset( $dokan_settings['phone'] ) ):
 
 				if ( strlen( trim( $dokan_settings['phone'] ) ) != 0 )
@@ -519,7 +519,7 @@
 					}
 				}
 
-			endif;
+			endif;*/
 
 			/*	//calculate completeness for banner
 				if ( isset( $dokan_settings['banner'] ) ):

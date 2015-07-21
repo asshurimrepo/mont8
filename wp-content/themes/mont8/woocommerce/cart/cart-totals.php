@@ -23,19 +23,7 @@
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-	<p style="text-align: right; font-size: 20px;">
-		<?= __( 'Total Weights', 'woocommerce' ) ?>: <b><?= $total_weight ?> KG</b>
-		<br/>
-		<?php
-			;
-			if ( WC()->cart->get_cart_shipping_total() && WC()->cart->needs_shipping() && WC()->cart->show_shipping() ):
-				wc_cart_totals_shipping_html();
-			endif;
-		?>
-	</p>
-
 	<h2 style="text-align: right; font-size: 30px; margin: 0;">
-		<small><?php _e( 'TOTAL', 'woocommerce' ); ?> </small><?php wc_cart_totals_order_total_html(); ?>
 		<a style="margin-top: 0;" href="#" data-step="2"
 		   class="cart-sidebar-btn-checkout btn btn-primary btn-lg"><?= __( 'Next', 'dokan' ) ?> <i
 				class="fa fa-angle-double-right"></i></a>

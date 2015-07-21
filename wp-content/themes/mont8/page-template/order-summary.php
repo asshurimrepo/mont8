@@ -8,9 +8,10 @@
 	 * @package dokan - 2013 1.0
 	 */
 
-	load_style('order-summary-style', 'order-summary.css');
-	load_js('jquery-validate', 'jquery-validate.js');
-	load_js('order-summary-script', 'order-summary.js');
+	load_style( 'order-summary-style', 'order-summary.css' );
+	load_js( 'jquery-validate', 'jquery-validate.js' );
+	load_js( 'order-summary-script', 'order-summary.js' );
+
 	get_header();
 ?>
 

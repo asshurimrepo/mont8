@@ -614,6 +614,19 @@
 		return $currencies[ $currency ];
 	}
 
+	function get_currency_by_name( $name, $key = null )
+	{
+		global $WOOCS;
+		$currencies = $WOOCS->get_currencies();
+
+		if ( $key )
+		{
+			return $currencies[ $name ][ $key ];
+		}
+
+		return $currencies[ $name ];
+	}
+
 
 	//Validate Edit Account
 	add_action( 'user_profile_update_errors', 'validate_store_info_upon_saving', 10, 1 );
@@ -634,6 +647,21 @@
 				return;
 			}
 
+		}
+
+
+		if ( strlen( $_POST['dokan_description'] ) < 1 )
+		{
+			$args->add( 'error', __( 'Store Description is required!', 'woocommerce' ), '' );
+
+			return;
+		}
+
+		update_user_meta( $current_user->ID, 'description', $_POST['dokan_description'] );
+
+		if ( ! isset( $_POST['dokan_store_name'] ) )
+		{
+			return;
 		}
 
 		$store_settings               = dokan_get_store_info( $current_user->ID );

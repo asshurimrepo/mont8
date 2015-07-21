@@ -154,9 +154,9 @@ a:hover {
     padding: 15px 0 0;
 }
 
-/*.site-header h1.site-title a{
+.site-header h1.site-title a {
     background: url("assets/images/logo-pink.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
-}*/
+}
 
 .mmm_fullwidth_container {
     background: transparent !important;
@@ -915,6 +915,7 @@ h1.entry-title {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 30px;
 }
 
 h1.entry-title::after {
