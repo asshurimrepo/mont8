@@ -180,12 +180,13 @@
 	 * @param $id
 	 * @param $path
 	 * @param string $version
+	 * @param string $dir
 	 */
-	function load_style( $id, $path, $version = '1.0.0' )
+	function load_style( $id, $path, $version = '1.0.0', $dir = "/iboostme/css/" )
 	{
 		wp_enqueue_style(
 			$id,
-			get_stylesheet_directory_uri() . "/iboostme/css/{$path}",
+			get_stylesheet_directory_uri() . "{$dir}{$path}",
 			array(), $version
 		);
 	}

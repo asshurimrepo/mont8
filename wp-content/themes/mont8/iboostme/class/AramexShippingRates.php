@@ -72,7 +72,7 @@
 			}
 
 
-			$prod_type = $this->is_dosmestic ? 'CDS' : 'EDX';
+			$prod_type = $this->is_dosmestic ? 'CDS' : 'EPX';
 
 			if ( $is_cod )
 			{

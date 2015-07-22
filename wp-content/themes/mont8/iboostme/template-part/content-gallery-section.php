@@ -4,7 +4,7 @@
 ?>
 
 
-<div id="gallery-freewall"">
+<div id="gallery-freewall">
 
 
 <?php foreach ( $featured_artworks as $artwork ): ?>
@@ -42,25 +42,3 @@
 <?php endforeach; ?>
 
 </div>
-
-<script>
-	(function ($) {
-
-		var wall = new freewall("#gallery-freewall");
-		wall.reset({
-			selector: '.cell',
-			animate: true,
-			cellW: 20,
-			cellH: 200,
-			onResize: function () {
-				wall.fitWidth();
-			}
-		});
-
-		wall.fitWidth();
-
-		// for scroll bar appear;
-		$(window).trigger("resize");
-
-	})(jQuery);
-</script>

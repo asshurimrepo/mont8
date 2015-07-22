@@ -198,21 +198,21 @@
 		function scripts()
 		{
 
-			$protocol           = is_ssl() ? 'https' : 'http';
-			$template_directory = get_template_directory_uri();
+//			$protocol           = is_ssl() ? 'https' : 'http';
+			$template_directory = get_stylesheet_directory_uri();
 			$skin               = get_theme_mod( 'color_skin', 'orange.css' );
 
 			// register styles
 
-			wp_enqueue_style( 'animate', $template_directory . '/assets/css/animate.css', false, null );
-			wp_enqueue_style( 'cart-sidebar', $template_directory . '/assets/css/cart-sidebar.css', false, null );
-			wp_enqueue_style( 'bootstrap-datepicker', $template_directory . '/assets/js/bootstrap-datepicker/css/bootstrap-datepicker.min.css', false, null );
-			wp_enqueue_style( 'bootstrap', $template_directory . '/assets/css/bootstrap.css', false, null );
-			wp_enqueue_style( 'flexslider', $template_directory . '/assets/css/flexslider.css', false, null );
-			wp_enqueue_style( 'fontawesome', $template_directory . '/assets/css/font-awesome.min', false, null );
-			wp_enqueue_style( 'dokan-opensans', $protocol . '://fonts.googleapis.com/css?family=Open+Sans:400,700' );
-			wp_enqueue_style( 'dokan-theme', $template_directory . '/style.css', false, null );
-			wp_enqueue_style( 'dokan-theme-skin', $template_directory . '/assets/css/skins/' . $skin, false, null );
+			load_style( 'animate', '/assets/css/animate.css', '1.2.3', '' );
+			load_style( 'cart-sidebar', '/assets/css/cart-sidebar.css', '1.2.3', '' );
+			load_style( 'bootstrap-datepicker', '/assets/js/bootstrap-datepicker/css/bootstrap-datepicker.min.css', '1.2.3', '' );
+			load_style( 'bootstrap', '/assets/css/bootstrap.css', '1.2.3', '' );
+			load_style( 'flexslider', '/assets/css/flexslider.css', '1.2.3', '' );
+			load_style( 'fontawesome', '/assets/css/font-awesome.min', '1.2.3', '' );
+//			load_style( 'dokan-opensans', $protocol . '://fonts.googleapis.com/css?family=Open+Sans:400,700' );
+			load_style( 'dokan-theme', '/style.css', '1.2.3', '' );
+			load_style( 'dokan-theme-skin', '/assets/css/skins/' . $skin, '1.2.3', '' );
 
 			/*if ( is_user_logged_in() )
 			{
