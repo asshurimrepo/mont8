@@ -47,7 +47,7 @@ $user_id = $current_user->ID;
 				<div class="col-lg-2" style="padding:0;">
 					<hgroup>
 						<h1 class="site-title">
-							<a href="<?php echo home_url( '/' ); ?>"
+							<a href="<?php echo home_url( '/', 'http' ); ?>"
 							   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
 							   rel="home"><?php bloginfo( 'name' ); ?>
 								<small> - <?php bloginfo( 'description' ); ?></small>

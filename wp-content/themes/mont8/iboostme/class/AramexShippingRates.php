@@ -73,9 +73,12 @@
 
 
 			$prod_type = $this->is_dosmestic ? 'CDS' : 'EPX';
+			$pay_type = 'P';
+
 
 			if ( $is_cod )
 			{
+				$pay_type = $this->is_dosmestic ? 'P' : 'C';
 				$prod_type = $this->is_dosmestic ? 'CDS' : 'PPX';
 			}
 
@@ -100,7 +103,7 @@
 					'State'       => $this->state,
 				),
 				'ShipmentDetails'    => array(
-					'PaymentType'      => $is_cod ? $this->is_dosmestic ? 'P' : 'C' : 'P',
+					'PaymentType' => $pay_type,
 					'ProductGroup'     => $this->is_dosmestic ? 'DOM' : 'EXP',
 					'ProductType'      => $prod_type,
 					'ActualWeight'     => array( 'Value' => $this->total_weight, 'Unit' => 'KG' ),

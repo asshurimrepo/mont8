@@ -5,6 +5,14 @@
 
 
 	/**
+	 * Redirect WordPress front end https URLs to http without a plugin
+	 *
+	 * Necessary when running forced SSL in admin and you don't want links to the front end to remain https.
+	 *
+	 * @link http://blackhillswebworks.com/?p=5088
+	 */
+
+	/**
 	 * Dokan functions and definitions
 	 *
 	 * @package Dokan
@@ -197,6 +205,8 @@
 		 */
 		function scripts()
 		{
+
+//			var_dump( is_ssl() );
 
 //			$protocol           = is_ssl() ? 'https' : 'http';
 			$template_directory = get_stylesheet_directory_uri();

@@ -56,7 +56,9 @@ jQuery(document).ready(function ($) {
 
     $(document).ajaxComplete(function () {
         $("[name='payment_method']").change(function () {
-            $("#billing_country").change();
+            setTimeout(function () {
+                $("#billing_country").change();
+            }, 700);
         });
     });
 

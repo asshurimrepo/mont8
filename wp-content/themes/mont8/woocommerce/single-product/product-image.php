@@ -13,6 +13,7 @@
 	}
 
 	global $post, $woocommerce, $product;
+	Share::setData( $product );
 
 ?>
 <div class="images">
@@ -42,7 +43,22 @@
 					$gallery = '';
 				}
 
-				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" class="imagesize woocommerce-main-image zoom framed-photo-prints Brown size-14-8-x-21-a5" title="%s" data-rel="prettyPhoto' . $gallery . '">%s</a>', $image_link[0], $image_caption, $image ), $post->ID );
+				$like_btn = '';
+
+				?>
+
+				<a href="#!" itemprop="image"
+				   class="imagesize woocommerce-main-image zoom framed-photo-prints Brown size-14-8-x-21-a5"
+				   title="<?= $image_caption ?>" data-rel="prettyPhoto' . $gallery . '">
+					<div class="pull-right like-container">
+						<?php get_template_part( 'dokan/btn', 'like' ); ?>
+					</div>
+					<?= $image ?>
+				</a>
+
+				<?php
+
+//				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" class="imagesize woocommerce-main-image zoom framed-photo-prints Brown size-14-8-x-21-a5" title="%s" data-rel="prettyPhoto' . $gallery . '">%s</a>', $like_btn.$image_link[0], $image_caption, $image ), $post->ID );
 
 			}
 			else

@@ -426,7 +426,11 @@ dd.tm-final-totals{
 }
 
 #modal-product .images .poster-print:before{
-    background: none;
+    background: none !important;
+}
+
+#modal-product .like-container {
+    display: none;
 }
 
 /*Canvas Print*/
@@ -1118,6 +1122,7 @@ dd.tm-final-totals{
     width: 100%;
     top: 15%;
     bottom: 20%;
+    right: 3%;
 }
 #modal-product .modal-body:before{
     content: '';
@@ -1222,4 +1227,9 @@ dd.tm-final-totals{
     bottom: 62px !important;
     right: 0 !important;
     left: auto !important;
+}
+
+.like-container {
+    top: 12px;
+    right: 12px !important;
 }

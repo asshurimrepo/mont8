@@ -22,12 +22,13 @@
 	$prod_description = $product->post->post_content;
 	$is_square = is_square( $product->get_image_id() );
 
+	//	var_dump($is_square);
+
 	$image_data = wp_get_attachment_metadata( $product->get_image_id() );
 
 	$cart       = end( WC()->cart->get_cart() );
 	$cart_price = ceil( $cart['tm_epo_options_prices'] * get_current_currency( 'rate' ) ) . get_current_currency( 'symbol' );
 
-	Share::setData( $product );
 ?>
 
 <script>
@@ -39,13 +40,6 @@
 </script>
 
 <div class="overlay-preloader"></div>
-
-
-<div class="row artwork-like" style="padding: 7px 11px 0;">
-	<div class="col-md-12">
-		<?php get_template_part( 'dokan/btn', 'like' ); ?>
-	</div>
-</div>
 
 <?php if ( $prod_description ): ?>
 	<div itemprop="description" class="product-description collapsed">
@@ -171,11 +165,13 @@
 	<?php if ( $is_square ): ?>
 		<script>
 			var is_square = true;
-			jQuery(document).ready(function () {
+			jQuery(document).ready(function ($) {
 
-				jQuery("input.square-artwork").click();
-				jQuery("input[value=Poster_4]").parent().hide();
-
+				$("input.square-artwork").prop('checked', true);
+				$("input[value=Poster_4]").parent().hide();
+				setTimeout(function () {
+					$(".staging-products > li:nth-child(5)").hide();
+				}, 2000);
 			});
 		</script>
 	<?php endif; ?>

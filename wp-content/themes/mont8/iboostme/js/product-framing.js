@@ -511,7 +511,7 @@ var el;
                 options: [
                     'Gallery quality, custom made solid polystyrene frame',
                     'Floater frame style 1.3cm wide and 4cm deep',
-                    'Crystal clear and shatterproof 3mm acrylic',
+                    //'Crystal clear and shatterproof 3mm acrylic',
                     '0.5 cm spacing between frame and stretched canvas',
                     'Made ready to hang, easy to handle and lightweight',
                 ]
@@ -715,7 +715,7 @@ jQuery(document).ready(function ($) {
 
     setTimeout(function () {
 
-        $("select.base-image-size").change();
+        $("div.select-image-size-div:not([style='display: none;'])").find("select").change();
 
         switch (ptype) {
             case 'framed-art':

@@ -4283,7 +4283,7 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
 
 .like-container {
     position: absolute;
-    top: 16px;
+    top: 12px;
     right: 25px;
     z-index: 999;
     left: 0;
@@ -4314,7 +4314,7 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
 .like-count {
     font-weight: 700;
     padding: 0;
-    vertical-align: text-bottom;
+    vertical-align: bottom;
     color: #222;
     font-size: 12px;
 }

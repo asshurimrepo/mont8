@@ -10,7 +10,5 @@
 
 <button data-nounce="<?= $nonce ?>" data-ajax="<?= $link ?>" type="button" title="<?= $like_text ?>"
         class="tooltips button--like button_small <?= $liked ? 'active' : '' ?>">
-	<i class="fa fa-heart"></i>
+	<i class="fa fa-heart"></i> <span class="like-count"><?= $count ?></span>
 </button>
-
-<span class="like-count"><?= $count ?></span>
