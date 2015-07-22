@@ -334,12 +334,14 @@ class WP_Dependencies {
 	 * @return boolean Whether the handle is found after recursively searching the dependency tree.
 	 */
 	protected function recurse_deps( $queue, $handle ) {
-		foreach ( $queue as $queued ) {
+		foreach ( (array) $queue as $queued )
+		{
 			if ( ! isset( $this->registered[ $queued ] ) ) {
 				continue;
 			}
 
-			if ( in_array( $handle, $this->registered[ $queued ]->deps ) ) {
+			if ( in_array( $handle, (array) $this->registered[ $queued ]->deps ) )
+			{
 				return true;
 			} elseif ( $this->recurse_deps( $this->registered[ $queued ]->deps, $handle ) ) {
 				return true;
