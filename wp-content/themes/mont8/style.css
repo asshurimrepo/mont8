@@ -4284,8 +4284,10 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
 .like-container {
     position: absolute;
     top: 16px;
-    right: 40px;
+    right: 25px;
     z-index: 999;
+    left: 0;
+    text-align: right;
 }
 
 .lb-style-disk .lb-voted .lb-count, .lb-style-disk .lb-like:hover .lb-count {
@@ -4315,6 +4317,32 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
     vertical-align: text-bottom;
     color: #222;
     font-size: 12px;
+}
+
+img[usemap], map area {
+    outline: none !important;
+}
+
+.button_small {
+    padding: 3px 6px;
+}
+
+.button--like {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #f3f5f5;
+    border: 1px solid #f3f5f5;
+    color: #F88ECE;
+}
+
+.button--like:hover, .button--like.active {
+    color: #FC42B2;
+    background: #FFF;
+}
+
+.button--like .fa {
+    font-size: 15px;
 }
 
 /*

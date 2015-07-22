@@ -5,8 +5,9 @@ input[type="submit"].dokan-btn-theme,
 a.dokan-btn-theme,
 .dokan-btn-theme {
   color: #ffffff;
-  background-color: #ff0099 !important;
+  background-color: #FF0099 !important;
   border-color: #ff0099 !important;
+  border-radius: 0;
 }
 input[type="submit"].dokan-btn-theme:hover,
 a.dokan-btn-theme:hover,

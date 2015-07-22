@@ -31,7 +31,8 @@
 <?php endif; ?>
 
 
-<p><?= __( 'From this page you can pick a display image for each of your available for sale products!', 'dokan' ) ?></p>
+<p><?= __( 'From this page you can pick a display picture for each of your available for sale products.', 'dokan' ) ?>
+	<br/> <?= __( 'Mix & Match your pictures to make your store visually exciting.', 'dokan' ) ?></p>
 
 
 <form method="post" class="row featured-cont">
@@ -64,7 +65,8 @@
 
 			<?php if ( $i % 3 == 2 ): ?>
 				<div class="col-md-12">
-					<hr/></div>
+					<hr/>
+				</div>
 			<?php endif; ?>
 
 			<?php $i ++; endforeach; ?>

@@ -11,6 +11,3 @@
 	Click <a href="?p=412">here</a> to know more about our products
 	
 </form>
-
-
-

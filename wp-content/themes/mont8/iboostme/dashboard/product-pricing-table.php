@@ -123,7 +123,7 @@
 				-
 				<?= number_format( $base_price[ $id ][3], 2 ) ?> <?= $currency_name ?></td>
 			<td>
-				<input min="0" max="100" type="number" name="<?= $art['id'] ?>" class="form-control right"
+				<input min="0" max="100" type="number" name="<?= $art['id'] ?>" class="form-control markup-field right"
 				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">
 			</td>
 		</tr>
@@ -132,3 +132,16 @@
 
 	</tbody>
 </table>
+
+<script>
+	jQuery(document).ready(function ($) {
+
+		$("input.markup-field").change(function () {
+
+			$(this).val($(this).val() < 0 ? 0 : $(this).val());
+			$(this).val($(this).val() > 100 ? 100 : $(this).val());
+
+		});
+
+	});
+</script>

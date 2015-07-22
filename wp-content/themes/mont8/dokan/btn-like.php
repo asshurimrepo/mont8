@@ -5,11 +5,12 @@
 	$nonce   = wp_create_nonce( "my_user_vote_nonce" );
 	$link    = admin_url( 'admin-ajax.php?action=like_artwork&post_id=' . $product->id . '&nonce=' . $nonce );
 	$liked   = in_array( get_current_user_id(), $likes );
+	$like_text = $liked ? __( 'Liked', 'dokan' ) : __( 'Like this Artwork', 'dokan' );
 ?>
 
-<a href="#!" data-nounce="<?= $nonce ?>" data-ajax="<?= $link ?>"
-   class="like-btn tooltips <?= $liked ? 'active' : '' ?>" title="Like this Artwork">
-	<i class="fa fa-gratipay"></i>
-</a>
+<button data-nounce="<?= $nonce ?>" data-ajax="<?= $link ?>" type="button" title="<?= $like_text ?>"
+        class="tooltips button--like button_small <?= $liked ? 'active' : '' ?>">
+	<i class="fa fa-heart"></i>
+</button>
 
 <span class="like-count"><?= $count ?></span>

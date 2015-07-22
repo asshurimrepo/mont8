@@ -336,9 +336,16 @@
 	function a_link( $atts, $content = null )
 	{
 		$a = shortcode_atts( array(
-			'href'  => '#1',
-			'class' => 'btn',
+			'href'  => '#!',
+			'class' => '',
+			'slug'  => '',
+			'sub'   => ''
 		), $atts );
+
+		if ( $a['slug'] )
+		{
+			$a['href'] = get_permalink_by_slug( $a['slug'], $a['sub'] );
+		}
 
 		return '<a href="' . $a['href'] . '" class="' . $a['class'] . '">' . $content . '</a>';
 	}

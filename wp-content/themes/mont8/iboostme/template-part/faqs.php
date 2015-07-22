@@ -41,7 +41,7 @@
 						</div>
 						<div id="collapse<?= $id ?>" class="panel-collapse collapse" role="tabpanel"
 						     aria-labelledby="$id">
-							<div class="panel-body"><?= nl2br( $item['answer'] ) ?></div>
+							<div class="panel-body"><?= nl2br( do_shortcode( $item['answer'] ) ) ?></div>
 						</div>
 					</div>
 

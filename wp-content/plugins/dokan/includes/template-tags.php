@@ -366,16 +366,13 @@
 				'url'   => get_permalink( get_page_by_path( 'pricing' ) )
 			),
 			'featured-products' => array(
-				'title' => __( 'Featured Products', 'dokan' ),
+				'title' => __( 'My Gallery Icons', 'dokan' ),
 				'url'   => get_permalink( get_page_by_path( 'featured-products' ) )
 			),
 			'marketing' => array(
 				'title' => __( 'Marketing', 'dokan' ),
 				'url'   => get_permalink( get_page_by_path( 'marketing' ) )
 			),
-
-
-
 			/*PRINT SHOP*/
 			'printshop' => array(
 				'title' => __( '<b>PRINTSHOP</b>', 'dokan' ),

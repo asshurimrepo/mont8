@@ -33,6 +33,8 @@
 
 		public function updateMarkups()
 		{
+			$this->sanitized_data();
+
 			update_user_meta( $this->user_id, '_framed_print_markup', abs( $this->data['_framed_print_markup'] ) );
 			update_user_meta( $this->user_id, '_art_print_markup', abs( $this->data['_art_print_markup'] ) );
 			update_user_meta( $this->user_id, '_photo_print_markup', abs( $this->data['_photo_print_markup'] ) );
@@ -40,6 +42,27 @@
 			update_user_meta( $this->user_id, '_poster_markup', abs( $this->data['_poster_markup'] ) );
 
 			iboost_include( 'iboostme/alerts/success', array( '_success_message' => $this->success_message ) );
+		}
+
+		private function sanitized_data()
+		{
+
+			$new_data = array_filter( $this->data, function ( $v )
+			{
+				return is_numeric( $v );
+			} );
+
+			$new_data = array_map( function ( $v )
+			{
+				$v = $v > 100 ? 100 : $v;
+				$v = $v < 0 ? 0 : $v;
+
+				return $v;
+
+			}, $new_data );
+
+
+			$this->data = $new_data;
 		}
 
 
