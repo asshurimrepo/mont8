@@ -715,6 +715,7 @@ jQuery(document).ready(function ($) {
 
     setTimeout(function () {
 
+        $("div.select-image-size:not([style='display: none;'])").find("select").change();
         $("div.select-image-size-div:not([style='display: none;'])").find("select").change();
 
         switch (ptype) {

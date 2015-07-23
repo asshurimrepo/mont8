@@ -17,6 +17,9 @@
 		'canvas'      => 'Stretched Canvas',
 	];
 
+	$profile_info = dokan_get_store_info( get_current_user_id() );
+	$gravatar     = isset( $profile_info['gravatar'] ) ? absint( $profile_info['gravatar'] ) : 0;
+
 ?>
 
 

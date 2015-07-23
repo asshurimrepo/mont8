@@ -473,7 +473,7 @@
 				{
 					if ( strlen( $next_add ) == 0 )
 					{
-						$next_add = sprintf( __( 'Add <a href="%s">Profile Picture</a> to gain %s%% progress', 'dokan' ), dokan_get_navigation_url( 'settings/store' ), $profile_picture_val );
+						$next_add = sprintf( __( 'Add <a href="%s">Profile Picture</a> to gain %s%% progress', 'dokan' ), get_permalink_by_slug( 'my-account', 'edit-account' ), $profile_picture_val );
 					}
 				}
 			endif;

@@ -674,6 +674,11 @@
 
 		$store_settings               = dokan_get_store_info( $current_user->ID );
 		$store_settings['store_name'] = $_POST['dokan_store_name'];
+		$store_settings['gravatar'] = $_POST['dokan_gravatar'];
+
+		/*var_dump($_POST);
+
+		exit;*/
 
 		update_user_meta( $current_user->ID, 'dokan_profile_settings', $store_settings );
 

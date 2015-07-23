@@ -19,6 +19,8 @@
 		return;
 	}
 
+	//	var_dump($_POST);
+
 	$prod_description = $product->post->post_content;
 	$is_square = is_square( $product->get_image_id() );
 
@@ -172,6 +174,27 @@
 				setTimeout(function () {
 					$(".staging-products > li:nth-child(5)").hide();
 				}, 2000);
+			});
+		</script>
+	<?php endif; ?>
+
+
+	<?php if ( isset( $_POST['tmcp_checkbox_24_0'] ) ): ?>
+		<script>
+			jQuery(document).ready(function ($) {
+
+				setTimeout(function () {
+					$("input.frame-this-print").click();
+
+				}, 3000);
+
+				setTimeout(function () {
+					$("div.select-image-size:not([style='display: none;'])").find("select").change();
+					$("div.select-image-size-div:not([style='display: none;'])").find("select").change();
+
+				}, 4000);
+
+
 			});
 		</script>
 	<?php endif; ?>

@@ -16,7 +16,7 @@ function renderMediaUploader($, item) {
 
     file_frame = wp.media.frames.file_frame = wp.media({
         // Set the title of the modal.
-        title: 'Upload your art (Press shift/ctrl/cmd to select multiple artwork)',
+        title: 'Upload your art',
         button: {
             text: 'Select Artwork',
         },
