@@ -87,9 +87,7 @@
 			$social_fields = dokan_get_social_profile_fields();
 		?>
 
-		<div class="dokan-ajax-response">
-			<?php echo dokan_get_profile_progressbar(); ?>
-		</div>
+		<div class="dokan-ajax-response"></div>
 
 		<?php
 			/**
