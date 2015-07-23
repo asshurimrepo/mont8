@@ -8,9 +8,7 @@ Version: 2.1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
-@import url('assets/css/azm-social.css');
-@import url('iboostme/css/flat-icons/flaticon.css');
-@import url('iboostme/css/ico-moon/style.css');
+
 
 @font-face {
     font-family: modern_sans;
@@ -246,7 +244,7 @@ ul.mega_dropdown {
     color: #cccccc;
     /*background: url('assets/images/logo-mont8.com.png') no-repeat 0% 0%;*/
     width: auto;
-    height: 90px;
+    height: 98px;
     display: block;
     text-indent: -9999px;
 }

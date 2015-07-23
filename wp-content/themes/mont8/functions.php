@@ -224,6 +224,10 @@
 			load_style( 'dokan-theme', '/style.css', '1.2.3', '' );
 			load_style( 'dokan-theme-skin', '/assets/css/skins/' . $skin, '1.2.3', '' );
 
+			load_style( 'azm-socials', '/assets/css/azm-social.css', '1.2.3', '' );
+			load_style( 'flaticon', '/flat-icons/flaticon.css' );
+			load_style( 'ico-moon', '/ico-moon/style.css' );
+
 			/*if ( is_user_logged_in() )
 			{
 				load_style( 'user-logged-in-style', 'user-logged.css', '1.0.1' );

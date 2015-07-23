@@ -740,10 +740,16 @@
 
 	add_action( 'woocommerce_checkout_process', 'validate_shipping' );
 	add_action( 'woocommerce_checkout_process', 'validate_shipping_if_cod' );
-//	add_action( 'woocommerce_checkout_update_order_review', 'update_payment_methods', 1 );
+	add_action( 'woocommerce_checkout_update_order_review', 'update_shipping_rate', 1 );
 
 
 	add_filter( 'woocommerce_available_payment_gateways', 'filter_gateways', 1 );
+
+
+	function update_shipping_rate()
+	{
+//		WC()->shipping()->reset_shipping();
+	}
 
 	/**
 	 * @param $gateways

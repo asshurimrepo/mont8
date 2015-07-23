@@ -85,13 +85,8 @@
 									class="required">*</span></label>
 							<input type="text" class="input-text" name="dokan_store_name" id="dokan_store_name"
 							       value="<?php echo esc_attr( $store_info['store_name'] ); ?>"/>
+							<span class="text-muted"><em><?= dokan_get_store_url( $user->ID ) ?></em></span>
 
-
-							<label for="account_last_name"><?php _e( 'Your Gallery URL', 'dokan' ); ?> <span
-									class="required">*</span></label>
-							<input type="text" class="input-text" name="dokan_gallery_url" disabled
-							       id="dokan_gallery_url"
-							       value="<?= dokan_get_store_url( $user->ID ) ?>"/>
 						</p>
 					<?php endif; ?>
 				</div>
@@ -102,7 +97,7 @@
 
 
 		<p class="form-row form-row-wide">
-			<label for="dokan_description"><?php _e( 'Store Description', 'woocommerce' ); ?> <span
+			<label for="dokan_description"><?php _e( 'Biography', 'woocommerce' ); ?> <span
 					class="required">*</span></label>
 
 		<textarea name="dokan_description" id="dokan_description" class="form-control" rows="10"

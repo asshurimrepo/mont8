@@ -57,7 +57,6 @@
             var img = $(".modal-body .images img");
 
 
-
             if (img.width() > img.height()) {
                 var img = $(".modal-body .images").addClass('landscape');
             }
@@ -76,7 +75,7 @@
             $(".staging-products").html('');
 
 
-            $(".artwork-style-div .tm-per-row").each(function () {
+            $(".artwork-style-div .tm-per-row:not([style='display: none;'])").each(function () {
                 var li = item.clone();
 
                 li.find('label')

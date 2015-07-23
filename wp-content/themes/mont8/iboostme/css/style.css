@@ -1149,8 +1149,12 @@ dd.tm-final-totals{
     left: 5%;
 }
 
-#modal-product .staging-products-item:first-child{
+/*#modal-product .staging-products-item:first-child{
     display: none;
+}*/
+
+#modal-product .tm-extra-product-options-totals .amount.final {
+    font-size: 1em !important;
 }
 
 .is-visuallyHidden {

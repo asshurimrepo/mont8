@@ -12,9 +12,10 @@
 		exit; // Exit if accessed directly
 	}
 
-//	wc_print_notices();
+	//	wc_print_notices();
 
-//	WC()->cart->calculate_shipping();
+	//	WC()->cart->calculate_shipping();
+
 
 	do_action( 'woocommerce_before_cart' ); ?>
 
@@ -120,21 +121,22 @@
 				{ ?>
 					<div class="coupon pull-right" style="display: block; text-align: right;">
 
-						<span class="coupon-text"><i class="fa fa-credit-card"></i> <b><?php _e('GIFT CARD / PROMO CODE'); ?></b></span>
-							<input type="text"
-							       name="coupon_code"
-							       class="coupon_input"
-							       id="coupon_code"
-							       value=""
-							       placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>"/>
+						<span class="coupon-text"><i
+								class="fa fa-credit-card"></i> <b><?php _e( 'GIFT CARD / PROMO CODE' ); ?></b></span>
+						<input type="text"
+						       name="coupon_code"
+						       class="coupon_input"
+						       id="coupon_code"
+						       value=""
+						       placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>"/>
 
-							<input type="submit" class="btn btn-default btn-black" name="apply_coupon"
-							       value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>"/>
+						<input type="submit" class="btn btn-default btn-black" name="apply_coupon"
+						       value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>"/>
 
-							<?php do_action( 'woocommerce_cart_coupon' ); ?>
+						<?php do_action( 'woocommerce_cart_coupon' ); ?>
 
-							<input type="submit" class="btn btn-default btn-black" name="update_cart"
-							       value="<?php _e( 'Update Cart', 'woocommerce' ); ?>"/>
+						<input type="submit" class="btn btn-default btn-black" name="update_cart"
+						       value="<?php _e( 'Update Cart', 'woocommerce' ); ?>"/>
 					</div>
 				<?php } ?>
 

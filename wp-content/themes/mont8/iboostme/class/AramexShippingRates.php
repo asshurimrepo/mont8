@@ -118,6 +118,9 @@
 		 */
 		protected function getMarkup()
 		{
+
+//			return 0;
+
 			//No markup if total weight is >= 10KG -> default range weight
 			if ( $this->getTotalWeight() >= $this->range_weight )
 			{
@@ -185,15 +188,20 @@
 		 */
 		public function getAmount()
 		{
+
+
 			if ( $this->errors() )
 			{
 				return null;
 			}
 
-			$current_rate = get_current_currency( 'rate' );
-			$rate         = 1 / get_currency_by_name( $this->results->TotalAmount->CurrencyCode, 'rate' );
+//			return $this->results->TotalAmount->Value;
 
-			return ( $this->results->TotalAmount->Value * $rate ) * $current_rate;
+//			$current_rate = get_current_currency( 'rate' );
+			$rate = 1 / get_currency_by_name( $this->results->TotalAmount->CurrencyCode, 'rate' );
+
+			return ( $this->results->TotalAmount->Value * $rate )/** $current_rate*/
+				;
 		}
 
 		/**
