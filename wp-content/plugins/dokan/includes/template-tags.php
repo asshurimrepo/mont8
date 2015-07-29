@@ -656,8 +656,8 @@
 
 			<p class="form-row form-group form-row-wide left-inner-addon">
 				<label for="date_birth"><?php _e( 'Date of Birth', 'dokan' ); ?> <span class="required">*</span></label>
-				<i class="fa fa-calendar" style="font-size: 24px; color: #c0c0c0;"></i>
-				<input type="text" class="input-text form-control datepicker" name="date_birth" id="date_birth"
+				<!--				<i class="fa fa-calendar" style="font-size: 24px; color: #c0c0c0;"></i>-->
+				<input type="text" class="input-text form-control" name="date_birth" id="date_birth"
 				       value="<?php if ( ! empty( $_POST['date_birth'] ) )
 				       {
 					       echo esc_attr( $_POST['date_birth'] );

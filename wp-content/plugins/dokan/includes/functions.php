@@ -1695,8 +1695,8 @@
 		global $current_user;
 
 		$profile_info = dokan_get_store_info( $current_user->ID );
-		$progress     = isset( $profile_info['profile_completion']['progress'] ) ? $profile_info['profile_completion']['progress'] : 0;
-		$next_todo    = isset( $profile_info['profile_completion']['next_todo'] ) ? $profile_info['profile_completion']['next_todo'] : sprintf( __( 'Start with filling up the <a href="%s">Shipping Address</a> to gain profile progress', 'dokan' ), get_permalink_by_slug( 'my-account', 'edit-address/billing' ) );
+		$progress  = isset( $profile_info['profile_completion']['progress'] ) ? $profile_info['profile_completion']['progress'] : 10;
+		$next_todo = isset( $profile_info['profile_completion']['next_todo'] ) ? $profile_info['profile_completion']['next_todo'] : sprintf( __( 'Start with filling up the <a href="%s">Billing Address</a> to gain profile progress', 'dokan' ), get_permalink_by_slug( 'my-account', 'edit-address/billing' ) );
 
 		ob_start();
 

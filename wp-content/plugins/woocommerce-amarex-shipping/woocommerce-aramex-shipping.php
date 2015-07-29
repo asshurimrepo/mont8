@@ -77,7 +77,7 @@
 						$rate = array(
 							'id'       => $this->id,
 							'label'    => $this->title,
-							'cost'     => $shipping->getFinalAmount(),
+							'cost' => ceil( $shipping->getFinalAmount() ),
 							'calc_tax' => 'per_item'
 						);
 

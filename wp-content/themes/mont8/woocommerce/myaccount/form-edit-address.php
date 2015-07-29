@@ -1,21 +1,22 @@
 <?php
-/**
- * Edit address form
- *
- * @author      WooThemes
- * @package     WooCommerce/Templates
- * @version     2.1.0
- */
+	/**
+	 * Edit address form
+	 *
+	 * @author      WooThemes
+	 * @package     WooCommerce/Templates
+	 * @version     2.1.0
+	 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+	if ( ! defined( 'ABSPATH' ) )
+	{
+		exit; // Exit if accessed directly
+	}
 
-global $current_user;
+	global $current_user;
 
-$page_title = ( $load_address === 'billing' ) ? __( 'Billing Address', 'woocommerce' ) : __( 'Shipping Address', 'woocommerce' );
+	$page_title = ( $load_address === 'billing' ) ? __( 'Billing Address', 'woocommerce' ) : __( 'Shipping Address', 'woocommerce' );
 
-get_currentuserinfo();
+	get_currentuserinfo();
 
 ?>
 
@@ -29,9 +30,14 @@ get_currentuserinfo();
 
 	<form method="post">
 
+
+		<?php echo dokan_get_profile_progressbar(); ?>
+
+
 		<h3><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h3>
 
 		<?php do_action( "woocommerce_before_edit_address_form_{$load_address}" ); ?>
+
 
 		<?php foreach ( $address as $key => $field ) : ?>
 
@@ -41,9 +47,10 @@ get_currentuserinfo();
 
 		<?php do_action( "woocommerce_after_edit_address_form_{$load_address}" ); ?>
 		<p>
-			<input type="submit" class="button" name="save_address" value="<?php _e( 'Save Address', 'woocommerce' ); ?>" />
+			<input type="submit" class="button" name="save_address"
+			       value="<?php _e( 'Save Address', 'woocommerce' ); ?>"/>
 			<?php wp_nonce_field( 'woocommerce-edit_address' ); ?>
-			<input type="hidden" name="action" value="edit_address" />
+			<input type="hidden" name="action" value="edit_address"/>
 		</p>
 
 	</form>

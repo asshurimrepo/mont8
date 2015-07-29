@@ -1988,10 +1988,8 @@
 
 			}
 
-//		var_dump($price);
-
-
-			return $price;
+			return ceil( $price );
+//			return $price;
 
 		}
 
@@ -7285,7 +7283,6 @@
 
 		public function add_cart_item_data_loop( $global_prices, $where, $cart_item_meta, $tmcp_post_fields, $product_id, $per_product_pricing, $cpf_product_price, $variation_id, $field_loop, $loop, $form_prefix )
 		{
-
 
 
 			foreach ( $global_prices[ $where ] as $priorities )

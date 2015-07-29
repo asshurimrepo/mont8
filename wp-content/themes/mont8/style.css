@@ -9,12 +9,6 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-
-@font-face {
-    font-family: modern_sans;
-    src: url(iboostme/css/MODERNE%20SANS.ttf);
-}
-
 h1,
 h2,
 h3 {
@@ -148,7 +142,7 @@ a:hover {
 -------------------------------------------------- */
 .site-header {
     background: #f3f3f3;
-    livere min-height: 115px;
+    min-height: 115px;
     padding: 15px 0 0;
 }
 
@@ -168,7 +162,6 @@ a:hover {
 }
 
 #mega_main_menu.primary > .menu_holder > .menu_inner > ul > li > .item_link > .link_content > .link_text {
-    font-weight: 600 !important;
     font-family: modern_sans, 'Century Gothic', 'Open Sans';
 }
 
@@ -192,7 +185,6 @@ a:hover {
     font-size: 11px;
     background: transparent !important;
     font-family: 'Century Gothic', Helvetica, Arial, sans-serif;
-    l
 }
 
 #masthead .more-artists-btn * {
@@ -914,7 +906,7 @@ h1.entry-title {
     margin-top: 0;
     text-align: center;
     text-transform: uppercase;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 30px;
 }
 
@@ -1713,11 +1705,11 @@ h1.entry-title {
     -webkit-border-radius: 0;
     border-radius: 0;
     font-weight: normal;
-    padding: 0;
+    /*padding: 0;*/
     top: 0;
     right: 0;
-    min-height: auto;
-    min-width: auto;
+    /*min-height: auto;*/
+    /*min-width: auto;*/
     text-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -2051,7 +2043,7 @@ h1.entry-title {
 #comments ol.commentlist li ul.children .depth-5 {
     padding-left: 40px;
     border-left: 1px solid #ededed;
-    background: url('assets/images/comment-nav.png') 0 45px no-repeat;
+    /*background: url('assets/images/comment-nav.png') 0 45px no-repeat;*/
     clear: left;
 }
 
@@ -3192,7 +3184,7 @@ span.error {
  */
 @media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .site-header h1.site-title a {
-        background: url('assets/images/logo@2x.png') no-repeat 0% 0%;
+        /*background: url('assets/images/logo@2x.png') no-repeat 0% 0%;*/
         background-size: 180px auto;
     }
 }
@@ -3687,7 +3679,7 @@ a.btn-readmore:hover {
 }
 
 /*Mega Menu*/
-.link_text {
+header .link_text {
     text-transform: uppercase;
 }
 
@@ -3859,7 +3851,7 @@ ul.list-unstyled .seller-name {
 }
 
 .expand.search_panel {
-    width: 100% !important;
+    width: 88% !important;
     padding-right: 12px;
 }
 
@@ -3893,7 +3885,7 @@ h1.nice {
 }
 
 h1.nice2 {
-    font-family: 'Open Sans' !important;
+    /*font-family: 'Open Sans' !important;*/
     font-size: 32px !important;
     font-weight: 400;
     color: #232323;
@@ -4218,20 +4210,34 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
 }
 
 /*Change Header Background Color*/
+.menu-item .mega_dropdown li a {
+    border-bottom: 2px solid transparent !important;
+}
+
+.menu-item > a {
+    border-bottom-width: 4px !important;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+}
+
 #menu-item-14:hover > a, #menu-item-14 .mega_dropdown li a:hover {
-    background: #83F52C !important;
+    background: transparent !important;
+    border-bottom-color: #83F52C !important;
 }
 
 #menu-item-30:hover > a, #menu-item-30 .mega_dropdown li a:hover {
-    background: #0DD5FC !important;
+    background: transparent !important;
+    border-bottom-color: #0DD5FC !important;
 }
 
 #menu-item-29:hover > a, #menu-item-29 .mega_dropdown li a:hover {
-    background: #F3F315 !important;
+    background: transparent !important;
+    border-bottom-color: #F3F315 !important;
 }
 
 #menu-item-193:hover > a, #menu-item-193 .mega_dropdown li a:hover {
-    background: #FF6700 !important;
+    background: transparent !important;
+    border-bottom-color: #FF6700 !important;
 }
 
 .lb-style-disk .lb-voted .lb-like-icon, .lb-style-disk .lb-voted .lb-a:hover .lb-like-icon, .lb-style-disk .lb-a:hover .lb-like-icon {
@@ -4345,6 +4351,30 @@ img[usemap], map area {
     font-size: 15px;
 }
 
+.dokan-profile-completeness .dokan-alert {
+    color: #222 !important;
+}
+
+.dokan-progress-bar {
+    color: #222 !important;
+}
+
+.dokan-dashboard h1 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#billing_state_field abbr, #shipping_state_field abbr {
+    display: none;
+}
+
+input.datepicker {
+    padding-left: 42px !important;
+}
+
+.mmm_fullwidth_container {
+    display: none;
+}
 /*
 .stylish-input-group .input-group-addon{
     background: white !important;

@@ -33,6 +33,8 @@
 
 	<?php do_action( 'woocommerce_edit_account_form_start' ); ?>
 
+	<?php echo dokan_get_profile_progressbar(); ?>
+
 	<fieldset>
 		<legend><?php _e( 'Personal Information', 'woocommerce' ); ?></legend>
 		<p class="form-row form-row-first">

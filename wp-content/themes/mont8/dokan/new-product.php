@@ -181,7 +181,9 @@
 
 						<hr/>
 
-						<a href="<?=get_permalink_by_slug('upload-guideline-explained')?>">Have questions about uploading images?</a>
+						<a class="upload-guideline-link"
+						   href="<?= get_permalink_by_slug( 'upload-guideline-explained' ) ?>">Have questions about
+							uploading images?</a>
 
 						<?php /*Gallery*/ //get_template_part( 'iboostme/dashboard/new-product-gallery', 'modal-form' ) ?>
 

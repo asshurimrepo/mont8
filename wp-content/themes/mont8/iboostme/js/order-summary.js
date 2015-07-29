@@ -1,3 +1,11 @@
+/*
+ (function ($) {
+
+ $("[name=woocommerce-currency-switcher]").val('USD');
+
+
+ })(jQuery);
+ */
 jQuery(document).ready(function ($) {
 
     $(".woocommerce form select").addClass('form-control');
@@ -20,7 +28,7 @@ jQuery(document).ready(function ($) {
 
         if (step_num == 3) {
 
-            if(prev_num == 1){
+            if (prev_num == 1) {
                 return;
             }
 
@@ -40,14 +48,14 @@ jQuery(document).ready(function ($) {
 
             //$("[name=woocommerce_checkout_place_order]").click();
             if (!$("form.checkout").valid())
-            return;
+                return;
         }
 
         $('[data-step=' + step_num + ']').parent().addClass('active').siblings().removeClass('active');
 
         $(".step-item").removeClass('active');
         $(target).addClass('active');
-        title.html(titles[step_num-1]);
+        title.html(titles[step_num - 1]);
 
         prev_num = step_num;
 
@@ -61,5 +69,8 @@ jQuery(document).ready(function ($) {
             }, 700);
         });
     });
+
+
+    //$("#billing_country").val('');
 
 });

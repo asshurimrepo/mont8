@@ -31,10 +31,10 @@
 
 	</div>
 
-	<?php else: ?>
-<section class="order-steps-container">
-	<?= do_shortcode( '[woocommerce_checkout]' ) ?>
-		</section>
+<?php else: ?>
+	<section class="order-steps-container">
+		<?= do_shortcode( '[woocommerce_checkout]' ) ?>
+	</section>
 
 
 <?php endif; ?>

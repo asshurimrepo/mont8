@@ -282,6 +282,8 @@
 
 			$store_id            = get_current_user_id();
 			$prev_dokan_settings = get_user_meta( $store_id, 'dokan_profile_settings', true );
+			$dokan_settings = array();
+
 
 			if ( wp_verify_nonce( $_POST['_wpnonce'], 'dokan_profile_settings_nonce' ) )
 			{
@@ -416,6 +418,15 @@
 				'shipping_address'    => 20,
 			);
 
+
+			if ( ! dokan_is_user_seller( get_current_user_id() ) )
+			{
+				$progress_values = array(
+					'billing_address'  => 50,
+					'shipping_address' => 50,
+				);
+			}
+
 			// setting values for completion
 			$progress_values = apply_filters( 'dokan_profile_completion_values', $progress_values );
 
@@ -460,11 +471,9 @@
 			}*/
 
 
-
-
 			//settings wise completeness section
 			if ( isset( $dokan_settings['gravatar'] ) ):
-				if ( $dokan_settings['gravatar'] != 0 )
+				if ( $dokan_settings['gravatar'] )
 				{
 					$profile_val           = $profile_val + $profile_picture_val;
 					$track_val['gravatar'] = $profile_picture_val;

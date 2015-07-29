@@ -29,7 +29,7 @@
 	$image_data = wp_get_attachment_metadata( $product->get_image_id() );
 
 	$cart       = end( WC()->cart->get_cart() );
-	$cart_price = ceil( $cart['tm_epo_options_prices'] * get_current_currency( 'rate' ) ) . get_current_currency( 'symbol' );
+	//	$cart_price = number_format( $cart['tm_epo_options_prices'] * get_current_currency( 'rate' ), 2 ) . get_current_currency( 'symbol' );
 
 ?>
 
@@ -38,7 +38,7 @@
 	window.shop_url = '<?=shop_url()?>';
 	window.checkout_url = '<?=WC()->cart->get_checkout_url()?>';
 	window.image_data = <?=json_encode($image_data)?>;
-	window.cart_price = '<?=$cart_price?>';
+
 </script>
 
 <div class="overlay-preloader"></div>
@@ -141,7 +141,7 @@
 	<div class="share-overlay overlay hide">
 		<div class="overlay-inner">
 
-			<span class="caption">I believe you can share this jaw-dropping artwork.</span>
+			<span class="caption"><?= __( "Hey you, you're awesome. Share and show some love!", 'dokan' ) ?></span>
 
 			<div class="button-wrap">
 				<button id="fbclick" class="icon facebook"

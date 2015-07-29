@@ -26,10 +26,9 @@ jQuery(document).ready(function ($) {
         '<div class="col-md-12"><hr></div>' +
         '<div class="col-md-5"><a style="margin-top: 0; background: rgb(243, 243, 21); color: #222" href="#!" class="cart-sidebar-btn-checkout btn-continue-shop btn btn-primary btn-block">Continue Shopping</a></div>' +
         '<div class="col-md-2" style="text-align: center">- or -</div>' +
-        '<div class="col-md-5"><a style="margin-top: 0;" href="'+ checkout_url +'" class="cart-sidebar-btn-checkout btn btn-primary btn-block">Proceed to Checkout</a></div>' +
+        '<div class="col-md-5"><a style="margin-top: 0;" href="' + checkout_url + '" class="cart-sidebar-btn-checkout btn btn-primary btn-block">Proceed to Checkout</a></div>' +
         '</div>'
     );
-
 
 
     box.append(content);
@@ -38,7 +37,7 @@ jQuery(document).ready(function ($) {
     $('body').prepend(popup);
 
 
-    $(".close-after-cart, .btn-continue-shop").click(function(){
+    $(".close-after-cart, .btn-continue-shop").click(function () {
         $(".after-cart-popup").fadeOut(400);
     });
 
@@ -47,23 +46,29 @@ jQuery(document).ready(function ($) {
         $(".woocommerce-message").hide();
         var list = $("<ul class='list-unstyled'>");
         var img = $("<img>").prop('src', $(".product .woocommerce-main-image img").prop('src')).addClass('img-responsive');
+        var seller_link = $(".product_title a").clone();
+
+
         //var img = $(".product .images").clone;
 
         list.append('<li><h3 style="margin-top: 0;">' + last_cart_added.data.post.post_title + '</h3></li>');
 
         var framed_text = '';
 
-        last_cart_added.tmcartepo.map(function(v){
-            if(v.section_label == 'Frame this print'){
+        last_cart_added.tmcartepo.map(function (v) {
+            if (v.section_label == 'Frame this print') {
                 framed_text = 'Framed ';
             }
         });
+
+        list.append('<li class="seller"><b>Seller: </b><span></span></li>');
+
 
         last_cart_added.tmcartepo.map(function (v) {
 
             var _framed_text = v.section_label == 'Artwork Style' ? framed_text : '';
 
-            if (v.value == "Yes" || v.value =='Seller Markup') {
+            if (v.value == "Yes" || v.value == 'Seller Markup') {
                 return;
             }
 
@@ -71,10 +76,15 @@ jQuery(document).ready(function ($) {
 
         });
 
-        list.append('<li><h3>' + window.cart_price + '</h3></li>');
+        //list.append('<li><h3>' + window.cart_price + '</h3></li>');
 
         $(".cart-info").append(list);
         $(".cart-img").append(img);
+
+
+        seller_link.appendTo('.seller span');
+
+
     }, 200);
 
 });

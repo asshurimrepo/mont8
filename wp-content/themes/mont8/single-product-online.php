@@ -24,6 +24,9 @@
 			 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
 			 */
 			do_action( 'woocommerce_after_main_content' );
+
+			global $product;
+			$store_info = dokan_get_store_info( $product->post->post_author );
 		?>
 	</div>
 
@@ -31,7 +34,7 @@
 
 		<div class="row same-artists" style="clear:both;">
 			<h3 class="text-center "><?php _e( 'MORE FROM ', 'woocommerce' ); ?> <a
-					href="<?= dokan_get_store_url( get_the_author_meta( 'ID' ) ) ?>"><?= get_the_author_meta( 'display_name' ) ?></a>
+					href="<?= dokan_get_store_url( get_the_author_meta( 'ID' ) ) ?>"><?= $store_info['store_name'] ?></a>
 			</h3>
 			<?= do_shortcode( '[recent_products per_page="5" columns="5" orderby="rand" author="' . get_the_author_meta( 'ID' ) . '" order="rand"]' ) ?>
 		</div>

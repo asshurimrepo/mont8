@@ -203,8 +203,9 @@ mark {
 .woocommerce #content input.button,
 .woocommerce-page #content input.button {
   color: #ffffff;
-  background-color: #f17288;
-  border-color: #f17288;
+  background-color: #FF0099;
+  border-color: #ff0099;
+  border-radius: 0;
 }
 .woocommerce a.button:hover,
 .woocommerce-page a.button:hover,

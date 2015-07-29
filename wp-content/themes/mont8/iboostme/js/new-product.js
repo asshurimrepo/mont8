@@ -73,6 +73,7 @@ function renderMediaUploader($) {
             var thumb = $("<img>");
             var thumb_link = $("<a>");
 
+
             thumb.prop('src', attachment.sizes.thumbnail.url)
                 .prop('class', 'img-thumbnail');
 
@@ -96,6 +97,8 @@ function renderMediaUploader($) {
 
             $("#selection").append(thumb_link);
             $('#new-product-form').append(html);
+
+            filter_products(attachment.id, attachment.width, attachment.height);
 
             //Pricing Tags Event
             pricingTagsInit($("form.art-" + attachment.id));
@@ -154,10 +157,13 @@ var selection;
         var error_message = null, new_error_message;
 
         setInterval(function () {
-            if (!error_message) {
+            if (error_message != null) {
                 error_message = $(".upload-error-message").html();
+            } else {
+                return;
             }
-            var link = $("#menu-item-414 a").prop('href');
+
+            var link = $(".upload-guideline-link").prop('href');
             new_error_message = error_message.replace('click here for more information about uploading guidelines', '<a target="_blank" style="color: #21759b !important" href="' + link + '">click here for more information about uploading guidelines</a>');
             $(".upload-error-message").html(new_error_message);
 
@@ -263,3 +269,55 @@ function pricingTagsInit(form) {
 }
 
 
+function filter_products(id, w, h) {
+    var $ = jQuery;
+    var item = $(".art-" + id);
+
+    var is_square = w == h;
+
+    //If landscape
+    if (w > h) {
+        w = h;
+        h = w;
+    }
+
+    var a5 = w >= 874 && h >= 1240,
+        a4 = w >= 1240 && h >= 1754,
+        a3 = w >= 1754 && h >= 2480,
+        a2 = w >= 2480 && h >= 3508,
+        a1 = w >= 3508 && h >= 4967,
+        small = w >= 1772,
+        medium = w >= 2362,
+        large = w >= 2953,
+        xlarge = w >= 3543;
+
+    if (is_square) {
+        item.find('[data-slug=posters]').parent().remove();
+
+        if (!small) {
+            item.find('[data-slug=framed-art]').parent().remove();
+            item.find('[data-slug=art-print]').parent().remove();
+            item.find('[data-slug=photography]').parent().remove();
+            item.find('[data-slug=stretched-canvases]').parent().remove();
+        }
+
+        return;
+    }
+
+
+    if (!a5) {
+        item.find('[data-slug=framed-art]').parent().remove();
+        item.find('[data-slug=art-print]').parent().remove();
+        item.find('[data-slug=photography]').parent().remove();
+    }
+
+    if (!a3) {
+        item.find('[data-slug=stretched-canvases]').parent().remove();
+    }
+
+    if (!a2) {
+        item.find('[data-slug=posters]').parent().remove();
+    }
+
+
+}

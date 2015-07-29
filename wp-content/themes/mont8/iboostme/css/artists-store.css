@@ -29,12 +29,15 @@
 
 h1{
     font-size: 50px !important;
-    font-family: modern_sans, 'Open Sans' !important;
+    font-family: modern_sans, 'Century Gothic' !important;
 }
 h1>small{
-    font-family: 'Open Sans';
     display: block;
     font-size: 35% !important;
+}
+
+input.userpro-button.secondary, a.userpro-button.secondary, div.userpro div.ajax-file-upload {
+    font-family: 'Century Gothic', sans-serif !important;
 }
 
 
@@ -65,6 +68,10 @@ a.userpro-follow.notfollowing:before{
     margin:0 8px 0 -5px;
     color: #232323;
     font-weight: 300;
+}
+
+a.userpro-follow:hover.notfollowing:before {
+    color: #FFF;
 }
 a.userpro-follow.notfollowing.following:before{
     content: '';

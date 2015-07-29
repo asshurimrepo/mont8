@@ -13,11 +13,8 @@
 	<div class="dokan-dashboard-content dokan-settings-content">
 		<article class="dokan-settings-area">
 			<header class="dokan-dashboard-header">
-				<h1 class="entry-title">
+				<h1 class="nice">
 					<?php _e( 'Payment Settings', 'dokan' ); ?>
-					<small>&rarr; <a
-							href="<?php echo dokan_get_store_url( get_current_user_id() ); ?>"><?php _e( 'Visit Store', 'dokan' ); ?></a>
-					</small>
 				</h1>
 			</header>
 
@@ -45,8 +42,13 @@
 						for any reason before it ships, it will not be payable.
 					</li>
 				</ul>
-				<hr>
+
 			</div>
+			<hr>
+
+			<?php dokan_get_template_part( 'threshold', 'table' ); ?>
+
+			<hr>
 
 			<div class="dokan-page-help">
 				<?php _e( 'These are the withdraw methods available for you. Please update your payment informations below to submit withdraw requests and get your store payments seamlessly.', 'dokan' ); ?>

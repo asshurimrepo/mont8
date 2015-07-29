@@ -5,7 +5,8 @@
     ],
     "files": [
       "iboostme/lib/uploading_artwork.php",
-      "iboostme/lib/product_markup_shortcodes.php"
+      "iboostme/lib/product_markup_shortcodes.php",
+      "iboostme/lib/woocommerce_hooks.php"
     ]
   },
   "require": {

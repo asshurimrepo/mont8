@@ -636,56 +636,6 @@
 	}
 
 
-	//Validate Edit Account
-	add_action( 'user_profile_update_errors', 'validate_store_info_upon_saving', 10, 1 );
-	/**
-	 * @param $args
-	 */
-	function validate_store_info_upon_saving( $args )
-	{
-
-		global $current_user;
-
-		if ( isset( $_POST['dokan_store_name'] ) )
-		{
-			if ( strlen( $_POST['dokan_store_name'] ) < 1 )
-			{
-				$args->add( 'error', __( 'Store Name is required!', 'woocommerce' ), '' );
-
-				return;
-			}
-
-		}
-
-
-		if ( strlen( $_POST['dokan_description'] ) < 1 )
-		{
-			$args->add( 'error', __( 'Store Description is required!', 'woocommerce' ), '' );
-
-			return;
-		}
-
-		update_user_meta( $current_user->ID, 'description', $_POST['dokan_description'] );
-
-		if ( ! isset( $_POST['dokan_store_name'] ) )
-		{
-			return;
-		}
-
-		$store_settings               = dokan_get_store_info( $current_user->ID );
-		$store_settings['store_name'] = $_POST['dokan_store_name'];
-		$store_settings['gravatar'] = $_POST['dokan_gravatar'];
-
-		/*var_dump($_POST);
-
-		exit;*/
-
-		update_user_meta( $current_user->ID, 'dokan_profile_settings', $store_settings );
-
-//		do_action( 'dokan_process_seller_meta_fields', $current_user->ID );
-	}
-
-
 	add_filter( 'woocommerce_get_item_data', 'add_weight_to_item_data', 999, 2 );
 	/**
 	 * @param $a
@@ -703,10 +653,10 @@
 		}
 
 
-		$a[] = [
+		/*$a[] = [
 			'name'  => 'Weight',
 			'value' => MontWeightCalculator::getWeightBySize( $cart_item )
-		];
+		];*/
 
 		return $a;
 	}
@@ -720,11 +670,11 @@
 	function round_formatted_woocommerce_price( $price )
 	{
 
-		/*$price = str_replace( ',', '', $price );
+		$price = str_replace( ',', '', $price );
 
-		return number_format( round( $price ), 2 );*/
+		return number_format( round( $price ), 2 );
 
-		return $price;
+//		return $price;
 	}
 
 
@@ -832,3 +782,21 @@
 		}
 
 	}
+
+
+	add_filter( 'woocommerce_billing_fields', 'custom_woocommerce_billing_fields' );
+
+	function custom_woocommerce_billing_fields( $fields )
+	{
+
+		$fields['billing_state'] = array(
+			'label'       => __( 'State/County', 'woothemes' ),
+			'placeholder' => __( 'State/County', 'woothemes' ),
+			'required'    => false,
+			'class'       => array( 'input-text form-row-first' )
+		);
+
+		return $fields;
+	}
+
+

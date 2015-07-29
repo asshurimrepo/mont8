@@ -30,6 +30,7 @@
 		 * @var
 		 */
 		protected $results;
+		protected $is_cod;
 		/**
 		 * @var
 		 */
@@ -71,16 +72,11 @@
 				$is_cod = $_POST['payment_method'] == 'cod';
 			}
 
-
-			$prod_type = $this->is_dosmestic ? 'CDS' : 'EPX';
-			$pay_type = 'P';
+			$this->is_cod = $is_cod;
 
 
-			if ( $is_cod )
-			{
-				$pay_type = $this->is_dosmestic ? 'P' : 'C';
-				$prod_type = $this->is_dosmestic ? 'CDS' : 'PPX';
-			}
+//			$prod_type = $this->is_dosmestic ? 'CDS' : 'EPX';
+
 
 			return array(
 				'ClientInfo'         => array(
@@ -103,9 +99,9 @@
 					'State'       => $this->state,
 				),
 				'ShipmentDetails'    => array(
-					'PaymentType' => $pay_type,
+					'PaymentType' => 'P',
 					'ProductGroup'     => $this->is_dosmestic ? 'DOM' : 'EXP',
-					'ProductType'      => $prod_type,
+					'ProductType' => $this->is_dosmestic ? 'CDS' : 'EPX',
 					'ActualWeight'     => array( 'Value' => $this->total_weight, 'Unit' => 'KG' ),
 					'ChargeableWeight' => array( 'Value' => $this->total_weight, 'Unit' => 'KG' ),
 					'NumberOfPieces'   => 1
@@ -119,7 +115,11 @@
 		protected function getMarkup()
 		{
 
-//			return 0;
+			/*if cod and total weight > 5*/
+			if ( $this->is_cod && $this->getTotalWeight() > 5 )
+			{
+				return 0;
+			}
 
 			//No markup if total weight is >= 10KG -> default range weight
 			if ( $this->getTotalWeight() >= $this->range_weight )
@@ -144,36 +144,7 @@
 		 */
 		public function calculate()
 		{
-			$this->results     = [ ];
-			$connected_to_soap = false;
-			$max_tries         = 50;
-			$tries             = 0;
-
-
-//			var_dump($_POST);
-
-			//persists connection
-			/*while ( ! $connected_to_soap && $tries <= $max_tries )
-			{
-				try
-				{
-					$soapClient        = new SoapClient( 'http://localhost:8888/Shipping_API_PHP/aramex-rates-calculator-wsdl-2.wsdl', array( 'trace' => 1 ) );
-					$this->results     = $soapClient->CalculateRate( $this->getParams() );
-					$connected_to_soap = true;
-				}
-				catch ( Exception $e )
-				{
-					$tries += 1;
-					$connected_to_soap = false;
-				}
-			}
-
-			if ( $tries > $max_tries )
-			{
-				throw new Exception( "Can't Connect to Aramex Rates API Server" );
-			}*/
-
-//			var_dump( $this->getParams() );
+			$this->results = [ ];
 
 			$soapClient        = new SoapClient( $this->getWsdl(), array( 'trace' => 1 ) );
 			$this->results     = $soapClient->CalculateRate( $this->getParams() );
@@ -189,19 +160,14 @@
 		public function getAmount()
 		{
 
-
 			if ( $this->errors() )
 			{
 				return null;
 			}
 
-//			return $this->results->TotalAmount->Value;
-
-//			$current_rate = get_current_currency( 'rate' );
 			$rate = 1 / get_currency_by_name( $this->results->TotalAmount->CurrencyCode, 'rate' );
 
-			return ( $this->results->TotalAmount->Value * $rate )/** $current_rate*/
-				;
+			return ( $this->results->TotalAmount->Value * $rate ) + $this->getCODMarkup();
 		}
 
 		/**
@@ -209,6 +175,7 @@
 		 */
 		public function getFinalAmount()
 		{
+
 			if ( $this->errors() )
 			{
 				return null;
@@ -252,6 +219,35 @@
 		public function __toString()
 		{
 			return '';
+		}
+
+		private function getCODMarkup()
+		{
+
+			/*IF NOT COD return 0*/
+			if ( ! $this->is_cod )
+			{
+				return 0;
+			}
+
+			/*IF DOMESTIC*/
+			if ( $this->is_dosmestic )
+			{
+				/*2 AED for less than 5KG*/
+				if ( $this->total_weight <= 5 )
+				{
+					return 2;
+				}
+
+				/*if > 5 KG*/
+				$excess = ceil( $this->total_weight - 5 );
+
+				return 2 + ( ( $excess ) * 2 );
+			}
+
+			/*If International COD*/
+
+			return 55;
 		}
 
 	}

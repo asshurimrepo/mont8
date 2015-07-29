@@ -54,14 +54,26 @@
 
 	$product_tag_slug = get_query_var( 'product_tag' );
 	$permalink        = $product->get_permalink() . '?ptype=' . $product_tag_slug;
+	$store_info = dokan_get_store_info( $product->post->post_author );
+
+	$price_terms = [
+		'framed-art'         => 'framed_print',
+		'art-print'          => 'art_print',
+		'photography'        => 'photo_print',
+		'stretched-canvases' => 'canvas',
+		'posters'            => 'poster',
+	];
+
+
+	//	$base_price
+
 ?>
 
 
 <?php //do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 
-<?php $author = get_userdata( $product->post->post_author ); ?>
-<?php $preview_price = IB_Utils::get_base_price( $product->id ); ?>
+<?php $preview_price = IB_Utils::get_base_price( $product->id, $price_terms[ $product_tag_slug ] ); ?>
 
 <div class="cell col-sm-4">
 
@@ -79,7 +91,8 @@
 
 		<div class="info">
 			<a href="<?= $permalink ?>"><span class="title"><?= $product->get_title() ?></span></a>
-			<a href="<?= dokan_get_store_url( $author->ID ) ?>"><span class="author"><?= $author->display_name ?></span></a>
+			<a href="<?= dokan_get_store_url( $product->post->post_author ) ?>"><span
+					class="author"><?= $store_info['store_name'] ?></span></a>
 			<a href="<?= $permalink ?>"><span class="base-price">From <?= $preview_price ?></span></a>
 		</div>
 	</div>

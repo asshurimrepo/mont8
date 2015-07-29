@@ -56,18 +56,20 @@ $user_id = $current_user->ID;
 				</div>
 
 
-				<div class="col-lg-6 nav-menu" style="padding:0;">
+				<div class="col-md-4 hidden-xs pull-right"
+				     style="padding:0;">
+					<?php dokan_header_user_menu(); ?>
+				</div>
+
+				<div class="<?= is_user_logged_in() ? 'col-md-6' : 'col-md-7' ?> nav-menu"
+				     style="padding:0; <?= is_user_logged_in() ?: 'margin-top: -72px;' ?>">
 
 					<?php echo wp_nav_menu( array( "theme_location" => "primary" ) ); ?>
 
-					<?php get_template_part('iboostme/template-part/upload-btn')?>
+					<?php get_template_part( 'iboostme/template-part/upload-btn' ) ?>
 
 				</div>
 
-
-				<div class="col-lg-4 hidden-xs" style="padding:0;">
-					<?php dokan_header_user_menu(); ?>
-				</div>
 
 			</div>
 			<!-- .row -->

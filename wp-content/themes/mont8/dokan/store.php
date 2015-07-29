@@ -42,6 +42,18 @@
 	load_js( 'artists-script', 'artists-store.js' );
 
 
+
+
+	add_filter('woocommerce_shortcode_products_query', 'filter_products');
+
+	function filter_products($args){
+		global $store_user;
+		$args['author'] = $store_user->ID;
+
+		return $args;
+	}
+
+
 	get_header();
 
 ?>

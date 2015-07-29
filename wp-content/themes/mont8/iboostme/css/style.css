@@ -286,7 +286,7 @@ dd.tm-final-totals{
 }
 
 .images>.image-grey{
-    background-color: #F3F3F3;
+    /*background-color: #F3F3F3;*/
     padding: 29px 0px 24px 0px;
     margin-bottom: 10px;
 }

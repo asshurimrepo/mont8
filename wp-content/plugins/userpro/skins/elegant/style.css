@@ -253,11 +253,11 @@ a.userpro-button.secondary i{
 input.userpro-button.secondary:hover,
 a.userpro-button.secondary:hover,
 div.userpro div.ajax-file-upload:hover {
-	background: #fff !important;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f8f8f8), to(#fff)) !important;
-    background: -moz-linear-gradient(0% 0% 270deg,#f8f8f8, #fff) !important;
-	border: solid 1px #bbb !important;
-	color: #666 !important;
+	background: #FF0095 !important;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF0099), to(#F09)) !important;
+	background: -moz-linear-gradient(0% 0% 270deg, #FF0099, #F09) !important;
+	border: solid 1px #FF0099 !important;
+	color: #FFF !important;
 }
 
 input.userpro-button.red,

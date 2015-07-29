@@ -343,7 +343,7 @@
 				'orderby'             => $atts['orderby'],
 				'order'               => $atts['order'],
 				'meta_query'          => $meta_query,
-				'post_author'         => $atts['author'],
+				'author' => $atts['author'],
 			);
 
 			ob_start();

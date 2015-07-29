@@ -104,24 +104,24 @@
 		?>
 
 		<tr id="pricing-<?= $art['slug'] ?>">
-			<td><img src="<?= get_image( $art['image'] ) ?>" class="img-responsive"></td>
+			<td><img src="<?= get_image( $art['image'] ) ?>" style="max-width: 150px;" class="img-responsive"></td>
 			<td><?= $art['label'] ?></td>
 			<td class="hide_in_product">
-				<?= number_format( $base_price[ $id ][0], 2 ) ?> <?= $currency_name ?>
+				<?= $currency_name ?> <?= number_format( $base_price[ $id ][0], 2 ) ?>
 				-
-				<?= number_format( $base_price[ $id ][1], 2 ) ?> <?= $currency_name ?>
+				<?= $currency_name ?> <?= number_format( $base_price[ $id ][1], 2 ) ?>
 			</td>
 
 			<td class="hide_in_product">
-				<?= number_format( $margin_min, 2 ) ?> <?= $currency_name ?>
+				<?= $currency_name ?> <?= number_format( $margin_min, 2 ) ?>
 				-
-				<?= number_format( $margin_max, 2 ) ?> <?= $currency_name ?>
+				<?= $currency_name ?> <?= number_format( $margin_max, 2 ) ?>
 			</td>
 
 			<td class="hide_in_product">
-				<?= number_format( $base_price[ $id ][2], 2 ) ?> <?= $currency_name ?>
+				<?= $currency_name ?> <?= number_format( $base_price[ $id ][2], 2 ) ?>
 				-
-				<?= number_format( $base_price[ $id ][3], 2 ) ?> <?= $currency_name ?></td>
+				<?= $currency_name ?> <?= number_format( $base_price[ $id ][3], 2 ) ?></td>
 			<td>
 				<input min="0" max="100" type="number" name="<?= $art['id'] ?>" class="form-control markup-field right"
 				       value="<?= $_post_meta[ $art['id'] ][0] ?: $art['default'] ?>">

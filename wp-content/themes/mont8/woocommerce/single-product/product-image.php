@@ -50,9 +50,6 @@
 				<a href="#!" itemprop="image"
 				   class="imagesize woocommerce-main-image zoom framed-photo-prints Brown size-14-8-x-21-a5"
 				   title="<?= $image_caption ?>" data-rel="prettyPhoto' . $gallery . '">
-					<div class="pull-right like-container">
-						<?php get_template_part( 'dokan/btn', 'like' ); ?>
-					</div>
 					<?= $image ?>
 				</a>
 

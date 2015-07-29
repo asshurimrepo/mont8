@@ -26,6 +26,10 @@
 
 ?>
 
+<div class="pull-right like-container" style="top:48px;">
+	<?php get_template_part( 'dokan/btn', 'like' ); ?>
+</div>
+
 <div class="row product-title">
 	<div class="col-md-2">
 		<?= get_avatar( $author->ID, 128 ) ?>

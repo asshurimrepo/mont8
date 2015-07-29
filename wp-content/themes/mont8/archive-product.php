@@ -11,8 +11,8 @@
  global $wp_query;
 // 	var_dump($wp_query->query_vars);
 
-get_header(); ?>
 
+get_header(); ?>
 
 
 <div id="primary" class="content-area col-md-12">
@@ -109,5 +109,24 @@ get_header(); ?>
 
 	</div><!-- #content .site-content -->
 </div><!-- #primary .content-area -->
+
+<script>
+	(function($){
+
+
+	    $(".tagcloud a").remove();
+
+	    $("#menu-item-14 .mega_dropdown a").each(function(){
+
+			var item = $(this).clone();
+
+			item.appendTo(".tagcloud");
+
+	    });
+
+	})(jQuery);
+
+
+</script>
 
 <?php get_footer(); ?>

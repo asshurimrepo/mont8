@@ -213,7 +213,7 @@
 			$skin               = get_theme_mod( 'color_skin', 'orange.css' );
 
 			// register styles
-
+			load_style( 'moder-sans-font', 'modern-sans/stylesheet.css' );
 			load_style( 'animate', '/assets/css/animate.css', '1.2.3', '' );
 			load_style( 'cart-sidebar', '/assets/css/cart-sidebar.css', '1.2.3', '' );
 			load_style( 'bootstrap-datepicker', '/assets/js/bootstrap-datepicker/css/bootstrap-datepicker.min.css', '1.2.3', '' );
