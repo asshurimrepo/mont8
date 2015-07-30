@@ -26,7 +26,7 @@
 
 ?>
 
-<div class="pull-right like-container" style="top:48px;">
+<div class="pull-right like-container" style="top:48px; right: -9px !important;">
 	<?php get_template_part( 'dokan/btn', 'like' ); ?>
 </div>
 

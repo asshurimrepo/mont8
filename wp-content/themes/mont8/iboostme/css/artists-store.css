@@ -62,27 +62,6 @@ input.userpro-button.secondary, a.userpro-button.secondary, div.userpro div.ajax
     background-position: -123px;
 }
 
-a.userpro-follow.notfollowing:before{
-    font-family: 'FontAwesome';
-    content: '\f055';
-    margin:0 8px 0 -5px;
-    color: #232323;
-    font-weight: 300;
-}
-
-a.userpro-follow:hover.notfollowing:before {
-    color: #FFF;
-}
-a.userpro-follow.notfollowing.following:before{
-    content: '';
-}
-a.userpro-follow.notfollowing.following.red:before{
-    font-family: 'FontAwesome';
-    content: '\f056';
-    margin:0 8px 0 -5px;
-    color: #FFF;
-}
-
 
 .follow-actions{
     text-align: right;

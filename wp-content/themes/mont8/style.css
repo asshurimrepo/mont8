@@ -4375,6 +4375,29 @@ input.datepicker {
 .mmm_fullwidth_container {
     display: none;
 }
+
+a.userpro-follow.notfollowing:before {
+    font-family: 'FontAwesome';
+    content: '\f055';
+    margin: 0 8px 0 -5px;
+    color: #232323;
+    font-weight: 300;
+}
+
+a.userpro-follow:hover.notfollowing:before {
+    color: #FFF;
+}
+
+a.userpro-follow.notfollowing.following:before {
+    content: '';
+}
+
+a.userpro-follow.notfollowing.following.red:before {
+    font-family: 'FontAwesome';
+    content: '\f056';
+    margin: 0 8px 0 -5px;
+    color: #FFF;
+}
 /*
 .stylish-input-group .input-group-addon{
     background: white !important;
