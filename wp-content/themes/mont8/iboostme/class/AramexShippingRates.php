@@ -165,7 +165,7 @@
 				return null;
 			}
 
-			$rate = 1 / get_currency_by_name( $this->results->TotalAmount->CurrencyCode, 'rate' );
+			$rate = $this->getRate();
 
 			return ( $this->results->TotalAmount->Value * $rate ) + $this->getCODMarkup();
 		}
@@ -224,6 +224,9 @@
 		private function getCODMarkup()
 		{
 
+			$domestic_rate = 0.54; //USD
+			$international_rate = 14.97; //USD
+
 			/*IF NOT COD return 0*/
 			if ( ! $this->is_cod )
 			{
@@ -236,18 +239,28 @@
 				/*2 AED for less than 5KG*/
 				if ( $this->total_weight <= 5 )
 				{
-					return 2;
+					return $domestic_rate;
 				}
 
 				/*if > 5 KG*/
 				$excess = ceil( $this->total_weight - 5 );
 
-				return 2 + ( ( $excess ) * 2 );
+				return $domestic_rate + ( ( $excess ) * $domestic_rate );
 			}
 
-			/*If International COD*/
+			/*If International COD in USD*/
 
-			return 55;
+			return $international_rate;
+		}
+
+		/**
+		 * @return float
+		 */
+		private function getRate()
+		{
+			$rate = 1 / get_currency_by_name( $this->results->TotalAmount->CurrencyCode, 'rate' );
+
+			return $rate;
 		}
 
 	}
