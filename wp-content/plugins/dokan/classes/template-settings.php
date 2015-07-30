@@ -281,7 +281,7 @@
 		{
 
 			$store_id            = get_current_user_id();
-			$prev_dokan_settings = get_user_meta( $store_id, 'dokan_profile_settings', true );
+			$prev_dokan_settings = (array) get_user_meta( $store_id, 'dokan_profile_settings', true );
 			$dokan_settings = array();
 
 

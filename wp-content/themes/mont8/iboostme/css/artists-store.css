@@ -146,3 +146,7 @@ a.userpro-follow.notfollowing.following.red:before{
     color: #FFF;
     border: 1px solid #FFF;
 }
+
+div.userpro-sc-flw {
+    margin: 0 !important;
+}
