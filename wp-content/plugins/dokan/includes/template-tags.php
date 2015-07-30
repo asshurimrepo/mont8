@@ -769,40 +769,9 @@
 
 					<ul class="nav navbar-nav navbar-right">
 
-						<!--						<li style="padding: 0 5px;" class="search-cont">-->
-						<!--							<input type="text" data-url="" class="form-control search-mont">-->
-						<!--						</li>-->
-						<li style="width: 49.4%; padding-left:5px">
-							<div class="search_panel">
-								<form method="get" id="searchform"
-								      action="<?php echo esc_url( home_url( '/shop' ) ); ?>" role="search">
 
-									<div class="right-inner-addon">
-										<i class="fa fa-search fa-lg"></i>
-										<input type="text" id="s" name="s"
-										       value="<?php echo esc_attr( get_search_query() ); ?>"
-										       class="form-control"/>
-									</div>
-								</form>
-							</div>
-						</li>
 
-						<!--Cart-->
-						<?php if ( WC()->cart->cart_contents_count ): ?>
-							<li>
-								<div class="cart-sidebar-group">
-									<span class="badge"><?= WC()->cart->cart_contents_count ?></span>
-									<a href="#" class="dropdown-toggle btn-cart-sidebar"
-									   data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
-								</div>
 
-								<ul class="dropdown-menu">
-									<li>
-										<div class="widget_shopping_cart_content"></div>
-									</li>
-								</ul>
-							</li>
-						<?php endif; ?>
 
 
 						<?php if ( is_user_logged_in() )
@@ -819,7 +788,7 @@
 							<?php } ?>
 
 
-							<li class="dropdown login_panel">
+							<li class="dropdown login_panel pull-right">
 								<a href="#" class="dropdown-toggle"
 								   data-toggle="dropdown"><?php echo esc_html( $seller_name[0] ); ?> <b
 										class="caret"></b></a>
@@ -872,53 +841,10 @@
 
 
 									<?php endif; ?>
-									<!--<li><a href="<?php /*echo dokan_get_store_url( $user_id ); */
-									?>"
-									       target="_blank"><?php /*_e( 'My Store', 'dokan' ); */
-									?></a></li>
-									<li>
-										<a href="<?php /*echo dokan_get_page_url( 'my_orders' ); */
-									?>"><?php /*_e( 'My Orders', 'dokan' ); */
-									?></a>
-									</li>
-									<li>
-										<a href="<?php /*echo dokan_get_page_url( 'myaccount', 'woocommerce' ); */
-									?>"><?php /*_e( 'My Account', 'dokan' ); */
-									?></a>
-									</li>
-									<li>
-										<a href="<?php /*echo wc_customer_edit_account_url(); */
-									?>"><?php /*_e( 'Edit Account', 'dokan' ); */
-									?></a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="<?php /*echo wc_get_endpoint_url( 'edit-address', 'billing', get_permalink( wc_get_page_id( 'myaccount' ) ) ); */
-									?>"><?php /*_e( 'Billing Address', 'dokan' ); */
-									?></a>
-									</li>
-									<li>
-										<a href="<?php /*echo wc_get_endpoint_url( 'edit-address', 'shipping', get_permalink( wc_get_page_id( 'myaccount' ) ) ); */
-									?>"><?php /*_e( 'Shipping Address', 'dokan' ); */
-									?></a>
-									</li>
 
-									<li class="divider"></li>
-									<?php
-										/*										$nav_urls = dokan_get_dashboard_nav();
-
-																				foreach ( $nav_urls as $key => $item )
-																				{
-																					printf( '<li><a href="%s">%s &nbsp;%s</a></li>', $item['url'], $item[''], $item['title'] );
-																				}
-																			*/
-									?>
-
-									<li class="divider"></li>-->
 									<li class="divider"></li>
 
 									<li><?php wp_loginout( home_url() ); ?></li>
-
 
 								</ul>
 							</li>
@@ -928,15 +854,48 @@
 						else
 						{ ?>
 
-
-							<li class="login_panel"><a
-									href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?php _e( 'Log in', 'dokan' ); ?></a>
-							</li>
-							<li class="reg_panel"><a
+							<li class="reg_panel pull-right"><a
 									href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?php _e( 'Sign Up', 'dokan' ); ?></a>
 							</li>
+							<li class="login_panel pull-right"><a
+									href="<?php echo dokan_get_page_url( 'myaccount', 'woocommerce' ); ?>"><?php _e( 'Log in', 'dokan' ); ?></a>
+							</li>
+
 
 						<?php } ?>
+
+
+						<!--Cart-->
+						<?php if ( WC()->cart->cart_contents_count ): ?>
+							<li class="pull-right">
+								<div class="cart-sidebar-group">
+									<span class="badge"><?= WC()->cart->cart_contents_count ?></span>
+									<a href="#" class="dropdown-toggle btn-cart-sidebar"
+									   data-toggle="dropdown"><?php printf( __( '<i class="fa fa-shopping-cart fa-lg"></i>', 'dokan' ), '<span class="dokan-cart-amount-top">(' . WC()->cart->get_cart_total() . ')</span>' ); ?></a>
+								</div>
+
+								<ul class="dropdown-menu">
+									<li>
+										<div class="widget_shopping_cart_content"></div>
+									</li>
+								</ul>
+							</li>
+						<?php endif; ?>
+
+						<li style="width: 49.4%; padding-left:5px" class="pull-right">
+							<div class="search_panel">
+								<form method="get" id="searchform"
+								      action="<?php echo esc_url( home_url( '/shop' ) ); ?>" role="search">
+
+									<div class="right-inner-addon">
+										<i class="fa fa-search fa-lg"></i>
+										<input type="text" id="s" name="s"
+										       value="<?php echo esc_attr( get_search_query() ); ?>"
+										       class="form-control"/>
+									</div>
+								</form>
+							</div>
+						</li>
 					</ul>
 
 

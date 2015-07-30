@@ -14,6 +14,10 @@
 		$dokan_template_settings = Dokan_Template_Settings::init();
 		$dokan_template_settings->insert_settings_info();
 
+
+		/*
+		 * If store name is available validate
+		 * */
 		if ( isset( $_POST['dokan_store_name'] ) )
 		{
 			if ( strlen( $_POST['dokan_store_name'] ) < 1 )
@@ -25,8 +29,10 @@
 
 		}
 
-
-		if ( strlen( $_POST['dokan_description'] ) < 1 )
+		/*
+		 * if description is available, validate
+		 * */
+		if ( isset( $_POST['dokan_description'] ) && strlen( $_POST['dokan_description'] ) < 1 )
 		{
 			$args->add( 'error', __( 'Store Description is required!', 'woocommerce' ), '' );
 
