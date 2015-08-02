@@ -9,6 +9,7 @@
 	 */
 
 	load_style( 'order-summary-style', 'order-summary.css' );
+	load_js( 'js-cookie-script', 'js.cookie.js' );
 	load_js( 'jquery-validate', 'jquery-validate.js' );
 	load_js( 'order-summary-script', 'order-summary.js' );
 

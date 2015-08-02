@@ -71,6 +71,16 @@ jQuery(document).ready(function ($) {
     });
 
 
-    //$("#billing_country").val('');
+    //Store Checkout Fields to Cookie
+
+    $("#customer_details input, #customer_details select").each(function () {
+
+        $(this).val(Cookies.get($(this).prop('name')));
+
+    }).change(function () {
+
+        Cookies.set($(this).prop('name'), $(this).val(), {expires: 1});
+
+    });
 
 });

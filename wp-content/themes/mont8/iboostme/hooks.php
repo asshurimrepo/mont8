@@ -688,8 +688,8 @@
 	}*/
 
 
-	add_action( 'woocommerce_checkout_process', 'validate_shipping' );
-	add_action( 'woocommerce_checkout_process', 'validate_shipping_if_cod' );
+	add_action( 'woocommerce_checkout_process', 'validate_shipping', 2 );
+	add_action( 'woocommerce_checkout_process', 'validate_shipping_if_cod', 3 );
 	add_action( 'woocommerce_checkout_update_order_review', 'update_shipping_rate', 1 );
 
 
@@ -798,5 +798,3 @@
 
 		return $fields;
 	}
-
-

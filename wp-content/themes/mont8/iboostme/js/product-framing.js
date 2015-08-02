@@ -736,6 +736,12 @@ jQuery(document).ready(function ($) {
                 $("#tmcp_choice_0_4_5").click();
                 break;
         }
+
+        var url = document.URL;
+        var plain_url = url.split("?")[0].split("#")[0];
+
+        window.history.pushState({}, "", plain_url);
+
     }, 1000);
 
 
@@ -808,19 +814,19 @@ jQuery(document).ready(function ($) {
 
     if (is_square) {
         if (!small) {
-            $("select.select-image-size>option:nth-child(4)").hide();
+            $("select.select-image-size>option:nth-child(4)").remove();
         }
 
         if (!medium) {
-            $("select.select-image-size>option:nth-child(3)").hide();
+            $("select.select-image-size>option:nth-child(3)").remove();
         }
 
         if (!large) {
-            $("select.select-image-size>option:nth-child(2)").hide();
+            $("select.select-image-size>option:nth-child(2)").remove();
         }
 
         if (!xlarge) {
-            $("select.select-image-size>option:nth-child(1)").hide();
+            $("select.select-image-size>option:nth-child(1)").remove();
         }
 
         return;
@@ -828,25 +834,25 @@ jQuery(document).ready(function ($) {
 
 
     if (!a5) {
-        $("select.select-image-size>option:nth-child(5)").hide();
+        $("select.select-image-size>option:nth-child(5)").remove();
     }
 
     if (!a4) {
-        $("select.select-image-size>option:nth-child(4)").hide();
+        $("select.select-image-size>option:nth-child(4)").remove();
     }
 
     if (!a3) {
-        $("select.select-image-size>option:nth-child(3)").hide();
+        $("select.select-image-size>option:nth-child(3)").remove();
         $(".artwork-style-ul>li:nth-child(4)").hide();
     }
 
     if (!a2) {
-        $("select.select-image-size>option:nth-child(2)").hide();
+        $("select.select-image-size>option:nth-child(2)").remove();
         $(".artwork-style-ul>li:nth-child(5)").hide();
     }
 
     if (!a1) {
-        $("select.select-image-size>option:nth-child(1)").hide();
+        $("select.select-image-size>option:nth-child(1)").remove();
     }
 
 

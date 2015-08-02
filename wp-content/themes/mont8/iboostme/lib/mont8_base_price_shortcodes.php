@@ -6,8 +6,7 @@
 
 		public function __construct()
 		{
-			global $frontpage_id;
-
+			$frontpage_id = get_option( 'page_on_front' );
 			$this->base_prices = get_field( 'artwork_types', $frontpage_id );
 
 		}

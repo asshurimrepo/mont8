@@ -52,11 +52,11 @@
 	];
 
 	$base_price = [
-		'framed_print' => [ 70, 319 ],
-		'art_print'    => [ 33, 170 ],
-		'photo_print'  => [ 38, 195 ],
-		'canvas'       => [ 181, 564 ],
-		'poster'       => [ 54, 90 ]
+		'framed_print' => [ 19.06, 86.85 ],
+		'art_print'    => [ 8.98, 46.28 ],
+		'photo_print'  => [ 10.35, 53.09 ],
+		'canvas'       => [ 49.28, 113.25 ],
+		'poster'       => [ 14.70, 24.50 ]
 	];
 
 	$currency_rate = get_current_currency( 'rate' );

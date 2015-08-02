@@ -91,3 +91,13 @@
 
 		}
 	}
+
+
+	/*
+	 * Force THE Currency into USD after checkout process
+	 * */
+	add_action( 'woocommerce_checkout_process', 'revert_currency_to_usd', 5 );
+	function revert_currency_to_usd()
+	{
+		$_SESSION['woocs_current_currency'] = 'USD';
+	}

@@ -4220,7 +4220,7 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
     border-bottom-color: transparent;
 }
 
-#menu-item-14:hover > a, #menu-item-14 .mega_dropdown li a:hover {
+#menu-item-639:hover > a, #menu-item-639 .mega_dropdown li a:hover {
     background: transparent !important;
     border-bottom-color: #83F52C !important;
 }
@@ -4397,6 +4397,21 @@ a.userpro-follow.notfollowing.following.red:before {
     content: '\f056';
     margin: 0 8px 0 -5px;
     color: #FFF;
+}
+
+.woocommerce .order_details {
+    text-align: center;
+    padding: 0;
+    margin-bottom: 50px !important;
+}
+
+.woocommerce .order_details li {
+    display: inline-block;
+    float: none !important;
+}
+
+.vaPayment_PAYPAL {
+    text-align: center;
 }
 /*
 .stylish-input-group .input-group-addon{
