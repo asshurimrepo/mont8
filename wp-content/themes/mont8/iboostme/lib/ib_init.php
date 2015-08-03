@@ -16,7 +16,7 @@
 			return $urls;
 		}
 
-		unset( $urls['pricing'], $urls['printshop'] );
+		unset( $urls['pricing'] );
 
 		return $urls;
 	}
