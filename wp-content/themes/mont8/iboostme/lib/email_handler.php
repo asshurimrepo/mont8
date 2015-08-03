@@ -5,8 +5,6 @@
 
 	function mont8_order_item_product( $product, $item )
 	{
-		var_dump( $product );
-		var_dump( $item );
-
-		//sample
+		/*var_dump( $product );
+		var_dump( $item );*/
 	}
