@@ -33,7 +33,8 @@
 ?>
 
 
-<h1 class="nice2" style="padding-top: 0; margin-top: 0;"><?= __( 'Featured Products', 'dokan' ) ?></h1>
+<h1 class="nice2"
+    style="padding-top: 0; margin-top: 0; text-transform: uppercase;"><?= __( 'Featured Products', 'dokan' ) ?></h1>
 
 <div class="row featured-products">
 
