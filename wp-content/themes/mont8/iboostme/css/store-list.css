@@ -1,0 +1,30 @@
+.default.avatar {
+    width: 100%;
+    height: auto;
+}
+
+.grid-item, .grid-item-sub, .grid-group {
+    margin: 0;
+    padding: 2px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-item h3 {
+    position: absolute;
+    font-size: 100%;
+    bottom: -100%;
+    left: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0);
+    color: #FFF;
+    padding: 25% 0;
+    text-align: center;
+    transition: all .7s;
+}
+
+.grid-item:hover h3 {
+    bottom: -8px;
+    background: rgba(0, 0, 0, .8);
+
+}

@@ -10,11 +10,15 @@
 
 	$users = get_users();
 
-	load_style( 'cuperortfolio-style', 'cubeportfolio.min.css' );
+	/*load_style( 'cuperortfolio-style', 'cubeportfolio.min.css' );
 	load_js( 'cuberportfolio-script', 'jquery.cubeportfolio.min.js' );
-	load_js( 'store-artist-script', 'store-artists.js' );
+	load_js( 'store-artist-script', 'store-artists.js' );*/
+
+	load_style( 'store-list-style', 'store-list.css' );
+
 
 	get_header();
+
 ?>
 
 	<div id="primary" class="content-area col-md-12">
@@ -29,43 +33,136 @@
 
 				<div class="works01">
 
-					<div id="grid-container" class="cbp-l-grid-masonry">
+					<div id="grid-container" class="cbp-l-grid-masonry row">
 
-						<?php foreach ( $users as $user ): ?>
+						<?php
+							$count      = 0;
+							$grid_group = [ ];
+							$multi      = null;
+							$max        = 6;
 
-							<?php
+							foreach ( $users as $i => $user ):
+
+								if ( ! dokan_is_user_seller( $user->ID ) )
+								{
+									continue;
+								}
+
+								$info['store_settings'] = dokan_get_store_info( $user->ID );
+								$info['store_url']      = dokan_get_store_url( $user->ID );
+								$info['user_id']        = $user->ID;
+
+								if ( $max == 6 )
+								{
+									$count += 1;
 
 
-							if ( ! dokan_is_user_seller( $user->ID ) )
-							{
-								continue;
-							}
+									if ( $count == 1 )
+									{
+										$grid_group[] = [ $info ];
+										continue;
+									}
 
-							$store_settings = dokan_get_store_info( $user->ID );
-							$store_url      = dokan_get_store_url( $user->ID );
 
-//			var_dump( $store_settings );
+									if ( $count == 6 )
+									{
+										$grid_group[] = $multi;
+										$grid_group[] = [ $info ];
 
-							?>
+										$grid_group[] = 'space';
 
-							<div class="cbp-item">
-								<a class="cbp-caption cbp-lightbox" href="<?= $store_url ?>">
-									<div class="cbp-caption-defaultWrap">
-										<?= get_avatar( $user->ID, null, null, null, [ 'height' => 400 ] ) ?>
-									</div>
-									<div class="cbp-caption-activeWrap">
-										<div class="cbp-l-caption-alignCenter">
-											<div class="cbp-l-caption-body">
-												<div class="cbp-l-caption-title">
-													<h3><?= $store_settings['store_name'] ?></h3></div>
-											</div>
+										/*Reset*/
+										$multi = null;
+										$count = 0;
+										$max   = 9;
+										continue;
+									}
+
+									$multi[] = $info;
+
+
+									continue;
+								}
+
+
+								if ( $max == 9 )
+								{
+									$count += 1;
+
+									if ( $count == 5 )
+									{
+										$grid_group[] = $multi;
+										$grid_group[] = [ $info ];
+
+										$multi = null;
+										continue;
+									}
+
+									if ( $count == 9 )
+									{
+										$grid_group[] = $multi;
+
+										//reset
+										$multi = null;
+										$count = 0;
+										$max   = 6;
+										continue;
+									}
+
+									$multi[] = $info;
+
+
+								}
+
+
+							endforeach;
+
+						?>
+
+
+						<?php foreach ( $grid_group as $group ): ?>
+
+
+							<?php if ( $group == 'space' ): ?>
+								<div class="col-md-12">&nbsp;</div>
+								<?php continue; endif; ?>
+
+							<?php if ( count( $group ) == 1 ): ?>
+								<div class="col-md-4 grid-group grid-item">
+									<a href="<?= $group[0]['store_url'] ?>">
+										<?php
+											echo get_avatar( $group[0]['user_id'], 350, null, null, [ 'class' => 'author-gal', ] );
+										?>
+
+										<h3><?= $group[0]['store_settings']['store_name'] ?></h3>
+									</a>
+
+								</div>
+							<?php endif; ?>
+
+
+							<?php if ( count( $group ) > 1 ): ?>
+								<div class="col-md-4 grid-group">
+									<?php foreach ( $group as $author ): ?>
+
+										<div class="col-md-6 grid-item">
+											<a href="<?= $group[0]['store_url'] ?>">
+												<?php
+													echo get_avatar( $group[0]['user_id'], 350, null, null, [ 'class' => 'author-gal', ] );
+												?>
+
+												<h3><?= $group[0]['store_settings']['store_name'] ?></h3>
+											</a>
+
 										</div>
-									</div>
-								</a>
-							</div>
+
+									<?php endforeach; ?>
+								</div>
+							<?php endif; ?>
 
 
 						<?php endforeach; ?>
+
 
 					</div>
 
