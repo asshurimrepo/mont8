@@ -57,8 +57,9 @@
 
 			$notification_items = (array) get_user_meta( $to_notify_id, $this->key, true );
 
-			$liker       = get_user_by( 'id', get_current_user_id() );
-			$liker_store = dokan_get_store_url( get_current_user_id() );
+			$liker          = get_user_by( 'id', get_current_user_id() );
+			$to_notify_user = get_user_by( 'id', $to_notify_id );
+			$liker_store    = dokan_get_store_url( get_current_user_id() );
 
 			$notification_items[] = [
 				'type'    => 'like',
@@ -69,6 +70,8 @@
 
 			update_user_meta( $to_notify_id, $this->key, $notification_items );
 
+			/*Send an Email*/
+			$this->emailUserLikedArtwork( $artwork_name, $liker, $to_notify_user );
 		}
 
 
@@ -82,6 +85,24 @@
 			{
 				return $notif;
 			} );
+		}
+
+		/**
+		 * @param $artwork_name
+		 * @param $liker
+		 * @param $to_notify_user
+		 */
+		private function emailUserLikedArtwork( $artwork_name, $liker, $to_notify_user )
+		{
+			$subject      = "{$liker->data->display_name} has liked your {$artwork_name}";
+			$message      = nl2br(
+				"Hi {$to_notify_user->data->display_name},
+
+				All eyes are on you because {$liker->data->display_name} just hearted your {$artwork_name}!"
+			);
+			$mail_message = WC()->mailer()->wrap_message( $subject, $message );
+
+			WC()->mailer()->send( $to_notify_user->user_email, $subject, $mail_message );
 		}
 
 	}

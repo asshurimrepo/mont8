@@ -661,7 +661,7 @@
 		return $a;
 	}
 
-	add_filter( 'formatted_woocommerce_price', 'round_formatted_woocommerce_price', 999 );
+//	add_filter( 'formatted_woocommerce_price', 'round_formatted_woocommerce_price', 999 );
 	/**
 	 * @param $price
 	 *

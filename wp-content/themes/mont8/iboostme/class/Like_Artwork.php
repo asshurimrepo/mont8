@@ -49,7 +49,9 @@
 			$post         = get_post( $this->request['post_id'] );
 			$to_notify_id = $post->post_author;
 
+
 			Notification::set()->user_liked_artwork( $to_notify_id, $post->post_title, get_permalink( $post->ID ) );
+
 
 			echo json_encode(
 				[
