@@ -672,9 +672,9 @@
 
 		$price = str_replace( ',', '', $price );
 
-		return number_format( round( $price ), 2 );
+//		return number_format( round( $price ), 2 );
 
-//		return $price;
+		return $price;
 	}
 
 
@@ -756,8 +756,6 @@
 
 		if ( $total > $max_amount )
 		{
-			$max_amount = ceil( $max_amount );
-
 			wc_add_notice(
 				sprintf( "<b>Exceeding Maximum Amount!</b> You are only allowed to checkout a maximum of <b>{$max_amount} {$currency_name}</b>"
 				), 'error'
