@@ -7,4 +7,6 @@
 	{
 		var_dump( $product );
 		var_dump( $item );
+
+		//sample
 	}
