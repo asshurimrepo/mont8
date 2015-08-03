@@ -1972,7 +1972,7 @@
 		{
 
 			//#2
-			$price = (double) do_shortcode( $price );
+			$price = do_shortcode( $price );
 
 			if ( class_exists( 'WOOCS' ) && ( empty( $type ) || $type == "char" || $type == "step" || $type == "currentstep" ) )
 			{
@@ -2611,7 +2611,7 @@
 
 					$tmcp['price'] = (float) wc_format_decimal( $tmcp['price'], "", true );
 					#3 - rounded the base_price
-//					$tmcp_prices += round( $tmcp['price'] );
+					$tmcp_prices += $tmcp['price'];
 
 				}
 

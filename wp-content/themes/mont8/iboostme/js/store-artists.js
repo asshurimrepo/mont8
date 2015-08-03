@@ -12,8 +12,8 @@
     gridContainer.cubeportfolio({
         defaultFilter: '*',
         animationType: 'unfold',
-        gapHorizontal: 10,
-        gapVertical: 10,
+        gapHorizontal: 1,
+        gapVertical: 1,
         gridAdjustment: 'responsive',
         mediaQueries: [{
             width: 1600,

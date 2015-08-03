@@ -1,8 +1,7 @@
 <?php
-	/**
-	 *
-	 */
 	define( 'THEME_PATH', get_template_directory_uri() );
+
+	require_once( 'lib/ib_init.php' );
 
 	if ( $_REQUEST['action'] == 'like_artwork' )
 	{

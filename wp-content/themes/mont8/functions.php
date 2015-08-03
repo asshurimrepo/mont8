@@ -334,10 +334,11 @@
 		return $seller_commission;
 	}
 
-	remove_action( 'woocommerce_checkout_update_order_meta', 'dokan_sync_insert_order' );
+	/*Update Seller Commission*/
+	/*remove_action( 'woocommerce_checkout_update_order_meta', 'dokan_sync_insert_order' );
 	remove_action( 'dokan_checkout_update_order_meta', 'dokan_sync_insert_order' );
 	add_action( 'woocommerce_checkout_update_order_meta', 'dokan_child_sync_insert_order' );
-	add_action( 'dokan_checkout_update_order_meta', 'dokan_child_sync_insert_order' );
+	add_action( 'dokan_checkout_update_order_meta', 'dokan_child_sync_insert_order' );*/
 
 	/**
 	 * Insert a order in sync table once a order is created

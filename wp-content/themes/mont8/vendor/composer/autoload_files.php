@@ -10,5 +10,5 @@ return array(
     $baseDir . '/iboostme/lib/product_markup_shortcodes.php',
     $baseDir . '/iboostme/lib/mont8_base_price_shortcodes.php',
     $baseDir . '/iboostme/lib/woocommerce_hooks.php',
-    $baseDir . '/iboostme/lib/email_handler.php',
+    $baseDir . '/iboostme/lib/tinker.php',
 );

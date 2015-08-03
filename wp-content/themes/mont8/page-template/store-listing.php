@@ -51,7 +51,7 @@
 							<div class="cbp-item">
 								<a class="cbp-caption cbp-lightbox" href="<?= $store_url ?>">
 									<div class="cbp-caption-defaultWrap">
-										<?= get_avatar( $user->ID ) ?>
+										<?= get_avatar( $user->ID, null, null, null, [ 'height' => 400 ] ) ?>
 									</div>
 									<div class="cbp-caption-activeWrap">
 										<div class="cbp-l-caption-alignCenter">
