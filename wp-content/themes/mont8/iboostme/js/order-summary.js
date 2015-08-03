@@ -75,7 +75,11 @@ jQuery(document).ready(function ($) {
 
     $("#customer_details input, #customer_details select").each(function () {
 
-        $(this).val(Cookies.get($(this).prop('name')));
+        var cookie_value = Cookies.get($(this).prop('name'));
+
+        if (cookie_value) {
+            $(this).val(cookie_value);
+        }
 
     }).change(function () {
 

@@ -3970,7 +3970,12 @@ ul.products > .product > a {
     position: relative;
 }
 
-.archive-photography, .archive-art-print, .featured-products .art-print, .featured-products .poster, .featured-products .photo-print {
+.featured-products .featured.poster {
+    border-width: 11px !important;
+
+}
+
+.archive-photography, .archive-art-print, .featured-products .art-print, .featured-products .photo-print {
     -webkit-border-image: url('iboostme/css/images/a-a1a2.png') 32 fill;
     border-image: url('iboostme/css/images/a-a1a2.png') 32 fill;
     border-image-source: url('iboostme/css/images/a-a1a2.png');
@@ -3986,7 +3991,7 @@ ul.products > .product > a {
     border-width: 0 12px 12px 0;
 }
 
-.archive-posters {
+.archive-posters, .featured-products .poster {
     -webkit-border-image: url('iboostme/css/images/a-poster.png') 32 fill;
     border-image: url('iboostme/css/images/a-poster.png') 32 fill;
     border-image-source: url('iboostme/css/images/a-poster.png');
@@ -3996,11 +4001,11 @@ ul.products > .product > a {
 
 .archive-posters:before, .featured-products .poster:before {
     content: "";
-    background: url('iboostme/css/images/a-poster-curve.png') no-repeat bottom right;
+    background: url('iboostme/css/images/a-poster-curve-2.png') no-repeat bottom right;
     background-size: 20%;
     position: absolute;
     top: 0;
-    bottom: -9px;
+    bottom: -8px;
     left: 0;
     right: -10px;
     z-index: 2;
@@ -4008,8 +4013,8 @@ ul.products > .product > a {
 
 .featured-products .poster:before {
     bottom: -15px;
-    right: -20px;
-    background-size: 19%;
+    right: -12px;
+    background-size: 18%;
 }
 
 .faq-topic.active a {

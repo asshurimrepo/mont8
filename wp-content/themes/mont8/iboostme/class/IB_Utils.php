@@ -61,8 +61,8 @@
 			}
 
 			$final_base_price *= get_current_currency( 'rate' );
-			$final_base_price = ceil( $final_base_price );
-//			$final_base_price = number_format($final_base_price , 2);
+//			$final_base_price = ceil( $final_base_price );
+			$final_base_price = number_format( $final_base_price, 2 );
 
 //			var_dump($final_base_price);
 

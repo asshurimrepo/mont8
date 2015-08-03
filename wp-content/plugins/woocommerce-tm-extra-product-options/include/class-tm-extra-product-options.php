@@ -1988,7 +1988,7 @@
 
 			}
 
-			return ceil( $price );
+			return $price;
 //			return $price;
 
 		}

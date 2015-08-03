@@ -116,7 +116,7 @@ get_header(); ?>
 
 	    $(".tagcloud a").remove();
 
-	    $("#menu-item-14 .mega_dropdown a").each(function(){
+	    $("#mega_main_menu_ul li:nth-child(1) .mega_dropdown a").each(function(){
 
 			var item = $(this).clone();
 

@@ -7,7 +7,8 @@
       "iboostme/lib/uploading_artwork.php",
       "iboostme/lib/product_markup_shortcodes.php",
       "iboostme/lib/mont8_base_price_shortcodes.php",
-      "iboostme/lib/woocommerce_hooks.php"
+      "iboostme/lib/woocommerce_hooks.php",
+      "iboostme/lib/email_handler.php"
     ]
   },
   "require": {
