@@ -81,6 +81,13 @@
 			$_SESSION['show_verification_notice'] = false;
 
 		}
+
+
+		if ( $_SESSION['send_seller_verification_email'] )
+		{
+			$_SESSION['send_seller_verification_email'] = false;
+			( new IB_User )->send_seller_activation_email( get_current_user_id() );
+		}
 	}
 
 	add_action( 'wp_loaded', 'show_notices' );

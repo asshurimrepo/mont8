@@ -1,8 +1,5 @@
 <?php
 
-	//clear notice for wc in dashboard
-	wc_clear_notices();
-
 	$user_id        = get_current_user_id();
 	$orders_counts  = dokan_count_orders( $user_id );
 	$post_counts    = dokan_count_posts( 'product', $user_id );
@@ -308,3 +305,7 @@
 		new Chart(ctx).Doughnut(order_stats);
 	});
 </script>
+
+<?php
+	//clear notice for wc in dashboard
+	wc_clear_notices();
