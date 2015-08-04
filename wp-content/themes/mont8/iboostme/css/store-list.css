@@ -1,4 +1,4 @@
-.default.avatar {
+#grid-container img.avatar {
     width: 100%;
     height: auto;
 }
@@ -26,5 +26,4 @@
 .grid-item:hover h3 {
     bottom: -8px;
     background: rgba(0, 0, 0, .8);
-
 }

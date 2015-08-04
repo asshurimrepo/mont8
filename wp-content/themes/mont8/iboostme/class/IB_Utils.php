@@ -71,4 +71,15 @@
 			return $preview_price;
 		}
 
+
+		/**
+		 * Generate 32 characters hash
+		 *
+		 * @return string
+		 */
+		public static function generate_hash()
+		{
+			return substr( str_shuffle( MD5( microtime() ) ), 0, 32 );
+		}
+
 	}

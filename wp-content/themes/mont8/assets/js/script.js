@@ -10,7 +10,7 @@ jQuery(function ($) {
     });
 
 
-    $("#menu-item-193 .mega_dropdown").append(
+    $("#mega_main_menu_ul li:nth-child(4) .mega_dropdown").append(
         '<div class="row" style="clear: both">' +
         '<a href="' + base_url + '/store-listing" class="more-artists-btn">MORE ARTISTS <i class="fa fa-angle-double-right"></i></a>' +
         '</div>'

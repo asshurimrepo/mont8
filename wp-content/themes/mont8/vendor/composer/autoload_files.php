@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    $baseDir . '/iboostme/lib/user_registration_hooks.php',
     $baseDir . '/iboostme/lib/uploading_artwork.php',
     $baseDir . '/iboostme/lib/product_markup_shortcodes.php',
     $baseDir . '/iboostme/lib/mont8_base_price_shortcodes.php',

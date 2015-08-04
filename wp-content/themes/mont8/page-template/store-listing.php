@@ -124,11 +124,11 @@
 
 
 							<?php if ( $group == 'space' ): ?>
-								<div class="col-md-12">&nbsp;</div>
+								<div class="col-md-12"></div>
 								<?php continue; endif; ?>
 
 							<?php if ( count( $group ) == 1 ): ?>
-								<div class="col-md-4 grid-group grid-item">
+								<div class="col-sm-4 grid-group grid-item">
 									<a href="<?= $group[0]['store_url'] ?>">
 										<?php
 											echo get_avatar( $group[0]['user_id'], 350, null, null, [ 'class' => 'author-gal', ] );
@@ -142,16 +142,16 @@
 
 
 							<?php if ( count( $group ) > 1 ): ?>
-								<div class="col-md-4 grid-group">
+								<div class="col-sm-4 grid-group">
 									<?php foreach ( $group as $author ): ?>
 
-										<div class="col-md-6 grid-item">
-											<a href="<?= $group[0]['store_url'] ?>">
+										<div class="col-sm-6 grid-item">
+											<a href="<?= $author['store_url'] ?>">
 												<?php
-													echo get_avatar( $group[0]['user_id'], 350, null, null, [ 'class' => 'author-gal', ] );
+													echo get_avatar( $author['user_id'], 350, null, null, [ 'class' => 'author-gal', ] );
 												?>
 
-												<h3><?= $group[0]['store_settings']['store_name'] ?></h3>
+												<h3><?= $author['store_settings']['store_name'] ?></h3>
 											</a>
 
 										</div>

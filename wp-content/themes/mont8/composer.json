@@ -4,6 +4,7 @@
       "iboostme/class/"
     ],
     "files": [
+      "iboostme/lib/user_registration_hooks.php",
       "iboostme/lib/uploading_artwork.php",
       "iboostme/lib/product_markup_shortcodes.php",
       "iboostme/lib/mont8_base_price_shortcodes.php",

@@ -33,8 +33,9 @@ body {
     line-height: 150%;
     color: #444;
     background: #ffffff;
-    width: auto !important;
     overflow-x: hidden !important;
+    width: 100% !important;
+    margin: 0 auto 0 auto;
 }
 
 body .container {
@@ -409,7 +410,7 @@ ul.mega_dropdown {
     margin-top: 32px;
 }
 
-#menu-item-193 .mega_dropdown:before {
+#mega_main_menu_ul li:nth-child(4) .mega_dropdown:before {
     content: 'Popular Artists';
     font-family: modern_sans;
     text-transform: uppercase;

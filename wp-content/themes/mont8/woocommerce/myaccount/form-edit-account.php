@@ -13,6 +13,7 @@
 	}
 
 	global $current_user;
+
 	load_js( 'edit-account-js', 'edit-account.js' );
 	wp_enqueue_media();
 	//	$dokan_template_settings = Dokan_Template_Settings::init();
