@@ -1,12 +1,10 @@
 <?php
 
 
-	add_action( 'wp_loaded', 'load_wp' );
+//	add_action( 'wp_loaded', 'load_wp' );
 
 	function load_wp()
 	{
-
-//		var_dump( $_SESSION['show_verification_notice'] );
-//		wc_add_notice( 'A confirmation link has been sent to your email address. Please follow the instructions in the email to activate your account.' );
-
+		$user = get_user_by( 'id', get_current_user_id() );
+		var_dump( $user->last_name );
 	}

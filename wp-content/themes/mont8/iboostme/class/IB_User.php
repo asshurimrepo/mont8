@@ -3,16 +3,26 @@
 	class IB_User {
 
 		/**
+		 * @var null
+		 */
+		private $user_id;
+
+		public function __construct( $user_id = null )
+		{
+
+			$this->user_id = $user_id ?: get_current_user_id();
+		}
+
+		/**
 		 * Returns true if published product is > 0
 		 *
 		 * @return bool
 		 */
 		public function has_artwork()
 		{
-			$count_posts = count_user_posts( get_current_user_id(), 'product' );
+			$count_posts = count_user_posts( $this->user_id, 'product' );
 
 			return $count_posts > 0;
-//			return $count_posts->publish > 0;
 		}
 
 
@@ -23,8 +33,7 @@
 		 */
 		public function send_customer_activation_email( $user_id )
 		{
-			$user = get_user_by( 'id', $user_id );
-			$user_info = get_userdata( $user_id );
+			$user = get_userdata( $user_id );
 			$key  = get_user_meta( $user->ID, 'account_verification_key', true );
 
 			$subject = "You're Awesome";
@@ -32,7 +41,7 @@
 			$activation_link = site_url() . "/?action=activate_customer_account&key={$key}";
 
 			$message = nl2br(
-				"Heyheyhey {$user_info->first_name} {$user_info->last_name}! Welcome to <b>Mont8</b>, the community and marketplace for artists of the creative nation who want to put a wide smile on your face through art products. Artist or Art lover this is your one stop destination for all of your artsywants and needs.
+				"Heyheyhey {$user->first_name} {$user->last_name}! Welcome to <b>Mont8</b>, the community and marketplace for artists of the creative nation who want to put a wide smile on your face through art products. Artist or Art lover this is your one stop destination for all of your artsywants and needs.
 
 				You deserve a massive round of applause for joining Mont8 but more importantly, for being an agent of change for spreading and empowering art and artists in the Middle East.
 
@@ -52,16 +61,15 @@
 		 */
 		public function send_seller_activation_email( $user_id )
 		{
-			$user      = get_user_by( 'id', $user_id );
-			$user_info = get_userdata( $user_id );
-			$key       = get_user_meta( $user->ID, 'seller_verification_key', true );
+			$user = get_userdata( $user_id );
+			$key  = get_user_meta( $user->ID, 'seller_verification_key', true );
 
 			$subject = "Confirm Seller Account";
 
 			$activation_link = site_url() . "/?action=activate_seller_account&key={$key}";
 
 			$message = nl2br(
-				"Heyheyhey {$user_info->first_name} {$user_info->last_name}! Welcome to <b>Mont8</b>, the community and marketplace for artists of the creative nation who want to put a wide smile on your face through art products. Artist or Art lover this is your one stop destination for all of your artsy wants and needs.
+				"Heyheyhey {$user->first_name} {$user->last_name}! Welcome to <b>Mont8</b>, the community and marketplace for artists of the creative nation who want to put a wide smile on your face through art products. Artist or Art lover this is your one stop destination for all of your artsy wants and needs.
 
 				You deserve a massive round of applause for joining Mont8 but more importantly, for being an agent of change for spreading and empowering art and artists in the Middle East.
 

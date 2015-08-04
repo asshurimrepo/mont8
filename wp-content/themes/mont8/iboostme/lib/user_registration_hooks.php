@@ -79,14 +79,13 @@
 		{
 			wc_add_notice( 'A confirmation link has been sent to your email address. Please follow the instructions in the email to activate your account.' );
 			$_SESSION['show_verification_notice'] = false;
-
 		}
 
 
 		if ( $_SESSION['send_seller_verification_email'] )
 		{
-			$_SESSION['send_seller_verification_email'] = false;
 			( new IB_User )->send_seller_activation_email( get_current_user_id() );
+			$_SESSION['send_seller_verification_email'] = false;
 		}
 	}
 
