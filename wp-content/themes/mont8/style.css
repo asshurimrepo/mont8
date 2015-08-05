@@ -4226,22 +4226,22 @@ th.product-price, td.product-price, th.product-stock-stauts, td.product-stock-st
     border-bottom-color: transparent;
 }
 
-#menu-item-639:hover > a, #menu-item-639 .mega_dropdown li a:hover {
+#mega_main_menu_ul li:nth-child(1):hover > a, #mega_main_menu_ul li:nth-child(4) .mega_dropdown li a:hover {
     background: transparent !important;
     border-bottom-color: #83F52C !important;
 }
 
-#menu-item-30:hover > a, #menu-item-30 .mega_dropdown li a:hover {
+#mega_main_menu_ul li:nth-child(2):hover > a, #mega_main_menu_ul li:nth-child(2) .mega_dropdown li a:hover {
     background: transparent !important;
     border-bottom-color: #0DD5FC !important;
 }
 
-#menu-item-29:hover > a, #menu-item-29 .mega_dropdown li a:hover {
+#mega_main_menu_ul li:nth-child(3):hover > a, #mega_main_menu_ul li:nth-child(3) .mega_dropdown li a:hover {
     background: transparent !important;
     border-bottom-color: #F3F315 !important;
 }
 
-#menu-item-193:hover > a, #menu-item-193 .mega_dropdown li a:hover {
+#mega_main_menu_ul li:nth-child(4):hover > a, #mega_main_menu_ul li:nth-child(4) .mega_dropdown li a:hover {
     background: transparent !important;
     border-bottom-color: #FF6700 !important;
 }

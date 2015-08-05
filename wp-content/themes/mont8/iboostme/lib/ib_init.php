@@ -33,24 +33,23 @@
 
 		$key = $wpdb->get_row( "SELECT * FROM mo_usermeta WHERE meta_value = '{$_GET[key]}'" );
 
-		var_dump( $key );
 
-
+		/*If key returns null redirect to my account*/
 		if ( ! $key )
 		{
 			wp_safe_redirect( apply_filters( 'woocommerce_registration_redirect', wp_get_referer() ? wp_get_referer() : wc_get_page_permalink( 'myaccount' ) ) );
 		}
 
-		//Determine if customer of seller
-		if ( $key->meta_key = 'seller_verification_key' )
+		/*Determine if customer or seller*/
+		if ( $key->meta_key == 'seller_verification_key' )
 		{
 			wc_add_notice( 'Awesome! You can start selling now!' );
 			update_user_meta( $key->user_id, 'dokan_enable_selling', 'yes' );
 		}
 		else
 		{
-			update_user_meta( $key->user_id, 'is_account_verified', 1 );
 			wc_add_notice( 'Awesome! Your account is now activated. Enjoy Shopping!' );
+			update_user_meta( $key->user_id, 'is_account_verified', 1 );
 		}
 
 		if ( ! is_user_logged_in() )

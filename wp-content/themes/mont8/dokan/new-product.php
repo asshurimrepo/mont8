@@ -74,6 +74,10 @@
 
 							<form class="dokan-form-container row art-{{ id }}" method="post">
 
+								<div class="dokan-form-group">
+									<?php wp_nonce_field( 'dokan_add_new_product', 'dokan_add_new_product_nonce' ); ?>
+									<input type="hidden" name="add_product" value="1"/>
+								</div>
 
 								<?php if($is_printshop): ?>
 									<input type="hidden" name="is_printshop" value="1">
@@ -169,10 +173,6 @@
 
 								<?php do_action( 'dokan_new_product_form' ); ?>
 
-								<div class="dokan-form-group">
-									<?php wp_nonce_field( 'dokan_add_new_product', 'dokan_add_new_product_nonce' ); ?>
-									<input type="hidden" name="add_product" value="1"/>
-								</div>
 
 							</form>
 

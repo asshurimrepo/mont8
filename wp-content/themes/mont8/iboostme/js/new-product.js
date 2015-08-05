@@ -157,15 +157,14 @@ var selection;
         var error_message = null, new_error_message;
 
         setInterval(function () {
-            if (error_message != null) {
-                error_message = $(".upload-error-message").html();
-            } else {
-                return;
-            }
+            error_message = $(".upload-error-message").html();
 
             var link = $(".upload-guideline-link").prop('href');
-            new_error_message = error_message.replace('click here for more information about uploading guidelines', '<a target="_blank" style="color: #21759b !important" href="' + link + '">click here for more information about uploading guidelines</a>');
-            $(".upload-error-message").html(new_error_message);
+
+            if (error_message) {
+                new_error_message = error_message.replace('click here for more information about uploading guidelines', '<a target="_blank" style="color: #21759b !important" href="' + link + '">click here</a> for more information about uploading guidelines');
+                $(".upload-error-message").html(new_error_message);
+            }
 
         }, 1000);
 
@@ -178,11 +177,15 @@ var selection;
 function addFormEvent($) {
     // Submit form via Ajax
     $("form").on("submit", function (e) {
-        event.preventDefault();
+        e.preventDefault();
 
         var form = $(this);
 
         form.addClass('is-updating');
+        /*
+         console.log($(this).serialize());
+
+         return;*/
 
         $.post($(this).prop('action'), $(this).serialize(), 'json').success(function (data) {
 

@@ -714,6 +714,10 @@ jQuery(document).ready(function ($) {
     var ptype = getParameterByName('ptype');
 
     setTimeout(function () {
+        $(".overlay-preloader").hide();
+    }, 400);
+
+    setTimeout(function () {
 
         $("div.select-image-size:not([style='display: none;'])").find("select").change();
         $("div.select-image-size-div:not([style='display: none;'])").find("select").change();
@@ -743,11 +747,6 @@ jQuery(document).ready(function ($) {
         window.history.pushState({}, "", plain_url);
 
     }, 1000);
-
-
-    setTimeout(function () {
-        $(".overlay-preloader").hide();
-    }, 500);
 
 
     /*Sync sizes*/
@@ -858,6 +857,15 @@ jQuery(document).ready(function ($) {
 
 });
 
+
+//Overlay
+(function ($) {
+
+    setTimeout(function () {
+        $(".overlay-preloader").hide();
+    }, 3000);
+
+})(jQuery);
 
 
 

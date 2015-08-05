@@ -26,6 +26,19 @@
 
 		update_user_meta( $user_id, 'is_account_verified', false );
 		update_user_meta( $user_id, 'account_verification_key', IB_Utils::generate_hash() );
+		update_user_meta( $user_id, 'first_name', $_POST['fname'] );
+		update_user_meta( $user_id, 'last_name', $_POST['lname'] );
+
+		/*Add Default Pricing Markup*/
+		$user_pricing = new GlobalPricing( $user_id, [
+			'_framed_print_markup' => 30,
+			'_art_print_markup'    => 30,
+			'_photo_print_markup'  => 30,
+			'_canvas_markup'       => 30,
+			'_poster_markup'       => 30,
+		] );
+
+		$user_pricing->updateMarkups( false );
 
 		$ib_user->send_customer_activation_email( $user_id );
 

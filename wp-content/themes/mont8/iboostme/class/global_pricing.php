@@ -31,7 +31,7 @@
 		}
 
 
-		public function updateMarkups()
+		public function updateMarkups( $show_alert = true )
 		{
 			$this->sanitized_data();
 
@@ -40,6 +40,12 @@
 			update_user_meta( $this->user_id, '_photo_print_markup', abs( $this->data['_photo_print_markup'] ) );
 			update_user_meta( $this->user_id, '_canvas_markup', abs( $this->data['_canvas_markup'] ) );
 			update_user_meta( $this->user_id, '_poster_markup', abs( $this->data['_poster_markup'] ) );
+
+
+			if ( ! $show_alert )
+			{
+				return;
+			}
 
 			iboost_include( 'iboostme/alerts/success', array( '_success_message' => $this->success_message ) );
 		}

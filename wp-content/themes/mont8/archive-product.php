@@ -124,6 +124,19 @@ get_header(); ?>
 
 	    });
 
+		$(".dropdown_product_cat *").remove();
+		$(".dropdown_product_cat").append( $('<option>').text('Select Category') );
+	    $("#mega_main_menu_ul li:nth-child(2) .mega_dropdown a").each(function(){
+
+			var link = $(this).prop('href');
+			var is_active = link == document.URL;
+			var slug = link.split("/");
+			var text = $(this).text();
+
+			$(".dropdown_product_cat").append( $('<option>').attr('value', slug[4]).attr('selected', is_active).text(text) );
+
+	    });
+
 	})(jQuery);
 
 
