@@ -5,6 +5,11 @@
 
 	function load_wp()
 	{
-		$user = get_user_by( 'id', get_current_user_id() );
-		var_dump( $user->last_name );
+		$tm_meta = get_post_meta( 121, 'tm_meta', true );
+
+
+		var_dump( $tm_meta['tmfbuilder'] );
+
+//		$base_prices->framed
+		exit;
 	}

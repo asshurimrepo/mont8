@@ -31,16 +31,27 @@
 		 */
 		public static function get_base_price( $product_id, $artwork_type = null )
 		{
+			$product = new WC_Product( $product_id );
 
-			$markup['framed_print'] = (int) get_post_meta( $product_id, "_framed_print_markup", true );
-			$markup['art_print']    = (int) get_post_meta( $product_id, "_art_print_markup", true );
-			$markup['photo_print']  = (int) get_post_meta( $product_id, "_photo_print_markup", true );
-			$markup['canvas']       = (int) get_post_meta( $product_id, "_canvas_markup", true );
-			$markup['poster']       = (int) get_post_meta( $product_id, "_poster_markup", true );
+			if ( ! $artwork_type )
+			{
+				$artwork_type = 'art_print';
+			}
 
-//			var_dump( $markup );
+//			var_dump($product);
 
-			$base_prices = get_base_price();
+			$is_square = is_square( $product->get_image_id() );
+			$is_owner  = $product->post->post_author == get_current_user_id();
+
+			$markup['framed_print'] = $is_owner ? 0 : (int) get_post_meta( $product_id, "_framed_print_markup", true );
+			$markup['art_print']    = $is_owner ? 0 : (int) get_post_meta( $product_id, "_art_print_markup", true );
+			$markup['photo_print']  = $is_owner ? 0 : (int) get_post_meta( $product_id, "_photo_print_markup", true );
+			$markup['canvas']       = $is_owner ? 0 : (int) get_post_meta( $product_id, "_canvas_markup", true );
+			$markup['poster']       = $is_owner ? 0 : (int) get_post_meta( $product_id, "_poster_markup", true );
+
+//			var_dump($markup);
+
+			$base_prices = get_base_price( null, $is_square );
 
 			$art_prices = array();
 

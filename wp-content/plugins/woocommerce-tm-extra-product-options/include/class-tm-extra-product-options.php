@@ -2608,14 +2608,13 @@
 				foreach ( $cart_item['tmcartepo'] as $tmcp )
 				{
 
-
 					$tmcp['price'] = (float) wc_format_decimal( $tmcp['price'], "", true );
 					#3 - rounded the base_price
 					$tmcp_prices += $tmcp['price'];
 
 				}
 
-
+				#4
 				$cart_item['tm_epo_options_prices'] = apply_filters( 'tm_epo_cart_options_prices', $tmcp_prices );
 
 
@@ -3509,6 +3508,7 @@
 
 
 				$bto_data = maybe_unserialize( get_post_meta( $product_id, '_bto_data', true ) );
+
 
 				$valid_ids = array_keys( $bto_data );
 
@@ -6643,8 +6643,17 @@
 
 													}
 
-
+													#6
 													$_prices = $builder[ 'multiple_' . $_elements[ $k0 ] . '_options_price' ][ $_counter[ $_elements[ $k0 ] ] ];
+
+													/*Apply Shortcode*/
+													foreach ( $_prices as $k => $__price )
+													{
+														$_prices[ $k ] = do_shortcode( $__price );
+													}
+													/*--End--*/
+
+//													var_dump($_prices);
 
 													$_values = $this->get_builder_element( 'multiple_' . $_elements[ $k0 ] . '_options_value', $builder, $current_builder, $_counter[ $_elements[ $k0 ] ], "", true, $_elements[ $k0 ] );
 

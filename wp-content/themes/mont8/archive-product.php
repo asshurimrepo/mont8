@@ -31,7 +31,7 @@ get_header(); ?>
 				 * @hooked woocommerce_result_count - 20
 				 * @hooked woocommerce_catalog_ordering - 30
 				 */
-				//do_action( 'woocommerce_before_shop_loop' );
+				//do_action( 'woocommerce_before_shop_loop' );I
 			?>
 
 		</div>

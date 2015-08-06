@@ -16,7 +16,7 @@
 
 		$user = get_user_by( 'login', $_POST['username'] );
 
-		if ( dokan_is_user_seller( $user->ID ) )
+		if ( dokan_is_seller_enabled( $user->ID ) )
 		{
 			$redirect_to = dokan_get_navigation_url();
 		}
@@ -37,10 +37,40 @@
 	 *
 	 * @return mixed|void
 	 */
-	function get_base_price( $key = null )
+	function get_base_price( $key = null, $is_square = false )
 	{
 		$base_prices = get_option( '_art_print_base_prices' );
 		$base_prices = json_decode( $base_prices );
+
+		$mont_base_price = new MontBasePrice();
+
+		if ( $is_square )
+		{
+			$base_prices->framed_print[0] = $mont_base_price->getBasePrice( 'Art Print', 'Without Matt Board', '30cm_x_30cm' );
+			$base_prices->art_print[0]    = $mont_base_price->getBasePrice( 'Art Print', 'Normal', '30cm_x_30cm' );
+			$base_prices->photo_print[0]  = $mont_base_price->getBasePrice( 'Photo Print', 'Normal', '30cm_x_30cm' );
+			$base_prices->canvas[0]       = $mont_base_price->getBasePrice( 'Stretched Canvas', 'Normal', '30cm_x_30cm' );
+			$base_prices->poster[0]       = $mont_base_price->getBasePrice( 'Poster', 'Normal', '30cm_x_30cm' );
+		}
+		else
+		{
+			$base_prices->framed_print[0] = $mont_base_price->getBasePrice( 'Art Print', 'Without Matt Board', 'a5' );
+			$base_prices->framed_print[1] = $mont_base_price->getBasePrice( 'Art Print', 'Without Matt Board', 'a1' );
+
+			$base_prices->art_print[0] = $mont_base_price->getBasePrice( 'Art Print', 'Normal', 'a5' );
+			$base_prices->art_print[1] = $mont_base_price->getBasePrice( 'Art Print', 'Normal', 'a1' );
+
+			$base_prices->photo_print[0] = $mont_base_price->getBasePrice( 'Photo Print', 'Normal', 'a5' );
+			$base_prices->photo_print[1] = $mont_base_price->getBasePrice( 'Photo Print', 'Normal', 'a1' );
+
+			$base_prices->canvas[0] = $mont_base_price->getBasePrice( 'Stretched Canvas', 'Normal', 'a3' );
+			$base_prices->canvas[1] = $mont_base_price->getBasePrice( 'Stretched Canvas', 'Normal', 'a1' );
+
+			$base_prices->poster[0] = $mont_base_price->getBasePrice( 'Poster', 'Normal', 'a2' );
+			$base_prices->poster[1] = $mont_base_price->getBasePrice( 'Poster', 'Normal', 'a1' );
+		}
+
+
 
 		if ( ! $key )
 		{

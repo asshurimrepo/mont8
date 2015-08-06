@@ -37,7 +37,7 @@
 						continue;
 					}
 
-					return $variation[ $size ];
+					return (double) $variation[ $size ];
 				}
 			}
 

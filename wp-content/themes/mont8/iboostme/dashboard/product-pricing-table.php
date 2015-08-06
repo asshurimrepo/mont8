@@ -51,12 +51,14 @@
 		]
 	];
 
+	$mont_base_price = get_base_price();
+
 	$base_price = [
-		'framed_print' => [ 19.06, 86.85 ],
-		'art_print'    => [ 8.98, 46.28 ],
-		'photo_print'  => [ 10.35, 53.09 ],
-		'canvas'       => [ 49.28, 113.25 ],
-		'poster'       => [ 14.70, 24.50 ]
+		'framed_print' => [ $mont_base_price->framed_print[0], $mont_base_price->framed_print[1] ],
+		'art_print'    => [ $mont_base_price->art_print[0], $mont_base_price->art_print[1] ],
+		'photo_print'  => [ $mont_base_price->photo_print[0], $mont_base_price->photo_print[1] ],
+		'canvas'       => [ $mont_base_price->canvas[0], $mont_base_price->canvas[1] ],
+		'poster'       => [ $mont_base_price->poster[0], $mont_base_price->poster[1] ]
 	];
 
 	$currency_rate = get_current_currency( 'rate' );
@@ -94,8 +96,6 @@
 
 		$base_price[ $id ][2] = $base_price[ $id ][0] + ( $margin_min );
 		$base_price[ $id ][3] = $base_price[ $id ][1] + ( $margin_max );
-
-
 
 
 		/*			//Apply Rate

@@ -37,7 +37,6 @@
 	// Increase loop count
 	$woocommerce_loop['loop'] ++;
 
-	$base_price = IB_Utils::get_base_price( $product->id );
 	Share::setData( $product );
 
 	// Extra post classes
@@ -64,16 +63,11 @@
 		'posters'            => 'poster',
 	];
 
+	$preview_price = IB_Utils::get_base_price( $product->id, $price_terms[ $product_tag_slug ] );
 
-	//	$base_price
-
+	//do_action( 'woocommerce_before_shop_loop_item' );
 ?>
 
-
-<?php //do_action( 'woocommerce_before_shop_loop_item' ); ?>
-
-
-<?php $preview_price = IB_Utils::get_base_price( $product->id, $price_terms[ $product_tag_slug ] ); ?>
 
 <div class="cell col-sm-4">
 

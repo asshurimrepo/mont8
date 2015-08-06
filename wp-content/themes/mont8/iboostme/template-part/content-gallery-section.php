@@ -1,6 +1,5 @@
 <?php
 	$featured_artworks = IB_Utils::post_to_product( (array) get_field( 'featured_artworks' ) );
-	//	var_dump($featured_artworks);
 ?>
 
 
@@ -9,7 +8,7 @@
 
 	<?php foreach ( $featured_artworks as $artwork ): ?>
 		<?php
-		$preview_price = IB_Utils::get_base_price( $artwork->id );
+		$preview_price = IB_Utils::get_base_price( $artwork->id, 'art_print' );
 		$store_info    = dokan_get_store_info( $artwork->post->post_author );
 		Share::setData( $artwork );
 		?>
