@@ -11,6 +11,13 @@
 		 */
 		public static function post_to_product( array $array )
 		{
+			$array = array_filter( $array, function ( $item )
+			{
+
+				return ! empty( $item );
+
+			} );
+
 			return array_map( function ( $wc_post )
 			{
 				$wc_post = new WC_Product( $wc_post->ID );

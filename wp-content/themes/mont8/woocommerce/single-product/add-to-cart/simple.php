@@ -28,7 +28,9 @@
 
 	$image_data = wp_get_attachment_metadata( $product->get_image_id() );
 
-	$cart       = end( WC()->cart->get_cart() );
+	$cart = end( WC()->cart->get_cart() );
+
+	$available_artwork_types = get_the_terms( $product->id, 'product_tag' );
 	//	$cart_price = number_format( $cart['tm_epo_options_prices'] * get_current_currency( 'rate' ), 2 ) . get_current_currency( 'symbol' );
 
 ?>
@@ -197,6 +199,39 @@
 
 			});
 		</script>
+	<?php endif; ?>
+
+
+	<?php if ( $available_artwork_types ): ?>
+
+		<script>
+			jQuery(document).ready(function ($) {
+
+				$(".artwork-style-ul > li").hide();
+
+				<?php
+					$ref = [
+						'art-print' => 2,
+						'photography' => 3,
+						'stretched-canvases' => 4,
+						'posters' => 5,
+
+					];
+
+					foreach($available_artwork_types as $type):
+
+						if(!$ref[$type->slug]){
+							continue;
+						}
+				?>
+
+				$(".artwork-style-ul > li:nth-child(<?=$ref[$type->slug]?>)").show();
+
+				<?php endforeach; ?>
+
+			});
+		</script>
+
 	<?php endif; ?>
 
 

@@ -66,6 +66,18 @@
 	 * [base_price type="Photo Print" frame="Without Matt Board" size="a5"]
 	 * [base_price type="Photo Print" frame="With Matt Board" size="a5"]
 	 *
+	 * [base_price type="Photo Print" frame="Normal" size="30cm_x_30cm"]
+	 * [base_price type="Photo Print" frame="Without Matt Board" size="30cm_x_30cm"]
+	 * [base_price type="Photo Print" frame="With Matt Board" size="30cm_x_30cm"]
+	 *
+	 * [base_price type="Stretched Canvas" frame="Normal" size="a3"]
+	 * [base_price type="Stretched Canvas" frame="Floater Frame" size="a3"]
+	 *
+	 * [base_price type="Stretched Canvas" frame="Normal" size="30cm_x_30cm"]
+	 * [base_price type="Stretched Canvas" frame="Floater Frame" size="30cm_x_30cm"]
+	 *
+	 * [base_price type="Poster" frame="Normal" size="a2"]
+	 *
 	 *
 	 * */
 

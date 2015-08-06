@@ -30,16 +30,13 @@
 		}
 
 		/*
-		 * if description is available, validate
+		 * if description is available
 		 * */
-		if ( isset( $_POST['dokan_description'] ) && strlen( $_POST['dokan_description'] ) < 1 )
+		if ( isset( $_POST['dokan_description'] ) )
 		{
-			$args->add( 'error', __( 'Store Description is required!', 'woocommerce' ), '' );
-
-			return;
+			update_user_meta( $current_user->ID, 'description', $_POST['dokan_description'] );
 		}
 
-		update_user_meta( $current_user->ID, 'description', $_POST['dokan_description'] );
 
 		if ( ! isset( $_POST['dokan_store_name'] ) )
 		{

@@ -100,8 +100,7 @@
 
 
 		<p class="form-row form-row-wide">
-			<label for="dokan_description"><?php _e( 'Biography', 'woocommerce' ); ?> <span
-					class="required">*</span></label>
+			<label for="dokan_description"><?php _e( 'Biography', 'woocommerce' ); ?></label>
 
 		<textarea name="dokan_description" id="dokan_description" class="form-control" rows="10"
 		          style="padding: 10px; height: 200px"><?php echo esc_attr( $description ); ?></textarea>
