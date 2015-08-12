@@ -39,12 +39,17 @@ $user_id = $current_user->ID;
 		<div class="container">
 			<div class="row nav-row">
 
-				<div class="col-xs-12 col-sm-12 col-lg-12 hidden-lg hidden-sm hidden-md mobile_view">
-					<?php /*dokan_header_user_menu();*/ ?>
+				<div class="col-xs-12 col-sm-12 col-lg-12 hidden-lg hidden-sm hidden-md mobile-menu">
+					<?php dokan_header_user_menu(); ?>
 				</div>
 
 
-				<div class="col-lg-2" style="padding:0;">
+				<div class="col-xs-12 visible-xs" style="padding-top: 15px;">
+					<img src="<?= get_stylesheet_directory_uri() ?>/assets/images/logo-pink.png" alt="Mont8"
+					     class="img-responsive"/>
+				</div>
+
+				<div class="col-lg-2 hidden-xs" style="padding:0;">
 					<hgroup>
 						<h1 class="site-title">
 							<a href="<?php echo home_url( '/', 'http' ); ?>"
@@ -56,10 +61,11 @@ $user_id = $current_user->ID;
 				</div>
 
 
-				<div class="col-md-4 hidden-xs pull-right"
+				<div class="col-md-4 pull-right hidden-xs hidden-sm"
 				     style="padding:0;">
 					<?php dokan_header_user_menu(); ?>
 				</div>
+
 
 				<div class="<?= is_user_logged_in() ? 'col-md-6' : 'col-md-7' ?> nav-menu"
 				     style="padding:0; <?= is_user_logged_in() ?: 'margin-top: -72px;' ?>">

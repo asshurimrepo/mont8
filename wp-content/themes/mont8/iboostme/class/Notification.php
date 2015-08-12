@@ -94,9 +94,11 @@
 		 */
 		private function emailUserLikedArtwork( $artwork_name, $liker, $to_notify_user )
 		{
-			$subject      = "{$liker->data->display_name} has liked your {$artwork_name}";
+			$subject = "{$liker->data->display_name} has liked your {$artwork_name}";
 
-			$message      = nl2br(
+			add_filter( 'wp_mail_from', array( $this, 'get_from_address' ), 99 );
+
+			$message = nl2br(
 				"Hi {$to_notify_user->data->display_name},
 
 				All eyes are on you because {$liker->data->display_name} just hearted your {$artwork_name}!"
@@ -105,6 +107,11 @@
 			$mail_message = WC()->mailer()->wrap_message( $subject, $message );
 
 			WC()->mailer()->send( $to_notify_user->user_email, $subject, $mail_message );
+		}
+
+		private function get_from_address()
+		{
+			return 'habeebi@mont8.com';
 		}
 
 	}

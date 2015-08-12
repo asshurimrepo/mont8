@@ -13,6 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( $order ) : ?>
 
+
+	<style>
+		table table * {
+			border: none !important;
+		}
+	</style>
+
 	<?php if ( $order->has_status( 'failed' ) ) : ?>
 
 		<p><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'woocommerce' ); ?></p>
@@ -33,7 +40,9 @@ if ( $order ) : ?>
 
 	<?php else : ?>
 
-		<h2><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></h2>
+		<h2 class="aligncenter"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></h2>
+
+		<?= do_shortcode( '[h_space]' ) ?>
 
 		<ul class="order_details">
 			<li class="order">
@@ -55,11 +64,21 @@ if ( $order ) : ?>
 			</li>
 			<?php endif; ?>
 		</ul>
+
 		<div class="clear"></div>
 
-	<?php endif; ?>
+		<div class="col-md-8 col-md-offset-2">
+			<?php
+				wc_get_template( 'part/order-summary.php', array(
+					'order'         => $order,
+					'email_heading' => '',
+					'sent_to_admin' => false,
+					'plain_text'    => false
+				) );
+			?>
+		</div>
 
-	<?php do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>
+	<?php endif; ?>
 
 <?php else : ?>
 

@@ -15,7 +15,6 @@
 	wc_print_notices(); ?>
 
 <p class="myaccount_user">
-	asshurim
 	<?php
 		printf(
 			__( 'Hello <strong>%1$s</strong> (not %1$s? <a href="%2$s">Sign out</a>).', 'woocommerce' ) . ' ',

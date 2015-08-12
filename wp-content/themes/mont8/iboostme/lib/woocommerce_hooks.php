@@ -98,3 +98,36 @@
 	{
 		$_SESSION['woocs_current_currency'] = 'USD';
 	}
+
+
+	/*from halawallah@mont8.com*/
+	function from_halwallah_address()
+	{
+		return 'halawallah@mont8.com';
+	}
+
+	function from_shukran_address()
+	{
+		return 'shukran@mont8.com';
+	}
+
+	function from_habebe_address()
+	{
+		return 'habeebi@mont8.com';
+	}
+
+	function send_approve_product_email_to_seller( $post_ID, $post_after, $post_before )
+	{
+
+		if ( $post_before->post_status == 'pending' && $post_after->post_status == 'publish' )
+		{
+			( new IB_User() )->send_seller_product_approval_email( $post_after->post_author, $post_after );
+		}
+
+	}
+
+	add_action( 'post_updated', 'send_approve_product_email_to_seller', 10, 3 );
+
+
+
+

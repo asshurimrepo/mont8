@@ -95,11 +95,11 @@
 		}
 
 
-		if ( $_SESSION['send_seller_verification_email'] )
+		/*if ( $_SESSION['send_seller_verification_email'] )
 		{
 			( new IB_User )->send_seller_activation_email( get_current_user_id() );
 			$_SESSION['send_seller_verification_email'] = false;
-		}
+		}*/
 	}
 
 	add_action( 'wp_loaded', 'show_notices' );

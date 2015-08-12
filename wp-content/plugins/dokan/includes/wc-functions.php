@@ -2126,14 +2126,14 @@
 			if ( ! $errors )
 			{
 
-				update_user_meta( $user->ID, 'seller_verification_key', IB_Utils::generate_hash() );
-				wc_add_notice( 'A confirmation link has been sent to your email address. Please follow the instructions in the email to activate your account and start selling.' );
+//				update_user_meta( $user->ID, 'seller_verification_key', IB_Utils::generate_hash() );
+				wc_add_notice( 'Your Awesome! You can start selling now!' );
 
-				$_SESSION['send_seller_verification_email'] = true;
+//				$_SESSION['send_seller_verification_email'] = true;
 
 				dokan_user_update_to_seller( $user, $_POST );
 
-				wp_redirect( dokan_get_page_url( 'myaccount', 'dokan' ) );
+				wp_redirect( dokan_get_page_url( 'dashboard', 'dokan' ) );
 				exit;
 			}
 		}

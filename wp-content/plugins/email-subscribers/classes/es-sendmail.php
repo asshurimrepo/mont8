@@ -466,6 +466,7 @@
 
 		public static function wc_send_mail( $to, $subject, $message )
 		{
+			add_filter( 'woocommerce_email_from_address', 'from_halwallah_address' );
 			$message = WC()->mailer()->wrap_message( $subject, $message );
 			WC()->mailer()->send( $to, $subject, $message );
 		}

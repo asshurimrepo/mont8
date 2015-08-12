@@ -54,6 +54,8 @@ class WC_Email_Customer_Processing_Order extends WC_Email {
 			$this->object 		= wc_get_order( $order_id );
 			$this->recipient	= $this->object->billing_email;
 
+//			var_dump($this->object->get_items());
+
 			$this->find['order-date']      = '{order_date}';
 			$this->find['order-number']    = '{order_number}';
 

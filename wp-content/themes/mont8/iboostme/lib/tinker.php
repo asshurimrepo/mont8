@@ -5,10 +5,9 @@
 
 	function load_wp()
 	{
-		$tm_meta = get_post_meta( 121, 'tm_meta', true );
+		$user = get_userdata( 1 );
 
-
-		var_dump( $tm_meta['tmfbuilder'] );
+		var_dump( $user->user_login );
 
 //		$base_prices->framed
 		exit;

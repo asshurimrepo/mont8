@@ -1,92 +1,65 @@
 <?php
-/**
- * Email Order Items
- *
- * @author 		WooThemes
- * @package 	WooCommerce/Templates/Emails
- * @version     2.1.2
- */
+	/**
+	 * Email Order Items
+	 *
+	 * @author        WooThemes
+	 * @package    WooCommerce/Templates/Emails
+	 * @version     2.1.2
+	 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
-
-
-	/*	var_dump($items);
-
-		exit;*/
-
-foreach ( $items as $item_id => $item ) :
-	$_product     = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
-	$original_product_price = $_product->price;
-	$item_meta    = new WC_Order_Item_Meta( $item['item_meta'], $_product );
-
-	if ( apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
-		?>
-		<tr>
-			<td style="text-align:left; vertical-align:middle; border: 1px solid #eee; word-wrap:break-word;"><?php
-
-					/*// Show title/image etc
-					if ( $show_image ) {
-						echo apply_filters( 'woocommerce_order_item_thumbnail', '<img src="' . ( $_product->get_image_id() ? current( wp_get_attachment_image_src( $_product->get_image_id(), 'thumbnail') ) : wc_placeholder_img_src() ) .'" alt="' . __( 'Product Image', 'woocommerce' ) . '" height="' . esc_attr( $image_size[1] ) . '" width="' . esc_attr( $image_size[0] ) . '" style="vertical-align:middle; margin-right: 10px;" />', $item );
-					}*/
-
-				// Product name
-				echo apply_filters( 'woocommerce_order_item_name', $item['name'], $item );
-
-				// SKU
-				if ( $show_sku && is_object( $_product ) && $_product->get_sku() ) {
-					echo ' (#' . $_product->get_sku() . ')';
-				}
-
-				// allow other plugins to add additional product information here
-				do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
-
-				// Variation
-				if ( $item_meta->meta ) {
-					echo '<br/><small>' . nl2br( $item_meta->display( true, true, '_', "\n" ) ) . '</small>';
-				}
-
-				// File URLs
-				if ( $show_download_links && is_object( $_product ) && $_product->exists() && $_product->is_downloadable() ) {
-
-					$download_files = $order->get_item_downloads( $item );
-					$i              = 0;
-
-					foreach ( $download_files as $download_id => $file ) {
-						$i++;
-
-						if ( count( $download_files ) > 1 ) {
-							$prefix = sprintf( __( 'Download %d', 'woocommerce' ), $i );
-						} elseif ( $i == 1 ) {
-							$prefix = __( 'Download', 'woocommerce' );
-						}
-
-						echo '<br/><small>' . $prefix . ': <a href="' . esc_url( $file['download_url'] ) . '" target="_blank">' . esc_html( $file['name'] ) . '</a></small>';
-					}
-				}
-
-				// allow other plugins to add additional product information here
-				do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
-
-			?></td>
-			<td style="text-align:left; vertical-align:middle; border: 1px solid #eee;"><?php echo $item['qty'] ;?></td>
-			<td style="text-align:left; vertical-align:middle; border: 1px solid #eee;"><?php 
-			if (!empty($item['item_meta']['tm_has_dpd'])){
-				echo $order->get_formatted_line_subtotal( $item );
-			}else{
-				echo wc_price($original_product_price*$item['qty']); 
-			} 
-			?></td>
-		</tr>
-		<?php
-		do_action( 'tm_woocommerce_email_after_row', $item_id, $item, $order );	
+	if ( ! defined( 'ABSPATH' ) )
+	{
+		exit; // Exit if accessed directly
 	}
 
-	if ( $show_purchase_note && is_object( $_product ) && ( $purchase_note = get_post_meta( $_product->id, '_purchase_note', true ) ) ) : ?>
-		<tr>
-			<td colspan="3" style="text-align:left; vertical-align:middle; border: 1px solid #eee;"><?php echo wpautop( do_shortcode( wp_kses_post( $purchase_note ) ) ); ?></td>
-		</tr>
-	<?php endif; ?>
+	$currency = get_current_currency();
 
-<?php endforeach; ?>
+
+	$c_left  = in_array( $currency['position'], [ 'left', 'left_space' ] ) ? $currency['symbol'] : '';
+	$c_right = in_array( $currency['position'], [ 'right', 'right_space' ] ) ? $currency['symbol'] : '';
+
+
+	foreach ( $items as $item_id => $item ) :
+		$item_meta   = unserialize( $item['item_meta']['_tmcartepo_data'][0] );
+		$product     = new WC_Product( $item['product_id'] );
+		$store_url   = dokan_get_store_url( $product->post->post_author );
+		$seller_info = dokan_get_store_info( $product->post->post_author );
+
+		?>
+
+		<tr>
+			<td>
+				<h3><?= $item['name'] ?></h3>
+				<table style="border: none; width: 100%" class="table">
+					<tr>
+						<td style="padding: 2px; text-align:left; border: 1px solid #eee;">
+							<b>Seller</b>:
+						</td>
+						<td style="padding: 2px; text-align:left; border: 1px solid #eee;">
+							<a href="<?= $store_url ?>"><?= $seller_info['store_name'] ?></a>
+						</td>
+					</tr>
+					<?php
+						foreach ( $item_meta as $meta )
+						{
+
+							if ( in_array( $meta['value'], [ 'Seller Markup', 'Yes' ] ) )
+							{
+								continue;
+							}
+
+							echo "
+						<tr>
+						<td style='padding: 2px; text-align:left; border: 1px solid #eee;'><b>{$meta['name']}:</b></td>
+						<td style='padding: 2px; text-align:left; border: 1px solid #eee;'>{$meta['value']}</td>
+						</tr>
+						";
+						}
+					?>
+				</table>
+			</td>
+			<td style="vertical-align: middle; text-align: center;"><?= $item['qty'] ?></td>
+			<td style="vertical-align: middle; text-align: center;"><?= $c_left . $item['line_total'] . $c_right ?></td>
+		</tr>
+
+	<?php endforeach; ?>

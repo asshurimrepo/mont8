@@ -4041,7 +4041,6 @@ img.img-responsive {
 }
 
 .fancy {
-    line-height: 0.5;
     text-align: center;
     font-size: 34px;
     margin: 50px 0;
@@ -4082,6 +4081,12 @@ img.img-responsive {
     width: 20%;
     padding: 0 5px;
     float: left;
+}
+
+@media (max-width: 600px) {
+    .col-1-5 {
+        width: 100%;
+    }
 }
 
 .sell-your-art .col-1-5 img {
@@ -4184,6 +4189,13 @@ a.btn-upload {
 
 a.btn-upload:hover {
     background-color: #e11190 !important;
+}
+
+@media (max-width: 600px) {
+    a.btn-upload {
+        position: static;
+        display: block;
+    }
 }
 
 .woocommerce-cart table.cart img {
@@ -4419,6 +4431,23 @@ a.userpro-follow.notfollowing.following.red:before {
 .vaPayment_PAYPAL {
     text-align: center;
 }
+
+@media (max-width: 600px) {
+    #mega_main_menu.primary > .menu_holder > .menu_inner > ul > li > .item_link {
+        padding-bottom: 30px !important;
+    }
+}
+
+.mobile-menu .navbar-right {
+    position: absolute;
+    top: -29px;
+    z-index: 999;
+}
+
+.woocommerce-currency-switcher-form ul.dd-options {
+    z-index: 9999;
+}
+
 /*
 .stylish-input-group .input-group-addon{
     background: white !important;

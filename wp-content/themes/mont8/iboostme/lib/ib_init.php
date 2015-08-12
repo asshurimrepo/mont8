@@ -4,14 +4,26 @@
 	$ib_user = new IB_User();
 
 
+	add_action( 'init', 'site_lock' );
+
+	function site_lock()
+	{
+		if ( $_SESSION['has_site_access'] )
+		{
+			return;
+		}
+
+		wp_redirect( '/access' );
+		exit;
+	}
+
 	/*Hide some menus when the seller has no product yet*/
 	add_filter( 'dokan_get_dashboard_nav', 'hide_some_seller_nav' );
 
 	function hide_some_seller_nav( $urls )
 	{
-		global $ib_user;
 
-		if ( $ib_user->has_artwork() )
+		if ( dokan_is_seller_enabled( get_current_user_id() ) )
 		{
 			return $urls;
 		}

@@ -12,9 +12,10 @@
 	$reviews_url  = dokan_get_navigation_url( 'reviews' );
 
 	$store_user = get_userdata( get_query_var( 'author' ) );
-	$user_meta = get_user_meta( $store_user->ID );
-	$following = unserialize($user_meta['_userpro_following_ids'][0]);
-	$followers = unserialize($user_meta['_userpro_followers_ids'][0]);
+	$user_meta = get_user_meta( $user_id );
+
+	$following = unserialize( $user_meta['_userpro_following_ids'][0] ) ?: [ ];
+	$followers = unserialize( $user_meta['_userpro_followers_ids'][0] ) ?: [ ];
 
 	$current_user = wp_get_current_user();
 ?>

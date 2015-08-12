@@ -733,7 +733,7 @@
 		?>
 		<div class="dokan-alert dokan-alert-warning">
 			<strong><?php _e( 'Error!', 'dokan' ); ?></strong>
-			<?php _e( 'Your account is not enabled for selling, please contact the admin', 'dokan' ); ?>
+			<?php _e( 'Your account is not enabled for selling, please click the confirmation link in the email sent to you.', 'dokan' ); ?>
 		</div>
 		<?php
 	}
@@ -802,8 +802,7 @@
 
 
 										<li>
-											<a href="<?php echo dokan_get_store_url( $user_id ); ?>"
-											   target="_blank"><?= __( 'My Store', 'dokan' ) ?></a>
+											<a href="<?php echo dokan_get_store_url( $user_id ); ?>"><?= __( 'My Store', 'dokan' ) ?></a>
 										</li>
 
 										<li>
@@ -882,7 +881,7 @@
 							</li>
 						<?php endif; ?>
 
-						<li style="width: 49.4%; padding-left:5px" class="pull-right">
+						<li style="width: 49.4%; padding-left:5px" class="pull-right hidden-xs hidden-sm">
 							<div class="search_panel">
 								<form method="get" id="searchform"
 								      action="<?php echo esc_url( home_url( '/shop' ) ); ?>" role="search">

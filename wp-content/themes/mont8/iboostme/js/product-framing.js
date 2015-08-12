@@ -566,7 +566,7 @@ var el;
                 $(".images").append($(".artwork-thumbnail"));
                 $(".images>.image-grey>a").after($(".preview-wall-container"));
 
-                var main_image_url = $(".woocommerce-main-image").prop('href');
+                var main_image_url = $(".woocommerce-main-image img").prop('src');
 
                 $(".mo-artwork").prop('href', main_image_url);
 
@@ -863,7 +863,7 @@ jQuery(document).ready(function ($) {
 
     setTimeout(function () {
         $(".overlay-preloader").hide();
-    }, 3000);
+    }, 2000);
 
 })(jQuery);
 

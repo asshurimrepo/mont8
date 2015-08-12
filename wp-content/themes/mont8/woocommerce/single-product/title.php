@@ -31,17 +31,17 @@
 </div>
 
 <div class="row product-title">
-	<div class="col-md-2">
+	<div class="col-md-2 col-xs-3">
 		<?= get_avatar( $author->ID, 128 ) ?>
 	</div>
-	<div class="col-md-7">
+	<div class="col-md-7 col-xs-6">
 		<h1 itemprop="name" class="product_title"><?= $product->post->post_title ?>
 			<small>By <a href="<?= $store_url ?>"><?= $store_info['store_name'] ?></a></small>
 		</h1>
 	</div>
 
 
-	<div class="col-md-3">
+	<div class="col-md-3 col-xs-3">
 		<?php
 			// Check if logged in user is equal to this user
 			if ( $current_user->ID != $author->ID )
